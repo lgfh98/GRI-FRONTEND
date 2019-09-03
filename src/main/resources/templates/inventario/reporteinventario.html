@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/header :: header('Reporte Producciones en Custodia')">
+<meta charset="utf-8" />
+
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="investigadores">
+					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="general"> <i
+					class="fas fa-fw fa-users"></i> <span>Grupos de
+						Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero" th:text="${nombre}"></h1>
+							Reportes relacionados a las producciones que se encuentran
+							actualmente en custodia de la Vicerrectoría de Investigaciones.
+						</div>
+					</div>
+				</div>
+
+				<div class="separador-1"></div>
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Reporte en tabla
+					</div>
+					<div class="contenedor-body">
+						<div>
+							<table id="tabla_inventario"
+								class="table table-striped table-bordered table-hover table-responsive-lg"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th></th>
+										<th></th>
+										<th>REFERENCIA</th>
+										<th>AUTORES</th>
+										<th>AÑO</th>
+										<th>TIPO</th>
+										<th></th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="produccion : ${producciones}">
+										<td></td>
+										<td th:text="${produccion[0]}"></td>
+										<td th:text="${produccion[1]}"></td>
+										<td th:text="${produccion[2]}"></td>
+										<td th:text="${produccion[3]}"></td>
+										<td th:text="${produccion[4]}"></td>
+										<td th:text="${produccion[5]}"></td>
+										<td th:text="${produccion[6]}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<div th:replace="fragments/footer"></div>
+	<script type="text/javascript" th:inline="javascript"> 
+	var data = [[${producciones}]];
+	console.log(data);
+	console.log(data.length);
+	  $.extend( $.fn.dataTable.defaults, {
+	      /* responsive: true,
+	      dom: 'Bfrtip',
+	      buttons: [
+	      {
+	        extend: 'copy',
+	        text: 'Copiar',
+	        className: 'copyButton'
+	      }, 
+	      { 
+	        extend: 'excel',
+	        text: 'Excel',
+	        className: 'excelButton',
+	        customize: function ( xlsx ) {
+	        	  var sheet = xlsx.xl.worksheets['sheet1.xml'];
+	        		  $('c[r=A1] t', sheet).text( 'INVENTARIO - '+document.getElementById('titulo').textContent) ;
+	        			data.forEach(function(item, i){
+	            			if(data[i][6] == 1){
+	            				console.log(data[i]);
+	            				console.log(i);
+	            				$('c[r=D'+i+']', sheet ).attr( 's', '15' );
+	            				//$('#tabla_inventario').jexcel('setStyle', 'A2', 'background-color', 'yellow');
+	            			}
+	            		});
+	        			
+	          },
+		        exportOptions: {
+	           	columns: [ 7,1, ':visible' ],
+	            //modifier: { order: 1 }
+		        },
+	      filename: function() {
+	    	    return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
+	        }   
+	      }, 
+	      {
+	        extend: 'pdf',
+	        text: 'PDF',
+	        className: 'pdfButton',
+	        customize: function (doc){
+	        	data.forEach(function(item, i){
+	        		console.log(data[i][6]);
+        			if(data[i][6] == 1){
+        				console.log(data[i]);
+        				doc.content[1].table.body[i+1][3].fillColor = 'blue';
+        			}
+        		});
+	        },  
+	      
+	        filename: function() {
+	      	 
+	      		  return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
+	      	  
+	          },
+	          title : function() {
+	        	  
+		      		  return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
+		      	  
+	            },
+	            exportOptions: {
+	                columns: ':visible'
+	            }
+	      },
+	      {
+	        extend: 'print',
+	        text: 'Imprimir',
+	        className: 'printButton',
+	        exportOptions: {
+              columns: ':visible',
+              stripHtml: false
+          }
+	      }
+	      ], */
+	      language: {
+	        processing:     "Procesamiento en curso...",
+	        search:         "Buscar: ",
+	        lengthMenu:    "Mostrando _MENU_ elementos",
+	        info:           "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+	        infoEmpty:      "Mostrando 0 a 0 de 0 elementos",
+	        infoFiltered:   "(filtrado de _MAX_ elementos en total)",
+	        infoPostFix:    "",
+	        loadingRecords: "Cargando resultados...",
+	        zeroRecords:    "No hay información para mostrar",
+	        emptyTable:     "No hay información para mostrar",
+	        paginate: {
+	          first:      "Primera",
+	          previous:   "Anterior",
+	          next:       "Siguiente",
+	          last:       "última"
+	        }
+	      }
+	    } );
+	  
+	</script>
+
+</body>
+</html>

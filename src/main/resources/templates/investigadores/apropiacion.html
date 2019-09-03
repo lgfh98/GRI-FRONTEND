@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Apropiación Social')">
+<meta charset="utf-8"/>
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a class="nav-link" href="investigadores">
+					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a class="nav-link" href="general">
+					<i class="fas fa-fw fa-users"></i> <span>Grupos de
+						Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				
+                <div class="region-hero">
+                  <div class="contenedor-hero"> 
+                    <div class="contenido-hero">
+                      <h1 id="titulo" class="titulo-hero" th:text = "${nombre}"></h1>
+                      Apropiación Social
+                    </div>
+                  </div>
+                </div>
+
+                <div class="separador-1"></div>
+
+                <div class="cuerpo">
+                  <ul class="cards-list">
+                    <li class="cards-item ci-5"> 
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=5)}" class="card-container"  rel="keep-params">
+                          <div class="card-icon card-icon-1">
+                            <span class="icono fa fa-pencil-alt"></span> 
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Actividades <br/> de <br/> Edición</h3>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+
+                    <li class="cards-item ci-5">  
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=6)}" class="card-container"  rel="keep-params"> 
+                          <div class="card-icon card-icon-2">
+                            <span class="icono fas fa-calendar-alt"></span> 
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Participaciones en Eventos Científicos</h3>  
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+
+                    <li class="cards-item ci-5"> 
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=7)}" class="card-container"  rel="keep-params"> 
+                          <div class="card-icon card-icon-3">
+                            <span class="icono fas fa-network-wired"></span> 
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Redes <br/> de <br/> Conocimiento</h3> 
+                          </div> 
+                        </a>
+                      </div>
+                    </li>
+
+                    <li class="cards-item ci-5">
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=8)}" class="card-container"  rel="keep-params">
+                          <div class="card-icon card-icon-4">
+                            <span class="icono fas fa-print"></span> 
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Generación de Contenido Impreso</h3>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+
+                    <li class="cards-item ci-5"> 
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=9)}" class="card-container"  rel="keep-params">
+                          <div class="card-icon card-icon-5">
+                            <span class="icono fas fa-play-circle"></span> 
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Generación  de <br/> Contenido Multimedia</h3>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="cards-item ci-5"> 
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=10)}" class="card-container"  rel="keep-params">
+                          <div class="card-icon card-icon-6">
+                            <span class="icono fas fa-code"></span>     
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Generación <br/> de <br/> Contenido Virtual</h3>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="cards-item ci-5"> 
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=11)}" class="card-container"  rel="keep-params">
+                          <div class="card-icon card-icon-7">
+                            <span class="icono fas fa-comments"></span>  
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Estrategias de Comunicación del Conocimiento</h3>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="cards-item ci-5"> 
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=12)}" class="card-container"  rel="keep-params">
+                          <div class="card-icon card-icon-8">
+                            <span class="icono fas fa-chalkboard-teacher"></span> 
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Estrategias Pedagógicas para el Fomento a la CTI</h3>
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="cards-item ci-5"> 
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=13)}" class="card-container"  rel="keep-params">
+                          <div class="card-icon card-icon-9">
+                            <span class="icono fas fa-hands-helping"></span> 
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Espacios de Participación Ciudadana</h3> 
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="cards-item ci-5">  
+                      <div class="card">
+                        <a th:href="@{reporte(id=${id},type=${tipo}, prod=14)}" class="card-container"  rel="keep-params">
+                          <div class="card-icon card-icon-10"> 
+                            <span class="icono fa fa-people-carry"></span> 
+                          </div>
+                          <div class="card-title-container">
+                            <h3 class="card-title">Participación Ciudadana en Proyectos de CTI</h3>   
+                          </div>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>

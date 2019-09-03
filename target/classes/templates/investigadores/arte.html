@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Producción en Arte')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a class="nav-link" href="investigadores">
+					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a class="nav-link" href="general">
+					<i class="fas fa-fw fa-users"></i> <span>Grupos de
+						Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero" th:text = "${nombre}"></h1>
+							Producción en Arte
+						</div>
+					</div>
+				</div>
+
+				<div class="separador-1"></div>
+
+				<div class="cuerpo">
+					<ul class="cards-list">
+						<li class="cards-item ci-3">
+							<div class="card">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=34)}" class="card-container"
+									rel="keep-params">
+									<div class="card-icon card-icon-1">
+										<span class="icono fa fa-puzzle-piece"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Obras o Productos</h3>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<li class="cards-item ci-3">
+							<div class="card">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=35)}" class="card-container"
+									rel="keep-params">
+									<div class="card-icon card-icon-2">
+										<span class="icono fa fa-copyright"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Registros de Acuerdo de Licencia</h3>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<li class="cards-item ci-3">
+							<div class="card">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=36)}" class="card-container"
+									rel="keep-params">
+									<div class="card-icon card-icon-3">
+										<span class="icono fa fa-industry"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Industrias Creativas y Culturales</h3>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<li class="cards-item ci-3">
+							<div class="card">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=37)}" class="card-container"
+									rel="keep-params">
+									<div class="card-icon card-icon-4">
+										<span class="icono fa fa-users"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Eventos Artísticos</h3>
+									</div>
+								</a>
+							</div>
+						</li>
+
+						<li class="cards-item ci-3">
+							<div class="card">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=38)}" class="card-container"
+									rel="keep-params">
+									<div class="card-icon card-icon-5">
+										<span class="icono fa fa-paint-brush"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Talleres Creativos</h3>
+									</div>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>

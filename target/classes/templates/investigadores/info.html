@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Información Adicional')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a
+				class="nav-link" href="investigadores"> <i
+					class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a
+				class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i>
+					<span>Grupos de Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero" th:text="${nombre}"></h1>
+							Información General
+						</div>
+					</div>
+				</div>
+
+				<div class="separador-1"></div>
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-info"></i> Información Personal
+					</div>
+					<div id="info-personal" class="contenedor-body">
+						<div class="row">
+							<div class="col-md-6">
+								<label>NOMBRE: </label>
+							</div>
+							<div class="col-md-6">
+								<p id="name" th:text="${inv.nombre}"></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<label>CATEGORÍA COLCIENCIAS: </label>
+							</div>
+							<div class="col-md-6">
+								<p id="categoria" th:text="${inv.categoria}"></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<label>NIVEL ACADÉMICO: </label>
+							</div>
+							<div class="col-md-6">
+								<p id="nivelAcademico" th:text="${inv.nivelAcademico}"></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<label>CONTRATACIÓN: </label>
+							</div>
+							<div class="col-md-6">
+								<p id="pertenencia" th:text="${inv.pertenencia}"></p>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<label>PERTENECE A: </label>
+							</div>
+							<div id="lista-grupos" class="col-md-6">
+								<p th:each="grupo : ${listaGrupos}" th:text="'• '+${grupo.nombre}"></p>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-language"></i> Idiomas del Investigador
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_idiomas" class="table table-bordered"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th>IDIOMA</th>
+										<th>HABLA</th>
+										<th>ESCRIBE</th>
+										<th>LEE</th>
+										<th>ENTIENDE</th>
+									</tr>
+								</thead>
+								<tbody>
+							<tr th:each="idioma : ${listaIdiomas}">
+								<td th:text="${idioma.idioma}"></td>
+								<td th:text="${idioma.habla}"></td>
+								<td th:text="${idioma.escribe}"></td>
+								<td th:text="${idioma.lee}"></td>
+								<td th:text="${idioma.entiende}"></td>
+							</tr>
+						</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>

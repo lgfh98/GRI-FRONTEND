@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Producciones en Custodia')">
+<meta charset="utf-8"/>
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="investigadores">
+					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="general">
+					<i class="fas fa-fw fa-users"></i> <span>Grupos de
+						Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 class="titulo-hero" th:text="${nombre}"></h1>
+							Reportes relacionados a las producciones que se encuentran actualmente en custodia de la Vicerrectoría de Investigaciones.
+						</div>
+					</div>
+				</div>
+				<div class="separador-1"></div>
+				
+				<div id="listageneral">
+				<ul class="cards-list">
+				<li class="ci-4 cards-item" th:classappend = "${tamanio}" th:each = "obj : ${lista}">
+								<div class="card">
+									<a th:href="${param.id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}" class="card-container"
+										rel="keep-params">
+										<div class="card-ball card-icon" th:classappend = "${param.id} ? ${color} : card-+${obj.id}">
+											<!--  <span class="icono fa fa-info"></span>-->
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title" style="font-size: 1rem !important;" th:text="${obj.nombre}">
+											</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+							</ul>
+					</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>

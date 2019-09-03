@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/header :: header('Resultados de la Búsqueda')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav('card-0')"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="'card-0'">
+			<li class="nav-item"><a class="nav-link" href="inicio">
+					<i class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a
+				class="nav-link" href="investigadores"> <i
+					class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a
+				class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i>
+					<span>Grupos de Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+
+
+				<div class="input-group my-3">
+					<input type="text" id="input-busqueda"
+						class="form-control form-control-lg"
+						placeholder="Ingrese su búsqueda..."
+						aria-label="Recipient's username" aria-describedby="basic-addon2" th:value="${cadena}">
+					<div class="input-group-append">
+						<button class="btn btn-outline-success" id="btn-buscar"
+							type="button">Buscar</button>
+					</div>
+					</input>
+				</div>
+
+				<div class="px-5">
+					<label class="px-1">Buscar en:</label> <label
+						class="radio-inline px-1"><input type="radio" id="gruplac"
+						name="optradio" th:checked="${esGrupo}"/>GrupLAC</label> <label
+						class="radio-inline px-1"><input type="radio" id="cvlac"
+						name="optradio" th:checked="${not esGrupo}"/>CvLAC</label>
+				</div>
+
+
+
+				<div class="contenedor my-3">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Resultados de la Búsqueda
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="table-prod"
+								class="table table-striped table-bordered table-hover table-responsive-lg"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th>REFERENCIA</th>
+										<th>AUTORES</th>
+										<th>AÑO</th>
+										<th>TIPO</th>
+										<th>EN EL PERFIL DE</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="produccion : ${resultados}">
+										<td th:text="${produccion[0]}"></td>
+										<td th:text="${produccion[1]}"></td>
+										<td th:text="${produccion[2]}"></td>
+										<td th:text="${produccion[3]}"></td>
+										<td th:text="${produccion[4]}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+	
+</body>
+</html>

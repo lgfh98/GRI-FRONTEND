@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Inicio')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav class="navbar navbar-expand navbar-dark static-top"
+		style="background-color: #007f36;">
+		<a class="navbar-brand mr-1" href="#">GRI</a>
+		<div
+			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+		</div>
+		<!-- Navbar -->
+		<ul class="navbar-nav ml-auto ml-md-0">
+			<li class="nav-item dropdown no-arrow"></li>
+		</ul>
+	</nav>
+	<div id="wrapper">
+		<div id="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="row mb-5">
+					<div class="col-md-4 offset-md-4">
+						<div class="card mt-4 text-center">
+
+
+							<div class="card-body">
+								<div class="cont-icono">
+									<span class="icon"> </span>
+								</div>
+								<div class="cont-titulo">
+									<h1 class="titulo">GRI - Inicio</h1>
+								</div>
+								<div class="alert alert-danger mt-4" role="alert" th:if="${param.error}">
+								Datos Incorrectos
+								</div>
+								<form th:action="@{/login}" method="post">
+									<div class="form-group my-2">
+										<input type="user" id="userInput" name="username"
+											placeholder="Ingrese su usuario" class="form-control"/>
+									</div>
+
+									<div class="form-group my-2">
+										<input type="password" id="passwordInput" name="password"
+											placeholder="Ingrese su contraseña" class="form-control"/>
+									</div>
+
+									<button id="login" type="submit"
+										class="btn btn-success btn-block mt-4">Iniciar Sesión</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>

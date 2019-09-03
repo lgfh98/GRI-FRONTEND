@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand navbar-dark static-top"
+	th:fragment="nav (style)" th:classappend="${style}">
+
+	<a class="navbar-brand mr-1" href="inicio">GRI</a>
+
+	<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
+		id="sidebarToggle" href="#">
+		<i class="fas fa-bars"></i>
+	</button>
+
+	<!-- Uso Futuro -->
+	<div
+		class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+	</div>
+
+	<!-- Navbar -->
+	<ul class="navbar-nav ml-auto ml-md-0">
+		<li sec:authorize="hasRole('ROLE_ADMIN')">
+			<a href="inventario"> 
+				<button type="submit" class="btn btn-nav mx-2">
+					Producciones en Custodia</button>
+			</a>
+		</li>
+
+		<li>
+			<form th:action="@{/logout}" method="post">
+				<button type="submit" class="btn btn-nav">Salir</button>
+			</form>
+		</li>
+	</ul>
+</nav>

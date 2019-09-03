@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Centros de Investigación')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav('card-0')"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled"
+			style="background-color: #007f36;">
+			<li class="nav-item"><a class="nav-link"
+				href="inicio"> <i class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="investigadores"> <i class="fas fa-fw fa-user"></i> <span>Investigadores</span></a>
+			</li>
+			<li class="nav-item"><a class="nav-link"
+				href="general"> <i class="fas fa-fw fa-users"></i> <span>Grupos
+						de Investigación</span></a></li>
+			<li class="nav-item active"><a class="nav-link" href="centros">
+					<i class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				 <div class="region-hero">
+                  <div class="contenedor-hero"> 
+                    <div class="contenido-hero">
+                      <h1 class="titulo-hero">Centros de Investigaciones</h1>
+                      Tabla/Reporte de los centros de investigación activos en el sistema.
+                    </div>
+                  </div>
+                </div>
+				<div class="separador-1"></div>
+
+				<div id="table">
+					<table id="tabla_centros"
+						class="table table-striped table-bordered table-hover table-responsive-lg"
+						style="width: 100%">
+						<thead>
+							<tr>
+								<th></th>
+								<th>NOMBRE</th>
+								<th>FACULTAD</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="centro : ${listaCentros}">
+								<td th:text="${centro.id}"></td>
+								<td th:text="${centro.nombre}"></td>
+								<td th:text="${centro.facultad.nombre}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>

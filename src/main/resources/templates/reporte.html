@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Reporte')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a
+				class="nav-link" href="investigadores"> <i
+					class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a
+				class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i>
+					<span>Grupos de Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero" th:text="${nombre}"></h1>
+							<span id="subtitulo" th:text="${tipo}"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="separador-1"></div>
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-chart-bar"></i> Reporte gráfico por año
+					</div>
+					<div id="barras-anio" class="contenedor-body"
+						style="width: 200; height: 150"></div>
+				</div>
+
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Reporte en tabla
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_reporte"
+								class="table table-striped table-bordered table-hover table-responsive-lg"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th></th>
+										<th>REFERENCIA</th>
+										<th>AUTORES</th>
+										<th>AÑO</th>
+										<th th:if="${esBibliografica}">ISSN/ISBN</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="produccion : ${producciones}">
+										<td th:text="${produccion.id}"></td>
+										<td th:text="${produccion.referencia}"></td>
+										<td th:text="${produccion.autores}"></td>
+										<td th:text="${produccion.anio}"></td>
+										<td th:if="${esBibliografica}" th:text="${produccion.identificador}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+	
+	<script th:inline="javascript">
+	
+	 var url = "/ServerSpring/rest/service/producciones/"+ [[${param.type}]] +"/"+  [[${param.id}]] +"/"+  [[${param.prod}]];
+	 
+	 $.ajax({
+         type: "GET",
+         contentType:"application/json",
+         url: url,
+         dataType: 'json',
+         cache: false,
+         success: function (producciones) {
+        	 
+        	 var res = [];
+        	 
+        	 producciones.forEach(function(item){
+        			var anio = parseInt(item.anio);
+        			if(res.some(e => e.name === anio)){
+        				const i = res.findIndex(obj => obj.name === anio);
+        				var cant = res[i].y;
+        				res[i].y = cant+1;
+        			}else{
+        				res.push({
+        					name: anio,
+        		            y: 1  
+        				});
+        			}		
+        		});
+        	 
+        	 res.sort( (a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+        		
+        		var titulo = [[${nombre}]] + " - " + [[${tipo}]]
+        		const element = document.querySelector('.'+[[${color}]]);
+        		const style = getComputedStyle(element);
+        		const color = style.backgroundColor;
+        		
+        		
+        		Highcharts.chart('barras-anio',{
+            	    chart: {
+            	        type: 'column'
+            	    },
+            	    title: {
+            	        text: titulo
+            	    },
+            	    xAxis: {
+            	        type: 'category',
+            	        labels: {
+            	            rotation: -45,
+            	            style: {
+            	                fontSize: '13px',
+            	                fontFamily: 'Helvetica Neue, sans-serif'
+            	            }
+            	        },
+            	    title: {
+                        text: 'Año'
+                    }
+            	    },
+            	    yAxis: { 
+            	        min: 0,
+            	        title: {
+            	            text: 'Cantidad'
+            	        }
+            	    },
+            	    legend: {
+            	        enabled: false
+            	    },
+            	    tooltip: {
+            	        pointFormat: 'Producciones científicas: <b>{point.y:.0f}</b>'
+            	    },
+            	    series: [{ 
+            	        data: res, 
+            	        color: color
+            	    }]
+            	});
+         }
+	 });
+    
+    </script>
+</body>
+</html>

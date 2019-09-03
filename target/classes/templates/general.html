@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Tipología de Productos')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+
+	<div id="wrapper">
+
+			<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a class="nav-link" href="investigadores">
+					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a class="nav-link" href="general">
+					<i class="fas fa-fw fa-users"></i> <span>Grupos de
+						Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="cuerpo">
+					<div id="lista-miembros" class="lista-miembros">
+						<ul id="miembros" class="cards-list" >
+							<li class="cards-item" th:classappend = "${tamanio}" th:each = "obj : ${lista}" >
+								<div class="card">
+									<a class="card-container"
+										th:href="@{general(id=${obj.id},type=${subtipo})}">
+										<div class="card-title-container-s">
+											<h3 class="card-title-s" th:text = "${obj.nombre}"></h3>
+										</div></a>
+									<div class="card-bar" th:classappend = "${subtipo} == 'f' ? card-+${obj.id} : ${color}"></div>
+								</div>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="separador-1"></div>
+
+					<div class="region-hero">
+						<div class="contenedor-hero">
+							<div class="contenido-hero">
+								<h1 id="titulo" class="titulo-hero" th:text="${nombre}"></h1>
+							</div>
+						</div>
+					</div>
+					<div class="separador-1"></div>
+					<div id="listageneral">
+						<ul class="cards-list">
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{info(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-1">
+											<span class="icono fa fa-info"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">
+												Información<br /> General
+											</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{formacion(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-2">
+											<span class="icono fa fa-graduation-cap"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">Actividades de Formación</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{evaluador(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-3">
+											<span class="icono fa fa-pencil-alt"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">Actividades como Evaluador</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{apropiacion(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-4">
+											<span class="icono fa fa-user-friends"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">Actividades de Apropiación Social</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{bibliografica(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-5">
+											<span class="icono fa fa-book-open"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">Producciones Bibliográficas</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{tecnica(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-6">
+											<span class="icono fa fa-cogs"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">Producciones Técnicas y
+												Tecnológicas</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{arte(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-7">
+											<span class="icono fa fa-paint-brush"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">
+												Producciones en <br />Arte
+											</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{masinfo(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-8">
+											<span class="icono fa fa-plus"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">
+												Más <br />Información
+											</h3>
+										</div>
+									</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Información Adicional')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a
+				class="nav-link" href="investigadores"> <i
+					class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a
+				class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i>
+					<span>Grupos de Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
+						Investigación</span>
+			</a></li>
+		</ul>
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero" th:text = "${nombre}"></h1>
+							Información General
+						</div>
+					</div>
+				</div>
+
+				<div class="separador-1"></div>
+
+				<div class="row mb-3">
+					<div class="col-lg-6">
+						<div class="contenedor mb-3">
+							<div class="contenedor-header">
+								<i class="fas fa-chart-pie"></i> Investigadores por Categoría
+								COLCIENCIAS
+							</div>
+							<div id="pie-categorias" class="contenedor-body"
+								style="width: 200; height: 150"></div>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="contenedor mb-3">
+							<div class="contenedor-header">
+								<i class="fas fa-chart-pie"></i> Investigadores por su Formación
+								Académica
+							</div>
+							<div id="pie-formacion" class="contenedor-body"
+								style="width: 200; height: 150"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="contenedor mb-3" id="div_grupos_pertenecientes" th:if="${not esGrupo}">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Grupos Pertenecientes
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_grupos_pertenecientes"
+								class="table table-striped table-bordered table-hover table-responsive-lg"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th></th>
+										<th>NOMBRE</th>
+										<th>CATEGORÍA</th>
+										<th>LÍDER</th>
+									</tr>
+								</thead>
+								<tbody>
+							<tr th:each="grupo : ${gruposPertenecientes}">
+								<td th:text="${grupo.id}"></td>
+								<td th:text="${grupo.nombre}"></td>
+								<td th:text="${grupo.categoria}"></td>
+								<td th:text="${grupo.lider}"></td>
+							</tr>
+						</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Investigadores Integrantes
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_integrantes"
+								class="table table-striped table-bordered table-hover table-responsive-lg"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th></th>
+										<th>NOMBRE</th>
+										<th>CATEGORÍA</th>
+										<th>NIVEL ACADÉMICO</th>
+										<th>PERTENENCIA</th>
+									</tr>
+								</thead>
+								<tbody>
+							<tr th:each="integrantes : ${integrantes}">
+								<td th:text="${integrantes.id}"></td>
+								<td th:text="${integrantes.nombre}"></td>
+								<td th:text="${integrantes.categoria}"></td>
+								<td th:text="${integrantes.nivelAcademico}"></td>
+								<td th:text="${integrantes.pertenencia}"></td>
+							</tr>
+						</tbody>
+							</table>
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+	
+	<script th:inline="javascript">
+    $(function(){
+
+        var categorias = [[${datosCategoria}]];
+        var clavesCategoria = [[${clavesCategoria}]];
+        var listaCategorias = [];
+
+        categorias.forEach(function(item, index){
+            listaCategorias.push({
+                name: clavesCategoria[index],
+                y: item
+            });
+        });
+
+        Highcharts.chart('pie-categorias', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Investigadores por Categoría COLCIENCIAS - '+[[${nombre}]]
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y:.0f}</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: "Investigadores",
+                colorByPoint: true,
+                data: listaCategorias
+            }]
+        });
+var formacion = [[${datosFormacion}]];
+        var clavesFormacion = [[${clavesFormacion}]];
+        var listaFormacion = [];
+
+        formacion.forEach(function(item, index){
+            listaFormacion.push({
+                name: clavesFormacion[index],
+                y: item
+            });
+        });
+
+        Highcharts.chart('pie-formacion', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: 'Investigadores por su Formación Académica - '+[[${nombre}]]
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.y:.0f}</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                    }
+                }
+            },
+            series: [{
+                name: "Investigadores",
+                colorByPoint: true,
+                data: listaFormacion
+            }]
+        });
+    });
+    </script>
+</body>
+</html>
