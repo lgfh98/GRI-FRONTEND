@@ -1,5 +1,6 @@
 package co.edu.uniquindio.gri.repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,4 +24,12 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long>{
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE id<>0 and facultad.id = :id")
 	List<Programa> getProgramasFacultad(@Param("id") Long idFacultad);
+	
+	/**
+	 * Obtiene la cantidad total de programas.
+	 *
+	 * @return cantidad total de programas
+	 */
+	@Query("SELECT COUNT(p) FROM co.edu.uniquindio.gri.model.Programa p")
+	BigInteger getStats();
 }

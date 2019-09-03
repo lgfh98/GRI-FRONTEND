@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header :: header('GRI - Inicio')">
-<meta charset="utf-8"/>
+<meta charset="utf-8" />
 </head>
 <body id="page-top" class="sidebar-toggled">
 
@@ -12,17 +12,17 @@
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav toggled"
 			style="background-color: #007f36;">
-			<li class="nav-item active"><a class="nav-link"
-				href=""> <i class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			<li class="nav-item active"><a class="nav-link" href=""> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="investigadores"> <i class="fas fa-fw fa-user"></i> <span>Investigadores</span></a>
-			</li>
-			<li class="nav-item"><a class="nav-link"
-				href="general"> <i class="fas fa-fw fa-users"></i> <span>Grupos
-						de Investigación</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="centros">
-					<i class="fas fa-fw fa-microscope"></i> <span>Centros de
+			<li class="nav-item"><a class="nav-link" href="investigadores">
+					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="general"> <i
+					class="fas fa-fw fa-users"></i> <span>Grupos de
+						Investigación</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
 						Investigación</span>
 			</a></li>
 		</ul>
@@ -67,15 +67,18 @@
 								class="badge-list-value" th:text="${cantInves}"></span> <span
 								class="badge-list-label">Investigadores</span>
 						</a></li>
-						<li class="badge-list-item"><a class="link"
-							href="general"> <span class="badge-list-value"
-								th:text="${cantGrupos}"></span> <span class="badge-list-label">Grupos
-									de Investigación</span>
+						<li class="badge-list-item"><a class="link" href="general">
+								<span class="badge-list-value" th:text="${cantGrupos}"></span> <span
+								class="badge-list-label">Grupos de Investigación</span>
 						</a></li>
-						<li class="badge-list-item"><a class="link"
-							href="centros"> <span id="badge-centros"
-								class="badge-list-value" th:text="${cantCentros}"></span> <span
-								class="badge-list-label">Centros de Investigación</span>
+						<li class="badge-list-item"><a class="link" href="programas">
+								<span class="badge-list-value" th:text="${cantProgramas}"></span> <span
+								class="badge-list-label">Programas</span>
+						</a></li>
+						<li class="badge-list-item"><a class="link" href="centros">
+								<span id="badge-centros" class="badge-list-value"
+								th:text="${cantCentros}"></span> <span class="badge-list-label">Centros
+									de Investigación</span>
 						</a></li>
 					</ul>
 				</div>
