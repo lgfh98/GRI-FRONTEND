@@ -51,6 +51,7 @@ public class WebController {
 		model.addAttribute("cantGrupos", stats.get(1));
 		model.addAttribute("cantCentros", stats.get(2));
 		model.addAttribute("cantProgramas", stats_0);
+		model.addAttribute("estadisticas", "");
 
 		return "index";
 	}

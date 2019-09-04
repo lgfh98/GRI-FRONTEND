@@ -26,10 +26,18 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long>{
 	List<Programa> getProgramasFacultad(@Param("id") Long idFacultad);
 	
 	/**
+	 * Obtiene los programas
+	 *
+	 * @return lista de los programas
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE id<>0")
+	List<Programa> getProgramas();
+	
+	/**
 	 * Obtiene la cantidad total de programas.
 	 *
 	 * @return cantidad total de programas
 	 */
-	@Query("SELECT COUNT(p) FROM co.edu.uniquindio.gri.model.Programa p")
+	@Query("SELECT COUNT(p) FROM co.edu.uniquindio.gri.model.Programa p where p.id <> 0")
 	BigInteger getStats();
 }

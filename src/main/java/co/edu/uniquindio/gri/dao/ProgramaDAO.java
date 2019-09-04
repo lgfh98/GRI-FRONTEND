@@ -25,7 +25,7 @@ public class ProgramaDAO {
 	 * @return lista con todos los programas.
 	 */
 	public List<Programa> getAllProgramas(){
-		return programaRepository.findAll();
+		return programaRepository.getProgramas();
 	}
 	
 	/**

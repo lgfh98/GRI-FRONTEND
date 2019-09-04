@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: header('GRI - Inicio')">
-<meta charset="utf-8" />
+	<meta charset="utf-8" />
 </head>
+
 <body id="page-top" class="sidebar-toggled">
 
 	<nav th:replace="fragments/nav :: nav('card-0')"></nav>
@@ -10,21 +12,19 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul class="sidebar navbar-nav toggled"
-			style="background-color: #007f36;">
-			<li class="nav-item active"><a class="nav-link" href=""> <i
-					class="fas fa-fw fa-home"></i> <span>Inicio</span>
-			</a></li>
+		<ul class="sidebar navbar-nav toggled" style="background-color: #007f36;">
+			<li class="nav-item active"><a class="nav-link" href=""> <i class="fas fa-fw fa-home"></i>
+					<span>Inicio</span>
+				</a></li>
 			<li class="nav-item"><a class="nav-link" href="investigadores">
 					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="general"> <i
-					class="fas fa-fw fa-users"></i> <span>Grupos de
+				</a></li>
+			<li class="nav-item"><a class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i> <span>Grupos de
 						Investigación</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="centros"> <i
-					class="fas fa-fw fa-microscope"></i> <span>Centros de
+			<li class="nav-item"><a class="nav-link" href="centros"> <i class="fas fa-fw fa-microscope"></i>
+					<span>Centros de
 						Investigación</span>
-			</a></li>
+				</a></li>
 		</ul>
 
 		<div id="content-wrapper">
@@ -40,46 +40,47 @@
 				</div>
 
 				<div class="input-group px-5 mt-3 mb-1">
-					<input type="text" id="input-busqueda"
-						class="form-control form-control-lg"
-						placeholder="Ingrese su búsqueda..."
-						aria-label="Recipient's username" aria-describedby="basic-addon2" />
+					<input type="text" id="input-busqueda" class="form-control form-control-lg"
+						placeholder="Ingrese su búsqueda..." aria-label="Recipient's username"
+						aria-describedby="basic-addon2" />
 					<div class="input-group-append">
-						<button class="btn btn-outline-success" id="btn-buscar"
-							type="button">Buscar</button>
+						<button class="btn btn-outline-success" id="btn-buscar" type="button">Buscar</button>
 					</div>
 				</div>
 
 				<div class="px-5">
-					<label class="pl-5 pr-1">Buscar en:</label> <label
-						class="radio-inline px-1"><input type="radio" id="gruplac"
-						name="optradio" checked="checked" />GrupLAC</label> <label
-						class="radio-inline px-1"><input type="radio" id="cvlac"
-						name="optradio" />CvLAC</label>
+					<label class="pl-5 pr-1">Buscar en:</label> <label class="radio-inline px-1"><input type="radio"
+							id="gruplac" name="optradio" checked="checked" />GrupLAC</label> <label
+						class="radio-inline px-1"><input type="radio" id="cvlac" name="optradio" />CvLAC</label>
 
 				</div>
 
 
 				<div id="badge" class="region-lista">
 					<ul class="badge-list">
-						<li class="badge-list-item"><a class="link"
-							href="investigadores"> <span id="badge-investigadores"
-								class="badge-list-value" th:text="${cantInves}"></span> <span
-								class="badge-list-label">Investigadores</span>
-						</a></li>
+						<li class="badge-list-item"><a class="link" href="investigadores"> <span
+									id="badge-investigadores" class="badge-list-value" th:text="${cantInves}"></span>
+								<span class="badge-list-label">Investigadores</span>
+							</a></li>
 						<li class="badge-list-item"><a class="link" href="general">
 								<span class="badge-list-value" th:text="${cantGrupos}"></span> <span
-								class="badge-list-label">Grupos de Investigación</span>
-						</a></li>
+									class="badge-list-label">Grupos de Investigación</span>
+							</a></li>
 						<li class="badge-list-item"><a class="link" href="programas">
-								<span class="badge-list-value" th:text="${cantProgramas}"></span> <span
-								class="badge-list-label">Programas</span>
-						</a></li>
+								<span class="badge-list-value" th:text="${cantProgramas}"></span>
+								<span class="badge-list-label">Programas</span>
+							</a></li>
 						<li class="badge-list-item"><a class="link" href="centros">
-								<span id="badge-centros" class="badge-list-value"
-								th:text="${cantCentros}"></span> <span class="badge-list-label">Centros
+								<span id="badge-centros" class="badge-list-value" th:text="${cantCentros}"></span> <span
+									class="badge-list-label">Centros
 									de Investigación</span>
-						</a></li>
+							</a></li>
+						<li class="badge-list-item"><a class="link" href="estadisticas">
+								<span class="badge-list-label">Estadisticas</span>
+								<span class="badge-list-value">
+									<i class="fas fa-chart-bar verde"></i>
+								</span>
+							</a></li>
 					</ul>
 				</div>
 			</div>
@@ -88,4 +89,5 @@
 
 	<div th:replace="fragments/footer"></div>
 </body>
+
 </html>
