@@ -45,10 +45,13 @@ public class WebController {
 	@GetMapping(value = { "/", "inicio" })
 	public String main(Model model) {
 		List<BigInteger> stats = facultadDAO.getStats();
+		BigInteger stats_0 = programaDAO.getStats();
 
 		model.addAttribute("cantInves", stats.get(0));
 		model.addAttribute("cantGrupos", stats.get(1));
 		model.addAttribute("cantCentros", stats.get(2));
+		model.addAttribute("cantProgramas", stats_0);
+		model.addAttribute("estadisticas", "");
 
 		return "index";
 	}
@@ -62,6 +65,18 @@ public class WebController {
 	public String getInvestigadores(Model model) {
 		model.addAttribute("listaInvestigadores", investigadorDAO.findAll());
 		return "investigadores";
+	}
+	
+	@GetMapping("/uniquindio")
+	public String getEstadisticasUniquindio(Model model) {
+		model.addAttribute("listaCentros", centroDAO.getAllCentros());
+		return "estadisticas/uniquindio";
+	}
+	
+	@GetMapping("/programas")
+	public String getProgramas(Model model) {
+		model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
+		return "programas";
 	}
 
 	@GetMapping("/centros")
