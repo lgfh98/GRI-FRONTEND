@@ -105,6 +105,9 @@
 			        	  else if(document.getElementById('tabla_inventario_wrapper')){
 			        		  $('c[r=A1] t', sheet).text( 'INVENTARIO - '+document.getElementById('titulo').textContent) ;
 				      	  }
+			        	  else if(document.getElementById('tabla_programas_wrapper')){
+			        		  $('c[r=A1] t', sheet).text( 'Programas') ;
+				      	  }
 			        	  
 			          },
 			      //Nombre de archivo personalizado    
@@ -123,6 +126,9 @@
 			    	  }
 			    	  else if(document.getElementById('tabla_inventario_wrapper')){
 			    		  return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
+			      	  }
+			    	  else if(document.getElementById('tabla_programas_wrapper')){
+			    		  return 'Programas';
 			      	  }
 			        }
 			        
@@ -148,6 +154,9 @@
 			      	  else if(document.getElementById('tabla_inventario_wrapper')){
 			      		  return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
 			      	  }
+			      	  else if(document.getElementById('tabla_programas_wrapper')){
+			      		  return 'Programas';
+			      	  }
 			          },
 			          //Encabezado del PDF
 			          title : function() {
@@ -165,6 +174,9 @@
 			        	  }
 			        	  else if(document.getElementById('tabla_inventario_wrapper')){
 				      		  return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
+				      	  }
+			        	  else if(document.getElementById('tabla_programas_wrapper')){
+				      		  return 'Programas' ;
 				      	  }
 			            },
 			            exportOptions: {
@@ -227,6 +239,31 @@
 			  $('#tabla_investigadores tbody').on('click', 'tr', function () {
 				    var data = tabla_investigadores.row( this ).data();
 				    window.location.href="general?id="+data.id+"&type=i";
+				  } );
+			  
+			  var tabla_prgramas= $('#tabla_programas').DataTable( {
+			  	  responsive: true,
+			      rowId: 'id',
+			      "order": [[ 1, "asc" ]],
+			      columns: [
+			      { data: "id" , visible:false},
+			      { data: "nombre" } ,
+			      { data: "facultad" }
+			      ]
+			    } );
+			  
+			  $('#tabla_programas_filter input').keyup( function () {  
+				  //Busqueda con tildes
+				  tabla_investigadores
+			        .search(
+			          jQuery.fn.DataTable.ext.type.search.string( this.value )
+			        )
+			        .draw(); 
+			    } );
+			  
+			  $('#tabla_programas tbody').on('click', 'tr', function () {
+						var data = tabla_programas.row( this ).data();
+						window.location.href = "general?id="+data.id+"&tupe=p";
 				  } );
 			  
 			  

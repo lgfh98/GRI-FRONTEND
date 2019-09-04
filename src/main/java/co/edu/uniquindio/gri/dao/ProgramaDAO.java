@@ -1,5 +1,6 @@
 package co.edu.uniquindio.gri.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,16 @@ public class ProgramaDAO {
 	 * @return lista con todos los programas.
 	 */
 	public List<Programa> getAllProgramas(){
-		return programaRepository.findAll();
+		return programaRepository.getProgramas();
+	}
+	
+	/**
+	 * Obtiene la cantidad total de programas.
+	 *
+	 * @return total de los programas.
+	 */
+	public BigInteger getStats(){
+		return programaRepository.getStats();
 	}
 	
 	/**
