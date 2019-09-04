@@ -67,6 +67,12 @@ public class WebController {
 		return "investigadores";
 	}
 	
+	@GetMapping("/uniquindio")
+	public String getEstadisticasUniquindio(Model model) {
+		model.addAttribute("listaCentros", centroDAO.getAllCentros());
+		return "estadisticas/uniquindio";
+	}
+	
 	@GetMapping("/programas")
 	public String getProgramas(Model model) {
 		model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
