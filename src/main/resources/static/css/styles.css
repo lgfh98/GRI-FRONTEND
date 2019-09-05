@@ -441,6 +441,15 @@ button.printButton::before {
 	line-height: 2rem;
 }
 
+.card-item-cantidad{
+	background-color:#007f36; 
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+}
+
 .card-container {
 	display: flex;
 	flex-direction: column;
