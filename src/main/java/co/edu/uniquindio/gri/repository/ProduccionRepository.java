@@ -1,5 +1,6 @@
 package co.edu.uniquindio.gri.repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -320,5 +321,69 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	@Modifying
 	@Query("UPDATE co.edu.uniquindio.gri.model.ProduccionBGrupo p SET  p.estado=:estado WHERE p.id=:id")
 	public void updateProduccionBGrupo(@Param("id") Long id, @Param("estado") int estado);
+	
+	/**
+	 * Obtiene la cantidad de dirigidos de la universidad.
+	 * 
+	 * @return cantidad de trabajos dirigidos.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.id = 1 or tipo.id = 41 or tipo.id = 42 or tipo.id = 43")
+	public BigInteger getCantidadTrabajosDirigidos();
+	
+	/**
+	 * Obtiene la cantidad de cursos cortos de la universidad.
+	 * 
+	 * @return cantidad de cursos cortos.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.id = 0")
+	public BigInteger getCantidadCursosCortaDuracion();
+	
+	/**
+	 * Obtiene la cantidad de actividades de formación total de la universidad.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 0")
+	public BigInteger getCantidadActividadesFormacion();
+	
+	/**
+	 * Obtiene la cantidad de actividades como evaluador total de la universidad.
+	 * 
+	 * @return cantidad de actividades como evaluador.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 1")
+	public BigInteger getCantidadActividadesEvaluador();
+	
+	/**
+	 * Obtiene la cantidad de actividades de apropiacion social total de la universidad.
+	 * 
+	 * @return cantidad de actividades de apropiacion social.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 2")
+	public BigInteger getCantidadApropiacionSocial();
+	
+	/**
+	 * Obtiene la cantidad de producciones bibliograficas total de la universidad.
+	 * 
+	 * @return cantidad de producciones bibliograficas.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pr where tipo.tipoProduccion.id = 3")
+	public BigInteger getCantidadProduccionesBibliograficas();
+	
+	/**
+	 * Obtiene la cantidad de producciones tecnicas y teconologicas total de la universidad.
+	 * 
+	 * @return cantidad de producciones tecnicas y tecnologicas.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 4")
+	public BigInteger getCantidadTecnicasTecnologicas();
+	
+	/**
+	 * Obtiene la cantidad de producciones en arte total de la universidad.
+	 * 
+	 * @return cantidad de producciones en arte.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 6")
+	public BigInteger getCantidadProduccionesArte();
 
 }

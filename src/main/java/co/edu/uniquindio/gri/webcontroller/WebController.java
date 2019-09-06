@@ -69,7 +69,12 @@ public class WebController {
 	
 	@GetMapping("/uniquindio")
 	public String getEstadisticasUniquindio(Model model) {
-		model.addAttribute("listaCentros", centroDAO.getAllCentros());
+		model.addAttribute("cantidadActividadesDeFormacion", produccionDAO.getCantidadActividadesFormacion());
+		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadActividadesEvaluador());
+		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadApropiacionSocial());
+		model.addAttribute("cantidadProduccionesBibliograficas", produccionDAO.getCantidadProduccionesBibliograficas());
+		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadTecnicasTecnologicas());
+		model.addAttribute("cantidadProduccionesArte", produccionDAO.getCantidadProduccionesArte());
 		return "estadisticas/uniquindio";
 	}
 	
