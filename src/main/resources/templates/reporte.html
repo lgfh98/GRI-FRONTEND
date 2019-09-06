@@ -94,7 +94,7 @@
 	
 	<script th:inline="javascript">
 	
-	 var url = "/ServerSpring/rest/service/producciones/"+ [[${param.type}]] +"/"+  [[${param.id}]] +"/"+  [[${param.prod}]];
+	 var url = "/ServerSpring/rest/service/producciones/"+ [["${param.type}"]] +"/"+  [["${param.id}"]] +"/"+  [["${param.prod}"]];
 	 
 	 $.ajax({
          type: "GET",
@@ -122,8 +122,8 @@
         	 
         	 res.sort( (a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
         		
-        		var titulo = [[${nombre}]] + " - " + [[${tipo}]]
-        		const element = document.querySelector('.'+[[${color}]]);
+        		var titulo = [["${nombre}"]] + " - " + [["${tipo}"]]
+        		const element = document.querySelector('.'+[["${color}"]]);
         		const style = getComputedStyle(element);
         		const color = style.backgroundColor;
         		

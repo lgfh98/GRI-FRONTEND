@@ -1,45 +1,48 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: header('Tipología de Productos')">
-<meta charset="utf-8" />
+	<meta charset="utf-8" />
 </head>
+
 <body id="page-top" class="sidebar-toggled">
 
 	<nav th:replace="fragments/nav :: nav(${color})"></nav>
 
 	<div id="wrapper">
 
-			<!-- Sidebar -->
+		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
-			<li class="nav-item"><a class="nav-link" href="inicio"> <i
-					class="fas fa-fw fa-home"></i> <span>Inicio</span>
-			</a></li>
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i class="fas fa-fw fa-home"></i>
+					<span>Inicio</span>
+				</a></li>
 			<li class="nav-item" th:classappend="${tipo}==i ? active"><a class="nav-link" href="investigadores">
 					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
-			</a></li>
+				</a></li>
 			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a class="nav-link" href="general">
 					<i class="fas fa-fw fa-users"></i> <span>Grupos de
 						Investigación</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="centros"> <i
-					class="fas fa-fw fa-microscope"></i> <span>Centros de
+				</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i class="fas fa-fw fa-microscope"></i>
+					<span>Centros de
 						Investigación</span>
-			</a></li>
+				</a></li>
 		</ul>
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
 				<div class="cuerpo">
 					<div id="lista-miembros" class="lista-miembros">
-						<ul id="miembros" class="cards-list" >
-							<li class="cards-item" th:classappend = "${tamanio}" th:each = "obj : ${lista}" >
+						<ul id="miembros" class="cards-list">
+							<li class="cards-item" th:classappend="${tamanio}" th:each="obj : ${lista}">
 								<div class="card">
-									<a class="card-container"
-										th:href="@{general(id=${obj.id},type=${subtipo})}">
+									<a class="card-container" th:href="@{general(id=${obj.id},type=${subtipo})}">
 										<div class="card-title-container-s">
-											<h3 class="card-title-s" th:text = "${obj.nombre}"></h3>
-										</div></a>
-									<div class="card-bar" th:classappend = "${subtipo} == 'f' ? card-+${obj.id} : ${color}"></div>
+											<h3 class="card-title-s" th:text="${obj.nombre}"></h3>
+										</div>
+									</a>
+									<div class="card-bar"
+										th:classappend="${subtipo} == 'f' ? card-+${obj.id} : ${color}"></div>
 								</div>
 							</li>
 
@@ -173,6 +176,21 @@
 									</a>
 								</div>
 							</li>
+							<li class="ci-4 cards-item">
+								<div class="card">
+									<a th:href="@{estadisticas(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-11">
+											<span class="fas fa-chart-bar basicas"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">
+												Estadisticas
+											</h3>
+										</div>
+									</a>
+								</div>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -182,4 +200,5 @@
 
 	<div th:replace="fragments/footer"></div>
 </body>
+
 </html>
