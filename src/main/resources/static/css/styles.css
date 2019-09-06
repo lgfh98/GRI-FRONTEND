@@ -745,3 +745,170 @@ label {
 	font-weight: 900;
 	color: #FFFFFF;
 }
+
+/*
+	Estadisticas
+*/
+.grid-container-res {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 110px 150px 150px 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
+}
+
+.grid-container-catGrup {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 110px 150px 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
+}
+
+.grid-container-catInvestigador {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 110px 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
+}
+
+.grid-container-formaciontalentoH {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 110px 150px 150px 150px 150px;
+	grid-template-rows:60px 48px 48px 48px 48px 48px 48px 48px 48px;
+}
+
+.button-item {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+}
+
+.button-title {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: 1px solid green;
+	border-bottom: 10px solid green;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+.content-grid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button-title-ingenieria {
+	border: 1px solid #009de0;
+	border-bottom: 10px solid #009de0;
+	font-weight: bold;
+}
+
+.buton-res-ingenieria {
+	border: 2px solid #009de0;
+}
+
+.buton-res-ingenieria:hover {
+	background-color: #009de0;
+	color: white;
+}
+
+.button-title-educacion {
+	border: 1px solid #dc911b;
+	border-bottom: 10px solid #dc911b;
+}
+
+.button-res-educacion {
+	border: 2px solid #dc911b;
+}
+
+.button-res-educacion:hover {
+	background-color: #dc911b;
+	color: white;
+}
+
+.button-title-salud {
+	border: 1px solid #1169b0;
+	border-bottom: 10px solid #1169b0;
+	font-weight: bold;
+}
+
+.button-res-salud {
+	border: 2px solid #1169b0;
+}
+
+.button-res-salud:hover {
+	background-color: #1169b0;
+	color: white;
+}
+
+.button-title-humanas {
+	border: 1px solid #c20b19;
+	border-bottom: 10px solid #c20b19;
+	font-weight: bold;
+}
+
+.button-res-humanas {
+	border: 2px solid #c20b19;
+}
+
+.button-res-humanas:hover {
+	background-color: #c20b19;
+	color: white;
+}
+
+.button-title-agroindustria {
+	border: 1px solid #8fb435;
+	border-bottom: 10px solid #8fb435;
+	font-weight: bold;
+}
+
+.button-res-agroindustria {
+	border: 2px solid #8fb435;
+}
+
+.button-res-agroindustria:hover {
+	background-color: #8fb435;
+	color: white;
+}
+
+.button-title-economicas {
+	border: 1px solid #8e1c7d;
+	border-bottom: 10px solid #8e1c7d;
+	font-weight: bold;
+}
+
+.buton-res-economicas {
+	border: 2px solid #8e1c7d;
+}
+
+.buton-res-economicas:hover {
+	background-color: #8e1c7d;
+	color: white;
+}
+
+.button-title-basicas {
+	border: 1px solid #ffcc00;
+	border-bottom: 10px solid #ffcc00;
+	font-weight: bold;
+}
+
+.buttom-res-basicas {
+	border: 2px solid #ffcc00;
+}
+
+.buttom-res-basicas:hover {
+	background-color: #ffcc00;
+	color: white;
+}
+
+.h2-titulos-tablas {
+	text-align: center;
+}
