@@ -385,5 +385,4 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 6")
 	public BigInteger getCantidadProduccionesArte();
-
 }

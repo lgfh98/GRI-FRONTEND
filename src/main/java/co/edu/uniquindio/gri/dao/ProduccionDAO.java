@@ -243,4 +243,5 @@ public class ProduccionDAO {
 	public BigInteger getCantidadProduccionesArte(){
 		return produccionRepository.getCantidadProduccionesArte();
 	}
+	
 }
