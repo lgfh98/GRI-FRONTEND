@@ -193,5 +193,4 @@ public class WebController {
 		}
 		return calcularTamanio(tamanio + 1);
 	}
-
 }
