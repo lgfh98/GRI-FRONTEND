@@ -241,7 +241,7 @@
 				    window.location.href="general?id="+data.id+"&type=i";
 				  } );
 			  
-			  var tabla_prgramas= $('#tabla_programas').DataTable( {
+			  var tabla_programas= $('#tabla_programas').DataTable( {
 			  	  responsive: true,
 			      rowId: 'id',
 			      "order": [[ 1, "asc" ]],
@@ -263,7 +263,7 @@
 			  
 			  $('#tabla_programas tbody').on('click', 'tr', function () {
 						var data = tabla_programas.row( this ).data();
-						window.location.href = "general?id="+data.id+"&tupe=p";
+						window.location.href = "general?id="+data.id+"&type=p";
 				  } );
 			  
 			  

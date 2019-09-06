@@ -410,7 +410,7 @@ button.printButton::before {
 .cards-list {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
+	justify-content: center;
 	align-content: flex-start;
 	flex-wrap: wrap;
 }
@@ -439,6 +439,33 @@ button.printButton::before {
 	vertical-align: top;
 	font-size: 1.4rem;
 	line-height: 2rem;
+}
+
+.card-item-cantidad{
+	background-color:#007f36; 
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.card-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.card-item-cantidad {
+	background-color: #007f36;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0; */
 }
 
 .card {
@@ -578,6 +605,17 @@ button.printButton::before {
 	background-color: #b25260;
 }
 
+.card-icon-11 {
+	background-color: #992c64;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 2em;
+}
+
+
+
+
 .icono {
 	font-size: 32px;
 	width: 64px;
@@ -700,7 +738,12 @@ label {
 
 .verde {
 	font-weight: 900;
-	color: #007f36;
+	color: #000000;
+}
+
+.basicas {
+	font-weight: 900;
+	color: #FFFFFF;
 }
 
 /*

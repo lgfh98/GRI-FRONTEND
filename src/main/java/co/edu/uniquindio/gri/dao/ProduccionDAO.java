@@ -1,8 +1,10 @@
 package co.edu.uniquindio.gri.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
@@ -146,7 +148,7 @@ public class ProduccionDAO {
 			return produccionRepository.getProduccionBusqueda(cadena);
 		}
 	}
-
+	
 	/**
 	 * Actualiza el estado de una producción científica en función si se encuentra o no en custodia física de la Vicerrectoría de Investigaciones.
 	 *
@@ -186,5 +188,59 @@ public class ProduccionDAO {
 	@SuppressWarnings("rawtypes")
 	public List getAllProducciones(Long id){
 		return produccionRepository.getAllProducciones(id);
+	}
+	
+	/**
+	 * Obtiene la cantidad de actividades de formación total de la universidad.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 */
+	public BigInteger getCantidadActividadesFormacion() {
+		return produccionRepository.getCantidadActividadesFormacion();
+	}
+	
+	/**
+	 * Obtiene la cantidad de actividades como evaluador total de la universidad.
+	 * 
+	 * @return cantidad de actividades como evaluador.
+	 */
+	public BigInteger getCantidadActividadesEvaluador(){
+		return produccionRepository.getCantidadActividadesEvaluador();
+	}
+	
+	/**
+	 * Obtiene la cantidad de actividades de apropiacion social total de la universidad.
+	 * 
+	 * @return cantidad de actividades de apropiacion social.
+	 */
+	public BigInteger getCantidadApropiacionSocial(){
+		return produccionRepository.getCantidadApropiacionSocial();
+	}
+	
+	/**
+	 * Obtiene la cantidad de producciones bibliograficas total de la universidad.
+	 * 
+	 * @return cantidad de producciones bibliograficas.
+	 */
+	public BigInteger getCantidadProduccionesBibliograficas(){
+		return produccionRepository.getCantidadProduccionesBibliograficas();
+	}
+	
+	/**
+	 * Obtiene la cantidad de producciones tecnicas y teconologicas total de la universidad.
+	 * 
+	 * @return cantidad de producciones tecnicas y tecnologicas.
+	 */
+	public BigInteger getCantidadTecnicasTecnologicas(){
+		return produccionRepository.getCantidadTecnicasTecnologicas();
+	}
+	
+	/**
+	 * Obtiene la cantidad de producciones en arte total de la universidad.
+	 * 
+	 * @return cantidad de producciones en arte.
+	 */
+	public BigInteger getCantidadProduccionesArte(){
+		return produccionRepository.getCantidadProduccionesArte();
 	}
 }
