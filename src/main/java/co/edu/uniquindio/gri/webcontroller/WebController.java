@@ -46,11 +46,12 @@ public class WebController {
 	public String main(Model model) {
 		List<BigInteger> stats = facultadDAO.getStats();
 		BigInteger stats_0 = programaDAO.getStats();
-
-		model.addAttribute("cantInves", stats.get(0));
-		model.addAttribute("cantGrupos", stats.get(1));
-		model.addAttribute("cantCentros", stats.get(2));
-		model.addAttribute("cantProgramas", stats_0);
+		
+		model.addAttribute("cantFacultades", stats.get(0));
+		model.addAttribute("cantCentros", stats.get(1));
+		model.addAttribute("cantProgramas", stats.get(2));
+		model.addAttribute("cantGrupos", stats.get(3));
+		model.addAttribute("cantInves", stats.get(4));
 		model.addAttribute("estadisticas", "");
 
 		return "index";
@@ -83,11 +84,23 @@ public class WebController {
 		model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
 		return "programas";
 	}
+	
+	@GetMapping("/facultades")
+	public String getFacultades(Model model) {
+		model.addAttribute("listaFacultades", facultadDAO.getAllFacultades());
+		return "facultades";
+	}
 
 	@GetMapping("/centros")
 	public String getCentros(Model model) {
 		model.addAttribute("listaCentros", centroDAO.getAllCentros());
 		return "centros";
+	}
+	
+	@GetMapping("/grupos")
+	public String getGrupos(Model model) {
+		model.addAttribute("listaGrupos", grupoDAO.findAll());
+		return "grupos";
 	}
 
 	@GetMapping("/general")

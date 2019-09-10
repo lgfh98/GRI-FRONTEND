@@ -58,27 +58,37 @@
 
 				<div id="badge" class="region-lista">
 					<ul class="badge-list">
-						<li class="badge-list-item"><a class="link" href="investigadores"> <span
-									id="badge-investigadores" class="badge-list-value" th:text="${cantInves}"></span>
-								<span class="badge-list-label">Investigadores</span>
-							</a></li>
 						<li class="badge-list-item"><a class="link" href="general">
-								<span class="badge-list-value" th:text="${cantGrupos}"></span> <span
-									class="badge-list-label">Grupos de Investigación</span>
+								<span class="badge-list-label">Información general</span>
+								<span id="badge-informacion" class="badge-list-value">
+									<i class="fas fa-info informacion_general"></i>
+								</span>
 							</a></li>
-						<li class="badge-list-item"><a class="link" href="programas">
-								<span class="badge-list-value" th:text="${cantProgramas}"></span>
-								<span class="badge-list-label">Programas</span>
+						<li class="badge-list-item"><a class="link" href="facultades"> <span id="badge-facultades"
+									class="badge-list-value" th:text="${cantFacultades}"></span>
+								<span class="badge-list-label">Facultades</span>
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="centros">
 								<span id="badge-centros" class="badge-list-value" th:text="${cantCentros}"></span> <span
 									class="badge-list-label">Centros
 									de Investigación</span>
 							</a></li>
+						<li class="badge-list-item"><a class="link" href="programas">
+								<span id="badge-programas" class="badge-list-value" th:text="${cantProgramas}"></span>
+								<span class="badge-list-label">Programas</span>
+							</a></li>
+						<li class="badge-list-item"><a class="link" href="grupos">
+								<span id="badge-grupos" class="badge-list-value" th:text="${cantGrupos}"></span> <span
+									class="badge-list-label">Grupos de Investigación</span>
+							</a></li>
+						<li class="badge-list-item"><a class="link" href="investigadores"> <span
+									id="badge-investigadores" class="badge-list-value" th:text="${cantInves}"></span>
+								<span class="badge-list-label">Investigadores</span>
+							</a></li>
 						<li class="badge-list-item"><a class="link" href="uniquindio">
 								<span class="badge-list-label">Estadisticas</span>
 								<span class="badge-list-value">
-									<i class="fas fa-chart-bar verde"></i>
+									<i class="fas fa-chart-bar estadisticas_inicio"></i>
 								</span>
 							</a></li>
 					</ul>
