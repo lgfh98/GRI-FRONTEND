@@ -25,10 +25,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción bibliográfica de un investigador.
 	 *
-	 * @param entityId
-	 *            el id del investigador
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id del investigador
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionB where investigador.id =:entityId and tipo.id =:tipoId ")
@@ -37,8 +35,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la los trabajos dirigidos de un investigador.
 	 *
-	 * @param entityId
-	 *            el id del investigador
+	 * @param entityId el id del investigador
 	 * @return lista de trabajos dirigidos del investigador.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.Produccion where investigador.id =:entityId and (tipo.id = 1 or tipo.id = 41 or tipo.id = 42 or tipo.id = 43)")
@@ -47,10 +44,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción científica de un investigador.
 	 *
-	 * @param entityId
-	 *            el id del investigador
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id del investigador
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones científicas del tipo tipoId.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.Produccion where investigador.id =:entityId and tipo.id =:tipoId")
@@ -60,10 +55,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción bibliográfica de un grupo de investigación.
 	 *
-	 * @param entityId
-	 *            el id del grupo de investigación
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id del grupo de investigación
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionBGrupo where grupo.id =:entityId and tipo.id =:tipoId ")
@@ -72,8 +65,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene los trabajos dirigidos de un grupo de investigación.
 	 * 
-	 * @param entityId
-	 *            el id del grupo de investigación
+	 * @param entityId el id del grupo de investigación
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionGrupo where grupo.id =:entityId and (tipo.id = 1 or tipo.id = 41 or tipo.id = 42 or tipo.id = 43)")
@@ -82,10 +74,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción de un grupo de investigación.
 	 *
-	 * @param entityId
-	 *            el id del grupo de investigación
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id del grupo de investigación
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionGrupo where grupo.id =:entityId and tipo.id =:tipoId")
@@ -95,10 +85,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción bibliográfica de un programa.
 	 *
-	 * @param entityId
-	 *            el id del programa
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id del programa
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(pb.id, pb.identificador, pb.autores, pb.anio, pb.referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pb join pb.grupo g join g.programas p  where p.id =:entityId  and pb.tipo.id =:tipoId")
@@ -108,8 +96,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene los trabajos dirigidos de un programa.
 	 *
-	 * @param entityId
-	 *            el id del programa
+	 * @param entityId el id del programa
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p where p.id =:entityId and (pr.tipo.id = 1 or pr.tipo.id = 41 or pr.tipo.id = 42 or pr.tipo.id = 43)")
@@ -118,10 +105,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción de un programa.
 	 *
-	 * @param entityId
-	 *            el id del programa
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id del programa
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p where p.id =:entityId and pr.tipo.id =:tipoId ")
@@ -131,10 +116,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción bibliográfica de un centro.
 	 *
-	 * @param entityId
-	 *            el id del centro
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id del centro
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(pb.id, pb.identificador, pb.autores, pb.anio, pb.referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pb join pb.grupo g join g.centro c where c.id =:entityId and pb.tipo.id =:tipoId")
@@ -143,8 +126,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene los trabajos dirigidos de un centro.
 	 *
-	 * @param entityId
-	 *            el id del centro
+	 * @param entityId el id del centro
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.centro c where c.id =:entityId  and (pr.tipo.id = 1 or pr.tipo.id = 41 or pr.tipo.id = 42 or pr.tipo.id = 43)")
@@ -153,10 +135,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción de un centro.
 	 *
-	 * @param entityId
-	 *            el id del centro
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id del centro
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.centro c where c.id = :entityId and pr.tipo.id = :tipoId")
@@ -167,10 +147,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * Obtiene la producción bibliográfica de una facultad con respecto a sus
 	 * programas.
 	 *
-	 * @param entityId
-	 *            el id de la facultad
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id de la facultad
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(pb.id, pb.identificador, pb.autores, pb.anio, pb.referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pb join pb.grupo g join g.programas p join p.facultad f where f.id =:entityId  and pb.tipo.id =:tipoId ")
@@ -181,10 +159,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * Obtiene la producción bibliográfica de una facultad con respecto a sus
 	 * centros.
 	 *
-	 * @param entityId
-	 *            el id de la facultad
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id de la facultad
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(pb.id, pb.identificador, pb.autores, pb.anio, pb.referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pb join pb.grupo g join g.centro c join c.facultad f where f.id =:entityId  and pb.tipo.id =:tipoId ")
@@ -194,8 +170,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene los trabajos dirigidos de una facultad respecto a sus programas.
 	 *
-	 * @param entityId
-	 *            el id de la facultad
+	 * @param entityId el id de la facultad
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p join p.facultad f where f.id =:entityId  and (pr.tipo.id =  1 or pr.tipo.id = 41 or pr.tipo.id = 42 or pr.tipo.id = 43)")
@@ -204,8 +179,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene los trabajos dirigidos de una facultad respecto a sus centros.
 	 *
-	 * @param entityId
-	 *            el id de la facultad
+	 * @param entityId el id de la facultad
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p join p.facultad f where f.id =:entityId  and (pr.tipo.id =  1 or pr.tipo.id = 41 or pr.tipo.id = 42 or pr.tipo.id = 43)")
@@ -214,10 +188,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción de una facultad respecto a sus programas.
 	 *
-	 * @param entityId
-	 *            el id de la facultad
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id de la facultad
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p join p.facultad f where f.id =:entityId  and pr.tipo.id =:tipoId ")
@@ -227,10 +199,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción de una facultad respecto a sus centros.
 	 *
-	 * @param entityId
-	 *            el id de la facultad
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param entityId el id de la facultad
+	 * @param tipoId   el tipo de la producción
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.centro c join c.facultad f where f.id =:entityId  and pr.tipo.id =:tipoId")
@@ -241,8 +211,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción bibliográfica general de toda la universidad.
 	 *
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param tipoId el tipo de la producción
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(id, identificador, autores, anio, referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo where tipo.id =:tipoId")
@@ -259,8 +228,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	/**
 	 * Obtiene la producción general de toda la universidad.
 	 *
-	 * @param tipoId
-	 *            el tipo de la producción
+	 * @param tipoId el tipo de la producción
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(id, autores, anio, referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo where tipo.id = :tipoId")
@@ -272,8 +240,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * Obtiene las producciones bibliográficas contenidas en los GrupLAC de los
 	 * grupos de acuerdo a una cadena de búsqueda.
 	 *
-	 * @param cadena
-	 *            la cadena de búsqueda
+	 * @param cadena la cadena de búsqueda
 	 * @return lista de producciones biblográficas correspondientes con la cadena de
 	 *         búsqueda.
 	 */
@@ -287,24 +254,25 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * Obtiene las producciones bibliográficas contenidas en los CvLAC de los
 	 * investigadores de acuerdo a una cadena de búsqueda.
 	 *
-	 * @param cadena
-	 *            la cadena de búsqueda
+	 * @param cadena la cadena de búsqueda
 	 * @return lista de producciones biblográficas correspondientes con la cadena de
 	 *         búsqueda.
 	 */
 	@SuppressWarnings("rawtypes")
 	@Query(value = "SELECT bg.referencia, bg.autores, bg.anio, tp.nombre as tipo,  inv.nombre FROM gri.bibliograficas bg  JOIN gri.tipos tp ON tp.id=bg.tipo_id JOIN gri.investigadores inv ON bg.investigadores_id= inv.id WHERE unaccent(bg.referencia) LIKE unaccent('% '||:cadena||' %') UNION SELECT pg.referencia, pg.autores, pg.anio, tp.nombre as tipo,  inv.nombre FROM gri.producciones pg  JOIN gri.tipos tp ON tp.id=pg.tipo_id JOIN gri.investigadores inv ON pg.investigadores_id= inv.id WHERE unaccent(pg.referencia) LIKE unaccent('% '||:cadena||' %')", nativeQuery = true)
 	public List getProduccionBusqueda(@Param("cadena") String cadena);
-	
+
 	@SuppressWarnings("rawtypes")
-	@Query(value="SELECT b.id, b.referencia, b.autores, b.anio, t.nombre, t.tipoproduccion_id, b.inventario FROM gri.bibliograficasg b JOIN gri.tipos t ON t.id = b.tipo_id WHERE b.grupos_id =:id UNION ALL SELECT p.id, p.referencia, p.autores, p.anio, t.nombre, t.tipoproduccion_id, p.inventario FROM gri.produccionesg p JOIN gri.tipos t ON t.id = p.tipo_id WHERE p.grupos_id =:id" , nativeQuery = true)
+	@Query(value = "SELECT b.id, b.referencia, b.autores, b.anio, t.nombre, t.tipoproduccion_id, b.inventario FROM gri.bibliograficasg b JOIN gri.tipos t ON t.id = b.tipo_id WHERE b.grupos_id =:id UNION ALL SELECT p.id, p.referencia, p.autores, p.anio, t.nombre, t.tipoproduccion_id, p.inventario FROM gri.produccionesg p JOIN gri.tipos t ON t.id = p.tipo_id WHERE p.grupos_id =:id", nativeQuery = true)
 	public List getAllProducciones(@Param("id") Long id);
 
 	/**
-	 * Actualiza el estado de una producción científica en función si se encuentra o no en custodia física de la Vicerrectoría de Investigaciones.
+	 * Actualiza el estado de una producción científica en función si se encuentra o
+	 * no en custodia física de la Vicerrectoría de Investigaciones.
 	 *
-	 * @param estado, el estado a actualizar de la producción. 0 si no se encuentra en custodia. 1 en caso contrario. 
-	 * @param id, el identificador de la producción en base de datos.
+	 * @param estado, el estado a actualizar de la producción. 0 si no se encuentra
+	 *                en custodia. 1 en caso contrario.
+	 * @param id,     el identificador de la producción en base de datos.
 	 */
 	@Transactional
 	@Modifying
@@ -312,16 +280,18 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	public void updateProduccionGrupo(@Param("id") Long id, @Param("estado") int estado);
 
 	/**
-	 * Actualiza el estado de una producción científica en función si se encuentra o no en custodia física de la Vicerrectoría de Investigaciones.
+	 * Actualiza el estado de una producción científica en función si se encuentra o
+	 * no en custodia física de la Vicerrectoría de Investigaciones.
 	 *
-	 * @param estado, el estado a actualizar de la producción. 0 si no se encuentra en custodia. 1 en caso contrario. 
-	 * @param id, el identificador de la producción en base de datos.
+	 * @param estado, el estado a actualizar de la producción. 0 si no se encuentra
+	 *                en custodia. 1 en caso contrario.
+	 * @param id,     el identificador de la producción en base de datos.
 	 */
 	@Transactional
 	@Modifying
 	@Query("UPDATE co.edu.uniquindio.gri.model.ProduccionBGrupo p SET  p.estado=:estado WHERE p.id=:id")
 	public void updateProduccionBGrupo(@Param("id") Long id, @Param("estado") int estado);
-	
+
 	/**
 	 * Obtiene la cantidad de dirigidos de la universidad.
 	 * 
@@ -329,7 +299,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.id = 1 or tipo.id = 41 or tipo.id = 42 or tipo.id = 43")
 	public BigInteger getCantidadTrabajosDirigidos();
-	
+
 	/**
 	 * Obtiene la cantidad de cursos cortos de la universidad.
 	 * 
@@ -337,7 +307,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.id = 0")
 	public BigInteger getCantidadCursosCortaDuracion();
-	
+
 	/**
 	 * Obtiene la cantidad de actividades de formación total de la universidad.
 	 * 
@@ -345,7 +315,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 0")
 	public BigInteger getCantidadActividadesFormacion();
-	
+
 	/**
 	 * Obtiene la cantidad de actividades como evaluador total de la universidad.
 	 * 
@@ -353,15 +323,16 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 1")
 	public BigInteger getCantidadActividadesEvaluador();
-	
+
 	/**
-	 * Obtiene la cantidad de actividades de apropiacion social total de la universidad.
+	 * Obtiene la cantidad de actividades de apropiacion social total de la
+	 * universidad.
 	 * 
 	 * @return cantidad de actividades de apropiacion social.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 2")
 	public BigInteger getCantidadApropiacionSocial();
-	
+
 	/**
 	 * Obtiene la cantidad de producciones bibliograficas total de la universidad.
 	 * 
@@ -369,15 +340,16 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pr where tipo.tipoProduccion.id = 3")
 	public BigInteger getCantidadProduccionesBibliograficas();
-	
+
 	/**
-	 * Obtiene la cantidad de producciones tecnicas y teconologicas total de la universidad.
+	 * Obtiene la cantidad de producciones tecnicas y teconologicas total de la
+	 * universidad.
 	 * 
 	 * @return cantidad de producciones tecnicas y tecnologicas.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 4")
 	public BigInteger getCantidadTecnicasTecnologicas();
-	
+
 	/**
 	 * Obtiene la cantidad de producciones en arte total de la universidad.
 	 * 
@@ -385,4 +357,20 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 6")
 	public BigInteger getCantidadProduccionesArte();
+
+	/**
+	 * Obtiene la cantidad de producciones "Demas Trabajos" de la universidad.
+	 * 
+	 * @return cantidad de producciones "Demas Trabajos" de la universidad.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 5 and tipo.id = 32")
+	public BigInteger getCantidadProduccionesDemasTrabajos();
+
+	/**
+	 * Obtiene la cantidad de producciones "Proyectos" de la universidad.
+	 * 
+	 * @return cantidad de producciones "Proyectos" de la universidad.
+	 */
+	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 5 and tipo.id = 33")
+	public BigInteger getCantidadProduccionesProyectos();
 }

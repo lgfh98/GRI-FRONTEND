@@ -38,7 +38,7 @@ public class WebController {
 
 	@Autowired
 	FacultadDAO facultadDAO;
-	
+
 	@Autowired
 	ProduccionDAO produccionDAO;
 
@@ -67,7 +67,7 @@ public class WebController {
 		model.addAttribute("listaInvestigadores", investigadorDAO.findAll());
 		return "investigadores";
 	}
-	
+
 	@GetMapping("/uniquindio")
 	public String getEstadisticasUniquindio(Model model) {
 		model.addAttribute("cantidadActividadesDeFormacion", produccionDAO.getCantidadActividadesFormacion());
@@ -75,10 +75,14 @@ public class WebController {
 		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadApropiacionSocial());
 		model.addAttribute("cantidadProduccionesBibliograficas", produccionDAO.getCantidadProduccionesBibliograficas());
 		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadTecnicasTecnologicas());
-		model.addAttribute("cantidadProduccionesArte", produccionDAO.getCantidadProduccionesArte());
+		model.addAttribute("cantidadProduccionesArte", String.valueOf(produccionDAO.getCantidadProduccionesArte()));
+
+		model.addAttribute("cantidadProduccionesDemasTrabajos", produccionDAO.getCantidadProduccionesDemasTrabajos());
+		model.addAttribute("cantidadProduccionesProyectos", produccionDAO.getCantidadProduccionesProyectos());
+
 		return "estadisticas/uniquindio";
 	}
-	
+
 	@GetMapping("/programas")
 	public String getProgramas(Model model) {
 		model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
@@ -170,31 +174,30 @@ public class WebController {
 			Model model) {
 
 		if (id.equals("u")) {
-			model.addAttribute("nombre", "Producciones en Custodia" );
+			model.addAttribute("nombre", "Producciones en Custodia");
 			model.addAttribute("lista", facultadDAO.getAllFacultades());
-			model.addAttribute("tamanio", "ci-4" );
+			model.addAttribute("tamanio", "ci-4");
 			model.addAttribute("color", "card-0");
 		} else {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), "f");
-			model.addAttribute("nombre", f.getNombre() );
+			model.addAttribute("nombre", f.getNombre());
 			model.addAttribute("lista", listaGrupos);
 			model.addAttribute("color", "card-" + f.getId());
-			model.addAttribute("tamanio", "ci-"+calcularTamanio(listaGrupos.size()));
+			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
 		}
 		return "inventario/inventario";
 	}
-	
+
 	@GetMapping("/reporteinventario")
-	public String getReporteInventario(@RequestParam(name = "id", required = true) String id,
-			Model model) {
-		
+	public String getReporteInventario(@RequestParam(name = "id", required = true) String id, Model model) {
+
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
-		
+
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("producciones", produccionDAO.getAllProducciones(Long.parseLong(id)));
-		
+
 		return "inventario/reporteinventario";
 	}
 

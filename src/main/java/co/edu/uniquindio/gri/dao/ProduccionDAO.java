@@ -29,13 +29,10 @@ public class ProduccionDAO {
 	/**
 	 * Obtiene las producciones de una entidad específica.
 	 *
-	 * @param type
-	 *            el tipo de la entidad (f: Facultad, p: Programa, c: Centro, g:
-	 *            Grupo de Investigación i: Investigador)
-	 * @param entityId
-	 *            el id de la entidad
-	 * @param tipoId
-	 *            el tipo de la producción a obtener
+	 * @param type     el tipo de la entidad (f: Facultad, p: Programa, c: Centro,
+	 *                 g: Grupo de Investigación i: Investigador)
+	 * @param entityId el id de la entidad
+	 * @param tipoId   el tipo de la producción a obtener
 	 * @return lista de producciones
 	 */
 	@SuppressWarnings("rawtypes")
@@ -134,10 +131,8 @@ public class ProduccionDAO {
 	/**
 	 * Obtiene las producciones de acuerdo a una cadena de búsqueda.
 	 *
-	 * @param tipo,
-	 *            el tipo de búsqueda a realizar (i: CvLAC, g: GrupLAC)
-	 * @param cadena
-	 *            la cadena de búsqueda
+	 * @param tipo,  el tipo de búsqueda a realizar (i: CvLAC, g: GrupLAC)
+	 * @param cadena la cadena de búsqueda
 	 * @return lista de producciones correspondientes con la cadena de búsqueda.
 	 */
 	@SuppressWarnings({ "rawtypes" })
@@ -148,48 +143,49 @@ public class ProduccionDAO {
 			return produccionRepository.getProduccionBusqueda(cadena);
 		}
 	}
-	
+
 	/**
-	 * Actualiza el estado de una producción científica en función si se encuentra o no en custodia física de la Vicerrectoría de Investigaciones.
+	 * Actualiza el estado de una producción científica en función si se encuentra o
+	 * no en custodia física de la Vicerrectoría de Investigaciones.
 	 *
-	 * @param tipo, identifica si la producción es o no bibliográfica 
-	 * @param estado, el estado de la producción. 0 si no se encuentra en custodia. 1 en caso contrario. 
+	 * @param tipo,   identifica si la producción es o no bibliográfica
+	 * @param estado, el estado de la producción. 0 si no se encuentra en custodia.
+	 *                1 en caso contrario.
 	 * @param prodId, el identificador de la producción en base de datos.
-	 * @return true, si la actualización se realizó satisfactoriamente. 
+	 * @return true, si la actualización se realizó satisfactoriamente.
 	 */
 	public boolean actualizarProducciones(String tipo, int estado, Long prodId) {
-			if (tipo.equals("3")) {
-				if (estado==0) {
-					produccionRepository.updateProduccionBGrupo(prodId,1);
-					return true;
-				} else {
-					produccionRepository.updateProduccionBGrupo(prodId,0);
-					return true;
-				}
+		if (tipo.equals("3")) {
+			if (estado == 0) {
+				produccionRepository.updateProduccionBGrupo(prodId, 1);
+				return true;
 			} else {
-				if (estado==0) {
-					produccionRepository.updateProduccionGrupo(prodId,1);
-					return true;
-				} else {
-					produccionRepository.updateProduccionGrupo(prodId,0);
-					return true;
-				}
+				produccionRepository.updateProduccionBGrupo(prodId, 0);
+				return true;
 			}
-		
+		} else {
+			if (estado == 0) {
+				produccionRepository.updateProduccionGrupo(prodId, 1);
+				return true;
+			} else {
+				produccionRepository.updateProduccionGrupo(prodId, 0);
+				return true;
+			}
+		}
+
 	}
-	
-	
+
 	/**
-	 * Obtiene todas las producciones de un grupo de investigación. 
+	 * Obtiene todas las producciones de un grupo de investigación.
 	 *
-	 * @param id el identificador del grupo de investigación. 
-	 * @return Lista con todas las producciones del grupo de investigación. 
+	 * @param id el identificador del grupo de investigación.
+	 * @return Lista con todas las producciones del grupo de investigación.
 	 */
 	@SuppressWarnings("rawtypes")
-	public List getAllProducciones(Long id){
+	public List getAllProducciones(Long id) {
 		return produccionRepository.getAllProducciones(id);
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de actividades de formación total de la universidad.
 	 * 
@@ -198,50 +194,70 @@ public class ProduccionDAO {
 	public BigInteger getCantidadActividadesFormacion() {
 		return produccionRepository.getCantidadActividadesFormacion();
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de actividades como evaluador total de la universidad.
 	 * 
 	 * @return cantidad de actividades como evaluador.
 	 */
-	public BigInteger getCantidadActividadesEvaluador(){
+	public BigInteger getCantidadActividadesEvaluador() {
 		return produccionRepository.getCantidadActividadesEvaluador();
 	}
-	
+
 	/**
-	 * Obtiene la cantidad de actividades de apropiacion social total de la universidad.
+	 * Obtiene la cantidad de actividades de apropiacion social total de la
+	 * universidad.
 	 * 
 	 * @return cantidad de actividades de apropiacion social.
 	 */
-	public BigInteger getCantidadApropiacionSocial(){
+	public BigInteger getCantidadApropiacionSocial() {
 		return produccionRepository.getCantidadApropiacionSocial();
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de producciones bibliograficas total de la universidad.
 	 * 
 	 * @return cantidad de producciones bibliograficas.
 	 */
-	public BigInteger getCantidadProduccionesBibliograficas(){
+	public BigInteger getCantidadProduccionesBibliograficas() {
 		return produccionRepository.getCantidadProduccionesBibliograficas();
 	}
-	
+
 	/**
-	 * Obtiene la cantidad de producciones tecnicas y teconologicas total de la universidad.
+	 * Obtiene la cantidad de producciones tecnicas y teconologicas total de la
+	 * universidad.
 	 * 
 	 * @return cantidad de producciones tecnicas y tecnologicas.
 	 */
-	public BigInteger getCantidadTecnicasTecnologicas(){
+	public BigInteger getCantidadTecnicasTecnologicas() {
 		return produccionRepository.getCantidadTecnicasTecnologicas();
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de producciones en arte total de la universidad.
 	 * 
 	 * @return cantidad de producciones en arte.
 	 */
-	public BigInteger getCantidadProduccionesArte(){
+	public BigInteger getCantidadProduccionesArte() {
 		return produccionRepository.getCantidadProduccionesArte();
 	}
-	
+
+	/**
+	 * Obtiene la cantidad de producciones "Demas Trabajos" de la universidad.
+	 * 
+	 * @return cantidad de producciones en arte "Demas Trabajos" de la universidad.
+	 */
+	public BigInteger getCantidadProduccionesDemasTrabajos() {
+		return produccionRepository.getCantidadProduccionesDemasTrabajos();
+	}
+
+	/**
+	 * Obtiene la cantidad de producciones "Proyectos" de la universidad.
+	 * 
+	 * @return cantidad de producciones en arte "Proyectos" de la universidad.
+	 */
+	public BigInteger getCantidadProduccionesProyectos() {
+		return produccionRepository.getCantidadProduccionesProyectos();
+	}
+
 }
