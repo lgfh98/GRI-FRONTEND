@@ -736,14 +736,19 @@ label {
 	height: 40px !important;
 }
 
-.verde {
+.estadisticas_inicio {
 	font-weight: 900;
 	color: #000000;
 }
 
-.basicas {
+.estadisticas_especifico {
 	font-weight: 900;
 	color: #FFFFFF;
+}
+
+.informacion_general {
+	font-weight: 900;
+	color: #000000;
 }
 
 /*

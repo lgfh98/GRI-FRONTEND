@@ -1,8 +1,10 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: header('Reporte')">
-<meta charset="utf-8" />
+	<meta charset="utf-8" />
 </head>
+
 <body id="page-top" class="sidebar-toggled">
 
 	<nav th:replace="fragments/nav :: nav(${color})"></nav>
@@ -11,21 +13,20 @@
 
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
-			<li class="nav-item"><a class="nav-link" href="inicio"> <i
-					class="fas fa-fw fa-home"></i> <span>Inicio</span>
-			</a></li>
-			<li class="nav-item" th:classappend="${tipo}==i ? active"><a
-				class="nav-link" href="investigadores"> <i
-					class="fas fa-fw fa-user"></i> <span>Investigadores</span>
-			</a></li>
-			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a
-				class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i>
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i class="fas fa-fw fa-home"></i>
+					<span>Inicio</span>
+				</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a class="nav-link" href="investigadores"> <i
+						class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+				</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a class="nav-link" href="general"> <i
+						class="fas fa-fw fa-users"></i>
 					<span>Grupos de Investigación</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="centros"> <i
-					class="fas fa-fw fa-microscope"></i> <span>Centros de
+				</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i class="fas fa-fw fa-microscope"></i>
+					<span>Centros de
 						Investigación</span>
-			</a></li>
+				</a></li>
 		</ul>
 
 		<div id="content-wrapper">
@@ -46,8 +47,7 @@
 					<div class="contenedor-header">
 						<i class="fas fa-chart-bar"></i> Reporte gráfico por año
 					</div>
-					<div id="barras-anio" class="contenedor-body"
-						style="width: 200; height: 150"></div>
+					<div id="barras-anio" class="contenedor-body" style="width: 200; height: 150"> </div>
 				</div>
 
 
@@ -91,83 +91,101 @@
 	</div>
 
 	<div th:replace="fragments/footer"></div>
-	
+
 	<script th:inline="javascript">
-	
-	 var url = "/ServerSpring/rest/service/producciones/"+ [["${param.type}"]] +"/"+  [["${param.id}"]] +"/"+  [["${param.prod}"]];
-	 
-	 $.ajax({
-         type: "GET",
-         contentType:"application/json",
-         url: url,
-         dataType: 'json',
-         cache: false,
-         success: function (producciones) {
-        	 
-        	 var res = [];
-        	 
-        	 producciones.forEach(function(item){
-        			var anio = parseInt(item.anio);
-        			if(res.some(e => e.name === anio)){
-        				const i = res.findIndex(obj => obj.name === anio);
-        				var cant = res[i].y;
-        				res[i].y = cant+1;
-        			}else{
-        				res.push({
-        					name: anio,
-        		            y: 1  
-        				});
-        			}		
-        		});
-        	 
-        	 res.sort( (a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-        		
-        		var titulo = [["${nombre}"]] + " - " + [["${tipo}"]]
-        		const element = document.querySelector('.'+[["${color}"]]);
-        		const style = getComputedStyle(element);
-        		const color = style.backgroundColor;
-        		
-        		
-        		Highcharts.chart('barras-anio',{
-            	    chart: {
-            	        type: 'column'
-            	    },
-            	    title: {
-            	        text: titulo
-            	    },
-            	    xAxis: {
-            	        type: 'category',
-            	        labels: {
-            	            rotation: -45,
-            	            style: {
-            	                fontSize: '13px',
-            	                fontFamily: 'Helvetica Neue, sans-serif'
-            	            }
-            	        },
-            	    title: {
-                        text: 'Año'
-                    }
-            	    },
-            	    yAxis: { 
-            	        min: 0,
-            	        title: {
-            	            text: 'Cantidad'
-            	        }
-            	    },
-            	    legend: {
-            	        enabled: false
-            	    },
-            	    tooltip: {
-            	        pointFormat: 'Producciones científicas: <b>{point.y:.0f}</b>'
-            	    },
-            	    series: [{ 
-            	        data: res, 
-            	        color: color
-            	    }]
-            	});
-         }
-	 });
-    
-    </script>
+
+		var url = "/ServerSpring/rest/service/producciones/" + [[${ param.type }]] + "/" + [[${ param.id }]] + "/" + [[${ param.prod }]];
+
+		$.ajax({
+			type: "GET",
+			contentType: "application/json",
+			url: url,
+			dataType: 'json',
+			cache: false,
+			success: function (producciones) {
+
+				var res = [];
+				producciones.forEach(function (item) {
+
+					var anio;
+					if (item.anio === 'N/D') {
+						anio = 0;
+					} else {
+						var anio = parseInt(item.anio);
+					}
+					if (res.some(e => e.name === anio)) {
+						const i = res.findIndex(obj => obj.name === anio);
+						var cant = res[i].y;
+						res[i].y = cant + 1;
+					} else {
+						res.push({
+
+							name: anio,
+							y: 1
+						});
+					}
+				});
+
+				res.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+
+				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]]
+				const element = document.querySelector('.' + [[${ color }]]);
+				const style = getComputedStyle(element);
+				const color = style.backgroundColor;
+
+
+				Highcharts.chart('barras-anio', {
+					chart: {
+						type: 'column'
+					},
+					title: {
+						text: titulo
+					}, subtitle: {
+						text: 'Nota: las publicaciones en el año 0 indican publicaciones sin año especificado'
+					},
+					xAxis: {
+						type: 'category',
+						labels: {
+							rotation: -45,
+							style: {
+								fontSize: '13px',
+								fontFamily: 'Helvetica Neue, sans-serif'
+							}
+						},
+						title: {
+							text: 'Año'
+						}
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Cantidad'
+						}
+					},
+					legend: {
+						enabled: false
+					},
+					tooltip: {
+						pointFormat: 'Producciones científicas: <b>{point.y:.0f}</b>'
+					}, plotOptions: {
+						column: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								format: '<b>{point.y:.0f}</b>'
+							}
+						}
+					},
+					series: [{
+						data: res,
+						color: color
+					}]
+				});
+			}
+		});
+
+	</script>
 </body>
+
 </html>
