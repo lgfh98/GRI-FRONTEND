@@ -441,8 +441,8 @@ button.printButton::before {
 	line-height: 2rem;
 }
 
-.card-item-cantidad{
-	background-color:#007f36; 
+.card-item-cantidad {
+	background-color: #007f36;
 	color: white;
 	display: flex;
 	align-items: center;
@@ -613,9 +613,6 @@ button.printButton::before {
 	font-size: 2em;
 }
 
-
-
-
 .icono {
 	font-size: 32px;
 	width: 64px;
@@ -758,7 +755,8 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px 150px 150px;
+	grid-template-columns: 110px 150px 150px 150px 150px 150px 150px 150px
+		110px;
 	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
 }
 
@@ -766,7 +764,7 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px 150px;
+	grid-template-columns: 110px 150px 150px 150px 150px 150px 150px 110px;
 	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
 }
 
@@ -774,7 +772,7 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px;
+	grid-template-columns: 110px 150px 150px 150px 150px 110px;
 	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
 }
 
@@ -782,8 +780,8 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px;
-	grid-template-rows:60px 48px 48px 48px 48px 48px 48px 48px 48px;
+	grid-template-columns: 110px 150px 150px 150px 150px 110px;
+	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
 }
 
 .button-item {
@@ -808,6 +806,7 @@ label {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: scroll;
 }
 
 .button-title-ingenieria {
@@ -818,6 +817,7 @@ label {
 
 .buton-res-ingenieria {
 	border: 2px solid #009de0;
+	font-weight: bold;
 }
 
 .buton-res-ingenieria:hover {
@@ -832,6 +832,8 @@ label {
 
 .button-res-educacion {
 	border: 2px solid #dc911b;
+	font-weight: bold;
+	font-weight: bold;
 }
 
 .button-res-educacion:hover {
@@ -847,6 +849,7 @@ label {
 
 .button-res-salud {
 	border: 2px solid #1169b0;
+	font-weight: bold;
 }
 
 .button-res-salud:hover {
@@ -862,6 +865,7 @@ label {
 
 .button-res-humanas {
 	border: 2px solid #c20b19;
+	font-weight: bold;
 }
 
 .button-res-humanas:hover {
@@ -877,6 +881,7 @@ label {
 
 .button-res-agroindustria {
 	border: 2px solid #8fb435;
+	font-weight: bold;
 }
 
 .button-res-agroindustria:hover {
@@ -892,6 +897,7 @@ label {
 
 .buton-res-economicas {
 	border: 2px solid #8e1c7d;
+	font-weight: bold;
 }
 
 .buton-res-economicas:hover {
@@ -907,6 +913,7 @@ label {
 
 .buttom-res-basicas {
 	border: 2px solid #ffcc00;
+	font-weight: bold;
 }
 
 .buttom-res-basicas:hover {
