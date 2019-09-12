@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: header('Centros de InvestigaciÛn')">
+<head th:replace="fragments/header :: header('Grupos de investigaci√≥n')">
 	<meta charset="utf-8" />
 </head>
 
@@ -20,10 +20,10 @@
 					<span>Investigadores</span></a>
 			</li>
 			<li class="nav-item"><a class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i> <span>Grupos
-						de InvestigaciÛn</span></a></li>
+						de InvestigaciÔøΩn</span></a></li>
 			<li class="nav-item active"><a class="nav-link" href="centros">
 					<i class="fas fa-fw fa-microscope"></i> <span>Centros de
-						InvestigaciÛn</span>
+						InvestigaciÔøΩn</span>
 				</a></li>
 		</ul>
 
@@ -32,8 +32,8 @@
 				<div class="region-hero">
 					<div class="contenedor-hero">
 						<div class="contenido-hero">
-							<h1 class="titulo-hero">Centros de Investigaciones</h1>
-							Tabla/Reporte de los centros de investigaciÛn activos en el sistema.
+							<h1 class="titulo-hero">Grupos de Investigaci√≥n</h1>
+							Tabla/Reporte de los grupos de investigaci√≥n activos en el sistema.
 						</div>
 					</div>
 				</div>
@@ -46,16 +46,29 @@
 							<tr>
 								<th></th>
 								<th>NOMBRE</th>
-								<th>CENTRO</th>
 								<th>FACULTAD</th>
+								<th>CENTRO</th>
+								<th>L√çDER</th>
+								<th>CATEGOR√çA</th>
+
 							</tr>
 						</thead>
 						<tbody>
 							<tr th:each="grupo : ${listaGrupos}">
 								<td th:text="${grupo.id}"></td>
 								<td th:text="${grupo.nombre}"></td>
+								<td
+									th:text="${grupo.programas.get(0).facultad.nombre == 'SIN FACULTAD'}?${grupo.centro.facultad.nombre}:${grupo.programas.get(0).facultad.nombre}">
+								</td>
 								<td th:text="${grupo.centro.nombre}"></td>
-								<td th:text="${grupo.centro.facultad.nombre}"></td>
+								<td th:text="${grupo.lider}"></td>
+								<td th:switch="${grupo.categoria}">
+									<span th:case="'N/D'">NO RECONOCIDO</span>
+									<span th:case="'SIN CATEGOR√çA'">RECONOCIDO</span>
+									<div th:case="*">
+										<div th:text="${grupo.categoria}" />
+									</div>
+								</td>
 							</tr>
 						</tbody>
 					</table>
