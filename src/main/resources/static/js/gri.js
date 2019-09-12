@@ -344,8 +344,10 @@
 			columns: [
 				{ data: "id", "visible": false },
 				{ data: "nombre" },
+				{ data: "programas.get(0).facultad.nombre" },
 				{ data: "centro.nombre" },
-				{ data: "centro.facultad.nombre" }
+				{ data: "programas.lider" }, 
+				{ data: "programas.categoria" }
 			]
 		});
 
