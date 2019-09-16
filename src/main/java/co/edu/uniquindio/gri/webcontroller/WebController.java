@@ -46,7 +46,7 @@ public class WebController {
 	public String main(Model model) {
 		List<BigInteger> stats = facultadDAO.getStats();
 		BigInteger stats_0 = programaDAO.getStats();
-		
+
 		model.addAttribute("cantFacultades", stats.get(0));
 		model.addAttribute("cantCentros", stats.get(1));
 		model.addAttribute("cantProgramas", stats.get(2));
@@ -76,11 +76,18 @@ public class WebController {
 		model.addAttribute("cantidadProduccionesBibliograficas", produccionDAO.getCantidadProduccionesBibliograficas());
 		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadTecnicasTecnologicas());
 		model.addAttribute("cantidadProduccionesArte", String.valueOf(produccionDAO.getCantidadProduccionesArte()));
-
 		model.addAttribute("cantidadProduccionesDemasTrabajos", produccionDAO.getCantidadProduccionesDemasTrabajos());
 		model.addAttribute("cantidadProduccionesProyectos", produccionDAO.getCantidadProduccionesProyectos());
 
+		/*
+		 * tabla categoria grupos de investigació
+		 */
+
+		model.addAttribute("cantidadGruposCategoriaA1_ingenieria",
+				facultadDAO.getCantidadCategorias(new Long("4")).get(0));
+
 		return "estadisticas/uniquindio";
+
 	}
 
 	@GetMapping("/programas")
@@ -88,7 +95,7 @@ public class WebController {
 		model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
 		return "programas";
 	}
-	
+
 	@GetMapping("/facultades")
 	public String getFacultades(Model model) {
 		model.addAttribute("listaFacultades", facultadDAO.getAllFacultades());
@@ -100,7 +107,7 @@ public class WebController {
 		model.addAttribute("listaCentros", centroDAO.getAllCentros());
 		return "centros";
 	}
-	
+
 	@GetMapping("/grupos")
 	public String getGrupos(Model model) {
 		model.addAttribute("listaGrupos", grupoDAO.findAll());
@@ -199,6 +206,88 @@ public class WebController {
 		model.addAttribute("producciones", produccionDAO.getAllProducciones(Long.parseLong(id)));
 
 		return "inventario/reporteinventario";
+	}
+
+	@GetMapping("/estadisticas")
+	public String getEstadisticas(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+
+		String[] datos = getDatosEstadisticas(id, type);
+		model.addAttribute("id", id);
+		model.addAttribute("tipo", type);
+		model.addAttribute("nombre", datos[0]);
+		model.addAttribute("color", datos[1]);
+
+		if (type.equals("u")) {
+
+			return "estadisticas/uniquindio";
+
+		} else if (type.equals("f")) {
+
+			return "estadisticas/facultades";
+
+		} else if (type.equals("p")) {
+
+			return "estadisticas/programas";
+
+		} else if (type.equals("c")) {
+			return "estadisticas/centros";
+
+		} else if (type.equals("g")) {
+
+			return "estadisticas/grupos";
+
+		} else if (type.equals("i")) {
+			return "estadisticas/investigadores";
+
+		}
+
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param id
+	 * @param type
+	 * @return
+	 */
+	public String[] getDatosEstadisticas(String id, String type) {
+
+		String[] datos = new String[2];
+
+		if (type.equals("f")) {
+			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
+
+			datos[0] = "Estadísticas generales de la facultad de " + f.getNombre().toLowerCase();
+			datos[1] = "card-" + f.getId();
+
+		} else if (type.equals("p")) {
+			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
+
+			datos[0] = p.getNombre();
+			datos[1] = "card-" + p.getFacultad().getId();
+
+		} else if (type.equals("c")) {
+			Centro c = centroDAO.getCentroById(Long.parseLong(id));
+
+			datos[0] = c.getNombre();
+			datos[1] = "card-" + c.getFacultad().getId();
+
+		} else if (type.equals("g")) {
+			Grupo g = grupoDAO.findOne(Long.parseLong(id));
+
+			datos[0] = g.getNombre();
+			datos[1] = "card-" + g.getProgramas().get(0).getFacultad().getId();
+
+		} else if (type.equals("i")) {
+			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
+
+			datos[0] = i.getNombre();
+			datos[1] = "card-0";
+		}
+
+		return datos;
+
 	}
 
 	public int calcularTamanio(int tamanio) {
