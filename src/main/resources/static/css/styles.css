@@ -31,15 +31,6 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	padding-left: 0;
 }
 
-@media ( min-width : 768px) {
-	body.fixed-nav #content-wrapper {
-		padding-left: 225px;
-	}
-	body.fixed-nav.sidebar-toggled #content-wrapper {
-		padding-left: 90px;
-	}
-}
-
 .smaller {
 	font-size: 0.7rem;
 }
@@ -92,12 +83,6 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	margin-left: 0.75rem;
 	top: 0.3rem;
 	font-size: 0.5rem;
-}
-
-@media ( min-width : 768px) {
-	.navbar-nav .form-inline .input-group {
-		width: auto;
-	}
 }
 
 .sidebar {
@@ -168,61 +153,6 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 .sidebar.toggled {
 	width: 0 !important;
 	overflow: hidden;
-}
-
-@media ( min-width : 768px) {
-	.sidebar {
-		width: 225px !important;
-	}
-	.sidebar .nav-item .nav-link {
-		display: block;
-		width: 100%;
-		text-align: left;
-		padding: 1rem;
-		width: 225px;
-	}
-	.sidebar .nav-item .nav-link span {
-		font-size: 1rem;
-		display: inline;
-	}
-	.sidebar .nav-item .dropdown-menu {
-		position: static !important;
-		margin: 0 1rem;
-		top: 0;
-	}
-	.sidebar .nav-item.dropdown .dropdown-toggle::after {
-		display: block;
-	}
-	.sidebar.toggled {
-		overflow: visible;
-		width: 100px !important;
-	}
-	.sidebar.toggled .nav-item:last-child {
-		margin-bottom: 1rem;
-	}
-	.sidebar.toggled .nav-item .nav-link {
-		text-align: center;
-		padding: 0.75rem 1rem;
-		width: 90px;
-	}
-	.sidebar.toggled .nav-item .nav-link span {
-		font-size: 0.65rem;
-		display: block;
-	}
-	.sidebar.toggled .nav-item .dropdown-menu {
-		position: absolute !important;
-		-webkit-transform: none !important;
-		transform: none !important;
-		left: calc(90px + 0.5rem) !important;
-		margin: 0;
-	}
-	.sidebar.toggled .nav-item .dropdown-menu.dropup {
-		bottom: 0;
-		top: auto !important;
-	}
-	.sidebar.toggled .nav-item.dropdown .dropdown-toggle::after {
-		display: none;
-	}
 }
 
 .sidebar.fixed-top {
@@ -772,7 +702,7 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px 110px;
+	grid-template-columns: 110px 150px 150px 150px 150px 150px 110px;
 	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
 }
 
@@ -802,11 +732,210 @@ label {
 	font-size: 0.8em;
 }
 
+.card-1-titulo {
+	background: white;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #FFCC00;
+	border-bottom: 10px solid #FFCC00;
+	border-radius: 6px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-1-boton {
+	font-weight: bold;
+	background: white;
+	border: 1px solid #FFCC00;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.card-1-boton:hover {
+	color: white;
+	background-color: #FFCC00;
+}
+
+.card-2-titulo {
+	background: white;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #DC911B;
+	border-bottom: 10px solid #DC911B;
+	border-radius: 6px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-2-boton {
+	font-weight: bold;
+	background: white;
+	border: 1px solid #DC911B;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.card-2-boton:hover {
+	color: white;
+	background-color: #DC911B;
+}
+
+.card-3-titulo {
+	background: white;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #1169B0;
+	border-bottom: 10px solid #1169B0;
+	border-radius: 6px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-3-boton {
+	font-weight: bold;
+	background: white;
+	border: 1px solid #1169B0;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.card-3-boton:hover {
+	color: white;
+	background-color: #1169B0;
+}
+
+.card-4-titulo {
+	background: white;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #009DE0;
+	border-bottom: 10px solid #009DE0;
+	border-radius: 6px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-4-boton {
+	font-weight: bold;
+	background: white;
+	border: 1px solid #009DE0;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.card-4-boton:hover {
+	color: white;
+	background-color: #009DE0;
+}
+
+.card-5-titulo {
+	background: white;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #C20B19;
+	border-bottom: 10px solid #C20B19;
+	border-radius: 6px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-5-boton {
+	font-weight: bold;
+	background: white;
+	border: 1px solid #C20B19;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.card-5-boton:hover {
+	color: white;
+	background-color: #C20B19;
+}
+
+.card-6-titulo {
+	background: white;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #8FB435;
+	border-bottom: 10px solid #8FB435;
+	border-radius: 6px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-6-boton {
+	font-weight: bold;
+	background: white;
+	border: 1px solid #8FB435;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.card-6-boton:hover {
+	color: white;
+	background-color: #8FB435;
+}
+
+.card-7-titulo {
+	background: white;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #8E1C7D;
+	border-bottom: 10px solid #8E1C7D;
+	border-radius: 6px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-7-boton {
+	font-weight: bold;
+	background: white;
+	border: 1px solid #8E1C7D;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.card-7-boton:hover {
+	color: white;
+	background-color: #8E1C7D;
+}
+
+.card-8-titulo {
+	background: white;
+	width: 100%;
+	height: 100%;
+	border: 1px solid #009640;
+	border-bottom: 10px solid #009640;
+	border-radius: 6px;
+	width: 100%;
+	font-weight: bold;
+}
+
+.card-8-boton {
+	font-weight: bold;
+	background: white;
+	border: 1px solid #009640;
+	border-radius: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.card-8-boton:hover {
+	color: white;
+	background-color: #009640;
+}
+
 .content-grid {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	overflow: scroll;
 }
 
 .button-title-ingenieria {
@@ -923,4 +1052,125 @@ label {
 
 .h2-titulos-tablas {
 	text-align: center;
+}
+
+.scrollable {
+	overflow: scroll;
+}
+
+.grid-container-res-programa {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+}
+
+.grid-container-catGrup-programa {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: repeat(6, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+}
+
+.grid-container-catInvestigador-programa {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+}
+
+.grid-container-formaciontalentoH-programa {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 1024px) {
+	body {
+		
+	}
+}
+
+@media ( min-width : 768px) {
+	body.fixed-nav #content-wrapper {
+		padding-left: 225px;
+	}
+	body.fixed-nav.sidebar-toggled #content-wrapper {
+		padding-left: 90px;
+	}
+	/*---------*/
+	.navbar-nav .form-inline .input-group {
+		width: auto;
+	}
+	/*----------*/
+	.sidebar {
+		width: 225px !important;
+	}
+	.sidebar .nav-item .nav-link {
+		display: block;
+		width: 100%;
+		text-align: left;
+		padding: 1rem;
+		width: 225px;
+	}
+	.sidebar .nav-item .nav-link span {
+		font-size: 1rem;
+		display: inline;
+	}
+	.sidebar .nav-item .dropdown-menu {
+		position: static !important;
+		margin: 0 1rem;
+		top: 0;
+	}
+	.sidebar .nav-item.dropdown .dropdown-toggle::after {
+		display: block;
+	}
+	.sidebar.toggled {
+		overflow: visible;
+		width: 100px !important;
+	}
+	.sidebar.toggled .nav-item:last-child {
+		margin-bottom: 1rem;
+	}
+	.sidebar.toggled .nav-item .nav-link {
+		text-align: center;
+		padding: 0.75rem 1rem;
+		width: 90px;
+	}
+	.sidebar.toggled .nav-item .nav-link span {
+		font-size: 0.65rem;
+		display: block;
+	}
+	.sidebar.toggled .nav-item .dropdown-menu {
+		position: absolute !important;
+		-webkit-transform: none !important;
+		transform: none !important;
+		left: calc(90px + 0.5rem) !important;
+		margin: 0;
+	}
+	.sidebar.toggled .nav-item .dropdown-menu.dropup {
+		bottom: 0;
+		top: auto !important;
+	}
+	.sidebar.toggled .nav-item.dropdown .dropdown-toggle::after {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 480px) {
+}
+
+@media screen and (min-width: 320px) {
+	#content-wrapper>div>div.region-hero>div>div>h1, #content-wrapper>div>div.resumen_general>h2,
+		#content-wrapper>div>div.categoria_grupos_investigacion>h2,
+		#content-wrapper>div>div.categoria_investigadores>h2, #content-wrapper>div>div.formacion_recurso_humano>h2,
+		#listageneral>h2 {
+		/*font-size: 1.2em;*/
+		
+	}
 }
