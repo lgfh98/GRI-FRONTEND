@@ -10,7 +10,7 @@
 
 
 	<div id="wrapper">
-	
+
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav toggled" style="background-color: #007f36;">
 			<li class="nav-item"><a class="nav-link" href="inicio"> <i class="fas fa-fw fa-home"></i>
@@ -125,7 +125,8 @@
 								<button class="button-title button-title-ingenieria">Ingeniería</button>
 							</div>
 							<div>
-								<a class="link" th:href="@{programas(id=${facultadIngenieria},type=${programaAcademico})}">
+								<a class="link"
+									th:href="@{programas(id=${facultadIngenieria},type=${programaAcademico})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadProgramasAcademicosIngenieria}"></button>
 								</a>
@@ -686,6 +687,9 @@
 							</div>
 							<div>
 								<button class="button-title"># De investigadores Junior</button>
+							</div>
+							<div>
+								<button class="button-title"># De investigadores Sin Categoría</button>
 							</div>
 							<div>
 								<button class="button-title button-title-total">Total</button>
