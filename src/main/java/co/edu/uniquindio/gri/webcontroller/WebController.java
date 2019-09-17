@@ -45,7 +45,6 @@ public class WebController {
 	@GetMapping(value = { "/", "inicio" })
 	public String main(Model model) {
 		List<BigInteger> stats = facultadDAO.getStats();
-		BigInteger stats_0 = programaDAO.getStats();
 
 		model.addAttribute("cantFacultades", stats.get(0));
 		model.addAttribute("cantCentros", stats.get(1));
@@ -70,6 +69,8 @@ public class WebController {
 
 	@GetMapping("/uniquindio")
 	public String getEstadisticasUniquindio(Model model) {
+		
+//------Llamado a las consultas en la base de datos para producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion", produccionDAO.getCantidadActividadesFormacion());
 		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadActividadesEvaluador());
 		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadApropiacionSocial());
@@ -79,20 +80,173 @@ public class WebController {
 		model.addAttribute("cantidadProduccionesDemasTrabajos", produccionDAO.getCantidadProduccionesDemasTrabajos());
 		model.addAttribute("cantidadProduccionesProyectos", produccionDAO.getCantidadProduccionesProyectos());
 
-		/*
-		 * tabla categoria grupos de investigació
-		 */
+		//------Llamado a las consultas en la base de datos para las facultades-----------------------------------------------------------------------		
+		List<BigInteger> resumenCienciasBasicas = facultadDAO.getResumenGeneral(new Long("1"));
+		List<BigInteger> resumenEducacion = facultadDAO.getResumenGeneral(new Long("2"));
+		List<BigInteger> resumenCienciasDeLaSalud = facultadDAO.getResumenGeneral(new Long("3"));
+		List<BigInteger> resumenIngenieria = facultadDAO.getResumenGeneral(new Long("4"));
+		List<BigInteger> resumenCienciasHumanas = facultadDAO.getResumenGeneral(new Long("5"));
+		List<BigInteger> resumenAgroindustria = facultadDAO.getResumenGeneral(new Long("6"));
+		List<BigInteger> resumenCienciasEconomicas = facultadDAO.getResumenGeneral(new Long("7"));
+		
+//------Adición de atributos al modelo con informacion de ingenieria-----------------------------------------------------------------------		
 
-		model.addAttribute("cantidadGruposCategoriaA1_ingenieria",
-				facultadDAO.getCantidadCategorias(new Long("4")).get(0));
+		model.addAttribute("cantidadProgramasAcademicosIngenieria", resumenIngenieria.get(0));
+		model.addAttribute("cantidadProgramasDoctoradoIngenieria", resumenIngenieria.get(1));
+		model.addAttribute("cantidadProgramasMaestriaIngenieria", resumenIngenieria.get(2));
+		model.addAttribute("cantidadProgramasEspecializacionIngenieria", resumenIngenieria.get(3));
+		model.addAttribute("cantidadCentrosInvestigacionIngenieria", resumenCienciasBasicas.get(4));
+		model.addAttribute("cantidadGruposInvestigacionIngenieria", resumenIngenieria.get(5));
+		model.addAttribute("cantidadLineasInvestigacionIngenieria", resumenIngenieria.get(6));
+		model.addAttribute("cantidadInvestigadoresIngenieria", resumenIngenieria.get(7));
+		
+//------Adición de atributos al modelo con informacion de basicas-----------------------------------------------------------------------
+		model.addAttribute("cantidadProgramasAcademicosCienciasBasicas", resumenCienciasBasicas.get(0));
+		model.addAttribute("cantidadProgramasDoctoradoCienciasBasicas", resumenCienciasBasicas.get(1));
+		model.addAttribute("cantidadProgramasMaestriaCienciasBasicas", resumenCienciasBasicas.get(2));
+		model.addAttribute("cantidadProgramasEspecializacionCienciasBasicas", resumenCienciasBasicas.get(3));
+		model.addAttribute("cantidadCentrosInvestigacionCienciasBasicas", resumenCienciasBasicas.get(4));
+		model.addAttribute("cantidadGruposInvestigacionCienciasBasicas", resumenCienciasBasicas.get(5));
+		model.addAttribute("cantidadLineasInvestigacionCienciasBasicas", resumenCienciasBasicas.get(6));
+		model.addAttribute("cantidadInvestigadoresCienciasBasicas", resumenCienciasBasicas.get(7));
+		
+//------Adición de atributos al modelo con informacion de educacion-----------------------------------------------------------------------
+		model.addAttribute("cantidadProgramasAcademicosEducacion", resumenEducacion.get(0));
+		model.addAttribute("cantidadProgramasDoctoradoEducacion", resumenEducacion.get(1));
+		model.addAttribute("cantidadProgramasMaestriaEducacion", resumenEducacion.get(2));
+		model.addAttribute("cantidadProgramasEspecializacionEducacion", resumenEducacion.get(3));
+		model.addAttribute("cantidadCentrosInvestigacionEducacion", resumenEducacion.get(4));
+		model.addAttribute("cantidadGruposInvestigacionEducacion", resumenEducacion.get(5));
+		model.addAttribute("cantidadLineasInvestigacionEducacion", resumenEducacion.get(6));
+		model.addAttribute("cantidadInvestigadoresEducacion", resumenEducacion.get(7));
+		
+//------Adición de atributos al modelo con informacion de salud-----------------------------------------------------------------------
+		model.addAttribute("cantidadProgramasAcademicosCienciasDeLaSalud", resumenCienciasDeLaSalud.get(0));
+		model.addAttribute("cantidadProgramasDoctoradoCienciasDeLaSalud", resumenCienciasDeLaSalud.get(1));
+		model.addAttribute("cantidadProgramasMaestriaCienciasDeLaSalud", resumenCienciasDeLaSalud.get(2));
+		model.addAttribute("cantidadProgramasEspecializacionCienciasDeLaSalud", resumenCienciasDeLaSalud.get(3));
+		model.addAttribute("cantidaCentrosInvestigacionCienciasDeLaSalud", resumenCienciasDeLaSalud.get(4));
+		model.addAttribute("cantidadGruposInvestigacionCienciasDeLaSalud", resumenCienciasDeLaSalud.get(5));
+		model.addAttribute("cantidadLineasInvestigacionCienciasDeLaSalud", resumenCienciasDeLaSalud.get(6));
+		model.addAttribute("cantidadInvestigadoresCienciasDeLaSalud", resumenCienciasDeLaSalud.get(7));
+		
+//------Adición de atributos al modelo con informacion de humanas-----------------------------------------------------------------------
+		model.addAttribute("cantidadProgramasAcademicosCienciasHumanas", resumenCienciasHumanas.get(0));
+		model.addAttribute("cantidadProgramasDoctoradoCienciasHumanas", resumenCienciasHumanas.get(1));
+		model.addAttribute("cantidadProgramasMaestriaCienciasHumanas", resumenCienciasHumanas.get(2));
+		model.addAttribute("cantidadProgramasEspecializacionCienciasHumanas", resumenCienciasHumanas.get(3));
+		model.addAttribute("cantidadCentrosInvestigacionCienciasHumanas", resumenCienciasHumanas.get(4));
+		model.addAttribute("cantidadGruposInvestigacionCienciasHumanas", resumenCienciasHumanas.get(5));
+		model.addAttribute("cantidadLineasInvestigacionCienciasHumanas", resumenCienciasHumanas.get(6));
+		model.addAttribute("cantidadInvestigadoresCienciasHumanas", resumenCienciasHumanas.get(7));
+
+//------Adición de atributos al modelo con informacion de agroindustria-----------------------------------------------------------------------		
+		model.addAttribute("cantidadProgramasAcademicosAgroindustria", resumenAgroindustria.get(0));
+		model.addAttribute("cantidadProgramasDoctoradoAgroindustria", resumenAgroindustria.get(1));
+		model.addAttribute("cantidadProgramasMaestriaAgroindustria", resumenAgroindustria.get(2));
+		model.addAttribute("cantidadProgramasEspecializacionAgroindustria", resumenAgroindustria.get(3));
+		model.addAttribute("cantidadCentrosInvestigacionAgroindustria", resumenAgroindustria.get(4));
+		model.addAttribute("cantidadGruposInvestigacionAgroindustria", resumenAgroindustria.get(5));
+		model.addAttribute("cantidadLineasInvestigacionAgroindustria", resumenAgroindustria.get(6));
+		model.addAttribute("cantidadInvestigadoresAgroindustria", resumenAgroindustria.get(7));
+
+//------Adición de atributos al modelo con informacion de economicas-----------------------------------------------------------------------
+		model.addAttribute("cantidadProgramasAcademicosCienciasEconomicas", resumenCienciasEconomicas.get(0));
+		model.addAttribute("cantidadProgramasDoctoradoCienciasEconomicas", resumenCienciasEconomicas.get(1));
+		model.addAttribute("cantidadProgramasMaestriaCienciasEconomicas", resumenCienciasEconomicas.get(2));
+		model.addAttribute("cantidadProgramasEspecializacionCienciasEconomicas", resumenCienciasEconomicas.get(3));
+		model.addAttribute("cantidadCentrosInvestigacionCienciasEconomicas", resumenCienciasEconomicas.get(4));
+		model.addAttribute("cantidadGruposInvestigacionCienciasEconomicas", resumenCienciasEconomicas.get(5));
+		model.addAttribute("cantidadLineasInvestigacionCienciasEconomicas", resumenCienciasEconomicas.get(6));
+		model.addAttribute("cantidadInvestigadoresCienciasEconomicas", resumenCienciasEconomicas.get(7));
+
+//------Adición de atributos al modelo con informacion de totales-----------------------------------------------------------------------		
+		model.addAttribute("cantidadProgramasAcademicosTotal", resumenIngenieria.get(0)
+				.add(resumenCienciasBasicas.get(0)
+						.add(resumenEducacion.get(0).add(resumenCienciasDeLaSalud.get(0).add(resumenCienciasHumanas
+								.get(0).add(resumenAgroindustria.get(0).add(resumenCienciasEconomicas.get(0))))))));
+		model.addAttribute("cantidadProgramasDoctoradoTotal", resumenIngenieria.get(1)
+				.add(resumenCienciasBasicas.get(1)
+						.add(resumenEducacion.get(1).add(resumenCienciasDeLaSalud.get(1).add(resumenCienciasHumanas
+								.get(1).add(resumenAgroindustria.get(1).add(resumenCienciasEconomicas.get(1))))))));
+		model.addAttribute("cantidadProgramasMaestriaTotal", resumenIngenieria.get(2)
+				.add(resumenCienciasBasicas.get(2)
+						.add(resumenEducacion.get(2).add(resumenCienciasDeLaSalud.get(2).add(resumenCienciasHumanas
+								.get(2).add(resumenAgroindustria.get(2).add(resumenCienciasEconomicas.get(2))))))));
+		model.addAttribute("cantidadProgramasEspecializacionTotal", resumenIngenieria.get(3)
+				.add(resumenCienciasBasicas.get(3)
+						.add(resumenEducacion.get(3).add(resumenCienciasDeLaSalud.get(3).add(resumenCienciasHumanas
+								.get(3).add(resumenAgroindustria.get(3).add(resumenCienciasEconomicas.get(3))))))));
+		model.addAttribute("cantidadCentrosInvestigacionTotal", resumenIngenieria.get(4)
+				.add(resumenCienciasBasicas.get(4)
+						.add(resumenEducacion.get(4).add(resumenCienciasDeLaSalud.get(4).add(resumenCienciasHumanas
+								.get(4).add(resumenAgroindustria.get(4).add(resumenCienciasEconomicas.get(4))))))));
+		model.addAttribute("cantidadGruposInvestigacionTotal", resumenIngenieria.get(5)
+				.add(resumenCienciasBasicas.get(5)
+						.add(resumenEducacion.get(5).add(resumenCienciasDeLaSalud.get(5).add(resumenCienciasHumanas
+								.get(5).add(resumenAgroindustria.get(5).add(resumenCienciasEconomicas.get(5))))))));
+		model.addAttribute("cantidadLineasInvestigacionTotal", resumenIngenieria.get(6)
+				.add(resumenCienciasBasicas.get(6)
+						.add(resumenEducacion.get(6).add(resumenCienciasDeLaSalud.get(6).add(resumenCienciasHumanas
+								.get(6).add(resumenAgroindustria.get(6).add(resumenCienciasEconomicas.get(6))))))));
+		model.addAttribute("cantidadInvestigadoresTotal", resumenIngenieria.get(7)
+				.add(resumenCienciasBasicas.get(7)
+						.add(resumenEducacion.get(7).add(resumenCienciasDeLaSalud.get(7).add(resumenCienciasHumanas
+								.get(7).add(resumenAgroindustria.get(7).add(resumenCienciasEconomicas.get(7))))))));
+
+//------Adición de atributos al modelo para referenciar a páginas especificas-----------------------------------------------------------------------		
+		model.addAttribute("programaAcademico", "pa");
+		model.addAttribute("programaDoctorado", "pd");
+		model.addAttribute("programaEspecializacion", "pe");
+		model.addAttribute("centrosInvestigacion", "c");
+		model.addAttribute("gruposInvestigacion", "g");
+		model.addAttribute("lineasInvestigacion", "l");
+		model.addAttribute("investigadores", "i");
+		
+		model.addAttribute("categoriaA1", "ca1");
+		model.addAttribute("categoriaA", "ca");
+		model.addAttribute("categoriaB", "cb");
+		model.addAttribute("categoriaC", "cc");
+		model.addAttribute("categoriaReconocido", "cr");
+		model.addAttribute("categoriaNoReconocido", "cnr");
+		
+		model.addAttribute("investigadorEmerito", "ie");
+		model.addAttribute("investigadorSenior", "is");
+		model.addAttribute("investigadorAsociado", "ia");
+		model.addAttribute("investigadorJunior", "ij");
+		model.addAttribute("investigadorSinCategoria", "isc");
+		
+		model.addAttribute("formacionDoctor", "fd");
+		model.addAttribute("formacionMagister", "fm");
+		model.addAttribute("formacionEspecialista", "fe");
+		model.addAttribute("formacionPregrado", "fp");
+		
+		model.addAttribute("idFacultadCienciasBasicas", "1");
+		model.addAttribute("idFacultadEducacion", "2");
+		model.addAttribute("idFacultadCienciasDeLaSalud", "3");
+		model.addAttribute("idFacultadIngenieria", "4");
+		model.addAttribute("idFacultadCienciasHumanas", "5");
+		model.addAttribute("idFacultadAgroindustria", "6");
+		model.addAttribute("idFacultadCienciasEconomicas", "7");
+		
+		
 
 		return "estadisticas/uniquindio";
 
 	}
 
 	@GetMapping("/programas")
-	public String getProgramas(Model model) {
-		model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
+	public String getProgramas(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
+		if (Long.parseLong(id) != 0) {
+			if (type.equals("pa")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasAcademicosFacultad(Long.parseLong(id)));
+			}
+		} else {
+			model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
+		}
 		return "programas";
 	}
 

@@ -14,7 +14,7 @@ import co.edu.uniquindio.gri.model.Programa;
  * Interface ProgramaRepository.
  */
 @Repository
-public interface ProgramaRepository extends JpaRepository<Programa, Long>{
+public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 
 	/**
 	 * Obtiene los programas de una facultad específica.
@@ -24,7 +24,7 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long>{
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE id<>0 and facultad.id = :id")
 	List<Programa> getProgramasFacultad(@Param("id") Long idFacultad);
-	
+
 	/**
 	 * Obtiene los programas
 	 *
@@ -32,7 +32,7 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long>{
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE id<>0")
 	List<Programa> getProgramas();
-	
+
 	/**
 	 * Obtiene la cantidad total de programas.
 	 *
@@ -40,4 +40,13 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long>{
 	 */
 	@Query("SELECT COUNT(p) FROM co.edu.uniquindio.gri.model.Programa p where p.id <> 0")
 	BigInteger getStats();
+
+	/**
+	 * Obtiene los programas de una facultad específica.
+	 *
+	 * @param idFacultad el id de la facultad
+	 * @return lista de los programas pertenecientes a la facultad idFacultad
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE facultad.id = :id AND nombre NOT LIKE '%MAESTRÍA%' AND nombre NOT LIKE '%ESPECIALIZACIÓN%' AND nombre NOT LIKE '%DOCTORADO%'")
+	List<Programa> getProgramasAcademicosFacultad(@Param("id") Long idFacultad);
 }

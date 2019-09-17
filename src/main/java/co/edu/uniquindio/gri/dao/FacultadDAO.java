@@ -49,6 +49,22 @@ public class FacultadDAO {
 
 	
 	/**
+	 * Obtiene el resumen general de la facultad en números
+	 * la lista en cada posición obtiene lo siguiente:
+	 * 0 - Cantidad programas académicos
+	 * 1 - Cantidad especializaciones
+	 * 2 - Cantidad maestrías
+	 * 3 - Cantidad doctorados
+	 * 4 . Cantidad grupos de investigación
+	 * 5 . Cantidad lineas de investigación
+	 * 6 - Cantidad de investigadores
+	 * @return lista con totales anteriores.
+	 */
+	public List<BigInteger> getResumenGeneral(Long facultadId){
+		return facultadRepository.getResumenGeneral(facultadId);
+	}
+	
+	/**
 	 * obtiene la cantidad por categoria de grupos, de la siguinte forma: 0-cantidad
 	 * categoria A1 1-cantidad categoria A 2-cantidad categoria B 3-cantidad
 	 * categoria C 4-cantidad categoria reconocidos 5-cantidad categoria no
