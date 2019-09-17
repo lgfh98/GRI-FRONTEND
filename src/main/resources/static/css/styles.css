@@ -815,12 +815,12 @@ label {
 	font-weight: bold;
 }
 
-.buton-res-ingenieria {
+.button-res-ingenieria {
 	border: 2px solid #009de0;
 	font-weight: bold;
 }
 
-.buton-res-ingenieria:hover {
+.button-res-ingenieria:hover {
 	background-color: #009de0;
 	color: white;
 }
@@ -895,12 +895,12 @@ label {
 	font-weight: bold;
 }
 
-.buton-res-economicas {
+.button-res-economicas {
 	border: 2px solid #8e1c7d;
 	font-weight: bold;
 }
 
-.buton-res-economicas:hover {
+.button-res-economicas:hover {
 	background-color: #8e1c7d;
 	color: white;
 }
@@ -911,12 +911,12 @@ label {
 	font-weight: bold;
 }
 
-.buttom-res-basicas {
+.button-res-basicas {
 	border: 2px solid #ffcc00;
 	font-weight: bold;
 }
 
-.buttom-res-basicas:hover {
+.button-res-basicas:hover {
 	background-color: #ffcc00;
 	color: white;
 }

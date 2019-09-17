@@ -18,42 +18,53 @@ public class ProgramaDAO {
 	/** Repository para programas. */
 	@Autowired
 	ProgramaRepository programaRepository;
-	
+
 	/**
 	 * Obtiene todos los programas.
 	 *
 	 * @return lista con todos los programas.
 	 */
-	public List<Programa> getAllProgramas(){
+	public List<Programa> getAllProgramas() {
 		return programaRepository.getProgramas();
 	}
-	
+
 	/**
 	 * Obtiene la cantidad total de programas.
 	 *
 	 * @return total de los programas.
 	 */
-	public BigInteger getStats(){
+	public BigInteger getStats() {
 		return programaRepository.getStats();
 	}
-	
+
 	/**
 	 * Obtiene un programa especificado por un id.
 	 *
 	 * @param programaId el id del programa
 	 * @return el programa especificado por el id
 	 */
-	public Programa getProgramaById(Long programaId){
+	public Programa getProgramaById(Long programaId) {
 		return programaRepository.findOne(programaId);
 	}
-	
+
 	/**
 	 * Obtiene los programas de una facultad específica.
 	 *
 	 * @param facultadId el id de la facultad
 	 * @return lista de los programas pertenecientes a la facultad idFacultad
 	 */
-	public List<Programa> getProgramasFacultad(Long facultadId){
+	public List<Programa> getProgramasFacultad(Long facultadId) {
 		return programaRepository.getProgramasFacultad(facultadId);
+	}
+
+	/**
+	 * Obtiene los programas academicos de una facultad específica
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return lista de los programas pertenecientes a la facultad idFacultad y el
+	 *         tipo de programa type
+	 */
+	public List<Programa> getProgramasAcademicosFacultad(long facultadId) {
+		return programaRepository.getProgramasAcademicosFacultad(facultadId);
 	}
 }

@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head
-	th:replace="fragments/header :: header('Centros de Investigación')">
-<meta charset="utf-8" />
+<head th:replace="fragments/header :: header('Centros de Investigación')">
+	<meta charset="utf-8" />
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -13,21 +12,19 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<ul class="sidebar navbar-nav toggled"
-			style="background-color: #007f36;">
-			<li class="nav-item"><a class="nav-link" href="inicio"> <i
-					class="fas fa-fw fa-home"></i> <span>Inicio</span>
-			</a></li>
+		<ul class="sidebar navbar-nav toggled" style="background-color: #007f36;">
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i class="fas fa-fw fa-home"></i>
+					<span>Inicio</span>
+				</a></li>
 			<li class="nav-item"><a class="nav-link" href="investigadores">
 					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="general"> <i
-					class="fas fa-fw fa-users"></i> <span>Grupos de
+				</a></li>
+			<li class="nav-item"><a class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i> <span>Grupos de
 						Investigación</span></a></li>
 			<li class="nav-item active"><a class="nav-link" href="centros">
 					<i class="fas fa-fw fa-microscope"></i> <span>Centros de
 						Investigación</span>
-			</a></li>
+				</a></li>
 		</ul>
 
 		<div id="content-wrapper">
@@ -35,12 +32,62 @@
 				<div class="region-hero">
 					<div class="contenedor-hero">
 						<div class="contenido-hero">
-							<h1 class="titulo-hero">Estadísticas generales Uniquindío</h1>
+							<h1 class="titulo-hero">Estadísticas generales de la Universidad del Quindío</h1>
 
 						</div>
 					</div>
 				</div>
 				<div class="separador-1"></div>
+				<p>
+					La Vicerrectoría de Investigaciones es la dependencia encargada de fomentar, apoyar y asesorar
+					procesos de investigación, innovación y desarrollo tecnológico en la institución.
+
+					Entre las funciones, se encuentran las siguientes:
+
+					1. Impulsar la investigación ligada a la docencia, a la proyección social, a la extensión y a
+					programas de ciencia y tecnología.
+
+					2. Buscar mediante la investigación, soluciones a los problemas de la Región y del País.
+
+					3. Garantizar la autonomía del investigador y el mejoramiento de la calidad investigativa.
+
+					4. Propender para que la investigación revierta, de hecho, sus resultados a la sociedad en la cual
+					tuvo su origen.
+
+					5. Promover la formación y consolidación de comunidades académicas, y la articulación con sus
+					homólogos en el ámbito Regional, Nacional e Internacional.
+
+					6. Impulsar la actividad investigativa en los distintos programas curriculares con el fin de
+					dinamizarlos, actualizarlos permanentemente y posibilitarles su desarrollo.
+
+					7. Promover la formación de investigadores vinculados a los procesos investigativos de la
+					Universidad y a los planes de desarrollo local, regional y nacional.
+
+					8. Difundir ampliamente los avances científicos, tecnológicos y los logros académicos de la
+					Universidad.
+
+					9. Fomentar la conformación de grupos, Centros o Institutos de Investigación.
+
+					10. Fomentar la creación de Programas Académicos en el nivel de Maestría y Doctorado que sean
+					resultantes del desarrollo investigativo de grupos consolidados.
+
+					11. Incrementar la calidad de la investigación mediante intercambios de docentes, estudiantes e
+					investigadores con universidades del país y del exterior.
+
+					12. Promover y apoyar en la Universidad el desarrollo de programas de ciencia y tecnología.
+
+					Entre los órganos asesores de la Vicerrectoría de Investigaciones se encuentran: el Comité Central
+					de Investigaciones y el Comité de Ética y Bioética de Investigación de la Universidad del Quindío.
+				</p>
+				<p>
+					Contacto
+					Vicerrectoría de Investigaciones
+
+					Bloque administrativo 1, Edificio K.
+					Teléfono: 57 - 6 - 7359300 Ext. 305 - 810 - 1020.
+					Correo: viceinvestigaciones@uniquindio.edu.co
+					Horario de atención: Lunes a viernes 8:00 a.m. a 12:00 p.m. - y 2:00 p.m. a 6:00 p.m.
+				</p>
 				<div class="resumen_general">
 
 					<h2 class="h2-titulos-tablas">Resumen General</h2>
@@ -53,13 +100,16 @@
 								<button class="button-title"># Programas Académicos</button>
 							</div>
 							<div>
-								<button class="button-title"># Especializaciones</button>
+								<button class="button-title"># Programas de Doctorado</button>
 							</div>
 							<div>
 								<button class="button-title"># Programas de Maestría</button>
 							</div>
 							<div>
-								<button class="button-title"># Programas de Doctorado</button>
+								<button class="button-title"># Especializaciones</button>
+							</div>
+							<div>
+								<button class="button-title"># Centros de Investigación</button>
 							</div>
 							<div>
 								<button class="button-title"># Grupos de Investigación</button>
@@ -70,67 +120,79 @@
 							<div>
 								<button class="button-title"># Investigadores</button>
 							</div>
-							<div>
-								<button class="button-title button-title-total">Total</button>
-							</div>
-
 
 							<div>
 								<button class="button-title button-title-ingenieria">Ingeniería</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<a class="link" th:href="@{programas(id=${facultadIngenieria},type=${programaAcademico})}">
+									<button class="button-item button-res-ingenieria"
+										th:text="${cantidadProgramasAcademicosIngenieria}"></button>
+								</a>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria"
+									th:text="${cantidadProgramasDoctoradoIngenieria}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria"
+									th:text="${cantidadProgramasMaestriaIngenieria}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria"
+									th:text="${cantidadProgramasEspecializacionIngenieria}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria"
+									th:text="${cantidadCentrosInvestigacionIngenieria}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria"
+									th:text="${cantidadGruposInvestigacionIngenieria}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria"
+									th:text="${cantidadLineasInvestigacionIngenieria}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-res-ingenieria"
+									th:text="${cantidadInvestigadoresIngenieria}"></button>
 							</div>
-
-
 
 							<div>
 								<button class="button-title button-title-educacion">Educación</button>
 							</div>
 							<div>
-								<button class="button-item button-res-educacion">5</button>
+								<button class="button-item button-res-educacion"
+									th:text="${cantidadProgramasAcademicosEducacion}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-educacion">5</button>
+								<button class="button-item button-res-educacion"
+									th:text="${cantidadProgramasDoctoradoEducacion}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-educacion">5</button>
+								<button class="button-item button-res-educacion"
+									th:text="${cantidadProgramasMaestriaEducacion}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-educacion">5</button>
+								<button class="button-item button-res-educacion"
+									th:text="${cantidadProgramasEspecializacionEducacion}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-educacion">5</button>
+								<button class="button-item button-res-educacion"
+									th:text="${cantidadCentrosInvestigacionEducacion}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-educacion">5</button>
+								<button class="button-item button-res-educacion"
+									th:text="${cantidadGruposInvestigacionEducacion}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-educacion">5</button>
+								<button class="button-item button-res-educacion"
+									th:text="${cantidadLineasInvestigacionEducacion}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-res-educacion"
+									th:text="${cantidadInvestigadoresEducacion}"></button>
 							</div>
 
 							<div>
@@ -138,28 +200,36 @@
 									de la salud</button>
 							</div>
 							<div>
-								<button class="button-item button-res-salud">5</button>
+								<button class="button-item button-res-salud"
+									th:text="${cantidadProgramasAcademicosCienciasDeLaSalud}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-salud">5</button>
+								<button class="button-item button-res-salud"
+									th:text="${cantidadProgramasDoctoradoCienciasDeLaSalud}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-salud">5</button>
+								<button class="button-item button-res-salud"
+									th:text="${cantidadProgramasMaestriaCienciasDeLaSalud}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-salud">5</button>
+								<button class="button-item button-res-salud"
+									th:text="${cantidadProgramasEspecializacionCienciasDeLaSalud}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-salud">5</button>
+								<button class="button-item button-res-salud"
+									th:text="${cantidaCentrosInvestigacionCienciasDeLaSalud}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-salud">5</button>
+								<button class="button-item button-res-salud"
+									th:text="${cantidadGruposInvestigacionCienciasDeLaSalud}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-salud">5</button>
+								<button class="button-item button-res-salud"
+									th:text="${cantidadLineasInvestigacionCienciasDeLaSalud}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-res-salud"
+									th:text="${cantidadInvestigadoresCienciasDeLaSalud}"></button>
 							</div>
 
 							<div>
@@ -167,145 +237,187 @@
 									Humanas</button>
 							</div>
 							<div>
-								<button class="button-item button-res-humanas">5</button>
+								<button class="button-item button-res-humanas"
+									th:text="${cantidadProgramasAcademicosCienciasHumanas}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-humanas">5</button>
+								<button class="button-item button-res-humanas"
+									th:text="${cantidadProgramasDoctoradoCienciasHumanas}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-humanas">5</button>
+								<button class="button-item button-res-humanas"
+									th:text="${cantidadProgramasMaestriaCienciasHumanas}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-humanas">5</button>
+								<button class="button-item button-res-humanas"
+									th:text="${cantidadProgramasEspecializacionCienciasHumanas}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-humanas">5</button>
+								<button class="button-item button-res-humanas"
+									th:text="${cantidadCentrosInvestigacionCienciasHumanas}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-humanas">5</button>
+								<button class="button-item button-res-humanas"
+									th:text="${cantidadGruposInvestigacionCienciasHumanas}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-humanas">5</button>
+								<button class="button-item button-res-humanas"
+									th:text="${cantidadLineasInvestigacionCienciasHumanas}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-res-humanas"
+									th:text="${cantidadInvestigadoresCienciasHumanas}"></button>
 							</div>
+
 							<div>
 								<button class="button-title button-title-agroindustria">Agroindustria</button>
 							</div>
 							<div>
-								<button class="button-item button-res-agroindustria">5</button>
+								<button class="button-item button-res-agroindustria"
+									th:text="${cantidadProgramasAcademicosAgroindustria}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-agroindustria">5</button>
+								<button class="button-item button-res-agroindustria"
+									th:text="${cantidadProgramasDoctoradoAgroindustria}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-agroindustria">5</button>
+								<button class="button-item button-res-agroindustria"
+									th:text="${cantidadProgramasMaestriaAgroindustria}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-agroindustria">5</button>
+								<button class="button-item button-res-agroindustria"
+									th:text="${cantidadProgramasEspecializacionAgroindustria}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-agroindustria">5</button>
+								<button class="button-item button-res-agroindustria"
+									th:text="${cantidadCentrosInvestigacionAgroindustria}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-agroindustria">5</button>
+								<button class="button-item button-res-agroindustria"
+									th:text="${cantidadGruposInvestigacionAgroindustria}"></button>
 							</div>
 							<div>
-								<button class="button-item button-res-agroindustria">5</button>
+								<button class="button-item button-res-agroindustria"
+									th:text="${cantidadLineasInvestigacionAgroindustria}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-res-agroindustria"
+									th:text="${cantidadInvestigadoresAgroindustria}"></button>
 							</div>
+
 							<div>
 								<button class="button-title button-title-economicas">Ciencias
 									Económicas</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas"
+									th:text="${cantidadProgramasAcademicosCienciasEconomicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas"
+									th:text="${cantidadProgramasDoctoradoCienciasEconomicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas"
+									th:text="${cantidadProgramasMaestriaCienciasEconomicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas"
+									th:text="${cantidadProgramasEspecializacionCienciasEconomicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas"
+									th:text="${cantidadCentrosInvestigacionCienciasEconomicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas"
+									th:text="${cantidadGruposInvestigacionCienciasEconomicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas"
+									th:text="${cantidadLineasInvestigacionCienciasEconomicas}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-res-economicas"
+									th:text="${cantidadInvestigadoresCienciasEconomicas}"></button>
 							</div>
+
 							<div>
 								<button class="button-title button-title-basicas">Ciencias
 									Básicas</button>
 							</div>
 							<div>
-								<button class="button-item buttom-res-basicas">5</button>
+								<button class="button-item button-res-basicas"
+									th:text="${cantidadProgramasAcademicosCienciasBasicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buttom-res-basicas">5</button>
+								<button class="button-item button-res-basicas"
+									th:text="${cantidadProgramasDoctoradoCienciasBasicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buttom-res-basicas">5</button>
+								<button class="button-item button-res-basicas"
+									th:text="${cantidadProgramasMaestriaCienciasBasicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buttom-res-basicas">5</button>
+								<button class="button-item button-res-basicas"
+									th:text="${cantidadProgramasEspecializacionCienciasBasicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buttom-res-basicas">5</button>
+								<button class="button-item button-res-basicas"
+									th:text="${cantidadCentrosInvestigacionCienciasBasicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buttom-res-basicas">5</button>
+								<button class="button-item button-res-basicas"
+									th:text="${cantidadGruposInvestigacionCienciasBasicas}"></button>
 							</div>
 							<div>
-								<button class="button-item buttom-res-basicas">5</button>
+								<button class="button-item button-res-basicas"
+									th:text="${cantidadLineasInvestigacionCienciasBasicas}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-res-basicas"
+									th:text="${cantidadInvestigadoresCienciasBasicas}"></button>
 							</div>
 							<div>
 								<button class="button-title button-title-total">Total</button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-title"
+									th:text="${cantidadProgramasAcademicosTotal}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-title"
+									th:text="${cantidadProgramasDoctoradoTotal}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-title"
+									th:text="${cantidadProgramasMaestriaTotal}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-title"
+									th:text="${cantidadProgramasEspecializacionTotal}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-title"
+									th:text="${cantidadCentrosInvestigacionTotal}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-title"
+									th:text="${cantidadGruposInvestigacionTotal}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-title"
+									th:text="${cantidadLineasInvestigacionTotal}"></button>
 							</div>
 							<div>
-								<button class="button-title">35</button>
+								<button class="button-item button-title"
+									th:text="${cantidadInvestigadoresTotal}"></button>
 							</div>
-
-
 						</div>
 					</div>
 				</div>
-				<hr></hr>
+				<hr>
+				</hr>
 
 				<div class="categoria_grupos_investigacion">
 					<div class="separador-1"></div>
@@ -354,22 +466,22 @@
 								<button class="button-title button-title-ingenieria">Ingeniería</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
 								<button class="button-title">35</button>
@@ -477,22 +589,22 @@
 									Económicas</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
 								<button class="button-title">35</button>
@@ -550,7 +662,8 @@
 					</div>
 				</div>
 
-				<hr></hr>
+				<hr>
+				</hr>
 				<div class="categoria_investigadores">
 					<div class="separador-1"></div>
 					<!-- tabla resumen categoria investigadores-->
@@ -581,16 +694,16 @@
 								<button class="button-title button-title-ingenieria">Ingeniería</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
 								<button class="button-title">35</button>
@@ -674,16 +787,16 @@
 									Económicas</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
 								<button class="button-title">35</button>
@@ -728,7 +841,8 @@
 						</div>
 					</div>
 				</div>
-				<hr></hr>
+				<hr>
+				</hr>
 				<div class="formacion_recurso_humano">
 					<div class="separador-1"></div>
 					<!-- tabla Formacion de recurso Humano-->
@@ -758,16 +872,16 @@
 								<button class="button-title button-title-ingenieria">Ingeniería</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-ingenieria">5</button>
+								<button class="button-item button-res-ingenieria">5</button>
 							</div>
 							<div>
 								<button class="button-title">35</button>
@@ -851,16 +965,16 @@
 									Económicas</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
-								<button class="button-item buton-res-economicas">5</button>
+								<button class="button-item button-res-economicas">5</button>
 							</div>
 							<div>
 								<button class="button-title">35</button>
@@ -905,7 +1019,8 @@
 						</div>
 					</div>
 				</div>
-				<hr></hr>
+				<hr>
+				</hr>
 				<div id="listageneral">
 					<div class="separador-1"></div>
 					<h2 class="h2-titulos-tablas">Producciones de la Universidad
@@ -914,67 +1029,66 @@
 					<ul class="cards-list">
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{formacion(id=${id},type=${tipo})}"
-									class="card-container" rel="keep-params">
+								<a th:href="@{formacion(id=${id},type=${tipo})}" class="card-container"
+									rel="keep-params">
 									<div class="card-icon card-icon-2">
 										<span class="icono fa fa-graduation-cap"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades de Formación</h3>
 									</div> <span class="card-item-cantidad"
-									th:text="${cantidadActividadesDeFormacion}"></span>
+										th:text="${cantidadActividadesDeFormacion}"></span>
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{evaluador(id=${id},type=${tipo})}"
-									class="card-container" rel="keep-params">
+								<a th:href="@{evaluador(id=${id},type=${tipo})}" class="card-container"
+									rel="keep-params">
 									<div class="card-icon card-icon-3">
 										<span class="icono fa fa-pencil-alt"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades como Evaluador</h3>
 									</div> <span class="card-item-cantidad"
-									th:text="${cantidadActividadesEvaluador}"></span>
+										th:text="${cantidadActividadesEvaluador}"></span>
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{apropiacion(id=${id},type=${tipo})}"
-									class="card-container" rel="keep-params">
+								<a th:href="@{apropiacion(id=${id},type=${tipo})}" class="card-container"
+									rel="keep-params">
 									<div class="card-icon card-icon-4">
 										<span class="icono fa fa-user-friends"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades de Apropiación Social</h3>
 									</div> <span class="card-item-cantidad"
-									th:text="${cantidadApropiacionSocial}"></span>
+										th:text="${cantidadApropiacionSocial}"></span>
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{bibliografica(id=${id},type=${tipo})}"
-									class="card-container" rel="keep-params">
+								<a th:href="@{bibliografica(id=${id},type=${tipo})}" class="card-container"
+									rel="keep-params">
 									<div class="card-icon card-icon-5">
 										<span class="icono fa fa-book-open"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Producciones Bibliográficas</h3>
 									</div> <span class="card-item-cantidad"
-									th:text="${cantidadProduccionesBibliograficas}"></span>
+										th:text="${cantidadProduccionesBibliograficas}"></span>
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{tecnica(id=${id},type=${tipo})}"
-									class="card-container" rel="keep-params">
+								<a th:href="@{tecnica(id=${id},type=${tipo})}" class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-6">
 										<span class="icono fa fa-cogs"></span>
 									</div>
@@ -982,14 +1096,13 @@
 										<h3 class="card-title">Producciones Técnicas y
 											Tecnológicas</h3>
 									</div> <span class="card-item-cantidad"
-									th:text="${cantidadTecnicasTecnologicas}"></span>
+										th:text="${cantidadTecnicasTecnologicas}"></span>
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{arte(id=${id},type=${tipo})}"
-									class="card-container" rel="keep-params">
+								<a th:href="@{arte(id=${id},type=${tipo})}" class="card-container" rel="keep-params">
 
 									<div class="card-icon card-icon-7">
 										<span class="icono fa fa-paint-brush"></span>
@@ -999,36 +1112,36 @@
 											Producciones en <br />Arte
 										</h3>
 									</div> <span class="card-item-cantidad"
-									th:text="${cantidadProduccionesArte}"></span>
+										th:text="${cantidadProduccionesArte}"></span>
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=32)}"
-									class="card-container" rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=32)}" class="card-container"
+									rel="keep-params">
 									<div class="card-icon card-icon-1">
 										<span class="icono fab fa-firstdraft"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Demás Trabajos</h3>
 									</div> <span class="card-item-cantidad"
-									th:text="${cantidadProduccionesDemasTrabajos}">0</span>
+										th:text="${cantidadProduccionesDemasTrabajos}">0</span>
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=33)}"
-									class="card-container" rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=33)}" class="card-container"
+									rel="keep-params">
 									<div class="card-icon card-icon-2">
 										<span class="icono fa fa-pencil-ruler"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Proyectos</h3>
 									</div> <span class="card-item-cantidad"
-									th:text="${cantidadProduccionesProyectos}">0</span>
+										th:text="${cantidadProduccionesProyectos}">0</span>
 								</a>
 							</div>
 						</li>
