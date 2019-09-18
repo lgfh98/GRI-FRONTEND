@@ -93,93 +93,99 @@
 	<div th:replace="fragments/footer"></div>
 
 	<script th:inline="javascript">
-	
-	 var url = "/ServerSpring/rest/service/producciones/"+ [[${param.type}]] +"/"+  [[${param.id}]] +"/"+  [[${param.prod}]];
-	 
-	 $.ajax({
-         type: "GET",
-         contentType:"application/json",
-         url: url,
-         dataType: 'json',
-         cache: false,
-         success: function (producciones) {
-        	 
-        	 var res = [];
-        	 
-        	 producciones.forEach(function(item){
-        			
-        		 
-        		 	var anio;
-        		 	
-        		 	if(item.anio==='N/D'){
-        		 		
-        		 		anio=0;
-        		 		
-        		 	}
-        		 	else{
-        		 	anio= parseInt(item.anio);
-        		 	}
-        			if(res.some(e => e.name === anio)){
-        				const i = res.findIndex(obj => obj.name === anio);
-        				var cant = res[i].y;
-        				res[i].y = cant+1;
-        			}else{
-        				res.push({
-        					name: anio,
-        		            y: 1  
-        				});
-        			}		
-        		});
-        	 
-        	 res.sort( (a,b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
-        		
-        		var titulo = [[${nombre}]] + " - " + [[${tipo}]]
-        		const element = document.querySelector('.'+[[${color}]]);
-        		const style = getComputedStyle(element);
-        		const color = style.backgroundColor;
-        		
-        		
-        		Highcharts.chart('barras-anio',{
-            	    chart: {
-            	        type: 'column'
-            	    },
-            	    title: {
-            	        text: titulo
-            	    },
-            	    xAxis: {
-            	        type: 'category',
-            	        labels: {
-            	            rotation: -45,
-            	            style: {
-            	                fontSize: '13px',
-            	                fontFamily: 'Helvetica Neue, sans-serif'
-            	            }
-            	        },
-            	    title: {
-                        text: 'Año'
-                    }
-            	    },
-            	    yAxis: { 
-            	        min: 0,
-            	        title: {
-            	            text: 'Cantidad'
-            	        }
-            	    },
-            	    legend: {
-            	        enabled: false
-            	    },
-            	    tooltip: {
-            	        pointFormat: 'Producciones científicas: <b>{point.y:.0f}</b>'
-            	    },
-            	    series: [{ 
-            	        data: res, 
-            	        color: color
-            	    }]
-            	});
-         }
-	 });
-    
-    </script>
+
+		var url = "/ServerSpring/rest/service/producciones/" + [[${ param.type }]] + "/" + [[${ param.id }]] + "/" + [[${ param.prod }]];
+
+		$.ajax({
+			type: "GET",
+			contentType: "application/json",
+			url: url,
+			dataType: 'json',
+			cache: false,
+			success: function (producciones) {
+				
+				var res = [];
+				producciones.forEach(function (item) {
+
+					var anio;
+					if (item.anio === 'N/D') {
+						anio = 0;
+					} else {
+						var anio = parseInt(item.anio);
+					}
+					if (res.some(e => e.name === anio)) {
+						const i = res.findIndex(obj => obj.name === anio);
+						var cant = res[i].y;
+						res[i].y = cant + 1;
+					} else {
+						res.push({
+
+							name: anio,
+							y: 1
+						});
+					}
+				});
+
+				res.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+
+				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]]
+				const element = document.querySelector('.' + [[${ color }]]);
+				const style = getComputedStyle(element);
+				const color = style.backgroundColor;
+
+
+				Highcharts.chart('barras-anio', {
+					chart: {
+						type: 'column'
+					},
+					title: {
+						text: titulo
+					}, subtitle: {
+						text: 'Nota: las publicaciones en el año 0 indican publicaciones sin año especificado'
+					},
+					xAxis: {
+						type: 'category',
+						labels: {
+							rotation: -45,
+							style: {
+								fontSize: '13px',
+								fontFamily: 'Helvetica Neue, sans-serif'
+							}
+						},
+						title: {
+							text: 'Año'
+						}
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Cantidad'
+						}
+					},
+					legend: {
+						enabled: false
+					},
+					tooltip: {
+						pointFormat: 'Producciones científicas: <b>{point.y:.0f}</b>'
+					}, plotOptions: {
+						column: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								format: '<b>{point.y:.0f}</b>'
+							}
+						}
+					},
+					series: [{
+						data: res,
+						color: color
+					}]
+				});
+			}
+		});
+
+	</script>
 </body>
 
 </html>
