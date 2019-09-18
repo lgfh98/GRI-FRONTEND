@@ -85,7 +85,7 @@
 									id="badge-investigadores" class="badge-list-value" th:text="${cantInves}"></span>
 								<span class="badge-list-label">Investigadores</span>
 							</a></li>
-						<li class="badge-list-item"><a class="link" href="uniquindio">
+						<li class="badge-list-item"><a class="link" th:href="@{estadisticas(id=${id},type=${tipo})}" >
 								<span class="badge-list-label">Estadisticas</span>
 								<span class="badge-list-value">
 									<i class="fas fa-chart-bar estadisticas_inicio"></i>

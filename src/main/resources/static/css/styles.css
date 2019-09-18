@@ -924,3 +924,319 @@ label {
 .h2-titulos-tablas {
 	text-align: center;
 }
+/*
+estadisticas facultades
+*/
+.grid-container-general-facultad {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 150px 150px 150px 150px 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px;
+}
+
+.grid-container-catGrup-facultad {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 150px 150px 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px;
+}
+
+.grid-container-catInvestigador-facultad {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 150px 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px;
+}
+
+.grid-container-formaciontalentoH-facultad {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px;
+}
+
+
+.grid-container-general-grupo {
+
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 150px 150px ;
+	grid-template-rows: 60px 48px;
+
+
+
+}
+.grid-container-general-centro {
+
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 5px;
+	grid-template-columns: 150px 150px 150px ;
+	grid-template-rows: 60px 48px;
+
+
+
+}
+/*
+colores de botones de las tablas
+*/
+
+.btn-title-grid-0 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid #007f36;
+	border-bottom: 10px solid #007f36;
+}
+
+
+.btn-total-grid-0 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid #007f36;
+	font-weight: bold;
+}
+
+.btn-total-grid-0:hover {
+	background-color: #007f36;
+	color: white;
+}
+
+.btn-title-grid-1 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-bottom: 10px solid green;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid #ffcc00;
+	border-bottom: 10px solid #ffcc00;
+}
+
+
+.btn-total-grid-1 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid #ffcc00;
+	font-weight: bold;
+}
+
+
+
+.btn-total-grid-1:hover {
+	background-color: #ffcc00;
+	color: white;
+}
+
+
+
+.btn-title-grid-2 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid  #DC911B;
+	border-bottom: 10px solid  #DC911B;
+}
+
+
+.btn-total-grid-2 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid  #DC911B;
+	font-weight: bold;
+}
+
+
+
+.btn-total-grid-2:hover {
+	background-color:  #DC911B;
+	color: white;
+}
+
+
+.btn-title-grid-3 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid  #1169B0;
+	border-bottom: 10px solid  #1169B0;
+}
+
+
+.btn-total-grid-3 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid  #1169B0;
+	font-weight: bold;
+}
+
+
+
+.btn-total-grid-3:hover {
+	background-color:  #1169B0;
+	color: white;
+}
+
+.btn-title-grid-4 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid  #009DE0;
+	border-bottom: 10px solid  #009DE0;
+}
+
+
+.btn-total-grid-4 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid  #009DE0;
+	font-weight: bold;
+}
+
+
+
+.btn-total-grid-4:hover {
+	background-color:  #009DE0;
+	color: white;
+}
+
+.btn-title-grid-5 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid  #C20B19;
+	border-bottom: 10px solid  #C20B19;
+}
+
+
+.btn-total-grid-5 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid  #C20B19;
+	font-weight: bold;
+}
+
+
+
+.btn-total-grid-5:hover {
+	background-color:  #C20B19;
+	color: white;
+}
+
+.btn-title-grid-6 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid  #8FB435;
+	border-bottom: 10px solid  #8FB435;
+}
+
+
+.btn-total-grid-6 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid  #8FB435;
+	font-weight: bold;
+}
+
+
+
+.btn-total-grid-6:hover {
+	background-color:  #8FB435;
+	color: white;
+}
+
+.btn-title-grid-7 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid  #8E1C7D;
+	border-bottom: 10px solid  #8E1C7D;
+}
+
+
+.btn-total-grid-7 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid  #8E1C7D;
+	font-weight: bold;
+}
+
+
+
+.btn-total-grid-7:hover {
+	background-color:  #8E1C7D;
+	color: white;
+}
+
+.btn-title-grid-8 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+	border: 1px solid  #009640;
+	border-bottom: 10px solid  #009640;
+}
+
+
+.btn-total-grid-8 {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-radius: 6px;
+	border: 2px solid  #009640;
+	font-weight: bold;
+}
+
+
+
+.btn-total-grid-8:hover {
+	background-color:  #009640;
+	color: white;
+}
+

@@ -68,7 +68,6 @@ public class WebController {
 		return "investigadores";
 	}
 
-	@GetMapping("/uniquindio")
 	public String getEstadisticasUniquindio(Model model) {
 		model.addAttribute("cantidadActividadesDeFormacion", produccionDAO.getCantidadActividadesFormacion());
 		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadActividadesEvaluador());
@@ -217,6 +216,8 @@ public class WebController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
+		model.addAttribute("colorTituloBoton", datos[2]);
+		model.addAttribute("colorTotalBoton", datos[3]);
 
 		if (type.equals("u")) {
 
@@ -240,9 +241,11 @@ public class WebController {
 		} else if (type.equals("i")) {
 			return "estadisticas/investigadores";
 
+		} else {
+
+			return getEstadisticasUniquindio(model);
 		}
 
-		return null;
 	}
 
 	/**
@@ -253,37 +256,49 @@ public class WebController {
 	 */
 	public String[] getDatosEstadisticas(String id, String type) {
 
-		String[] datos = new String[2];
+		String[] datos = new String[4];
 
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 
 			datos[0] = "Estadísticas generales de la facultad de " + f.getNombre().toLowerCase();
 			datos[1] = "card-" + f.getId();
+			datos[2] = "btn-title-grid-" + f.getId();
+			datos[3] = "btn-total-grid-" + f.getId();
 
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 
 			datos[0] = p.getNombre();
 			datos[1] = "card-" + p.getFacultad().getId();
+			datos[2] = "btn-title-grid-" + p.getFacultad().getId();
+			datos[3] = "btn-total-grid-" + p.getFacultad().getId();
 
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 
 			datos[0] = c.getNombre();
 			datos[1] = "card-" + c.getFacultad().getId();
+			datos[2] = "btn-title-grid-" + c.getFacultad().getId();
+			datos[3] = "btn-total-grid-" + c.getFacultad().getId();
 
 		} else if (type.equals("g")) {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
 
 			datos[0] = g.getNombre();
 			datos[1] = "card-" + g.getProgramas().get(0).getFacultad().getId();
+			datos[2] = "btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId();
+			datos[3] = "btn-total-grid-" + g.getProgramas().get(0).getFacultad().getId();
+
+			System.err.println("btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId());
 
 		} else if (type.equals("i")) {
 			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
 
 			datos[0] = i.getNombre();
 			datos[1] = "card-0";
+			datos[2] = "btn-title-grid-0";
+			datos[3] = "btn-total-grid-0";
 		}
 
 		return datos;
