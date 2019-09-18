@@ -126,26 +126,39 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{programas(id=${facultadIngenieria},type=${programaAcademico})}">
+									th:href="@{programas(id=${idFacultadIngenieria},type=${programaAcademico})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadProgramasAcademicosIngenieria}"></button>
 								</a>
 							</div>
 							<div>
-								<button class="button-item button-res-ingenieria"
-									th:text="${cantidadProgramasDoctoradoIngenieria}"></button>
+								<a class="link"
+									th:href="@{programas(id=${idFacultadIngenieria},type=${programaDoctorado})}">
+									<button class="button-item button-res-ingenieria"
+										th:text="${cantidadProgramasDoctoradoIngenieria}"></button>
+								</a>
 							</div>
 							<div>
-								<button class="button-item button-res-ingenieria"
-									th:text="${cantidadProgramasMaestriaIngenieria}"></button>
+								<a class="link"
+									th:href="@{programas(id=${idFacultadIngenieria},type=${programaMagister})}">
+									<button class="button-item button-res-ingenieria"
+										th:text="${cantidadProgramasMaestriaIngenieria}"></button>
+								</a>
 							</div>
 							<div>
-								<button class="button-item button-res-ingenieria"
-									th:text="${cantidadProgramasEspecializacionIngenieria}"></button>
+								<a class="link"
+									th:href="@{programas(id=${idFacultadIngenieria},type=${programaEspecializacion})}">
+									<button class="button-item button-res-ingenieria"
+										th:text="${cantidadProgramasEspecializacionIngenieria}"></button>
+								</a>
 							</div>
 							<div>
-								<button class="button-item button-res-ingenieria"
-									th:text="${cantidadCentrosInvestigacionIngenieria}"></button>
+								<a class="link"
+									th:href="@{programas(id=${idFacultadIngenieria},type=${programaEspecializacion})}">
+									<button class="button-item button-res-ingenieria" <button
+										class="button-item button-res-ingenieria"
+										th:text="${cantidadCentrosInvestigacionIngenieria}"></button>
+								</a>
 							</div>
 							<div>
 								<button class="button-item button-res-ingenieria"
@@ -662,7 +675,6 @@
 						</div>
 					</div>
 				</div>
-
 				<hr>
 				</hr>
 				<div class="categoria_investigadores">

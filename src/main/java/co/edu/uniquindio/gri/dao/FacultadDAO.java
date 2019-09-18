@@ -51,13 +51,29 @@ public class FacultadDAO {
 	/**
 	 * Obtiene el resumen general de la facultad en números
 	 * la lista en cada posición obtiene lo siguiente:
-	 * 0 - Cantidad programas académicos
-	 * 1 - Cantidad especializaciones
-	 * 2 - Cantidad maestrías
-	 * 3 - Cantidad doctorados
-	 * 4 . Cantidad grupos de investigación
-	 * 5 . Cantidad lineas de investigación
-	 * 6 - Cantidad de investigadores
+	 * 0 - Cantidad programas académicos 
+	 * 1 - Cantidad doctorados 
+	 * 2 - Cantidad maestrías 
+	 * 3 - Cantidad especializaciones 
+	 * 4 . Cantidad centros de investigación 
+	 * 5 . Cantidad grupos de investigación 
+	 * 6 - Cantidad de lineas investigación 
+	 * 7 - Cantidad investigadores
+	 * 8 - Grupos categoria A1
+	 * 9 - Grupos categoria A
+	 * 10 - Grupos categoria B
+	 * 11 - Grupos categoria C
+	 * 12 - Grupos reconocidos
+	 * 13 - Grupos no reconocidos
+	 * 14 - Investigadores emeritos
+	 * 15 - Investigador senior
+	 * 16 - Investigador asociados
+	 * 17 - Investigador junior
+	 * 18 - Investigador sin categoria
+	 * 19 - Docentes con doctorado
+	 * 20 - Docentes con magister
+	 * 21 - Docentes especialistas
+	 * 22 - Docentes pregrado
 	 * @return lista con totales anteriores.
 	 */
 	public List<BigInteger> getResumenGeneral(Long facultadId){
