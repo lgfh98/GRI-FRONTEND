@@ -653,12 +653,9 @@ public class WebController {
 		model.addAttribute("color", datos[1]);
 		model.addAttribute("colorTituloBoton", datos[2]);
 		model.addAttribute("colorTotalBoton", datos[3]);
+		model.addAttribute("informacionGeneral", datos[4]);
 
-		if (type.equals("u")) {
-
-			return "estadisticas/uniquindio";
-
-		} else if (type.equals("f")) {
+		if (type.equals("f")) {
 
 			return "estadisticas/facultades";
 
@@ -691,7 +688,7 @@ public class WebController {
 	 */
 	public String[] getDatosEstadisticas(String id, String type) {
 
-		String[] datos = new String[4];
+		String[] datos = new String[5];
 
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
@@ -716,6 +713,7 @@ public class WebController {
 			datos[1] = "card-" + c.getFacultad().getId();
 			datos[2] = "btn-title-grid-" + c.getFacultad().getId();
 			datos[3] = "btn-total-grid-" + c.getFacultad().getId();
+			datos[4] = c.getInformaciongeneral();
 
 		} else if (type.equals("g")) {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
@@ -724,6 +722,7 @@ public class WebController {
 			datos[1] = "card-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[2] = "btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[3] = "btn-total-grid-" + g.getProgramas().get(0).getFacultad().getId();
+			datos[4] = g.getInformaciongeneral();
 
 			System.err.println("btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId());
 
