@@ -260,4 +260,45 @@ public class ProduccionDAO {
 		return produccionRepository.getCantidadProduccionesProyectos();
 	}
 
+	/**
+	 * Obtiene la cantidad de producciones total de la facultad por un tipo
+	 * especifico de producción.
+	 * 
+	 * @param id
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param idFacultad id de la facultad
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesFacultadPorTipo(String facultadId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesFacultadPorTipo(Long.parseLong(facultadId), Long.parseLong(tipoId));
+	}
+
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total de la facultad por un tipo
+	 * especifico de producción.
+	 * 
+	 * @param id
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param idFacultad id de la facultad
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesBFacultadPorTipo(String facultadId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesBFacultadPorTipo(Long.parseLong(facultadId), Long.parseLong(tipoId));
+	}
+	
+	/**
+	 * Obtiene la cantidad de producciones total de la facultad por un sub tipo
+	 * especifico de producción.
+	 * 
+	 * @param id
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param idFacultad id de la facultad
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesFacultadPorSubTipo(String facultadId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesFacultadPorSubTipo(Long.parseLong(facultadId), Long.parseLong(tipoId));
+	}
 }
