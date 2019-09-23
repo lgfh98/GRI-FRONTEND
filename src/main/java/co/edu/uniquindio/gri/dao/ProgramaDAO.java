@@ -67,4 +67,31 @@ public class ProgramaDAO {
 	public List<Programa> getProgramasAcademicosFacultad(long facultadId) {
 		return programaRepository.getProgramasAcademicosFacultad(facultadId);
 	}
+	
+	/**
+	 * Obtiene el resumen general de la facultad en números
+	 * la lista en cada posición obtiene lo siguiente:
+	 * 0 . Cantidad grupos de investigación 
+	 * 1 - Cantidad de lineas investigación 
+	 * 2 - Cantidad investigadores
+	 * 3 - Grupos categoria A1
+	 * 4 - Grupos categoria A
+	 * 5 - Grupos categoria B
+	 * 6 - Grupos categoria C
+	 * 7 - Grupos reconocidos
+	 * 8 - Grupos no reconocidos
+	 * 9 - Investigadores emeritos
+	 * 10 - Investigador senior
+	 * 11 - Investigador asociados
+	 * 12 - Investigador junior
+	 * 13 - Investigador sin categoria
+	 * 14 - Docentes con doctorado
+	 * 15 - Docentes con magister
+	 * 16 - Docentes especialistas
+	 * 17 - Docentes pregrado
+	 * 
+	 * @param Long facultadId, id del programa.
+	 *
+	 * @return lista con los totales anteriores
+	 */
 }
