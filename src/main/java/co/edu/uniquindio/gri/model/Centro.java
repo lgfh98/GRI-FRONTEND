@@ -34,6 +34,11 @@ public class Centro implements Serializable {
 	/** The nombre. */
 	@Column(name = "NOMBRE")
 	private String nombre;
+	
+	/**The informacion general */
+	@Column(name="INFORMACIONGENERAL")
+	private String informaciongeneral;
+	
 
 	/** The informacion general */
 	@Column(name = "INFORMACIONGENERAL")
@@ -111,6 +116,8 @@ public class Centro implements Serializable {
 		this.nombre = nombre;
 	}
 
+	
+	
 	/**
 	 * gets the informaciongeneral
 	 * 
