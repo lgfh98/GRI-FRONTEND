@@ -13,20 +13,21 @@
 
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
-			<li class="nav-item"><a class="nav-link" href="inicio"> <i class="fas fa-fw fa-home"></i>
-					<span>Inicio</span>
-				</a></li>
-			<li class="nav-item" th:classappend="${tipo}==i ? active"><a class="nav-link" href="investigadores">
-					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
-				</a></li>
-			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a class="nav-link" href="general">
-					<i class="fas fa-fw fa-users"></i> <span>Grupos de
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}==i ? active"><a
+				class="nav-link" href="investigadores"> <i
+					class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a
+				class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i>
+					<span>Grupos de Investigación</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="centros"> <i
+					class="fas fa-fw fa-microscope"></i> <span>Centros de
 						Investigación</span>
-				</a></li>
-			<li class="nav-item"><a class="nav-link" href="centros"> <i class="fas fa-fw fa-microscope"></i>
-					<span>Centros de
-						Investigación</span>
-				</a></li>
+			</a></li>
 		</ul>
 
 		<div id="content-wrapper">
@@ -39,6 +40,21 @@
 						</div>
 					</div>
 				</div>
+				<div class="separador-1"></div>
+				<div class="card-contacto"
+					th:classappend="'card-contacto-'+${color}">
+
+					<p>Contacto del investigador</p>
+					<p th:text="${nombre}"></p>
+					<p>312XXX</p>
+					<p>inv@XXXX.co</p>
+					<p>DocXX</p>
+
+				</div>
+				<br></br>
+
+
+
 			</div>
 		</div>
 	</div>

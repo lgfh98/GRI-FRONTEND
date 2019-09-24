@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.util.DartUtils;
 
 import co.edu.uniquindio.gri.dao.CentroDAO;
 import co.edu.uniquindio.gri.dao.FacultadDAO;
@@ -205,6 +206,17 @@ public class WebController {
 		model.addAttribute("color", datos[1]);
 		model.addAttribute("colorTituloBoton", datos[2]);
 		model.addAttribute("colorTotalBoton", datos[3]);
+		model.addAttribute("informaciongeneral", datos[4]);
+
+		if (!datos[5].equals("")) {
+
+			String[] contacto = datos[5].split("\n");
+			model.addAttribute("contactolugar", contacto[0]);
+			model.addAttribute("contactelefono", contacto[1]);
+			model.addAttribute("contactocorreo", contacto[2]);
+			model.addAttribute("contactohorario", contacto[3]);
+
+		}
 
 		if (type.equals("f")) {
 
@@ -215,7 +227,7 @@ public class WebController {
 			return getEstadisticasProgramas(id, model);
 
 		} else if (type.equals("c")) {
-			
+
 			return getEstadisticasCentros(id, model);
 
 		} else if (type.equals("g")) {
@@ -239,7 +251,7 @@ public class WebController {
 	 */
 	public String[] getDatosEstadisticas(String id, String type) {
 
-		String[] datos = new String[4];
+		String[] datos = new String[6];
 
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
@@ -248,7 +260,8 @@ public class WebController {
 			datos[1] = "card-" + f.getId();
 			datos[2] = "btn-title-grid-" + f.getId();
 			datos[3] = "btn-total-grid-" + f.getId();
-
+			datos[4] = "";
+			datos[5] = "";
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 
@@ -256,7 +269,8 @@ public class WebController {
 			datos[1] = "card-" + p.getFacultad().getId();
 			datos[2] = "btn-title-grid-" + p.getFacultad().getId();
 			datos[3] = "btn-total-grid-" + p.getFacultad().getId();
-
+			datos[4] = "";
+			datos[5] = "";
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 
@@ -264,6 +278,8 @@ public class WebController {
 			datos[1] = "card-" + c.getFacultad().getId();
 			datos[2] = "btn-title-grid-" + c.getFacultad().getId();
 			datos[3] = "btn-total-grid-" + c.getFacultad().getId();
+			datos[4] = c.getInformaciongeneral();
+			datos[5] = c.getContacto();
 
 		} else if (type.equals("g")) {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
@@ -272,8 +288,8 @@ public class WebController {
 			datos[1] = "card-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[2] = "btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[3] = "btn-total-grid-" + g.getProgramas().get(0).getFacultad().getId();
-
-			System.err.println("btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId());
+			datos[4] = "";
+			datos[5] = "";
 
 		} else if (type.equals("i")) {
 			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
@@ -282,6 +298,12 @@ public class WebController {
 			datos[1] = "card-0";
 			datos[2] = "btn-title-grid-0";
 			datos[3] = "btn-total-grid-0";
+			datos[4] = "";
+			datos[5] = "";
+		} else {
+			datos[4] = "";
+			datos[5] = "";
+
 		}
 
 		return datos;
@@ -385,36 +407,36 @@ public class WebController {
 
 		model.addAttribute("idUniquindio", "0");
 		model.addAttribute("idFacultad", id);
-		
+
 		return "estadisticas/facultades";
 	}
-	
+
 	public String getEstadisticasProgramas(String id, Model model) {
 		return "estadisticas/programas";
 	}
 
 	public String getEstadisticasCentros(String id, Model model) {
 		// ------Llamado a las consultas en la base de datos para las
-				// ------facultades-----------------------------------------------------------------------
-				List<BigInteger> resumen = centroDAO.getResumenGeneralCentros(new Long(id));
+		// ------facultades-----------------------------------------------------------------------
+		List<BigInteger> resumen = centroDAO.getResumenGeneralCentros(new Long(id));
 
-				// ------Llamado a las consultas en la base de datos para
-				// producciones-----------------------------------------------------------------------
-				model.addAttribute("cantidadActividadesDeFormacion",
-						produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "0"));
-				model.addAttribute("cantidadActividadesEvaluador",
-						produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "1"));
-				model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "2"));
-				model.addAttribute("cantidadProduccionesBibliograficas",
-						produccionDAO.getCantidadProduccionesBFacultadPorTipo(id, "3"));
-				model.addAttribute("cantidadTecnicasTecnologicas",
-						produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "4"));
-				model.addAttribute("cantidadProduccionesArte",
-						String.valueOf(produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "6")));
-				model.addAttribute("cantidadProduccionesDemasTrabajos",
-						produccionDAO.getCantidadProduccionesFacultadPorSubTipo(id, "32"));
-				model.addAttribute("cantidadProduccionesProyectos",
-						produccionDAO.getCantidadProduccionesFacultadPorSubTipo(id, "33"));
+		// ------Llamado a las consultas en la base de datos para
+		// producciones-----------------------------------------------------------------------
+		model.addAttribute("cantidadActividadesDeFormacion",
+				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "0"));
+		model.addAttribute("cantidadActividadesEvaluador",
+				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "1"));
+		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "2"));
+		model.addAttribute("cantidadProduccionesBibliograficas",
+				produccionDAO.getCantidadProduccionesBFacultadPorTipo(id, "3"));
+		model.addAttribute("cantidadTecnicasTecnologicas",
+				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "4"));
+		model.addAttribute("cantidadProduccionesArte",
+				String.valueOf(produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "6")));
+		model.addAttribute("cantidadProduccionesDemasTrabajos",
+				produccionDAO.getCantidadProduccionesFacultadPorSubTipo(id, "32"));
+		model.addAttribute("cantidadProduccionesProyectos",
+				produccionDAO.getCantidadProduccionesFacultadPorSubTipo(id, "33"));
 
 		return "estadisticas/centros";
 	}
@@ -428,6 +450,8 @@ public class WebController {
 	}
 
 	public String getEstadisticasUniquindio(Model model) {
+
+		model.addAttribute("color", "card-0");
 
 		// ------Llamado a las consultas en la base de datos para
 		// producciones-----------------------------------------------------------------------

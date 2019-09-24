@@ -35,6 +35,14 @@ public class Centro implements Serializable {
 	@Column(name = "NOMBRE")
 	private String nombre;
 
+	/** The informacion general */
+	@Column(name = "INFORMACIONGENERAL")
+	private String informaciongeneral;
+
+	/** the contacto */
+	@Column(name = "CONTACTO")
+	private String contacto;
+
 	/** The facultad. */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FACULTADES_ID")
@@ -54,14 +62,17 @@ public class Centro implements Serializable {
 	/**
 	 * Instantiates a new centro.
 	 *
-	 * @param id the id
-	 * @param nombre the nombre
+	 * @param id       the id
+	 * @param nombre   the nombre
 	 * @param facultad the facultad
 	 */
-	public Centro(long id, String nombre, Facultad facultad) {
+	public Centro(long id, String nombre, Facultad facultad, String informaciongeneral, String contacto) {
 		this.id = id;
 		this.nombre = nombre;
+		this.informaciongeneral = informaciongeneral;
+		this.contacto = contacto;
 		this.facultad = facultad;
+
 	}
 
 	/**
@@ -98,6 +109,42 @@ public class Centro implements Serializable {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	/**
+	 * gets the informaciongeneral
+	 * 
+	 * @return the informacion general
+	 */
+	public String getInformaciongeneral() {
+		return informaciongeneral;
+	}
+
+	/**
+	 * Sets the informacion general
+	 * 
+	 * @param the new informaciongeneral
+	 */
+	public void setInformaciongeneral(String informaciongeneral) {
+		this.informaciongeneral = informaciongeneral;
+	}
+
+	/**
+	 * gets the contacto
+	 * 
+	 * @return the contacto
+	 */
+	public String getContacto() {
+		return contacto;
+	}
+
+	/**
+	 * sets the contacto
+	 * 
+	 * @param the new contacto
+	 */
+	public void setContacto(String contacto) {
+		this.contacto = contacto;
 	}
 
 	/**
