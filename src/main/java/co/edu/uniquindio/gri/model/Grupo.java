@@ -1,4 +1,5 @@
 package co.edu.uniquindio.gri.model;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class Grupo implements Serializable {
 	private long id;
 
 	/** The nombre. */
-	@Column(name = "NOMBRE", length = 300)	
+	@Column(name = "NOMBRE", length = 300)
 	private String nombre;
 
 	/** The area conocimiento. */
@@ -51,6 +52,10 @@ public class Grupo implements Serializable {
 	/** The categoria. */
 	@Column(name = "CATEGORIA", length = 300)
 	private String categoria;
+
+	/** The información General */
+	@Column(name = "INFORMACIONGENERAL")
+	private String informaciongeneral;
 
 	/** The lineas investigacion. */
 	@ManyToMany(cascade = CascadeType.ALL)
@@ -71,7 +76,7 @@ public class Grupo implements Serializable {
 
 	/** The centro. */
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "CENTROS_ID") 
+	@JoinColumn(name = "CENTROS_ID")
 	private Centro centro;
 
 	/** The programas. */
@@ -88,19 +93,19 @@ public class Grupo implements Serializable {
 	/**
 	 * Instantiates a new grupo.
 	 *
-	 * @param id the id
-	 * @param nombre the nombre
-	 * @param areaConocimiento the area conocimiento
-	 * @param anioFundacion the anio fundacion
-	 * @param lider the lider
-	 * @param categoria the categoria
-	 * @param lineasInvestigacion the lineas investigacion
-	 * @param produccion the produccion
+	 * @param id                      the id
+	 * @param nombre                  the nombre
+	 * @param areaConocimiento        the area conocimiento
+	 * @param anioFundacion           the anio fundacion
+	 * @param lider                   the lider
+	 * @param categoria               the categoria
+	 * @param lineasInvestigacion     the lineas investigacion
+	 * @param produccion              the produccion
 	 * @param produccionBibliografica the produccion bibliografica
-	 * @param centro the centro
+	 * @param centro                  the centro
 	 */
 	public Grupo(long id, String nombre, String areaConocimiento, String anioFundacion, String lider, String categoria,
-			List<LineasInvestigacion> lineasInvestigacion, List<ProduccionGrupo> produccion,
+			String informaciongeneral, List<LineasInvestigacion> lineasInvestigacion, List<ProduccionGrupo> produccion,
 			List<ProduccionBGrupo> produccionBibliografica, Centro centro, List<GruposInves> investigadores) {
 		this.id = id;
 		this.nombre = nombre;
@@ -108,22 +113,21 @@ public class Grupo implements Serializable {
 		this.anioFundacion = anioFundacion;
 		this.lider = lider;
 		this.categoria = categoria;
+		this.informaciongeneral = informaciongeneral;
 		this.lineasInvestigacion = lineasInvestigacion;
 		this.produccion = produccion;
 		this.produccionBibliografica = produccionBibliografica;
 		this.centro = centro;
 		this.investigadores = investigadores;
 	}
-	
-	
 
 	/**
 	 * Instantiates a new grupo.
 	 *
-	 * @param id the id
-	 * @param nombre the nombre
+	 * @param id        the id
+	 * @param nombre    the nombre
 	 * @param categoria the categoria
-	 * @param lider the lider
+	 * @param lider     the lider
 	 * 
 	 */
 	public Grupo(long id, String nombre, String categoria, String lider) {
@@ -150,9 +154,6 @@ public class Grupo implements Serializable {
 		programas.add(programa);
 		this.centro = centro;
 	}
-
-
-
 
 	/**
 	 * Instantiates a new grupo.
@@ -269,6 +270,25 @@ public class Grupo implements Serializable {
 	}
 
 	/**
+	 * get informacion general
+	 * 
+	 * @return informacion deneral
+	 */
+
+	public String getInformaciongeneral() {
+		return informaciongeneral;
+	}
+
+	/**
+	 * sets the informaciongeneral
+	 * 
+	 * @param informaciongeneral the new informaciongeneral
+	 */
+	public void setInformaciongeneral(String informaciongeneral) {
+		this.informaciongeneral = informaciongeneral;
+	}
+
+	/**
 	 * Gets the lineas investigacion.
 	 *
 	 * @return the lineas investigacion
@@ -356,7 +376,7 @@ public class Grupo implements Serializable {
 	 */
 	public void setProgramas(List<Programa> programas) {
 		this.programas = programas;
-	}	
+	}
 
 	/**
 	 * Gets the investigadores.
@@ -407,8 +427,6 @@ public class Grupo implements Serializable {
 		programa.getGrupos().remove(this);
 	}
 
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -416,8 +434,6 @@ public class Grupo implements Serializable {
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -432,7 +448,5 @@ public class Grupo implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

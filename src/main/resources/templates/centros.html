@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Centros de Investigación')">
+<head
+	th:replace="fragments/header :: header('Centros de Investigación')">
 <meta charset="utf-8" />
 </head>
 <body id="page-top" class="sidebar-toggled">
@@ -12,15 +13,15 @@
 		<!-- Sidebar -->
 		<ul class="sidebar navbar-nav toggled"
 			style="background-color: #007f36;">
-			<li class="nav-item"><a class="nav-link"
-				href="inicio"> <i class="fas fa-fw fa-home"></i> <span>Inicio</span>
+			<li class="nav-item"><a class="nav-link" href="inicio"> <i
+					class="fas fa-fw fa-home"></i> <span>Inicio</span>
 			</a></li>
-			<li class="nav-item"><a class="nav-link"
-				href="investigadores"> <i class="fas fa-fw fa-user"></i> <span>Investigadores</span></a>
-			</li>
-			<li class="nav-item"><a class="nav-link"
-				href="general"> <i class="fas fa-fw fa-users"></i> <span>Grupos
-						de Investigación</span></a></li>
+			<li class="nav-item"><a class="nav-link" href="investigadores">
+					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+			</a></li>
+			<li class="nav-item"><a class="nav-link" href="general"> <i
+					class="fas fa-fw fa-users"></i> <span>Grupos de
+						Investigación</span></a></li>
 			<li class="nav-item active"><a class="nav-link" href="centros">
 					<i class="fas fa-fw fa-microscope"></i> <span>Centros de
 						Investigación</span>
@@ -29,15 +30,17 @@
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
-				 <div class="region-hero">
-                  <div class="contenedor-hero"> 
-                    <div class="contenido-hero">
-                      <h1 class="titulo-hero">Centros de Investigaciones</h1>
-                      Tabla/Reporte de los centros de investigación activos en el sistema.
-                    </div>
-                  </div>
-                </div>
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 class="titulo-hero">Centros de Investigaciones</h1>
+							Tabla/Reporte de los centros de investigación activos en el
+							sistema.
+						</div>
+					</div>
+				</div>
 				<div class="separador-1"></div>
+
 
 				<div id="table">
 					<table id="tabla_centros"
