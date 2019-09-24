@@ -373,4 +373,77 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 5 and tipo.id = 33")
 	public BigInteger getCantidadProduccionesProyectos();
+
+	/**
+	 * Obtiene la cantidad de producciones total de la facultad por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param facultadId el id de la facultad
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pg1 ON g.id=pg1.grupos_id JOIN gri.programas p ON pg1.programas_id = p.id JOIN gri.facultades f ON p.facultades_id = f.id AND f.id=:facultadId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesFacultadPorTipo(@Param("facultadId") Long facultadId,
+			@Param("prodId") Long prodId);
+	
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total de la facultad por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param facultadId el id de la facultad
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.bibliograficasg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pg1 ON g.id=pg1.grupos_id JOIN gri.programas p ON pg1.programas_id = p.id JOIN gri.facultades f ON p.facultades_id = f.id AND f.id=:facultadId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesBFacultadPorTipo(@Param("facultadId") Long facultadId,
+			@Param("prodId") Long prodId);
+	
+	/**
+	 * Obtiene la cantidad de producciones total de la facultad por un sub tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param facultadId el id de la facultad
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id AND t.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pg1 ON g.id=pg1.grupos_id JOIN gri.programas p ON pg1.programas_id = p.id JOIN gri.facultades f ON p.facultades_id = f.id AND f.id=:facultadId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesFacultadPorSubTipo(@Param("facultadId") Long facultadId,
+			@Param("prodId") Long prodId);
+	
+	/**
+	 * Obtiene la cantidad de producciones total del centro por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param centroId el id del centro
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.centros c ON c.id=g.centros_id WHERE c.id=:centroId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesCentroPorTipo(@Param("centroId") Long centroId,
+			@Param("prodId") Long prodId);
+	
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total del centro por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param centroId el id del centro
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.bibliograficasg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.centros c ON c.id=g.centros_id WHERE c.id=:centroId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesBCentroPorTipo(@Param("centroId") Long centroId,
+			@Param("prodId") Long prodId);
+	
+	/**
+	 * Obtiene la cantidad de producciones total del centro por un sub tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param centroId el id del centro
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id AND t.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.centros c ON c.id=g.centros_id WHERE c.id=:centroId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesCentroPorSubTipo(@Param("centroId") Long centroId,
+			@Param("prodId") Long prodId);
+
 }
