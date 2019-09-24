@@ -1,12 +1,24 @@
 package co.edu.uniquindio.gri.webcontroller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.math.BigInteger;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.uniquindio.gri.dao.CentroDAO;
@@ -20,6 +32,12 @@ import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.Investigador;
 import co.edu.uniquindio.gri.model.Programa;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 @Controller
 public class WebController {
@@ -69,7 +87,7 @@ public class WebController {
 
 	@GetMapping("/uniquindio")
 	public String getEstadisticasUniquindio(Model model) {
-		
+
 //------Llamado a las consultas en la base de datos para producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion", produccionDAO.getCantidadActividadesFormacion());
 		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadActividadesEvaluador());
@@ -80,7 +98,8 @@ public class WebController {
 		model.addAttribute("cantidadProduccionesDemasTrabajos", produccionDAO.getCantidadProduccionesDemasTrabajos());
 		model.addAttribute("cantidadProduccionesProyectos", produccionDAO.getCantidadProduccionesProyectos());
 
-		//------Llamado a las consultas en la base de datos para las facultades-----------------------------------------------------------------------		
+		// ------Llamado a las consultas en la base de datos para las
+		// facultades-----------------------------------------------------------------------
 		List<BigInteger> resumenCienciasBasicas = facultadDAO.getResumenGeneral(new Long("1"));
 		List<BigInteger> resumenEducacion = facultadDAO.getResumenGeneral(new Long("2"));
 		List<BigInteger> resumenCienciasDeLaSalud = facultadDAO.getResumenGeneral(new Long("3"));
@@ -88,7 +107,7 @@ public class WebController {
 		List<BigInteger> resumenCienciasHumanas = facultadDAO.getResumenGeneral(new Long("5"));
 		List<BigInteger> resumenAgroindustria = facultadDAO.getResumenGeneral(new Long("6"));
 		List<BigInteger> resumenCienciasEconomicas = facultadDAO.getResumenGeneral(new Long("7"));
-		
+
 //------Adición de atributos al modelo con informacion de ingenieria-----------------------------------------------------------------------		
 
 		model.addAttribute("cantidadProgramasAcademicosIngenieria", resumenIngenieria.get(0));
@@ -99,7 +118,7 @@ public class WebController {
 		model.addAttribute("cantidadGruposInvestigacionIngenieria", resumenIngenieria.get(5));
 		model.addAttribute("cantidadLineasInvestigacionIngenieria", resumenIngenieria.get(6));
 		model.addAttribute("cantidadInvestigadoresIngenieria", resumenIngenieria.get(7));
-		
+
 //------Adición de atributos al modelo con informacion de basicas-----------------------------------------------------------------------
 		model.addAttribute("cantidadProgramasAcademicosCienciasBasicas", resumenCienciasBasicas.get(0));
 		model.addAttribute("cantidadProgramasDoctoradoCienciasBasicas", resumenCienciasBasicas.get(1));
@@ -109,7 +128,7 @@ public class WebController {
 		model.addAttribute("cantidadGruposInvestigacionCienciasBasicas", resumenCienciasBasicas.get(5));
 		model.addAttribute("cantidadLineasInvestigacionCienciasBasicas", resumenCienciasBasicas.get(6));
 		model.addAttribute("cantidadInvestigadoresCienciasBasicas", resumenCienciasBasicas.get(7));
-		
+
 //------Adición de atributos al modelo con informacion de educacion-----------------------------------------------------------------------
 		model.addAttribute("cantidadProgramasAcademicosEducacion", resumenEducacion.get(0));
 		model.addAttribute("cantidadProgramasDoctoradoEducacion", resumenEducacion.get(1));
@@ -119,7 +138,7 @@ public class WebController {
 		model.addAttribute("cantidadGruposInvestigacionEducacion", resumenEducacion.get(5));
 		model.addAttribute("cantidadLineasInvestigacionEducacion", resumenEducacion.get(6));
 		model.addAttribute("cantidadInvestigadoresEducacion", resumenEducacion.get(7));
-		
+
 //------Adición de atributos al modelo con informacion de salud-----------------------------------------------------------------------
 		model.addAttribute("cantidadProgramasAcademicosCienciasDeLaSalud", resumenCienciasDeLaSalud.get(0));
 		model.addAttribute("cantidadProgramasDoctoradoCienciasDeLaSalud", resumenCienciasDeLaSalud.get(1));
@@ -129,7 +148,7 @@ public class WebController {
 		model.addAttribute("cantidadGruposInvestigacionCienciasDeLaSalud", resumenCienciasDeLaSalud.get(5));
 		model.addAttribute("cantidadLineasInvestigacionCienciasDeLaSalud", resumenCienciasDeLaSalud.get(6));
 		model.addAttribute("cantidadInvestigadoresCienciasDeLaSalud", resumenCienciasDeLaSalud.get(7));
-		
+
 //------Adición de atributos al modelo con informacion de humanas-----------------------------------------------------------------------
 		model.addAttribute("cantidadProgramasAcademicosCienciasHumanas", resumenCienciasHumanas.get(0));
 		model.addAttribute("cantidadProgramasDoctoradoCienciasHumanas", resumenCienciasHumanas.get(1));
@@ -202,25 +221,25 @@ public class WebController {
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");
 		model.addAttribute("investigadores", "i");
-		
+
 		model.addAttribute("categoriaA1", "ca1");
 		model.addAttribute("categoriaA", "ca");
 		model.addAttribute("categoriaB", "cb");
 		model.addAttribute("categoriaC", "cc");
 		model.addAttribute("categoriaReconocido", "cr");
 		model.addAttribute("categoriaNoReconocido", "cnr");
-		
+
 		model.addAttribute("investigadorEmerito", "ie");
 		model.addAttribute("investigadorSenior", "is");
 		model.addAttribute("investigadorAsociado", "ia");
 		model.addAttribute("investigadorJunior", "ij");
 		model.addAttribute("investigadorSinCategoria", "isc");
-		
+
 		model.addAttribute("formacionDoctor", "fd");
 		model.addAttribute("formacionMagister", "fm");
 		model.addAttribute("formacionEspecialista", "fe");
 		model.addAttribute("formacionPregrado", "fp");
-		
+
 		model.addAttribute("idFacultadCienciasBasicas", "1");
 		model.addAttribute("idFacultadEducacion", "2");
 		model.addAttribute("idFacultadCienciasDeLaSalud", "3");
@@ -348,6 +367,33 @@ public class WebController {
 			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
 		}
 		return "inventario/inventario";
+	}
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
+	/**
+	 * Permite exportar estadisticas en formato PDF
+	 * 
+	 * @param response
+	 * @throws JRException
+	 * @throws IOException
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/uniquindioReport", method = RequestMethod.GET)
+	public void generarReporteUniquindio(HttpServletResponse response) throws JRException, IOException, SQLException {
+
+		Connection conexion = jdbcTemplate.getDataSource().getConnection();
+		InputStream jasperStream = this.getClass().getResourceAsStream("/reportes/estadisticas_uniquindio.jasper");
+		Map<String, Object> params = new HashMap<String, Object>();
+		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, conexion);
+		response.setContentType("application/x-pdf");
+		response.setHeader("Content-disposition", "inline; filename=reporte_universidad_del_quindio.pdf");
+		final OutputStream outStream = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		conexion.close();
+
 	}
 
 	@GetMapping("/reporteinventario")
