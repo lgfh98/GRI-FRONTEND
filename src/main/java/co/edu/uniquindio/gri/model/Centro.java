@@ -40,9 +40,6 @@ public class Centro implements Serializable {
 	private String informaciongeneral;
 	
 
-	/** The informacion general */
-	@Column(name = "INFORMACIONGENERAL")
-	private String informaciongeneral;
 
 	/** the contacto */
 	@Column(name = "CONTACTO")
