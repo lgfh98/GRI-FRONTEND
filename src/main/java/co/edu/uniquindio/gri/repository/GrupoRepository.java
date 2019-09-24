@@ -50,4 +50,13 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f where f.id = :id")
 	List<Grupo> getGruposFacultadP(@Param(value="id") Long facultadId);
+	
+	/**
+	 * Obtiene los grupos pertenecientes a una facultad especifica
+	 * 
+	 * 
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :id")
+	List<Grupo> getAllGruposFacultad(@Param(value="id") Long facultadId);
+	
 }

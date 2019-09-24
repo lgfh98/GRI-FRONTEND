@@ -136,12 +136,29 @@ public class Grupo implements Serializable {
 		this.lider = lider;
 		this.categoria = categoria;
 	}
+	
+	/**
+	 * Instantiates a new grupo.
+	 *
+	 * @param id the id
+	 * @param nombre the nombre
+	 * @param categoria the categoria
+	 * @param lider the lider
+	 * 
+	 */
+	public Grupo(long id, String nombre, String categoria, String lider, Programa programa, Centro centro) {
+		this.id = id;
+		this.nombre = nombre;
+		this.lider = lider;
+		this.categoria = categoria;
+		programas.add(programa);
+		this.centro = centro;
+	}
 
 	/**
 	 * Instantiates a new grupo.
 	 */
 	public Grupo() {
-
 	}
 
 	/**

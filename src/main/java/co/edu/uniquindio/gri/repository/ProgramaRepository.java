@@ -56,7 +56,7 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 	 * @param idFacultad el id de la facultad
 	 * @return lista de los programas pertenecientes a la facultad idFacultad
 	 */
-	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE facultad.id = :id AND nombre NOT LIKE '%MAESTRÍA%' AND nombre NOT LIKE '%ESPECIALIZACIÓN%' AND nombre NOT LIKE '%DOCTORADO%'")
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE facultad.id = :id AND nombre LIKE '%DOCTORADO%'")
 	List<Programa> getProgramasDoctoradoFacultad(@Param("id") Long idFacultad);
 	
 	/**
@@ -65,7 +65,7 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 	 * @param idFacultad el id de la facultad
 	 * @return lista de los programas pertenecientes a la facultad idFacultad
 	 */
-	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE facultad.id = :id AND nombre NOT LIKE '%MAESTRÍA%' AND nombre NOT LIKE '%ESPECIALIZACIÓN%' AND nombre NOT LIKE '%DOCTORADO%'")
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE facultad.id = :id AND nombre LIKE '%MAESTRÍA%'")
 	List<Programa> getProgramasMaestriaFacultad(@Param("id") Long idFacultad);
 	
 	/**
@@ -74,9 +74,41 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 	 * @param idFacultad el id de la facultad
 	 * @return lista de los programas pertenecientes a la facultad idFacultad
 	 */
-	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE facultad.id = :id AND nombre NOT LIKE '%MAESTRÍA%' AND nombre NOT LIKE '%ESPECIALIZACIÓN%' AND nombre NOT LIKE '%DOCTORADO%'")
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE facultad.id = :id AND nombre LIKE '%ESPECIALIZACIÓN%'")
 	List<Programa> getProgramasEspecializacionFacultad(@Param("id") Long idFacultad);
 	
+	/**
+	 * Obtiene los programas academicos de la universidad.
+	 *
+	 * @return lista de los programas academicos
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE nombre NOT LIKE '%MAESTRÍA%' AND nombre NOT LIKE '%ESPECIALIZACIÓN%' AND nombre NOT LIKE '%DOCTORADO%'")
+	List<Programa> getProgramasAcademicos();
+	
+	/**
+	 * Obtiene los programas de doctorados de la universidad.
+	 *
+	 * @return lista de los programas de doctorado
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE nombre LIKE '%DOCTORADO%'")
+	List<Programa> getProgramasDoctorado();
+	
+	/**
+	 * Obtiene los programas de maestria de la universidad.
+	 *
+	 * @return lista de los programas de maestria
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE nombre LIKE '%MAESTRÍA%'")
+	List<Programa> getProgramasMaestria();
+	
+	/**
+	 * Obtiene los programas de especializacion.
+	 *
+	 * @return lista de los programas de especializacion
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE nombre LIKE '%ESPECIALIZACIÓN%'")
+	List<Programa> getProgramasEspecializacion();
+
 	/**
 	 * Obtiene el resumen general de la facultad en números
 	 * la lista en cada posición obtiene lo siguiente:

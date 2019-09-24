@@ -301,4 +301,46 @@ public class ProduccionDAO {
 	public BigInteger getCantidadProduccionesFacultadPorSubTipo(String facultadId, String tipoId) {
 		return produccionRepository.getCantidadProduccionesFacultadPorSubTipo(Long.parseLong(facultadId), Long.parseLong(tipoId));
 	}
+	
+	/**
+	 * Obtiene la cantidad de producciones total del centro por un tipo
+	 * especifico de producción.
+	 * 
+	 * @param id
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param centroId id del centro
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesCentroPorTipo(String centroId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesCentroPorTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+	}
+
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total del centro por un tipo
+	 * especifico de producción.
+	 * 
+	 * @param id
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param centroId id del centro
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesBCentroPorTipo(String centroId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesBCentroPorTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+	}
+	
+	/**
+	 * Obtiene la cantidad de producciones total del centro por un sub tipo
+	 * especifico de producción.
+	 * 
+	 * @param id
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param centroId id del centro
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesCentroPorSubTipo(String centroId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesCentroPorSubTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+	}
 }

@@ -95,9 +95,26 @@ public class WebController {
 		if (Long.parseLong(id) != 0) {
 			if (type.equals("pa")) {
 				model.addAttribute("listaProgramas", programaDAO.getProgramasAcademicosFacultad(Long.parseLong(id)));
+			} else if (type.equals("pd")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasDoctoradoFacultad(Long.parseLong(id)));
+			} else if (type.equals("pm")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasMaestríaFacultad(Long.parseLong(id)));
+			} else if (type.equals("pe")) {
+				model.addAttribute("listaProgramas",
+						programaDAO.getProgramasEspecializacionFacultad(Long.parseLong(id)));
 			}
 		} else {
-			model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
+			if (type.equals("pa")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasAcademicos());
+			} else if (type.equals("pd")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasDoctorado());
+			} else if (type.equals("pm")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasMaestria());
+			} else if (type.equals("pe")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasEspecializacion());
+			} else {
+				model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
+			}
 		}
 		return "programas";
 	}
@@ -109,34 +126,27 @@ public class WebController {
 	}
 
 	@GetMapping("/centros")
-	public String getCentros(Model model) {
-		model.addAttribute("listaCentros", centroDAO.getAllCentros());
+	public String getCentros(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
+		if (Long.parseLong(id) != 0) {
+			model.addAttribute("listaCentros", centroDAO.getAllCentrosFacultad(Long.parseLong(id)));
+		} else {
+			model.addAttribute("listaCentros", centroDAO.getAllCentros());
+		}
 		return "centros";
 	}
 
 	@GetMapping("/grupos")
-	public List<Grupo> getGrupos(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+	public String getGrupos(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
-		
-		List<Grupo> grupos = new ArrayList<>();
-		if (Long.parseLong(id)!=0) {
-
-			// todos los programas
-			List<Programa> programas = facultadDAO.getFacultadById(Long.parseLong(id)).getPrograma();
-
-			for (Programa p : programas) {
-				List<Grupo> gruposP = p.getGrupos();
-				for (Grupo g : gruposP) {
-
-					grupos.add(g);
-
-				}
-
-			}
-
+		if (Long.parseLong(id) != 0) {
+			model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+		} else {
+			model.addAttribute("listaGrupos", grupoDAO.findAll());
 		}
-		model.addAttribute("listaGrupos", grupos);
-		return grupos;
+		return "grupos";
 	}
 
 	@GetMapping("/general")
@@ -488,20 +498,18 @@ public class WebController {
 		// ------Llamado a las consultas en la base de datos para
 		// producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion",
-				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "0"));
-		model.addAttribute("cantidadActividadesEvaluador",
-				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "1"));
-		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "2"));
+				produccionDAO.getCantidadProduccionesCentroPorTipo(id, "0"));
+		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadProduccionesCentroPorTipo(id, "1"));
+		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesCentroPorTipo(id, "2"));
 		model.addAttribute("cantidadProduccionesBibliograficas",
-				produccionDAO.getCantidadProduccionesBFacultadPorTipo(id, "3"));
-		model.addAttribute("cantidadTecnicasTecnologicas",
-				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "4"));
+				produccionDAO.getCantidadProduccionesBCentroPorTipo(id, "3"));
+		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadProduccionesCentroPorTipo(id, "4"));
 		model.addAttribute("cantidadProduccionesArte",
-				String.valueOf(produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "6")));
+				String.valueOf(produccionDAO.getCantidadProduccionesCentroPorTipo(id, "6")));
 		model.addAttribute("cantidadProduccionesDemasTrabajos",
-				produccionDAO.getCantidadProduccionesFacultadPorSubTipo(id, "32"));
+				produccionDAO.getCantidadProduccionesCentroPorSubTipo(id, "32"));
 		model.addAttribute("cantidadProduccionesProyectos",
-				produccionDAO.getCantidadProduccionesFacultadPorSubTipo(id, "33"));
+				produccionDAO.getCantidadProduccionesCentroPorSubTipo(id, "33"));
 
 		return "estadisticas/centros";
 	}
@@ -538,6 +546,9 @@ public class WebController {
 		List<BigInteger> resumenCienciasHumanas = facultadDAO.getResumenGeneral(new Long("5"));
 		List<BigInteger> resumenAgroindustria = facultadDAO.getResumenGeneral(new Long("6"));
 		List<BigInteger> resumenCienciasEconomicas = facultadDAO.getResumenGeneral(new Long("7"));
+		
+		//Este número es usado para indicar la cantidad de investigadores total debido a que con una suma aritmetica normal repetiría los investigadores
+		BigInteger cantidadTotalInvestigadores = facultadDAO.getStats().get(4);
 
 		// ------Adición de atributos al modelo con informacion de
 		// ingenieria-----------------------------------------------------------------------
@@ -762,10 +773,7 @@ public class WebController {
 						.add(resumenEducacion.get(6).add(resumenCienciasDeLaSalud.get(6).add(resumenCienciasHumanas
 								.get(6).add(resumenAgroindustria.get(6).add(resumenCienciasEconomicas.get(6))))))));
 
-		model.addAttribute("cantidadInvestigadoresTotal", resumenIngenieria.get(7)
-				.add(resumenCienciasBasicas.get(7)
-						.add(resumenEducacion.get(7).add(resumenCienciasDeLaSalud.get(7).add(resumenCienciasHumanas
-								.get(7).add(resumenAgroindustria.get(7).add(resumenCienciasEconomicas.get(7))))))));
+		model.addAttribute("cantidadInvestigadoresTotal", cantidadTotalInvestigadores);
 
 		// ------Segunda
 		// tabla----------------------------------------------------------------------------------------------------

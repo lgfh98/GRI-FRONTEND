@@ -17,16 +17,16 @@ public class GrupoDAO {
 	/** Repository para grupos. */
 	@Autowired
 	GrupoRepository grupoRepository;
-	
+
 	/**
 	 * Obtiene todos los grupos de investigación.
 	 *
 	 * @return lista con todos los grupos de investigación
 	 */
-	public List<Grupo> findAll(){
+	public List<Grupo> findAll() {
 		return grupoRepository.findAll();
 	}
-	
+
 	/**
 	 * Obtiene un grupo de investigación especificado por un id.
 	 *
@@ -36,66 +36,86 @@ public class GrupoDAO {
 	public Grupo findOne(Long grupoId) {
 		return grupoRepository.findOne(grupoId);
 	}
-	
+
 	/**
-	 * Obteniene los grupos pertenecientes a un programa, un centro de investigaciones o una facultad. 
+	 * Obteniene los grupos pertenecientes a un programa, un centro de
+	 * investigaciones o una facultad.
 	 *
-	 * @param id el identificador de la entidad
+	 * @param id   el identificador de la entidad
 	 * @param type el tipo de entidad
-	 * @return Lista con los grupos pertenecientes a dicha entidad. 
+	 * @return Lista con los grupos pertenecientes a dicha entidad.
 	 */
-	public List<Grupo> getGruposPertenecientes(Long id, String type){
-		if (type.equals("f")){
+	public List<Grupo> getGruposPertenecientes(Long id, String type) {
+		if (type.equals("f")) {
 			return getGruposFacultad(id);
-			
-		} else if (type.equals("c")){
+
+		} else if (type.equals("c")) {
 			return getGruposCentro(id);
-			
-		} else if (type.equals("p")){
+
+		} else if (type.equals("p")) {
 			return getGruposPrograma(id);
-			
-		} else{	
+
+		} else {
 			return findAll();
-			
-		}  
+
+		}
 	}
-	
-	
+
 	/**
 	 * Obtiene los grupos pertenecientes a un programa específico.
 	 *
 	 * @param programaId el id del programa
 	 * @return los grupos del programa
 	 */
-	public List<Grupo> getGruposPrograma(Long programaId){
+	public List<Grupo> getGruposPrograma(Long programaId) {
 		return grupoRepository.getGruposPrograma(programaId);
 	}
-	
+
 	/**
 	 * Obtiene los grupos pertenecientes a un centro específico.
 	 *
 	 * @param centroId el id del centro
 	 * @return los grupos del centro
 	 */
-	public List<Grupo> getGruposCentro(Long centroId){
+	public List<Grupo> getGruposCentro(Long centroId) {
 		return grupoRepository.getGruposCentro(centroId);
 	}
-	
+
 	/**
 	 * Obtiene los grupos pertenecientes a una facultad específica.
 	 *
-	 * @param facultadId el identificador de la facultad. 
-	 * @return Lista de grupos pertenecientes a la facultad. 
+	 * @param facultadId el identificador de la facultad.
+	 * @return Lista de grupos pertenecientes a la facultad.
 	 */
-	public List<Grupo> getGruposFacultad(Long facultadId){
+	public List<Grupo> getGruposFacultad(Long facultadId) {
 		List<Grupo> gruposC = grupoRepository.getGruposFacultadC(facultadId);
 		List<Grupo> gruposP = grupoRepository.getGruposFacultadP(facultadId);
-	
-		for(Grupo grupo : gruposC){
-			if(!gruposP.contains(grupo)){
+
+		for (Grupo grupo : gruposC) {
+			if (!gruposP.contains(grupo)) {
 				gruposP.add(grupo);
 			}
 		}
 		return gruposP;
+	}
+	
+	/**
+	 * Obtiene un grupo de investigación no reconocidos especificado por un id de facultad.
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return el grupo especificado por el id de facultad
+	 */
+	public List<Grupo> getAllGruposFacultad(Long facultadId) {
+		return grupoRepository.getAllGruposFacultad(facultadId);
+	}
+	
+	/**
+	 * Obtiene un grupo de investigación no reconocidos especificado por un id de centro.
+	 *
+	 * @param centroId el id del centro
+	 * @return el grupo especificado por el id de centro
+	 */
+	public List<Grupo> getAllGruposCentro(Long centroId) {
+		return grupoRepository.getGruposCentro(centroId);
 	}
 }
