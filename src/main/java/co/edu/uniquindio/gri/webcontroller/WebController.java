@@ -1,13 +1,25 @@
 package co.edu.uniquindio.gri.webcontroller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.util.DartUtils;
 
@@ -22,6 +34,12 @@ import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.Investigador;
 import co.edu.uniquindio.gri.model.Programa;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 @Controller
 public class WebController {
@@ -201,6 +219,33 @@ public class WebController {
 			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
 		}
 		return "inventario/inventario";
+	}
+	
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	
+	/**
+	 * Permite exportar estadisticas en formato PDF
+	 * 
+	 * @param response
+	 * @throws JRException
+	 * @throws IOException
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/uniquindioReport", method = RequestMethod.GET)
+	public void generarReporteUniquindio(HttpServletResponse response) throws JRException, IOException, SQLException {
+
+		Connection conexion = jdbcTemplate.getDataSource().getConnection();
+		InputStream jasperStream = this.getClass().getResourceAsStream("/reportes/estadisticas_uniquindio.jasper");
+		Map<String, Object> params = new HashMap<String, Object>();
+		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, conexion);
+		response.setContentType("application/x-pdf");
+		response.setHeader("Content-disposition", "inline; filename=reporte_universidad_del_quindio.pdf");
+		final OutputStream outStream = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		conexion.close();
+
 	}
 
 	@GetMapping("/reporteinventario")
