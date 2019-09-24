@@ -501,6 +501,9 @@ public class WebController {
 		List<BigInteger> resumenCienciasHumanas = facultadDAO.getResumenGeneral(new Long("5"));
 		List<BigInteger> resumenAgroindustria = facultadDAO.getResumenGeneral(new Long("6"));
 		List<BigInteger> resumenCienciasEconomicas = facultadDAO.getResumenGeneral(new Long("7"));
+		
+		//Este número es usado para indicar la cantidad de investigadores total debido a que con una suma aritmetica normal repetiría los investigadores
+		BigInteger cantidadTotalInvestigadores = facultadDAO.getStats().get(4);
 
 		// ------Adición de atributos al modelo con informacion de
 		// ingenieria-----------------------------------------------------------------------
@@ -725,10 +728,7 @@ public class WebController {
 						.add(resumenEducacion.get(6).add(resumenCienciasDeLaSalud.get(6).add(resumenCienciasHumanas
 								.get(6).add(resumenAgroindustria.get(6).add(resumenCienciasEconomicas.get(6))))))));
 
-		model.addAttribute("cantidadInvestigadoresTotal", resumenIngenieria.get(7)
-				.add(resumenCienciasBasicas.get(7)
-						.add(resumenEducacion.get(7).add(resumenCienciasDeLaSalud.get(7).add(resumenCienciasHumanas
-								.get(7).add(resumenAgroindustria.get(7).add(resumenCienciasEconomicas.get(7))))))));
+		model.addAttribute("cantidadInvestigadoresTotal", cantidadTotalInvestigadores);
 
 		// ------Segunda
 		// tabla----------------------------------------------------------------------------------------------------
