@@ -65,4 +65,14 @@ public class CentroDAO {
 	public List<BigInteger> getResumenGeneralCentros(Long centroId) {
 		return centroRepository.getResumenGeneralCentros(centroId);
 	}
+
+	/**
+	 * Obtiene un centro de investigación especificado por un id de facultad.
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return el centro especificado por el id de facultad
+	 */
+	public Object getAllCentrosFacultad(Long facultadId) {
+		return centroRepository.getAllCentrosFacultad(facultadId);
+	}
 }

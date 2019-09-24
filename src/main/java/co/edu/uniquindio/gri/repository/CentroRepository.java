@@ -22,6 +22,12 @@ public interface CentroRepository extends JpaRepository<Centro, Long>{
 	@Query("FROM co.edu.uniquindio.gri.model.Centro WHERE id<>0")
 	List<Centro> findAll();
 	
+	/* (non-Javadoc)
+	 * @see org.springframework.data.jpa.repository.JpaRepository#findAll()
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.Centro WHERE facultad.id=:facultadId")
+	List<Centro> getAllCentrosFacultad(@Param("facultadId") Long facultadId);
+	
 	/**
 	 * Obtiene el resumen general de la facultad en números
 	 * la lista en cada posición obtiene lo siguiente:

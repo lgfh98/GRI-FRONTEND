@@ -75,9 +75,26 @@ public class WebController {
 		if (Long.parseLong(id) != 0) {
 			if (type.equals("pa")) {
 				model.addAttribute("listaProgramas", programaDAO.getProgramasAcademicosFacultad(Long.parseLong(id)));
+			} else if (type.equals("pd")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasDoctoradoFacultad(Long.parseLong(id)));
+			} else if (type.equals("pm")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasMaestríaFacultad(Long.parseLong(id)));
+			} else if (type.equals("pe")) {
+				model.addAttribute("listaProgramas",
+						programaDAO.getProgramasEspecializacionFacultad(Long.parseLong(id)));
 			}
 		} else {
-			model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
+			if (type.equals("pa")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasAcademicos());
+			} else if (type.equals("pd")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasDoctorado());
+			} else if (type.equals("pm")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasMaestria());
+			} else if (type.equals("pe")) {
+				model.addAttribute("listaProgramas", programaDAO.getProgramasEspecializacion());
+			} else {
+				model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
+			}
 		}
 		return "programas";
 	}
@@ -89,14 +106,26 @@ public class WebController {
 	}
 
 	@GetMapping("/centros")
-	public String getCentros(Model model) {
-		model.addAttribute("listaCentros", centroDAO.getAllCentros());
+	public String getCentros(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
+		if (Long.parseLong(id) != 0) {
+			model.addAttribute("listaCentros", centroDAO.getAllCentrosFacultad(Long.parseLong(id)));
+		} else {
+			model.addAttribute("listaCentros", centroDAO.getAllCentros());
+		}
 		return "centros";
 	}
 
 	@GetMapping("/grupos")
-	public String getGrupos(Model model) {
-		model.addAttribute("listaGrupos", grupoDAO.findAll());
+	public String getGrupos(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		if (Long.parseLong(id) != 0) {
+			model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+		} else {
+			model.addAttribute("listaGrupos", grupoDAO.findAll());
+		}
 		return "grupos";
 	}
 
@@ -215,7 +244,7 @@ public class WebController {
 			return getEstadisticasProgramas(id, model);
 
 		} else if (type.equals("c")) {
-			
+
 			return getEstadisticasCentros(id, model);
 
 		} else if (type.equals("g")) {
@@ -385,36 +414,34 @@ public class WebController {
 
 		model.addAttribute("idUniquindio", "0");
 		model.addAttribute("idFacultad", id);
-		
+
 		return "estadisticas/facultades";
 	}
-	
+
 	public String getEstadisticasProgramas(String id, Model model) {
 		return "estadisticas/programas";
 	}
 
 	public String getEstadisticasCentros(String id, Model model) {
 		// ------Llamado a las consultas en la base de datos para las
-				// ------facultades-----------------------------------------------------------------------
-				List<BigInteger> resumen = centroDAO.getResumenGeneralCentros(new Long(id));
+		// ------facultades-----------------------------------------------------------------------
+		List<BigInteger> resumen = centroDAO.getResumenGeneralCentros(new Long(id));
 
-				// ------Llamado a las consultas en la base de datos para
-				// producciones-----------------------------------------------------------------------
-				model.addAttribute("cantidadActividadesDeFormacion",
-						produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "0"));
-				model.addAttribute("cantidadActividadesEvaluador",
-						produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "1"));
-				model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "2"));
-				model.addAttribute("cantidadProduccionesBibliograficas",
-						produccionDAO.getCantidadProduccionesBFacultadPorTipo(id, "3"));
-				model.addAttribute("cantidadTecnicasTecnologicas",
-						produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "4"));
-				model.addAttribute("cantidadProduccionesArte",
-						String.valueOf(produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "6")));
-				model.addAttribute("cantidadProduccionesDemasTrabajos",
-						produccionDAO.getCantidadProduccionesFacultadPorSubTipo(id, "32"));
-				model.addAttribute("cantidadProduccionesProyectos",
-						produccionDAO.getCantidadProduccionesFacultadPorSubTipo(id, "33"));
+		// ------Llamado a las consultas en la base de datos para
+		// producciones-----------------------------------------------------------------------
+		model.addAttribute("cantidadActividadesDeFormacion",
+				produccionDAO.getCantidadProduccionesCentroPorTipo(id, "0"));
+		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadProduccionesCentroPorTipo(id, "1"));
+		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesCentroPorTipo(id, "2"));
+		model.addAttribute("cantidadProduccionesBibliograficas",
+				produccionDAO.getCantidadProduccionesBCentroPorTipo(id, "3"));
+		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadProduccionesCentroPorTipo(id, "4"));
+		model.addAttribute("cantidadProduccionesArte",
+				String.valueOf(produccionDAO.getCantidadProduccionesCentroPorTipo(id, "6")));
+		model.addAttribute("cantidadProduccionesDemasTrabajos",
+				produccionDAO.getCantidadProduccionesCentroPorSubTipo(id, "32"));
+		model.addAttribute("cantidadProduccionesProyectos",
+				produccionDAO.getCantidadProduccionesCentroPorSubTipo(id, "33"));
 
 		return "estadisticas/centros";
 	}
