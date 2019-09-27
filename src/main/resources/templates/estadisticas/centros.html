@@ -42,13 +42,20 @@
 				</div>
 
 				<div class="separador-1"></div>
-				<p class="text-informacion-general" th:text="${informaciongeneral}"></p>
+				<div th:classappend="'card-info-'+${color}">
+					<p class="text-informacion-general" th:text="${informaciongeneral}"></p>
+				</div>
+				<br></br>
 				<div class="card-contacto"
 					th:classappend="'card-contacto-'+${color}">
 					<p>Contacto del Centro</p>
+					<br></br>
 					<p th:text="${contactolugar}"></p>
+					<br></br>
 					<p th:text="${contactelefono}"></p>
+					<br></br>
 					<p th:text="${contactocorreo}"></p>
+					<br></br>
 					<p th:text="${contactohorario}"></p>
 
 
