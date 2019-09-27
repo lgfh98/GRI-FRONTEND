@@ -246,7 +246,7 @@ public class WebController {
 	public void generarReporteUniquindio(HttpServletResponse response) throws JRException, IOException, SQLException {
 
 		Connection conexion = jdbcTemplate.getDataSource().getConnection();
-		InputStream jasperStream = this.getClass().getResourceAsStream("/reportes/estadisticas_uniquindio.jasper");
+		InputStream jasperStream = this.getClass().getResourceAsStream("/reportes/main_Book.jasper");
 		Map<String, Object> params = new HashMap<String, Object>();
 		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
 		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, conexion);
