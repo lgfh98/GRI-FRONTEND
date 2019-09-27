@@ -45,8 +45,12 @@
 					</div>
 				</div>
 				<div class="separador-1"></div>
-				<p th:text="${informacionGeneral}"></p>
-
+				<div th:classappend="'card-info-'+${color}">
+					<p class="text-informacion-general" th:text="${informaciongeneral}"></p>
+				</div>
+				<br></br>
+			
+				<br></br>
 				<div class="resumen_general">
 
 					<h2 class="h2-titulos-tablas">Resumen General</h2>

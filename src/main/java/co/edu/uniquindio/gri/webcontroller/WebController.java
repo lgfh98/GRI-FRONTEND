@@ -230,10 +230,10 @@ public class WebController {
 		}
 		return "inventario/inventario";
 	}
-	
+
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-	
+
 	/**
 	 * Permite exportar estadisticas en formato PDF
 	 * 
@@ -283,15 +283,7 @@ public class WebController {
 		model.addAttribute("colorTotalBoton", datos[3]);
 		model.addAttribute("informaciongeneral", datos[4]);
 
-		if (!datos[5].equals("")) {
-
-			String[] contacto = datos[5].split("\n");
-			model.addAttribute("contactolugar", contacto[0]);
-			model.addAttribute("contactelefono", contacto[1]);
-			model.addAttribute("contactocorreo", contacto[2]);
-			model.addAttribute("contactohorario", contacto[3]);
-
-		}
+		String[] contacto = null;
 
 		if (type.equals("f")) {
 
@@ -302,10 +294,23 @@ public class WebController {
 			return getEstadisticasProgramas(id, model);
 
 		} else if (type.equals("c")) {
+			if (!datos[5].equals("")) {
+
+				contacto = datos[5].split("\n");
+				model.addAttribute("contactolugar", contacto[0]);
+				model.addAttribute("contactelefono", contacto[1]);
+				model.addAttribute("contactocorreo", contacto[2]);
+				model.addAttribute("contactohorario", contacto[3]);
+
+			}
 
 			return getEstadisticasCentros(id, model);
 
 		} else if (type.equals("g")) {
+			if (!datos[5].equals("")) {
+				contacto = datos[5].split("\n");
+
+			}
 
 			return getEstadisticasGrupo(id, model);
 
@@ -363,7 +368,7 @@ public class WebController {
 			datos[1] = "card-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[2] = "btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[3] = "btn-total-grid-" + g.getProgramas().get(0).getFacultad().getId();
-			datos[4] = "";
+			datos[4] = g.getInformaciongeneral();
 			datos[5] = "";
 
 		} else if (type.equals("i")) {
@@ -546,8 +551,9 @@ public class WebController {
 		List<BigInteger> resumenCienciasHumanas = facultadDAO.getResumenGeneral(new Long("5"));
 		List<BigInteger> resumenAgroindustria = facultadDAO.getResumenGeneral(new Long("6"));
 		List<BigInteger> resumenCienciasEconomicas = facultadDAO.getResumenGeneral(new Long("7"));
-		
-		//Este número es usado para indicar la cantidad de investigadores total debido a que con una suma aritmetica normal repetiría los investigadores
+
+		// Este número es usado para indicar la cantidad de investigadores total debido
+		// a que con una suma aritmetica normal repetiría los investigadores
 		BigInteger cantidadTotalInvestigadores = facultadDAO.getStats().get(4);
 
 		// ------Adición de atributos al modelo con informacion de
