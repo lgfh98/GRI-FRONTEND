@@ -65,4 +65,173 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos g where g.estado = 'ACTUAL'")
 	List<Investigador> integrantesGeneral();
 	
+	/**
+	 * Obtiene los investigadores emeritos especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores emeritos de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='INVESTIGADOR EMÉRITO'")
+	List<Investigador> getInvestigadoresEmeritosFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores senior especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores senior de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='INVESTIGADOR SENIOR'")
+	List<Investigador> getInvestigadoresSeniorFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores asociados especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores asociados de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='INVESTIGADOR ASOCIADO'")
+	List<Investigador> getInvestigadoresAsociadosFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores junior especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores junior de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='INVESTIGADOR JUNIOR'")
+	List<Investigador> getInvestigadoresJuniorFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores sin categoria especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores sin categoria de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='SIN CATEGORÍA'")
+	List<Investigador> getInvestigadoresSinCategoriaFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores con formación de doctorado especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores con formación de doctorado de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%DOCTORADO%'")
+	List<Investigador> getInvestigadoresInternosDoctoresFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores con formación de magister especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores con formación de magister de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%MAESTRÍA%'")
+	List<Investigador> getInvestigadoresInternosMagisterFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores con formación de especialidad especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores con formación de especialidad de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico in ('ESPECIALIZACIÓN', 'ESPECIALIDAD MÉDICA')")
+	List<Investigador> getInvestigadoresInternosEspecialistasFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores con formación de pregrado especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores con formación de pregrado de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%PREGRADO%'")
+	List<Investigador> getInvestigadoresInternosPregradoFacultad(@Param("id") Long id);
+	
+	/**
+	 * Obtiene los investigadores especificado por un id de facultad.
+	 *
+	 * @param facultadid el id de la facultad
+	 * @return lista de investigadores de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id")
+	List<Investigador> getInvestigadoresFacultad(@Param("id") Long facultadId);
+	
+	/**
+	 * Obtiene los investigadores emeritos de la Universidad
+	 *
+	 * @return lista de investigadores emeritos de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.categoria='INVESTIGADOR EMÉRITO'")
+	List<Investigador> getAllInvestigadoresEmeritos();
+	
+	/**
+	 * Obtiene los investigadores senior de la Universidad
+	 *
+	 * @return lista de investigadores senior de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.categoria='INVESTIGADOR SENIOR'")
+	List<Investigador> getAllInvestigadoresSenior();
+	
+	/**
+	 * Obtiene los investigadores asociados de la Universidad
+	 *
+	 * @return lista de investigadores asociados de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.categoria='INVESTIGADOR ASOCIADO'")
+	List<Investigador> getAllInvestigadoresAsociado();
+	
+	/**
+	 * Obtiene los investigadores junior de la Universidad
+	 *
+	 * @return lista de investigadores junior de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.categoria='INVESTIGADOR JUNIOR'")
+	List<Investigador> getAllInvestigadoresJunior();
+	
+	/**
+	 * Obtiene los investigadores sin categoria de la Universidad
+	 *
+	 * @return lista de investigadores sin categoria de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.categoria='SIN CATEGORÍA'")
+	List<Investigador> getAllInvestigadoresSinCategoria();
+	
+	/**
+	 * Obtiene los investigadores con formación de doctores de la Universidad
+	 *
+	 * @return lista de investigadores con formación de doctores de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%DOCTORADO%'")
+	List<Investigador> getAllInvestigadoresInternosDoctores();
+	
+	/**
+	 * Obtiene los investigadores con formación de magister de la Universidad
+	 *
+	 * @return lista de investigadores con formación de magister de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%MAGISTER%'")
+	List<Investigador> getAllInvestigadoresInternosMagister();
+	
+	/**
+	 * Obtiene los investigadores con formación de especialidad de la Universidad
+	 *
+	 * @return lista de investigadores con formación de especialidad de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico in ('ESPECIALIZACIÓN', 'ESPECIALIDAD MÉDICA')")
+	List<Investigador> getAllInvestigadoresEspecialistas();
+	
+	/**
+	 * Obtiene los investigadores internos con formación de pregrado de la Universidad
+	 *
+	 * @return lista de investigadores con formación de pregrado de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%PREGRADO%'")
+	List<Investigador> getAllInvestigadoresPregrado();
+
+	/**
+	 * Obtiene los investigadores internos de la universidad
+	 *
+	 * @return lista de investigadores internos de la universidad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and i.pertenencia='INVESTIGADOR INTERNO'")
+	List<Investigador> getAllInvestigadoresInternos();
 }

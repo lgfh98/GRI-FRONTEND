@@ -15,6 +15,7 @@ import co.edu.uniquindio.gri.dao.CentroDAO;
 import co.edu.uniquindio.gri.dao.FacultadDAO;
 import co.edu.uniquindio.gri.dao.GrupoDAO;
 import co.edu.uniquindio.gri.dao.InvestigadorDAO;
+import co.edu.uniquindio.gri.dao.LineasInvestigacionDAO;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
 import co.edu.uniquindio.gri.dao.ProgramaDAO;
 import co.edu.uniquindio.gri.model.Centro;
@@ -44,6 +45,9 @@ public class WebController {
 	@Autowired
 	ProduccionDAO produccionDAO;
 
+	@Autowired
+	LineasInvestigacionDAO lineasInvestigacionDAO;
+
 	@GetMapping(value = { "/", "inicio" })
 	public String main(Model model) {
 		List<BigInteger> stats = facultadDAO.getStats();
@@ -64,8 +68,135 @@ public class WebController {
 	}
 
 	@GetMapping("/investigadores")
-	public String getInvestigadores(Model model) {
-		model.addAttribute("listaInvestigadores", investigadorDAO.findAll());
+	public String getInvestigadores(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
+		if (Long.parseLong(id) != 0) {
+			if (type.equals("f") || type.equals("u")) {
+				if (subType.equals("ie")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("is")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSeniorFacultad(Long.parseLong(id)));
+				} else if (subType.equals("ia")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresAsociadosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("ij")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresJuniorFacultad(Long.parseLong(id)));
+				} else if (subType.equals("isc")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSinCategoriaFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fd")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosDoctoresFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fm")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosMagisterFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fe")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosEspecialistasFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fp")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
+				}
+			} else if (type.equals("c")) {
+				if (subType.equals("ie")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("is")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSeniorFacultad(Long.parseLong(id)));
+				} else if (subType.equals("ia")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresAsociadosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("ij")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresJuniorFacultad(Long.parseLong(id)));
+				} else if (subType.equals("isc")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSinCategoriaFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fd")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosDoctoresFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fm")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosMagisterFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fe")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosEspecialistasFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fp")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
+				}
+			} else if (type.equals("p")) {
+				if (subType.equals("ie")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("is")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSeniorFacultad(Long.parseLong(id)));
+				} else if (subType.equals("ia")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresAsociadosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("ij")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresJuniorFacultad(Long.parseLong(id)));
+				} else if (subType.equals("isc")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSinCategoriaFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fd")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosDoctoresFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fm")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosMagisterFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fe")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosEspecialistasFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fp")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
+				}
+			}
+		} else {
+			if (subType.equals("ie")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresEmeritos());
+			} else if (subType.equals("is")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresSenior());
+			} else if (subType.equals("ia")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresAsociado());
+			} else if (subType.equals("ij")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresJunior());
+			} else if (subType.equals("isc")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresSinCategoria());
+			} else if (subType.equals("fd")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosDoctores());
+			} else if (subType.equals("fm")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosMagister());
+			} else if (subType.equals("fe")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresEspecialistas());
+			} else if (subType.equals("fp")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresPregrado());
+			} else if (subType.equals("d")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternos());
+			} else {
+				model.addAttribute("listaInvestigadores",
+						investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
+			}
+		}
 		return "investigadores";
 	}
 
@@ -121,14 +252,101 @@ public class WebController {
 	}
 
 	@GetMapping("/grupos")
-	public String getGrupos(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
+	public String getGrupos(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
 		if (Long.parseLong(id) != 0) {
-			model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+			if (type.equals("f") || type.equals("u")) {
+				if (subType.equals("ca1")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Facultad(Long.parseLong(id)));
+				} else if (subType.equals("ca")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposAFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cb")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposBFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cc")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposCFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposReconocidosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cnr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposNoReconocidosFacultad(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+				}
+			} else if (type.equals("c")) {
+				if (subType.equals("ca1")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Facultad(Long.parseLong(id)));
+				} else if (subType.equals("ca")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposAFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cb")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposBFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cc")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposCFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposReconocidosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cnr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposNoReconocidosFacultad(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+				}
+			} else if (type.equals("p")) {
+				if (subType.equals("ca1")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Facultad(Long.parseLong(id)));
+				} else if (subType.equals("ca")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposAFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cb")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposBFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cc")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposCFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposReconocidosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cnr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposNoReconocidosFacultad(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+				}
+			}
 		} else {
-			model.addAttribute("listaGrupos", grupoDAO.findAll());
+			if (subType.equals("ca1")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposA1());
+			} else if (subType.equals("ca")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposA());
+			} else if (subType.equals("cb")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposB());
+			} else if (subType.equals("cc")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposC());
+			} else if (subType.equals("cr")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposReconocidos());
+			} else if (subType.equals("cnr")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposNoReconocidos());
+			} else {
+				model.addAttribute("listaGrupos", grupoDAO.findAll());
+			}
 		}
 		return "grupos";
+	}
+
+	@GetMapping("/lineas")
+	public String getLineasInvestigacion(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
+		if (Long.parseLong(id) != 0) {
+			if (type.equals("f") || type.equals("u")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasFacultad(Long.parseLong(id)));
+			} else if (type.equals("c")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasCentro(Long.parseLong(id)));
+			} else if (type.equals("p")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasPrograma(Long.parseLong(id)));
+			} else if (type.equals("p")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasGrupo(Long.parseLong(id)));
+			}
+		} else {
+			model.addAttribute("listaGrupos", lineasInvestigacionDAO.findAll());
+		}
+		return "lineas";
 	}
 
 	@GetMapping("/general")
@@ -501,8 +719,9 @@ public class WebController {
 		List<BigInteger> resumenCienciasHumanas = facultadDAO.getResumenGeneral(new Long("5"));
 		List<BigInteger> resumenAgroindustria = facultadDAO.getResumenGeneral(new Long("6"));
 		List<BigInteger> resumenCienciasEconomicas = facultadDAO.getResumenGeneral(new Long("7"));
-		
-		//Este número es usado para indicar la cantidad de investigadores total debido a que con una suma aritmetica normal repetiría los investigadores
+
+		// Este número es usado para indicar la cantidad de investigadores total debido
+		// a que con una suma aritmetica normal repetiría los investigadores
 		BigInteger cantidadTotalInvestigadores = facultadDAO.getStats().get(4);
 
 		// ------Adición de atributos al modelo con informacion de
