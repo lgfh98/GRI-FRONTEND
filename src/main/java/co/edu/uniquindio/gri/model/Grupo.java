@@ -57,6 +57,10 @@ public class Grupo implements Serializable {
 	@Column(name = "INFORMACIONGENERAL")
 	private String informaciongeneral;
 
+	/** The contacto */
+	@Column(name = "CONTACTO")
+	private String contacto;
+
 	/** The lineas investigacion. */
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "GRUPOS_LINEAS", joinColumns = { @JoinColumn(name = "GRUPOS_ID") }, inverseJoinColumns = {
@@ -105,8 +109,9 @@ public class Grupo implements Serializable {
 	 * @param centro                  the centro
 	 */
 	public Grupo(long id, String nombre, String areaConocimiento, String anioFundacion, String lider, String categoria,
-			String informaciongeneral, List<LineasInvestigacion> lineasInvestigacion, List<ProduccionGrupo> produccion,
-			List<ProduccionBGrupo> produccionBibliografica, Centro centro, List<GruposInves> investigadores) {
+			String informaciongeneral, String contacto, List<LineasInvestigacion> lineasInvestigacion,
+			List<ProduccionGrupo> produccion, List<ProduccionBGrupo> produccionBibliografica, Centro centro,
+			List<GruposInves> investigadores) {
 		this.id = id;
 		this.nombre = nombre;
 		this.areaConocimiento = areaConocimiento;
@@ -114,6 +119,7 @@ public class Grupo implements Serializable {
 		this.lider = lider;
 		this.categoria = categoria;
 		this.informaciongeneral = informaciongeneral;
+		this.contacto = contacto;
 		this.lineasInvestigacion = lineasInvestigacion;
 		this.produccion = produccion;
 		this.produccionBibliografica = produccionBibliografica;
@@ -136,14 +142,14 @@ public class Grupo implements Serializable {
 		this.lider = lider;
 		this.categoria = categoria;
 	}
-	
+
 	/**
 	 * Instantiates a new grupo.
 	 *
-	 * @param id the id
-	 * @param nombre the nombre
+	 * @param id        the id
+	 * @param nombre    the nombre
 	 * @param categoria the categoria
-	 * @param lider the lider
+	 * @param lider     the lider
 	 * 
 	 */
 	public Grupo(long id, String nombre, String categoria, String lider, Programa programa, Centro centro) {
@@ -286,6 +292,23 @@ public class Grupo implements Serializable {
 	 */
 	public void setInformaciongeneral(String informaciongeneral) {
 		this.informaciongeneral = informaciongeneral;
+	}
+	
+	
+	/**
+	 * Gets the contacto
+	 * @return the contacto
+	 */
+	public String getContacto() {
+		return contacto;
+	}
+
+	/**
+	 * Sets the contacto
+	 * @param the new contacto
+	 */
+	public void setContacto(String contacto) {
+		this.contacto = contacto;
 	}
 
 	/**

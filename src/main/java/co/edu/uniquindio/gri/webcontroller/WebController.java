@@ -1,13 +1,25 @@
 package co.edu.uniquindio.gri.webcontroller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.util.DartUtils;
 
@@ -23,6 +35,12 @@ import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.Investigador;
 import co.edu.uniquindio.gri.model.Programa;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 @Controller
 public class WebController {
@@ -431,6 +449,33 @@ public class WebController {
 		return "inventario/inventario";
 	}
 
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+
+	/**
+	 * Permite exportar estadisticas en formato PDF
+	 * 
+	 * @param response
+	 * @throws JRException
+	 * @throws IOException
+	 * @throws SQLException
+	 */
+	@RequestMapping(value = "/uniquindioReport", method = RequestMethod.GET)
+	public void generarReporteUniquindio(HttpServletResponse response) throws JRException, IOException, SQLException {
+
+		Connection conexion = jdbcTemplate.getDataSource().getConnection();
+		InputStream jasperStream = this.getClass().getResourceAsStream("/reportes/estadisticas_uniquindio.jasper");
+		Map<String, Object> params = new HashMap<String, Object>();
+		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, conexion);
+		response.setContentType("application/x-pdf");
+		response.setHeader("Content-disposition", "inline; filename=reporte_universidad_del_quindio.pdf");
+		final OutputStream outStream = response.getOutputStream();
+		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
+		conexion.close();
+
+	}
+
 	@GetMapping("/reporteinventario")
 	public String getReporteInventario(@RequestParam(name = "id", required = true) String id, Model model) {
 
@@ -456,15 +501,7 @@ public class WebController {
 		model.addAttribute("colorTotalBoton", datos[3]);
 		model.addAttribute("informaciongeneral", datos[4]);
 
-		if (!datos[5].equals("")) {
-
-			String[] contacto = datos[5].split("\n");
-			model.addAttribute("contactolugar", contacto[0]);
-			model.addAttribute("contactelefono", contacto[1]);
-			model.addAttribute("contactocorreo", contacto[2]);
-			model.addAttribute("contactohorario", contacto[3]);
-
-		}
+		String[] contacto = null;
 
 		if (type.equals("f")) {
 
@@ -475,10 +512,23 @@ public class WebController {
 			return getEstadisticasProgramas(id, model);
 
 		} else if (type.equals("c")) {
+			if (!datos[5].equals("")) {
+
+				contacto = datos[5].split("\n");
+				model.addAttribute("contactolugar", contacto[0]);
+				model.addAttribute("contactelefono", contacto[1]);
+				model.addAttribute("contactocorreo", contacto[2]);
+				model.addAttribute("contactohorario", contacto[3]);
+
+			}
 
 			return getEstadisticasCentros(id, model);
 
 		} else if (type.equals("g")) {
+			if (!datos[5].equals("")) {
+				contacto = datos[5].split("\n");
+
+			}
 
 			return getEstadisticasGrupo(id, model);
 
@@ -536,7 +586,7 @@ public class WebController {
 			datos[1] = "card-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[2] = "btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[3] = "btn-total-grid-" + g.getProgramas().get(0).getFacultad().getId();
-			datos[4] = "";
+			datos[4] = g.getInformaciongeneral();
 			datos[5] = "";
 
 		} else if (type.equals("i")) {

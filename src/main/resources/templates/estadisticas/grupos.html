@@ -45,8 +45,12 @@
 					</div>
 				</div>
 				<div class="separador-1"></div>
-				<p th:text="${informacionGeneral}"></p>
-
+				<div th:classappend="'card-info-'+${color}">
+					<p class="text-informacion-general" th:text="${informaciongeneral}"></p>
+				</div>
+				<br></br>
+			
+				<br></br>
 				<div class="resumen_general">
 
 					<h2 class="h2-titulos-tablas">Resumen General</h2>
@@ -194,7 +198,7 @@
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades de Formación</h3>
-									</div> <span class="card-item-cantidad"
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
 									th:text="${cantidadActividadesDeFormacion}"></span>
 								</a>
 							</div>
@@ -209,7 +213,7 @@
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades como Evaluador</h3>
-									</div> <span class="card-item-cantidad"
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
 									th:text="${cantidadActividadesEvaluador}"></span>
 								</a>
 							</div>
@@ -224,7 +228,7 @@
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades de Apropiación Social</h3>
-									</div> <span class="card-item-cantidad"
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
 									th:text="${cantidadApropiacionSocial}"></span>
 								</a>
 							</div>
@@ -239,7 +243,7 @@
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Producciones Bibliográficas</h3>
-									</div> <span class="card-item-cantidad"
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
 									th:text="${cantidadProduccionesBibliograficas}"></span>
 								</a>
 							</div>
@@ -254,7 +258,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Producciones Técnicas y
 											Tecnológicas</h3>
-									</div> <span class="card-item-cantidad"
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
 									th:text="${cantidadTecnicasTecnologicas}"></span>
 								</a>
 							</div>
@@ -271,7 +275,7 @@
 										<h3 class="card-title">
 											Producciones en <br />Arte
 										</h3>
-									</div> <span class="card-item-cantidad"
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
 									th:text="${cantidadProduccionesArte}"></span>
 								</a>
 							</div>
@@ -285,7 +289,7 @@
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Demás Trabajos</h3>
-									</div> <span class="card-item-cantidad"
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
 									th:text="${cantidadProduccionesDemasTrabajos}">0</span>
 								</a>
 							</div>
@@ -300,7 +304,7 @@
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Proyectos</h3>
-									</div> <span class="card-item-cantidad"
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
 									th:text="${cantidadProduccionesProyectos}">0</span>
 								</a>
 							</div>
