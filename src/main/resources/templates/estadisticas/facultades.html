@@ -96,21 +96,21 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{programas(id=${idFacultad},type=${programaAcademico})}">
+									th:href="@{programas(id=${idFacultad},type=${programaDoctorado})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadProgramasDoctorado}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{programas(id=${idFacultad},type=${programaAcademico})}">
+									th:href="@{programas(id=${idFacultad},type=${programaMagister})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadProgramasMaestria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{programas(id=${idFacultad},type=${programaAcademico})}">
+									th:href="@{programas(id=${idFacultad},type=${programaEspecializacion})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadProgramasEspecializacion}"></button>
 								</a>
@@ -274,7 +274,7 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(investigadores=${idFacultad}, type=${tipo}, subType=${investigadorSenior})}">
+									th:href="@{investigadores(id=${idFacultad}, type=${tipo}, subType=${investigadorSenior})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadInvestigadoresSenior}"></button>
 								</a>
