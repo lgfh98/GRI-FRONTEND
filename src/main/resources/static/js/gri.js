@@ -113,8 +113,6 @@
 							}
 							else if (document.getElementById('tabla_grupos_wrapper')) {
 								$('c[r=A1] t', sheet).text('Grupos');
-							}else if (document.getElementById('tabla_lineas_wrapper')) {
-								$('c[r=A1] t', sheet).text('Lineas de Investigación');
 							}
 						},
 						//Nombre de archivo personalizado    
@@ -142,9 +140,6 @@
 							}
 							else if (document.getElementById('tabla_grupos_wrapper')) {
 								return 'Grupos';
-							}
-							else if (document.getElementById('tabla_lineas_wrapper')) {
-								return 'Lineas de Investigación';
 							}
 						}
 
@@ -179,9 +174,6 @@
 							else if (document.getElementById('tabla_grupos_wrapper')) {
 								return 'Grupos';
 							}
-							else if (document.getElementById('tabla_lineas_wrapper')) {
-								return 'Lineas de Investigación';
-							}
 						},
 						//Encabezado del PDF
 						title: function () {
@@ -208,8 +200,6 @@
 							}
 							else if (document.getElementById('tabla_grupos_wrapper')) {
 								return 'Grupos';
-							}else if (document.getElementById('tabla_lineas_wrapper')) {
-								return 'Lineas de Investigación';
 							}
 						},
 						exportOptions: {
@@ -297,25 +287,6 @@
 		$('#tabla_programas tbody').on('click', 'tr', function () {
 			var data = tabla_programas.row(this).data();
 			window.location.href = "general?id=" + data.id + "&type=p";
-		});
-
-		var tabla_lineas = $('#tabla_lineas').DataTable({
-			responsive: true,
-			rowId: 'id',
-			"order": [[1, "asc"]],
-			columns: [
-				{ data: "id", visible: false },
-				{ data: "nombre" }
-			]
-		});
-
-		$('#tabla_lineas_filter input').keyup(function () {
-			//Busqueda con tildes
-			tabla_lineas
-				.search(
-					jQuery.fn.DataTable.ext.type.search.string(this.value)
-				)
-				.draw();
 		});
 
 		var tabla_facultades = $('#tabla_facultades').DataTable({

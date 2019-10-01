@@ -61,16 +61,6 @@ public class LineasInvestigacion implements Serializable {
 		this.id = id;
 		this.nombre = nombre;
 	}
-	
-
-	/**
-	 * Instantiates a new lineas investigacion.
-	 *
-	 * @param nombre the nombre
-	 */
-	public LineasInvestigacion(String nombre) {
-		this.nombre = nombre;
-	}
 
 	/**
 	 * Gets the id.

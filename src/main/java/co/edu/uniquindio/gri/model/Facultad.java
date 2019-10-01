@@ -19,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity(name = "FACULTADES")
 @Table(name = "FACULTADES", schema = "gri")
 
-
 public class Facultad implements Serializable {
 
 	/** The Constant serialVersionUID. */
@@ -33,6 +32,18 @@ public class Facultad implements Serializable {
 	/** The nombre. */
 	@Column(name = "NOMBRE")
 	private String nombre;
+
+	/**
+	 * the informaciongeneral
+	 */
+	@Column(name = "INFORMACIONGENERAL")
+	private String informaciongeneral;
+
+	/**
+	 * the contacto
+	 */
+	@Column(name = "CONTACTO")
+	private String contacto;
 
 	/** The centros. */
 	@OneToMany(mappedBy = "facultad", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -53,12 +64,14 @@ public class Facultad implements Serializable {
 	/**
 	 * Instantiates a new facultad.
 	 *
-	 * @param id the id
+	 * @param id     the id
 	 * @param nombre the nombre
 	 */
-	public Facultad(long id, String nombre) {
+	public Facultad(long id, String nombre, String informaciongeneral, String contacto) {
 		this.id = id;
 		this.nombre = nombre;
+		this.informaciongeneral = informaciongeneral;
+		this.contacto = contacto;
 	}
 
 	/**
@@ -95,6 +108,42 @@ public class Facultad implements Serializable {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	/**
+	 * gets the informacion general
+	 * 
+	 * @return the informaciongeneral
+	 */
+	public String getInformaciongeneral() {
+		return informaciongeneral;
+	}
+
+	/**
+	 * sets the informacion general
+	 * 
+	 * @param the new informaciongeneral
+	 */
+	public void setInformaciongeneral(String informaciongeneral) {
+		this.informaciongeneral = informaciongeneral;
+	}
+
+	/**
+	 * gets the contacto
+	 * 
+	 * @return the contacto
+	 */
+	public String getContacto() {
+		return contacto;
+	}
+
+	/**
+	 * sets the contacto
+	 * 
+	 * @param the New contacto
+	 */
+	public void setContacto(String contacto) {
+		this.contacto = contacto;
 	}
 
 	/**

@@ -536,9 +536,11 @@ public class WebController {
 		model.addAttribute("color", datos[1]);
 		model.addAttribute("colorTituloBoton", datos[2]);
 		model.addAttribute("colorTotalBoton", datos[3]);
-		model.addAttribute("informaciongeneral", datos[4]);
 
-		String[] contacto = null;
+		List<String> stringinfo = formatoCadena(datos[4]);
+		List<String> stringcontacto = formatoCadena(datos[5]);
+		model.addAttribute("infogeneral", stringinfo);
+		model.addAttribute("contacto", stringcontacto);
 
 		if (type.equals("f")) {
 
@@ -549,24 +551,11 @@ public class WebController {
 			return getEstadisticasProgramas(id, model);
 
 		} else if (type.equals("c")) {
-			if (!datos[5].equals("")) {
-
-				contacto = datos[5].split("\n");
-				model.addAttribute("contactolugar", contacto[0]);
-				model.addAttribute("contactelefono", contacto[1]);
-				model.addAttribute("contactocorreo", contacto[2]);
-				model.addAttribute("contactohorario", contacto[3]);
-
-			}
 
 			return getEstadisticasCentros(id, model);
 
 		} else if (type.equals("g")) {
-			if (!datos[5].equals("")) {
-				contacto = datos[5].split("\n");
-
-			}
-
+			model.addAttribute("infogeneral", datos[4]);
 			return getEstadisticasGrupo(id, model);
 
 		} else if (type.equals("i")) {
@@ -595,8 +584,8 @@ public class WebController {
 			datos[1] = "card-" + f.getId();
 			datos[2] = "btn-title-grid-" + f.getId();
 			datos[3] = "btn-total-grid-" + f.getId();
-			datos[4] = "";
-			datos[5] = "";
+			datos[4] = f.getInformaciongeneral();
+			datos[5] = f.getContacto();
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 
@@ -604,8 +593,8 @@ public class WebController {
 			datos[1] = "card-" + p.getFacultad().getId();
 			datos[2] = "btn-title-grid-" + p.getFacultad().getId();
 			datos[3] = "btn-total-grid-" + p.getFacultad().getId();
-			datos[4] = "";
-			datos[5] = "";
+			datos[4] = p.getInformaciongeneral();
+			datos[5] = p.getContacto();
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 
@@ -624,7 +613,7 @@ public class WebController {
 			datos[2] = "btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[3] = "btn-total-grid-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[4] = g.getInformaciongeneral();
-			datos[5] = "";
+			datos[5] = g.getContacto();
 
 		} else if (type.equals("i")) {
 			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
@@ -652,6 +641,32 @@ public class WebController {
 			}
 		}
 		return calcularTamanio(tamanio + 1);
+	}
+
+	/**
+	 * metodo que permite dar formato a una cadena quitando - y separandola por \n
+	 * 
+	 * @param cadena cadena a formatear
+	 * @return lista con posiciones por \n
+	 */
+	public List<String> formatoCadena(String cadena) {
+
+		List<String> resultado = new ArrayList<String>();
+
+		if (cadena != null && !cadena.equals("")) {
+			String[] splitcadena = cadena.split("\n");
+
+			for (String string : splitcadena) {
+
+				if (!string.equals("") && !string.contains("N/A")) {
+
+					resultado.add(string);
+
+				}
+			}
+		}
+		return resultado;
+
 	}
 
 	public String getEstadisticasFacultad(String id, Model model) {
