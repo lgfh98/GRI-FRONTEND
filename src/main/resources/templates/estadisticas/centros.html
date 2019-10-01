@@ -303,28 +303,28 @@
 
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultad}, type=${tipo}, subType=${formacionDoctor})}">
+									th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${formacionDoctor})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadDocentesDoctores}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultad}, type=${tipo}, subType=${formacionMagister})}">
+									th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${formacionMagister})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadDocentesMagister}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultad}, type=${tipo}, subType=${formacionEspecialista})}">
+									th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${formacionEspecialista})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadDocentesEspecialistas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultad}, type=${tipo}, subType=${formacionPregrado})}">
+									th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${formacionPregrado})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadDocentesPregrado}"></button>
 								</a>
@@ -440,7 +440,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Demás Trabajos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
-										th:text="${cantidadProduccionesDemasTrabajos}">0</span>
+										th:text="${cantidadProduccionesDemasTrabajos}"></span>
 								</a>
 							</div>
 						</li>
@@ -455,7 +455,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Proyectos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
-										th:text="${cantidadProduccionesProyectos}">0</span>
+										th:text="${cantidadProduccionesProyectos}"></span>
 								</a>
 							</div>
 						</li>

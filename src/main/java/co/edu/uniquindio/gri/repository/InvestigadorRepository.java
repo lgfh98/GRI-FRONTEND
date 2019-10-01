@@ -259,7 +259,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param centroId el id del centro
 	 * @return lista de investigadores senior del centro
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='INVESTIGADOR SENIOR'")
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.categoria='INVESTIGADOR SENIOR'")
 	List<Investigador> getInvestigadoresSeniorCentro(@Param("id") Long centroId);
 	
 	/**
@@ -268,7 +268,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param centroId el id del centro
 	 * @return lista de investigadores asociados del centro
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='INVESTIGADOR ASOCIADO'")
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.categoria='INVESTIGADOR ASOCIADO'")
 	List<Investigador> getInvestigadoresAsociadosCentro(@Param("id") Long centroId);
 	
 	/**
@@ -277,7 +277,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param centroId el id del centro
 	 * @return lista de investigadores junior del centro
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='INVESTIGADOR JUNIOR'")
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.categoria='INVESTIGADOR JUNIOR'")
 	List<Investigador> getInvestigadoresJuniorCentro(@Param("id") Long centroId);
 	
 	/**
@@ -286,7 +286,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param centroId el id del centro
 	 * @return lista de investigadores sin categoria del centro
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.categoria='SIN CATEGORÍA'")
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.categoria='SIN CATEGORÍA'")
 	List<Investigador> getInvestigadoresSinCategoriaCentro(@Param("id") Long centroId);
 	
 	/**
@@ -295,7 +295,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param centroId el id del centro
 	 * @return lista de investigadores con formación de doctorado del centro
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%DOCTORADO%'")
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%DOCTORADO%'")
 	List<Investigador> getInvestigadoresInternosDoctoresCentro(@Param("id") Long centroId);
 	
 	/**
@@ -304,7 +304,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param centroId el id del centro
 	 * @return lista de investigadores con formación de magister del centro
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%MAESTRÍA%'")
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%MAESTRÍA%'")
 	List<Investigador> getInvestigadoresInternosMagisterCentro(@Param("id") Long centroId);
 	
 	/**
@@ -313,7 +313,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param centroId el id del centro
 	 * @return lista de investigadores con formación de especialidad del centro
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico in ('ESPECIALIZACIÓN', 'ESPECIALIDAD MÉDICA')")
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico in ('ESPECIALIZACIÓN', 'ESPECIALIDAD MÉDICA')")
 	List<Investigador> getInvestigadoresInternosEspecialistasCentro(@Param("id") Long centroId);
 	
 	/**
@@ -322,7 +322,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param centroId el id del centro
 	 * @return lista de investigadores con formación de pregrado del centro
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%PREGRADO%'")
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%PREGRADO%'")
 	List<Investigador> getInvestigadoresInternosPregradoCentro(@Param("id") Long centroId);
 	
 	/**
