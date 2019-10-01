@@ -16,7 +16,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Programa.
@@ -36,7 +35,15 @@ public class Programa implements Serializable {
 	/** The nombre. */
 	@Column(name = "NOMBRE")
 	private String nombre;
+
+	/** The nombre. */
+	@Column(name = "INFORMACIONGENERAL")
+	private String informaciongeneral;
 	
+	/** The contacto. */
+	@Column(name = "CONTACTO")
+	private String contacto;
+
 	/** The facultad. */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FACULTADES_ID")
@@ -56,14 +63,16 @@ public class Programa implements Serializable {
 	/**
 	 * Instantiates a new programa.
 	 *
-	 * @param id the id
-	 * @param nombre the nombre
+	 * @param id       the id
+	 * @param nombre   the nombre
 	 * @param facultad the facultad
 	 */
-	public Programa(long id, String nombre, Facultad facultad) {
+	public Programa(long id, String nombre, Facultad facultad, String informaciongenera,String contacto) {
 		this.id = id;
 		this.nombre = nombre;
 		this.facultad = facultad;
+		this.informaciongeneral = informaciongenera;
+		this.contacto=contacto;
 	}
 
 	/**
@@ -100,6 +109,41 @@ public class Programa implements Serializable {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	
+	/**
+	 * get the informaciongeneral
+	 * @return the informacion general
+	 */
+	public String getInformaciongeneral() {
+		return informaciongeneral;
+	}
+
+	/**
+	 * sets the informacion general
+	 * @param the new informaciongeneral
+	 */
+	public void setInformaciongeneral(String informaciongeneral) {
+		this.informaciongeneral = informaciongeneral;
+	}
+
+	
+	
+	/**
+	 * get the contacto
+	 * @return the contacto
+	 */
+	public String getContacto() {
+		return contacto;
+	}
+	
+	/**
+	 * sets the contacto
+	 * @param the New contacto
+	 */
+	public void setContacto(String contacto) {
+		this.contacto = contacto;
 	}
 
 	/**

@@ -43,24 +43,23 @@
 
 				<div class="separador-1"></div>
 				<div th:classappend="'card-info-'+${color}">
-					<p class="text-informacion-general" th:text="${informaciongeneral}"></p>
+				
+						<p class="text-informacion-general" th:text="${infogeneral}"></p>
+					
 				</div>
 				<br></br>
 				<div class="card-contacto"
 					th:classappend="'card-contacto-'+${color}">
-					<p>Contacto del Centro</p>
-					<br></br>
-					<p th:text="${contactolugar}"></p>
-					<br></br>
-					<p th:text="${contactelefono}"></p>
-					<br></br>
-					<p th:text="${contactocorreo}"></p>
-					<br></br>
-					<p th:text="${contactohorario}"></p>
+					<p>CONTACTO DEL CENTRO</p>
+					<br></br> <br></br>
+					<div th:each="obj: ${contacto}">
+						<p th:text="${obj}"></p>
+						<br></br>
 
-
+					</div>
 				</div>
-				<br></br>
+
+				<br></br> <br></br>
 
 				<div class="resumen_general">
 					<h2 class="h2-titulos-tablas">Resumen General</h2>
@@ -326,6 +325,8 @@
 					</ul>
 				</div>
 
+				<a class='flotante' href='#'><span
+					class="icono-print fas fa-print"></span></a>
 
 			</div>
 		</div>
