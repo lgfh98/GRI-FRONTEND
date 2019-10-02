@@ -231,8 +231,8 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	display: block;
 	position: relative;
 	flex-grow: 1;
-	padding-right: 1.2rem;
-	padding-left: 1.2rem;
+	padding-right: 2rem;
+	padding-left: 2rem;
 	padding-top: 1.2rem;
 	font-size: 1.4rem;
 	display: flex;
@@ -260,6 +260,38 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	margin: 0 auto;
 	transition: background-color .2s;
 }
+.badge-list-value-color1 {
+	box-shadow: 0 0 0 1px #ee4035 inset;
+	color: #ee4035;
+}
+.badge-list-value-color2 {
+	box-shadow: 0 0 0 1px #f37736 inset;
+	color: #f37736;
+}
+
+.badge-list-value-color3 {
+	box-shadow: 0 0 0 1px #ffa700 inset;
+	color: #ffa700;
+}
+
+.badge-list-value-color4 {
+	box-shadow: 0 0 0 1px #7bc043 inset;
+	color: #7bc043;
+}
+.badge-list-value-color5 {
+	box-shadow: 0 0 0 1px #992c64 inset;
+	color: #992c64;
+}
+.badge-list-value-color6 {
+	box-shadow: 0 0 0 1px #0392cf inset;
+	color: #0392cf;
+}
+.badge-list-value-color7 {
+	box-shadow: 0 0 0 1px #812c99 inset;
+	color: #812c99;
+	
+}
+
 
 .badge-list-value:hover {
 	background-color: rgba(64, 64, 64, 0.1);
@@ -670,7 +702,7 @@ label {
 
 .estadisticas_inicio {
 	font-weight: 900;
-	color: #000000;
+	color: #812c99;
 }
 
 .estadisticas_especifico {
@@ -680,7 +712,7 @@ label {
 
 .informacion_general {
 	font-weight: 900;
-	color: #000000;
+	color: #ee4035;
 }
 
 /*
@@ -690,33 +722,40 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px 150px 150px 150px
-		150px;
-	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
+	
+	grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+	
+	
 }
 
 .grid-container-catGrup {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px 150px 150px 110px;
-	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
+	grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+	
+	
 }
 
 .grid-container-catInvestigador {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px 150px 110px;
-	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
+	grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+	
+	
 }
 
 .grid-container-formaciontalentoH {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 110px 150px 150px 150px 150px 150px;
-	grid-template-rows: 60px 48px 48px 48px 48px 48px 48px 48px 48px;
+	grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+	
 }
 
 .button-item {
@@ -744,7 +783,6 @@ label {
 	border: 1px solid #FFCC00;
 	border-bottom: 10px solid #FFCC00;
 	border-radius: 6px;
-	width: 100%;
 	font-weight: bold;
 }
 
@@ -769,7 +807,6 @@ label {
 	border: 1px solid #DC911B;
 	border-bottom: 10px solid #DC911B;
 	border-radius: 6px;
-	width: 100%;
 	font-weight: bold;
 }
 
@@ -794,7 +831,6 @@ label {
 	border: 1px solid #1169B0;
 	border-bottom: 10px solid #1169B0;
 	border-radius: 6px;
-	width: 100%;
 	font-weight: bold;
 }
 
@@ -941,16 +977,22 @@ label {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
+	
 }
 
 .button-title-ingenieria {
 	border: 1px solid #009de0;
 	border-bottom: 10px solid #009de0;
 	font-weight: bold;
+	width: 100%;
+	height: 100%;
 }
 
 .button-res-ingenieria {
 	border: 2px solid #009de0;
+	width: 100%;
+	height: 100%;
 	font-weight: bold;
 }
 
@@ -1168,48 +1210,59 @@ estadisticas facultades
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 150px 150px 150px 150px 150px 150px 150px 150px;
-	grid-template-rows: 60px 48px;
+	
+	grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+	
+	/**grid-template-columns: 150px 150px 150px 150px 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px;*/
 }
 
 .grid-container-catGrup-facultad {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 150px 150px 150px 150px 150px 150px;
-	grid-template-rows: 60px 48px;
+	grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+	
+	
+	/*grid-template-columns: 150px 150px 150px 150px 150px 150px;
+	grid-template-rows: 60px 48px;*/
 }
 
 .grid-container-catInvestigador-facultad {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 150px 150px 150px 150px 150px;
-	grid-template-rows: 60px 48px;
+	grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+	
+	
 }
 
 .grid-container-formaciontalentoH-facultad {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 150px 150px 150px 150px;
-	grid-template-rows: 60px 48px;
+	grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+	
 }
 
 .grid-container-general-grupo {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 150px 150px;
-	grid-template-rows: 60px 48px;
+	grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }
 
 .grid-container-general-centro {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: 150px 150px 150px;
-	grid-template-rows: 60px 48px;
+	grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 }
 /*
 colores de botones de las tablas
