@@ -471,7 +471,7 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadAgroindustria},type=${programaAcademico})}">
+									th:href="@{grupos(id=${idFacultadAgroindustria})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadGruposInvestigacionAgroindustria}"></button>
 								</a>
@@ -546,7 +546,7 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${programaAcademico})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadInvestigadoresCienciasEconomicas}"></button>
 								</a>
@@ -662,42 +662,42 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasBasicas},type=${categoriaA1})}">
+									th:href="@{grupos(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${categoriaA1})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadGruposInvestigacionA1CienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasBasicas},type=${categoriaA})}">
+									th:href="@{grupos(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${categoriaA})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadGruposInvestigacionACienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasBasicas},type=${categoriaB})}">
+									th:href="@{grupos(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${categoriaB})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadGruposInvestigacionBCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasBasicas},type=${categoriaC})}">
+									th:href="@{grupos(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${categoriaC})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadGruposInvestigacionCCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasBasicas},type=${categoriaReconocido})}">
+									th:href="@{grupos(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${categoriaReconocido})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadGruposInvestigacionReconocidosCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasBasicas},type=${categoriaNoReconocido})}">
+									th:href="@{grupos(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${categoriaNoReconocido})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadGruposInvestigacionNoReconocidoCienciasBasicas}"></button>
 								</a>
@@ -714,42 +714,42 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadEducacion},type=${categoriaA1})}">
+									th:href="@{grupos(id=${idFacultadEducacion}, type=${tipo}, subType=${categoriaA1})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadGruposInvestigacionA1Educacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadEducacion},type=${categoriaA})}">
+									th:href="@{grupos(id=${idFacultadEducacion}, type=${tipo}, subType=${categoriaA})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadGruposInvestigacionAEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadEducacion},type=${categoriaB})}">
+									th:href="@{grupos(id=${idFacultadEducacion}, type=${tipo}, subType=${categoriaB})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadGruposInvestigacionBEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadEducacion},type=${categoriaC})}">
+									th:href="@{grupos(id=${idFacultadEducacion}, type=${tipo}, subType=${categoriaC})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadGruposInvestigacionCEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadEducacion},type=${categoriaReconocido})}">
+									th:href="@{grupos(id=${idFacultadEducacion}, type=${tipo}, subType=${categoriaReconocido})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadGruposInvestigacionReconocidosEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadEducacion},type=${categoriaNoReconocido})}">
+									th:href="@{grupos(id=${idFacultadEducacion}, type=${tipo}, subType=${categoriaNoReconocido})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadGruposInvestigacionNoReconocidoEducacion}"></button>
 								</a>
@@ -767,42 +767,42 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud},type=${categoriaA1})}">
+									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${categoriaA1})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadGruposInvestigacionA1CienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud},type=${categoriaA})}">
+									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${categoriaA})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadGruposInvestigacionACienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud},type=${categoriaB})}">
+									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${categoriaB})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadGruposInvestigacionBCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud},type=${categoriaC})}">
+									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${categoriaC})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadGruposInvestigacionCCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud},type=${categoriaReconocido})}">
+									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${categoriaReconocido})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadGruposInvestigacionReconocidosCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud},type=${categoriaNoReconocido})}">
+									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${categoriaNoReconocido})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadGruposInvestigacionNoReconocidoCienciasDeLaSalud}"></button>
 								</a>
@@ -820,42 +820,42 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadIngenieria},type=${categoriaA1})}">
+									th:href="@{grupos(id=${idFacultadIngenieria}, type=${tipo}, subType=${categoriaA1})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadGruposInvestigacionA1Ingenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadIngenieria},type=${categoriaA})}">
+									th:href="@{grupos(id=${idFacultadIngenieria}, type=${tipo}, subType=${categoriaA})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadGruposInvestigacionAIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadIngenieria},type=${categoriaB})}">
+									th:href="@{grupos(id=${idFacultadIngenieria}, type=${tipo}, subType=${categoriaB})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadGruposInvestigacionBIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadIngenieria},type=${categoriaC})}">
+									th:href="@{grupos(id=${idFacultadIngenieria}, type=${tipo}, subType=${categoriaC})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadGruposInvestigacionCIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadIngenieria},type=${categoriaReconocido})}">
+									th:href="@{grupos(id=${idFacultadIngenieria}, type=${tipo}, subType=${categoriaReconocido})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadGruposInvestigacionReconocidosIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadIngenieria},type=${categoriaNoReconocido})}">
+									th:href="@{grupos(id=${idFacultadIngenieria}, type=${tipo}, subType=${categoriaNoReconocido})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadGruposInvestigacionNoReconocidoIngenieria}"></button>
 								</a>
@@ -880,35 +880,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasHumanas},type=${categoriaA})}">
+									th:href="@{grupos(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${categoriaA})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadGruposInvestigacionACienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasHumanas},type=${categoriaB})}">
+									th:href="@{grupos(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${categoriaB})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadGruposInvestigacionBCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasHumanas},type=${categoriaC})}">
+									th:href="@{grupos(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${categoriaC})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadGruposInvestigacionCCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasHumanas},type=${categoriaReconocido})}">
+									th:href="@{grupos(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${categoriaReconocido})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadGruposInvestigacionReconocidosCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasHumanas},type=${categoriaNoReconocido})}">
+									th:href="@{grupos(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${categoriaNoReconocido})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadGruposInvestigacionNoReconocidoCienciasHumanas}"></button>
 								</a>
@@ -926,42 +926,42 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadAgroindustria},type=${categoriaA1})}">
+									th:href="@{grupos(id=${idFacultadAgroindustria}, type=${tipo}, subType=${categoriaA1})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadGruposInvestigacionA1Agroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadAgroindustria},type=${categoriaA})}">
+									th:href="@{grupos(id=${idFacultadAgroindustria}, type=${tipo}, subType=${categoriaA})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadGruposInvestigacionAAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadAgroindustria},type=${categoriaB})}">
+									th:href="@{grupos(id=${idFacultadAgroindustria}, type=${tipo}, subType=${categoriaB})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadGruposInvestigacionBAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadAgroindustria},type=${categoriaC})}">
+									th:href="@{grupos(id=${idFacultadAgroindustria}, type=${tipo}, subType=${categoriaC})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadGruposInvestigacionCAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadAgroindustria},type=${categoriaReconocido})}">
+									th:href="@{grupos(id=${idFacultadAgroindustria}, type=${tipo}, subType=${categoriaReconocido})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadGruposInvestigacionReconocidosAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadAgroindustria},type=${categoriaNoReconocido})}">
+									th:href="@{grupos(id=${idFacultadAgroindustria}, type=${tipo}, subType=${categoriaNoReconocido})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadGruposInvestigacionNoReconocidoAgroindustria}"></button>
 								</a>
@@ -979,42 +979,42 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasEconomicas},type=${categoriaA1})}">
+									th:href="@{grupos(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${categoriaA1})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadGruposInvestigacionA1CienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasEconomicas},type=${categoriaA})}">
+									th:href="@{grupos(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${categoriaA})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadGruposInvestigacionACienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasEconomicas},type=${categoriaB})}">
+									th:href="@{grupos(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${categoriaB})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadGruposInvestigacionBCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasEconomicas},type=${categoriaC})}">
+									th:href="@{grupos(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${categoriaC})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadGruposInvestigacionCCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasEconomicas},type=${categoriaReconocido})}">
+									th:href="@{grupos(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${categoriaReconocido})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadGruposInvestigacionReconocidosCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idFacultadCienciasEconomicas},type=${categoriaNoReconocido})}">
+									th:href="@{grupos(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${categoriaNoReconocido})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadGruposInvestigacionNoReconocidoCienciasEconomicas}"></button>
 								</a>
@@ -1032,38 +1032,38 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idUniquindio}, type=${categoriaA1})}">
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaA1})}">
 									<button class="button-title" th:text="${cantidadGruposA1Total}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idUniquindio}, type=${categoriaA})}">
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaA})}">
 									<button class="button-title" th:text="${cantidadGruposATotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idUniquindio}, type=${categoriaB})}">
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaB})}">
 									<button class="button-title" th:text="${cantidadGruposBTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idUniquindio}, type=${categoriaC})}">
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaC})}">
 									<button class="button-title" th:text="${cantidadGruposCTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idUniquindio}, type=${categoriaReconocido})}">
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaReconocido})}">
 									<button class="button-title"
 										th:text="${cantidadGruposReconocidosTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{grupos(id=${idUniquindio}, type=${categoriaNoReconocido})}">
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaNoReconocido})}">
 									<button class="button-title"
 										th:text="${cantidadGruposNoReconocidosTotal}"></button>
 								</a>
@@ -1115,35 +1115,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${investigadorEmerito})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${investigadorEmerito})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadInvestigadoresEmeritosCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${investigadorSenior})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${investigadorSenior})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadInvestigadoresSeniorCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${investigadorAsociado})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${investigadorAsociado})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadInvestigadoresAsociadosCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${investigadorJunior})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${investigadorJunior})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadInvestigadoresJuniorCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${investigadorSinCategoria})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${investigadorSinCategoria})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadInvestigadoresSinCategoriaCienciasBasicas}"></button>
 								</a>
@@ -1160,35 +1160,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${investigadorEmerito})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${investigadorEmerito})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadInvestigadoresEmeritosEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${investigadorSenior})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${investigadorSenior})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadInvestigadoresSeniorEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${investigadorAsociado})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${investigadorAsociado})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadInvestigadoresAsociadosEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${investigadorJunior})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${investigadorJunior})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadInvestigadoresJuniorEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${investigadorSinCategoria})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${investigadorSinCategoria})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadInvestigadoresSinCategoriaEducacion}"></button>
 								</a>
@@ -1206,35 +1206,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${investigadorEmerito})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${investigadorEmerito})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadInvestigadoresEmeritosCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${investigadorSenior})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${investigadorSenior})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadInvestigadoresSeniorCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${investigadorAsociado})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${investigadorAsociado})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadInvestigadoresAsociadosCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${investigadorJunior})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${investigadorJunior})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadInvestigadoresJuniorCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${investigadorSinCategoria})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${investigadorSinCategoria})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadInvestigadoresSinCategoriaCienciasDeLaSalud}"></button>
 								</a>
@@ -1251,35 +1251,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${investigadorEmerito})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${investigadorEmerito})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadInvestigadoresEmeritosIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${investigadorSenior})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${investigadorSenior})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadInvestigadoresSeniorIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${investigadorAsociado})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${investigadorAsociado})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadInvestigadoresAsociadosIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${investigadorJunior})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${investigadorJunior})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadInvestigadoresJuniorIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${investigadorSinCategoria})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${investigadorSinCategoria})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadInvestigadoresSinCategoriaIngenieria}"></button>
 								</a>
@@ -1297,35 +1297,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${investigadorEmerito})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${investigadorEmerito})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadInvestigadoresEmeritosCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${investigadorSenior})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${investigadorSenior})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadInvestigadoresSeniorCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${investigadorAsociado})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${investigadorAsociado})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadInvestigadoresAsociadosCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${investigadorJunior})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${investigadorJunior})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadInvestigadoresJuniorCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${investigadorSinCategoria})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${investigadorSinCategoria})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadInvestigadoresSinCategoriaCienciasHumanas}"></button>
 								</a>
@@ -1342,35 +1342,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${investigadorEmerito})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${investigadorEmerito})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadInvestigadoresEmeritosAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${investigadorSenior})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${investigadorSenior})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadInvestigadoresSeniorAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${investigadorAsociado})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${investigadorAsociado})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadInvestigadoresAsociadosAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${investigadorJunior})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${investigadorJunior})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadInvestigadoresJuniorAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${investigadorSinCategoria})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${investigadorSinCategoria})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadInvestigadoresSinCategoriaAgroindustria}"></button>
 								</a>
@@ -1388,42 +1388,42 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${investigadorEmerito})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${investigadorEmerito})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadInvestigadoresEmeritosCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${investigadorSenior})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${investigadorSenior})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadInvestigadoresSeniorCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${investigadorAsociado})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${investigadorAsociado})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadInvestigadoresAsociadosCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${investigadorJunior})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${investigadorJunior})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadInvestigadoresJuniorCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${investigadorSinCategoria})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${investigadorSinCategoria})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadInvestigadoresSinCategoriaCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${idFacultadCienciasEconomicas})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresCienciasEconomicasTotal}"></button>
 								</a>
@@ -1433,35 +1433,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${investigadorEmerito})}">
+									th:href="@{investigadores(subType=${investigadorEmerito})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresEmeritosTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${investigadorSenior})}">
+									th:href="@{investigadores(subType=${investigadorSenior})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresSeniorTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${investigadorAsociado})}">
+									th:href="@{investigadores(subType=${investigadorAsociado})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresAsociadosTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${investigadorJunior})}">
+									th:href="@{investigadores(subType=${investigadorJunior})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresJuniorTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${investigadorSinCategoria})}">
+									th:href="@{investigadores(subType=${investigadorSinCategoria})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresSinCategoriaTotal}"></button>
 								</a>
@@ -1507,35 +1507,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${formacionDoctor})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${formacionDoctor})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadDocentesDoctoresCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${formacionMagister})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${formacionMagister})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadDocentesMagisterCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${formacionEspecialista})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${formacionEspecialista})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadDocentesEspecialistasCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas},type=${formacionPregrado})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, type=${tipo}, subType=${formacionPregrado})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadDocentesPregradoCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasBasicas})}">
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas}, subType=${docentes})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesCienciasBasicasTotal}"></button>
 								</a>
@@ -1545,35 +1545,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${formacionDoctor})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${formacionDoctor})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadDocentesDoctoresEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${formacionMagister})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${formacionMagister})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadDocentesMagisterEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${formacionEspecialista})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${formacionEspecialista})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadDocentesEspecialistasEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion},type=${formacionPregrado})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, type=${tipo}, subType=${formacionPregrado})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadDocentesPregradoEducacion}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadEducacion})}">
+									th:href="@{investigadores(id=${idFacultadEducacion}, subType=${docentes})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesEducacionTotal}"></button>
 								</a>
@@ -1584,35 +1584,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${formacionDoctor})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${formacionDoctor})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadDocentesDoctoresCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${formacionMagister})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${formacionMagister})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadDocentesMagisterCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${formacionEspecialista})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${formacionEspecialista})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadDocentesEspecialistasCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud},type=${formacionPregrado})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, type=${tipo}, subType=${formacionPregrado})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadDocentesPregradoCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud})}">
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud}, subType=${docentes})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesCienciasDeLaSaludTotal}"></button>
 								</a>
@@ -1622,35 +1622,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${formacionDoctor})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${formacionDoctor})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadDocentesDoctoresIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${formacionMagister})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${formacionMagister})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadDocentesMagisterIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${formacionEspecialista})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${formacionEspecialista})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadDocentesEspecialistasIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria},type=${formacionPregrado})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, type=${tipo}, subType=${formacionPregrado})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadDocentesPregradoIngenieria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadIngenieria})}">
+									th:href="@{investigadores(id=${idFacultadIngenieria}, subType=${docentes})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesIngenieriaTotal}"></button>
 								</a>
@@ -1661,35 +1661,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${formacionDoctor})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${formacionDoctor})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadDocentesDoctoresCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${formacionMagister})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${formacionMagister})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadDocentesMagisterCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${formacionEspecialista})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${formacionEspecialista})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadDocentesEspecialistasCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas},type=${formacionPregrado})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, type=${tipo}, subType=${formacionPregrado})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadDocentesPregradoCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasHumanas})}">
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas}, subType=${docentes})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesCienciasHumanasTotal}"></button>
 								</a>
@@ -1699,35 +1699,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${formacionDoctor})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${formacionDoctor})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadDocentesDoctoresAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${formacionMagister})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${formacionMagister})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadDocentesMagisterAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${formacionEspecialista})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${formacionEspecialista})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadDocentesEspecialistasAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria},type=${formacionPregrado})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, type=${tipo}, subType=${formacionPregrado})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadDocentesPregradoAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadAgroindustria})}">
+									th:href="@{investigadores(id=${idFacultadAgroindustria}, subType=${docentes})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesAgroindustriaTotal}"></button>
 								</a>
@@ -1738,35 +1738,35 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${formacionDoctor})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${formacionDoctor})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadDocentesDoctoresCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${formacionMagister})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${formacionMagister})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadDocentesMagisterCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${formacionEspecialista})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${formacionEspecialista})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadDocentesEspecialistasCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas},type=${formacionPregrado})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, type=${tipo}, subType=${formacionPregrado})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadDocentesPregradoCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(id=${idFacultadCienciasEconomicas})}">
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas}, subType=${docentes})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesCienciasEconomicasTotal}"></button>
 								</a>
@@ -1776,34 +1776,34 @@
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${formacionDoctor})}">
+									th:href="@{investigadores(subType=${formacionDoctor})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesDoctoresTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${formacionMagister})}">
+									th:href="@{investigadores(subType=${formacionMagister})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesMagisterTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${formacionEspecialista})}">
+									th:href="@{investigadores(subType=${formacionEspecialista})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesEspecialistasTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
-									th:href="@{investigadores(type=${formacionPregrado})}">
+									th:href="@{investigadores(subType=${formacionPregrado})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesPregradoTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(type=${docentes})}">
+								<a class="link" th:href="@{investigadores(subType=${docentes})}">
 									<button class="button-title" th:text="${cantidadDocentesTotal}"></button>
 								</a>
 							</div>

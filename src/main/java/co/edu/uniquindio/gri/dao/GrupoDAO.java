@@ -100,13 +100,121 @@ public class GrupoDAO {
 	}
 	
 	/**
-	 * Obtiene un grupo de investigación no reconocidos especificado por un id de facultad.
+	 * Obtiene los grupos A1 de investigacion reconocidos especificado por un id de facultad.
 	 *
 	 * @param facultadId el id de la facultad
-	 * @return el grupo especificado por el id de facultad
+	 * @return los grupos A1 especificado por el id de facultad
+	 */
+	public List<Grupo> getGruposA1Facultad(Long facultadId) {
+		return grupoRepository.getGruposA1Facultad(facultadId);
+	}
+	
+	/**
+	 * Obtiene los grupos A de investigacion reconocidos especificado por un id de facultad.
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return los grupos A especificado por el id de facultad
+	 */
+	public List<Grupo> getGruposAFacultad(Long facultadId) {
+		return grupoRepository.getGruposAFacultad(facultadId);
+	}
+	
+	/**
+	 * Obtiene los grupos B de investigacion reconocidos especificado por un id de facultad.
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return los grupos B especificado por el id de facultad
+	 */
+	public List<Grupo> getGruposBFacultad(Long facultadId) {
+		return grupoRepository.getGruposBFacultad(facultadId);
+	}
+	
+	/**
+	 * Obtiene los grupos C de investigacion reconocidos especificado por un id de facultad.
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return los grupos C especificado por el id de facultad
+	 */
+	public List<Grupo> getGruposCFacultad(Long facultadId) {
+		return grupoRepository.getGruposCFacultad(facultadId);
+	}
+	
+	/**
+	 * Obtiene los grupos reconocidos de investigacion reconocidos especificado por un id de facultad.
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return los grupos reconocidos especificado por el id de facultad
+	 */
+	public List<Grupo> getGruposReconocidosFacultad(Long facultadId) {
+		return grupoRepository.getGruposReconocidosFacultad(facultadId);
+	}
+	
+	/**
+	 * Obtiene los grupos no reconocidos de investigacion reconocidos especificado por un id de facultad.
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return los grupos no reconocidos especificado por el id de facultad
+	 */
+	public List<Grupo> getGruposNoReconocidosFacultad(Long facultadId) {
+		return grupoRepository.getGruposNoReconocidosFacultad(facultadId);
+	}
+	
+	/**
+	 * Obtiene los grupos de investigacion reconocidos especificado por un id de facultad.
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return los grupos especificado por el id de facultad
 	 */
 	public List<Grupo> getAllGruposFacultad(Long facultadId) {
 		return grupoRepository.getAllGruposFacultad(facultadId);
+	}
+	
+	/**
+	 * Obtiene los grupos A1 de la Universidad del Quindío
+	 * @return los grupos A1 de la Universidad del Quindío
+	 */
+	public List<Grupo> getAllGruposA1() {
+		return grupoRepository.getAllGruposA1();
+	}
+	
+	/**
+	 * Obtiene los grupos A de la Universidad del Quindío
+	 * @return los grupos A de la Universidad del Quindío
+	 */
+	public List<Grupo> getAllGruposA() {
+		return grupoRepository.getAllGruposA();
+	}
+	
+	/**
+	 * Obtiene los grupos B de la Universidad del Quindío
+	 * @return los grupos B de la Universidad del Quindío
+	 */
+	public List<Grupo> getAllGruposB() {
+		return grupoRepository.getAllGruposB();
+	}
+	
+	/**
+	 * Obtiene los grupos C de la Universidad del Quindío
+	 * @return los grupos C de la Universidad del Quindío
+	 */
+	public List<Grupo> getAllGruposC() {
+		return grupoRepository.getAllGruposC();
+	}
+	
+	/**
+	 * Obtiene los grupos reconocidos de la Universidad del Quindío
+	 * @return los grupos reconocidos de la Universidad del Quindío
+	 */
+	public List<Grupo> getAllGruposReconocidos() {
+		return grupoRepository.getAllGruposReconocidos();
+	}
+	
+	/**
+	 * Obtiene los grupos no reconocidos de la Universidad del Quindío
+	 * @return los grupos no reconocidos de la Universidad del Quindío
+	 */
+	public List<Grupo> getAllGruposNoReconocidos() {
+		return grupoRepository.getAllGruposNoReconocidos();
 	}
 	
 	/**

@@ -35,12 +35,6 @@ import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.Investigador;
 import co.edu.uniquindio.gri.model.Programa;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.util.JRLoader;
 
 @Controller
 public class WebController {
@@ -120,6 +114,8 @@ public class WebController {
 				} else if (subType.equals("fp")) {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
+				} else if (subType.equals("d")) {
+					model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
@@ -386,6 +382,7 @@ public class WebController {
 		model.addAttribute("id", id);
 		if (Long.parseLong(id) != 0) {
 			if (type.equals("f") || type.equals("u")) {
+				System.out.println(id + type + subType);
 				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasFacultad(Long.parseLong(id)));
 			} else if (type.equals("c")) {
 				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasCentro(Long.parseLong(id)));
@@ -484,33 +481,6 @@ public class WebController {
 			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
 		}
 		return "inventario/inventario";
-	}
-
-	@Autowired
-	JdbcTemplate jdbcTemplate;
-
-	/**
-	 * Permite exportar estadisticas en formato PDF
-	 * 
-	 * @param response
-	 * @throws JRException
-	 * @throws IOException
-	 * @throws SQLException
-	 */
-	@RequestMapping(value = "/uniquindioReport", method = RequestMethod.GET)
-	public void generarReporteUniquindio(HttpServletResponse response) throws JRException, IOException, SQLException {
-
-		Connection conexion = jdbcTemplate.getDataSource().getConnection();
-		InputStream jasperStream = this.getClass().getResourceAsStream("/reportes/estadisticas_uniquindio.jasper");
-		Map<String, Object> params = new HashMap<String, Object>();
-		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, conexion);
-		response.setContentType("application/x-pdf");
-		response.setHeader("Content-disposition", "inline; filename=reporte_universidad_del_quindio.pdf");
-		final OutputStream outStream = response.getOutputStream();
-		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
-		conexion.close();
-
 	}
 
 	@GetMapping("/reporteinventario")
@@ -762,7 +732,7 @@ public class WebController {
 	}
 
 	public String getEstadisticasProgramas(String id, Model model) {
-		
+
 		return "estadisticas/programas";
 	}
 

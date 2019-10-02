@@ -504,6 +504,14 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 */
 	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%PREGRADO%'")
 	List<Investigador> getInvestigadoresInternosPregradoGrupo(@Param("id") Long grupoId);
-	
+
+	/**
+	 * Obtiene los investigadores internos de una facultad
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return lista de investigadores internos de la facultad
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p join p.facultad f where gi.estado = 'ACTUAL' and f.id=:id and i.pertenencia='INVESTIGADOR INTERNO'")
+	List<Investigador> getInvestigadoresInternosFacultad(@Param("id") Long facultadId);
 	
 }
