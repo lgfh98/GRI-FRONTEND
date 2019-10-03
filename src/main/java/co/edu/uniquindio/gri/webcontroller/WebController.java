@@ -926,6 +926,22 @@ public class WebController {
 	}
 
 	public String getEstadisticasInvestigador(String id, Model model) {
+		// ------Llamado a las consultas en la base de datos para
+		// producciones-----------------------------------------------------------------------
+		model.addAttribute("cantidadActividadesDeFormacion",
+				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "0"));
+		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "1"));
+		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "2"));
+		model.addAttribute("cantidadProduccionesBibliograficas",
+				produccionDAO.getCantidadProduccionesBInvestigadorPorTipo(id, "3"));
+		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "4"));
+		model.addAttribute("cantidadProduccionesArte",
+				String.valueOf(produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "6")));
+		model.addAttribute("cantidadProduccionesDemasTrabajos",
+				produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(id, "32"));
+		model.addAttribute("cantidadProduccionesProyectos",
+				produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(id, "33"));
+		
 		return "estadisticas/investigadores";
 	}
 
