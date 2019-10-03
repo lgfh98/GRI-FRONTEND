@@ -87,12 +87,17 @@
 		</dependency>
 		
 		<!-- Optional, for bootstrap -->
-        <dependency>
-            <groupId>org.webjars</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>${bootstrap.version}</version>
-        </dependency>
-
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>${bootstrap.version}</version>
+		</dependency>
+		<!-- JASPER -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
