@@ -81,17 +81,18 @@
 									Investigadores</button>
 							</div>
 
-
-
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link" th:href="@{lineas(id=${idGrupo}, type=${tipo})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadLineasInvestigacion}"></button>
+								</a>
 							</div>
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link" th:href="@{investigadores(id=${idGrupo}, type=${tipo})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadInvestigadores}"></button>
+								</a>
 							</div>
-
-
-
 						</div>
 					</div>
 				</div>
@@ -127,20 +128,39 @@
 									investigadores sin categoría</button>
 							</div>
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
-							</div>
-
-							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
-							</div>
-							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${investigadorEmerito})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadInvestigadoresEmeritos}"></button>
+								</a>
 							</div>
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${investigadorSenior})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadInvestigadoresSenior}"></button>
+								</a>
 							</div>
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${investigadorAsociado})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadInvestigadoresAsociados}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${investigadorJunior})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadInvestigadoresJunior}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${investigadorSinCategoria})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadInvestigadoresSinCategoria}"></button>
+								</a>
 							</div>
 
 						</div>
@@ -178,16 +198,32 @@
 
 
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${formacionDoctor})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadDocentesDoctores}"></button>
+								</a>
 							</div>
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${formacionMagister})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadDocentesMagister}"></button>
+								</a>
 							</div>
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${formacionEspecialista})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadDocentesEspecialistas}"></button>
+								</a>
 							</div>
 							<div>
-								<button th:classappend="${colorTotalBoton}">5</button>
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${formacionPregrado})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text=" ${cantidadDocentesPregrado}"></button>
+								</a>
 							</div>
 
 						</div>
@@ -302,7 +338,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Demás Trabajos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
-									th:text="${cantidadProduccionesDemasTrabajos}">0</span>
+									th:text="${cantidadProduccionesDemasTrabajos}"></span>
 								</a>
 							</div>
 						</li>
@@ -317,7 +353,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Proyectos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
-									th:text="${cantidadProduccionesProyectos}">0</span>
+									th:text="${cantidadProduccionesProyectos}"></span>
 								</a>
 							</div>
 						</li>

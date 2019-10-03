@@ -1,5 +1,6 @@
 package co.edu.uniquindio.gri.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -295,5 +296,9 @@ public class GrupoDAO {
 	 */
 	public List<Grupo> getAllGruposPrograma(Long programaId) {
 		return grupoRepository.getAllGruposPrograma(programaId);
+	}
+
+	public List<BigInteger> getResumenGeneralGrupo(Long grupoId) {
+		return grupoRepository.getResumenGeneralGrupo(grupoId);
 	}
 }

@@ -367,4 +367,42 @@ public class ProduccionDAO {
 	public BigInteger getCantidadProduccionesProgramaPorSubTipo(String centroId, String tipoId) {
 		return produccionRepository.getCantidadProduccionesProgramaPorSubTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
 	}
+	
+	/**
+	 * Obtiene la cantidad de producciones total del grupo por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param grupoId id del grupo
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesGrupoPorTipo(String grupoId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesGrupoPorTipo(Long.parseLong(grupoId), Long.parseLong(tipoId));
+	}
+
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total del grupo por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param grupoId id del grupo
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesBGrupoPorTipo(String grupoId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesBGrupoPorTipo(Long.parseLong(grupoId), Long.parseLong(tipoId));
+	}
+	
+	/**
+	 * Obtiene la cantidad de producciones total del grupo por un sub tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param grupoId id del grupo
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesGrupoPorSubTipo(String grupoId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesGrupoPorSubTipo(Long.parseLong(grupoId), Long.parseLong(tipoId));
+	}
+
+
 }

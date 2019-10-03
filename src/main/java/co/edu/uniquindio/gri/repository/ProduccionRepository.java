@@ -481,5 +481,42 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id AND t.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pgr ON pgr.grupos_id = g.id WHERE pgr.programas_id =:programaId", nativeQuery = true)
 	public BigInteger getCantidadProduccionesProgramaPorSubTipo(@Param("programaId") Long programaId,
 			@Param("prodId") Long prodId);
+	
+	/**
+	 * Obtiene la cantidad de producciones total del grupo por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param grupoId el id del grupo
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId WHERE pg.grupos_id=:grupoId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesGrupoPorTipo(@Param("grupoId") Long grupoId,
+			@Param("prodId") Long prodId);
+	
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total del grupo por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param grupoId el id del grupo
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.bibliograficasg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId WHERE pg.grupos_id=:grupoId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesBGrupoPorTipo(@Param("grupoId") Long grupoId,
+			@Param("prodId") Long prodId);
+	
+	/**
+	 * Obtiene la cantidad de producciones total del grupo por un sub tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param grupoId el id del grupo
+	 * @param prodId     el id del tipo de produccion
+	 */
+	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id AND t.id=:prodId WHERE pg.grupos_id =:grupoId", nativeQuery = true)
+	public BigInteger getCantidadProduccionesGrupoPorSubTipo(@Param("grupoId") Long grupoId,
+			@Param("prodId") Long prodId);
+
 
 }

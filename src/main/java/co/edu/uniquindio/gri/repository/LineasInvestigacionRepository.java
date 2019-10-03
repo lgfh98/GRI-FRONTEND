@@ -48,7 +48,7 @@ public interface LineasInvestigacionRepository extends JpaRepository<LineasInves
 	 * @param grupoid el id del grupo
 	 * @return las lineas de investigación de un grupo
 	 */
-	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id JOIN gri.programas_grupos pg ON pg.grupos_id = g.id JOIN gri.programas p ON p.id = pg.programas_id JOIN gri.facultades f ON f.id = p.facultades_id WHERE f.id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id WHERE gl.grupos_id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
 	List<LineasInvestigacion> getLineasGrupo(@Param("id") Long grupoid);
 
 	/**

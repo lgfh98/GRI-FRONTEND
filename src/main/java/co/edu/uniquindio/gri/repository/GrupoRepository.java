@@ -1,5 +1,6 @@
 package co.edu.uniquindio.gri.repository;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -210,4 +211,27 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%N/D%'")
 	List<Grupo> getGruposNoReconocidosPrograma(@Param(value="programaId") Long programaId);
+
+	/**
+	 * Obtiene el resumen general del grupo en números
+	 * la lista en cada posición obtiene lo siguiente:
+	 * 0 - Cantidad de lineas investigación 
+	 * 1 - Cantidad investigadores
+	 * 2 - Investigadores emeritos
+	 * 3 - Investigador senior
+	 * 4 - Investigador asociados
+	 * 5 - Investigador junior
+	 * 6 - Investigador sin categoria
+	 * 7 - Docentes con doctorado
+	 * 8 - Docentes con magister
+	 * 9 - Docentes especialistas
+	 * 10 - Docentes pregrado
+	 * 
+	 * @param Long programaId, id del grupo.
+	 *
+	 * @return lista con los totales anteriores
+	 */
+	@Query(value = "SELECT Count (DISTINCT l.nombre) FROM  gri.lineasinvestigacion l JOIN (SELECT DISTINCT gl.lineasinvestigacion_id lineas FROM  gri.grupos_lineas gl  WHERE gl.grupos_id =:grupoId)a ON l.id = a.lineas UNION ALL SELECT Count (DISTINCT gi.investigadores_id) FROM  gri.grupos_inves gi WHERE gi.estado = 'ACTUAL'  AND gi.grupos_id=:grupoId UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%EMÉRITO%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%SENIOR%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%ASOCIADO%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%JUNIOR%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%SIN CAT%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.pertenencia LIKE '%INTERNO%' AND i.nivelacademico LIKE '%DOCTORADO%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.pertenencia LIKE '%INTERNO%' AND i.nivelacademico LIKE '%MAGISTER%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.pertenencia LIKE '%INTERNO%' AND i.nivelacademico IN ('ESPECIALIZACIÓN', 'ESPECIALIDAD MÉDICA')UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.pertenencia LIKE '%INTERNO%' AND i.nivelacademico LIKE '%PREGRADO%'", nativeQuery = true)
+	List<BigInteger> getResumenGeneralGrupo(@Param(value="grupoId") Long grupoId);
+
 }
