@@ -234,7 +234,6 @@ public class WebController {
 		return "inventario/inventario";
 	}
 
-
 	@GetMapping("/reporteinventario")
 	public String getReporteInventario(@RequestParam(name = "id", required = true) String id, Model model) {
 
@@ -264,11 +263,46 @@ public class WebController {
 
 		List<JasperPrint> jasperPrintList = new ArrayList<>();
 
+		String color_facultad = "";
+
+		if (type.equals("f")) {
+			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
+			color_facultad = f.getNombre();
+		} else if (type.equals("p")) {
+			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
+			color_facultad = p.getFacultad().getNombre();
+		} else if (type.equals("c")) {
+			Centro c = centroDAO.getCentroById(Long.parseLong(id));
+			color_facultad = c.getFacultad().getNombre();
+		} else if (type.equals("g")) {
+			Grupo g = grupoDAO.findOne(Long.parseLong(id));
+			color_facultad = g.getProgramas().get(0).getFacultad().getNombre();
+		}
+
 		int aux = 1;
+		InputStream input = null;
 
 		while (true) {
-			InputStream input = this.getClass()
-					.getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
+
+			if (type.equals("u")) {
+				input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
+			} else {
+				if (color_facultad.equals("CIENCIAS BÁSICAS")) {
+
+				} else if (color_facultad.equals("EDUCACIÓN")) {
+
+				} else if (color_facultad.equals("CIENCIAS DE LA SALUD")) {
+
+				} else if (color_facultad.equals("INGENIERÍA")) {
+
+				} else if (color_facultad.equals("CIENCIAS HUMANAS")) {
+
+				} else if (color_facultad.equals("AGROINDUSTRIA")) {
+
+				} else if (color_facultad.equals("CIENCIAS ECONÓMICAS")) {
+
+				}
+			}
 
 			if (input == null) {
 				break;
@@ -283,8 +317,7 @@ public class WebController {
 		}
 
 		response.setContentType("application/x-pdf");
-		response.setHeader("Content-disposition",
-				"inline; filename=reporte.pdf");
+		response.setHeader("Content-disposition", "inline; filename=reporte.pdf");
 
 		final OutputStream outStream = response.getOutputStream();
 
