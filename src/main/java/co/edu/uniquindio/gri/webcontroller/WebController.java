@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.thymeleaf.util.DartUtils;
 
 import co.edu.uniquindio.gri.dao.CentroDAO;
 import co.edu.uniquindio.gri.dao.FacultadDAO;
@@ -35,11 +32,14 @@ import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.Investigador;
 import co.edu.uniquindio.gri.model.Programa;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
 
 @Controller
 public class WebController {
@@ -61,6 +61,9 @@ public class WebController {
 
 	@Autowired
 	ProduccionDAO produccionDAO;
+
+	@Autowired
+	JdbcTemplate jdbcTemplate;
 
 	@GetMapping(value = { "/", "inicio" })
 	public String main(Model model) {
@@ -231,32 +234,6 @@ public class WebController {
 		return "inventario/inventario";
 	}
 
-	@Autowired
-	JdbcTemplate jdbcTemplate;
-
-	/**
-	 * Permite exportar estadisticas en formato PDF
-	 * 
-	 * @param response
-	 * @throws JRException
-	 * @throws IOException
-	 * @throws SQLException
-	 */
-	@RequestMapping(value = "/uniquindioReport", method = RequestMethod.GET)
-	public void generarReporteUniquindio(HttpServletResponse response) throws JRException, IOException, SQLException {
-
-		Connection conexion = jdbcTemplate.getDataSource().getConnection();
-		InputStream jasperStream = this.getClass().getResourceAsStream("/reportes/main_Book.jasper");
-		Map<String, Object> params = new HashMap<String, Object>();
-		JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
-		JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, conexion);
-		response.setContentType("application/x-pdf");
-		response.setHeader("Content-disposition", "inline; filename=reporte_universidad_del_quindio.pdf");
-		final OutputStream outStream = response.getOutputStream();
-		JasperExportManager.exportReportToPdfStream(jasperPrint, outStream);
-		conexion.close();
-
-	}
 
 	@GetMapping("/reporteinventario")
 	public String getReporteInventario(@RequestParam(name = "id", required = true) String id, Model model) {
@@ -268,6 +245,64 @@ public class WebController {
 		model.addAttribute("producciones", produccionDAO.getAllProducciones(Long.parseLong(id)));
 
 		return "inventario/reporteinventario";
+	}
+
+	/**
+	 * permite obtener el reporte estadistico solicitado en formato pdf
+	 * 
+	 * @param type
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/reporteestadistico")
+	public void getReporteEstadistico(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model,
+			HttpServletResponse response) throws SQLException, IOException, JRException {
+
+		Connection conexion = jdbcTemplate.getDataSource().getConnection();
+
+		List<JasperPrint> jasperPrintList = new ArrayList<>();
+
+		int aux = 1;
+
+		while (true) {
+			InputStream input = this.getClass()
+					.getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
+
+			if (input == null) {
+				break;
+			} else {
+				aux++;
+			}
+
+			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(input);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conexion);
+			jasperPrintList.add(jasperPrint);
+
+		}
+
+		response.setContentType("application/x-pdf");
+		response.setHeader("Content-disposition",
+				"inline; filename=reporte.pdf");
+
+		final OutputStream outStream = response.getOutputStream();
+
+		JRPdfExporter exporter = new JRPdfExporter();
+
+		exporter.setExporterInput(SimpleExporterInput.getInstance(jasperPrintList));
+
+		SimpleOutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(outStream);
+
+		exporter.setExporterOutput(exporterOutput);
+
+		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+		exporter.setConfiguration(configuration);
+
+		exporter.exportReport();
+
+		conexion.close();
+
 	}
 
 	@GetMapping("/estadisticas")
