@@ -157,15 +157,15 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	List<Grupo> getAllGruposNoReconocidos();
 	
 	/**
-	 * Obtiene los grupos pertenecientes a una facultad especifica
+	 * Obtiene los grupos pertenecientes a un programa especifico
 	 * 
-	 * @param programaId el id de la facultad
+	 * @param programaId el id del programa
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId")
 	List<Grupo> getAllGruposPrograma(@Param(value="programaId") Long programaId);
 	
 	/**
-	 * Obtiene los grupos A1 pertenecientes a una facultad especifica
+	 * Obtiene los grupos A1 pertenecientes a un programa especifico
 	 * 
 	 * @param programaId el id del programa
 	 */
@@ -173,7 +173,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	List<Grupo> getGruposA1Programa(@Param(value="programaId") Long programaId);
 	
 	/**
-	 * Obtiene los grupos A pertenecientes a una facultad especifica
+	 * Obtiene los grupos A pertenecientes a un programa especifico
 	 * 
 	 * @param programaId el id del programa
 	 */
@@ -181,7 +181,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	List<Grupo> getGruposAPrograma(@Param(value="programaId") Long programaId);
 	
 	/**
-	 * Obtiene los grupos B pertenecientes a una facultad especifica
+	 * Obtiene los grupos B pertenecientes a un programa especifico
 	 * 
 	 * @param programaId el id del programa
 	 */
@@ -189,7 +189,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	List<Grupo> getGruposBPrograma(@Param(value="programaId") Long programaId);
 	
 	/**momoomm
-	 * Obtiene los grupos C pertenecientes a una facultad especifica
+	 * Obtiene los grupos C pertenecientes a un programa especifico
 	 * 
 	 * @param programaId el id del programa
 	 */
@@ -197,7 +197,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	List<Grupo> getGruposCPrograma(@Param(value="programaId") Long programaId);
 	
 	/**
-	 * Obtiene los grupos reconocidos pertenecientes a una facultad especifica
+	 * Obtiene los grupos reconocidos pertenecientes a un programa especifico
 	 * 
 	 * @param programaId el id del programa
 	 */
@@ -205,7 +205,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	List<Grupo> getGruposReconocidosPrograma(@Param(value="programaId") Long programaId);
 	
 	/**
-	 * Obtiene los grupos no reconocidos pertenecientes a una facultad especifica
+	 * Obtiene los grupos no reconocidos pertenecientes a un programa especifico
 	 * 
 	 * @param programaId el id del programa
 	 */
@@ -233,5 +233,61 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 */
 	@Query(value = "SELECT Count (DISTINCT l.nombre) FROM  gri.lineasinvestigacion l JOIN (SELECT DISTINCT gl.lineasinvestigacion_id lineas FROM  gri.grupos_lineas gl  WHERE gl.grupos_id =:grupoId)a ON l.id = a.lineas UNION ALL SELECT Count (DISTINCT gi.investigadores_id) FROM  gri.grupos_inves gi WHERE gi.estado = 'ACTUAL'  AND gi.grupos_id=:grupoId UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%EMÉRITO%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%SENIOR%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%ASOCIADO%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%JUNIOR%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.categoria LIKE '%SIN CAT%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.pertenencia LIKE '%INTERNO%' AND i.nivelacademico LIKE '%DOCTORADO%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.pertenencia LIKE '%INTERNO%' AND i.nivelacademico LIKE '%MAGISTER%' UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.pertenencia LIKE '%INTERNO%' AND i.nivelacademico IN ('ESPECIALIZACIÓN', 'ESPECIALIDAD MÉDICA')UNION ALL SELECT Count (DISTINCT i.id) FROM  gri.investigadores i JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' AND gi.grupos_id =:grupoId  AND i.pertenencia LIKE '%INTERNO%' AND i.nivelacademico LIKE '%PREGRADO%'", nativeQuery = true)
 	List<BigInteger> getResumenGeneralGrupo(@Param(value="grupoId") Long grupoId);
+
+	/**
+	 * Obtiene los grupos pertenecientes a un centro especifico
+	 * 
+	 * @param centroId el id del centro
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId")
+	List<Grupo> getAllGruposCentro(@Param(value="centroId") Long centroId);
+	
+	/**
+	 * Obtiene los grupos A1 pertenecientes a un centro especifico
+	 * 
+	 * @param centroId el id del centro
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%A1 CON VIGENCIA%'")
+	List<Grupo> getGruposA1Centro(@Param(value="centroId") Long centroId);
+	
+	/**
+	 * Obtiene los grupos A pertenecientes a un centro especifico
+	 * 
+	 * @param centroId el id del centro
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%A CON VIGENCIA%'")
+	List<Grupo> getGruposACentro(@Param(value="centroId") Long centroId);
+	
+	/**
+	 * Obtiene los grupos B pertenecientes a un centro especifico
+	 * 
+	 * @param centroId el id del centro
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%B CON VIGENCIA%'")
+	List<Grupo> getGruposBCentro(@Param(value="centroId") Long centroId);
+	
+	/**momoomm
+	 * Obtiene los grupos C pertenecientes a un centro especifico
+	 * 
+	 * @param centroId el id del centro
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%C CON VIGENCIA%'")
+	List<Grupo> getGruposCCentro(@Param(value="centroId") Long centroId);
+	
+	/**
+	 * Obtiene los grupos reconocidos pertenecientes a un centro especifico
+	 * 
+	 * @param centroId el id del centro
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%SIN CATEGORÍA%'")
+	List<Grupo> getGruposReconocidosCentro(@Param(value="centroId") Long centroId);
+	
+	/**
+	 * Obtiene los grupos no reconocidos pertenecientes a una centro especifico
+	 * 
+	 * @param centroId el id del centro
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%N/D%'")
+	List<Grupo> getGruposNoReconocidosCentro(@Param(value="centroId") Long centroId);
 
 }

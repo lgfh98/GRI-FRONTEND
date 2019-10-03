@@ -323,19 +323,19 @@ public class WebController {
 				}
 			} else if (type.equals("c")) {
 				if (subType.equals("ca1")) {
-					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Facultad(Long.parseLong(id)));
+					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Centro(Long.parseLong(id)));
 				} else if (subType.equals("ca")) {
-					model.addAttribute("listaGrupos", grupoDAO.getGruposAFacultad(Long.parseLong(id)));
+					model.addAttribute("listaGrupos", grupoDAO.getGruposACentro(Long.parseLong(id)));
 				} else if (subType.equals("cb")) {
-					model.addAttribute("listaGrupos", grupoDAO.getGruposBFacultad(Long.parseLong(id)));
+					model.addAttribute("listaGrupos", grupoDAO.getGruposBCentro(Long.parseLong(id)));
 				} else if (subType.equals("cc")) {
-					model.addAttribute("listaGrupos", grupoDAO.getGruposCFacultad(Long.parseLong(id)));
+					model.addAttribute("listaGrupos", grupoDAO.getGruposCCentro(Long.parseLong(id)));
 				} else if (subType.equals("cr")) {
-					model.addAttribute("listaGrupos", grupoDAO.getGruposReconocidosFacultad(Long.parseLong(id)));
+					model.addAttribute("listaGrupos", grupoDAO.getGruposReconocidosCentro(Long.parseLong(id)));
 				} else if (subType.equals("cnr")) {
-					model.addAttribute("listaGrupos", grupoDAO.getGruposNoReconocidosFacultad(Long.parseLong(id)));
+					model.addAttribute("listaGrupos", grupoDAO.getGruposNoReconocidosCentro(Long.parseLong(id)));
 				} else {
-					model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+					model.addAttribute("listaGrupos", grupoDAO.getAllGruposCentro_0(Long.parseLong(id)));
 				}
 			} else if (type.equals("p")) {
 				if (subType.equals("ca1")) {

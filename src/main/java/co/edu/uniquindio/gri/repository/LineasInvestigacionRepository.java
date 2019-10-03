@@ -30,7 +30,7 @@ public interface LineasInvestigacionRepository extends JpaRepository<LineasInves
 	 * @param facultadId el id del centro
 	 * @return las lineas de investigación de un centro
 	 */
-	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id JOIN gri.programas_grupos pg ON pg.grupos_id = g.id JOIN gri.programas p ON p.id = pg.programas_id JOIN gri.facultades f ON f.id = p.facultades_id WHERE f.id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id WHERE g.centros_id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
 	List<LineasInvestigacion> getLineasCentro(@Param("id") Long centroId);
 
 	/**
