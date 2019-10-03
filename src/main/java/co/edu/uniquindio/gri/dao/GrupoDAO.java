@@ -226,4 +226,74 @@ public class GrupoDAO {
 	public List<Grupo> getAllGruposCentro(Long centroId) {
 		return grupoRepository.getGruposCentro(centroId);
 	}
+	
+	/**
+	 * Obtiene los grupos A1 de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos A1 especificado por el id de programa
+	 */
+	public List<Grupo> getGruposA1Programa(Long programaId) {
+		return grupoRepository.getGruposA1Programa(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos A de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos A especificado por el id de programa
+	 */
+	public List<Grupo> getGruposAPrograma(Long programaId) {
+		return grupoRepository.getGruposAPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos B de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos B especificado por el id de programa
+	 */
+	public List<Grupo> getGruposBPrograma(Long programaId) {
+		return grupoRepository.getGruposBPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos C de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos C especificado por el id de programa
+	 */
+	public List<Grupo> getGruposCPrograma(Long programaId) {
+		return grupoRepository.getGruposCPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos reconocidos de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id de la programa
+	 * @return los grupos reconocidos especificado por el id de programa
+	 */
+	public List<Grupo> getGruposReconocidosPrograma(Long programaId) {
+		return grupoRepository.getGruposReconocidosPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos no reconocidos de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos no reconocidos especificado por el id de programa
+	 */
+	public List<Grupo> getGruposNoReconocidosPrograma(Long programaId) {
+		return grupoRepository.getGruposNoReconocidosPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene un grupo de investigación no reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return el grupo especificado por el id de programa
+	 */
+	public List<Grupo> getAllGruposPrograma(Long programaId) {
+		return grupoRepository.getAllGruposPrograma(programaId);
+	}
 }

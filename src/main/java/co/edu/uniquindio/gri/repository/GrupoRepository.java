@@ -154,4 +154,60 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria like '%N/D%'")
 	List<Grupo> getAllGruposNoReconocidos();
+	
+	/**
+	 * Obtiene los grupos pertenecientes a una facultad especifica
+	 * 
+	 * @param programaId el id de la facultad
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId")
+	List<Grupo> getAllGruposPrograma(@Param(value="programaId") Long programaId);
+	
+	/**
+	 * Obtiene los grupos A1 pertenecientes a una facultad especifica
+	 * 
+	 * @param programaId el id del programa
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%A1 CON VIGENCIA%'")
+	List<Grupo> getGruposA1Programa(@Param(value="programaId") Long programaId);
+	
+	/**
+	 * Obtiene los grupos A pertenecientes a una facultad especifica
+	 * 
+	 * @param programaId el id del programa
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%A CON VIGENCIA%'")
+	List<Grupo> getGruposAPrograma(@Param(value="programaId") Long programaId);
+	
+	/**
+	 * Obtiene los grupos B pertenecientes a una facultad especifica
+	 * 
+	 * @param programaId el id del programa
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%B CON VIGENCIA%'")
+	List<Grupo> getGruposBPrograma(@Param(value="programaId") Long programaId);
+	
+	/**momoomm
+	 * Obtiene los grupos C pertenecientes a una facultad especifica
+	 * 
+	 * @param programaId el id del programa
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%C CON VIGENCIA%'")
+	List<Grupo> getGruposCPrograma(@Param(value="programaId") Long programaId);
+	
+	/**
+	 * Obtiene los grupos reconocidos pertenecientes a una facultad especifica
+	 * 
+	 * @param programaId el id del programa
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%SIN CATEGORÍA%'")
+	List<Grupo> getGruposReconocidosPrograma(@Param(value="programaId") Long programaId);
+	
+	/**
+	 * Obtiene los grupos no reconocidos pertenecientes a una facultad especifica
+	 * 
+	 * @param programaId el id del programa
+	 */
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%N/D%'")
+	List<Grupo> getGruposNoReconocidosPrograma(@Param(value="programaId") Long programaId);
 }

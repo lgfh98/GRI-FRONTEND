@@ -264,8 +264,6 @@ public class ProduccionDAO {
 	 * Obtiene la cantidad de producciones total de la facultad por un tipo
 	 * especifico de producción.
 	 * 
-	 * @param id
-	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param idFacultad id de la facultad
 	 * @param tipoId tipo de producción
@@ -277,8 +275,6 @@ public class ProduccionDAO {
 	/**
 	 * Obtiene la cantidad de producciones bibliográficas total de la facultad por un tipo
 	 * especifico de producción.
-	 * 
-	 * @param id
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param idFacultad id de la facultad
@@ -292,8 +288,6 @@ public class ProduccionDAO {
 	 * Obtiene la cantidad de producciones total de la facultad por un sub tipo
 	 * especifico de producción.
 	 * 
-	 * @param id
-	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param idFacultad id de la facultad
 	 * @param tipoId tipo de producción
@@ -305,8 +299,6 @@ public class ProduccionDAO {
 	/**
 	 * Obtiene la cantidad de producciones total del centro por un tipo
 	 * especifico de producción.
-	 * 
-	 * @param id
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param centroId id del centro
@@ -320,8 +312,6 @@ public class ProduccionDAO {
 	 * Obtiene la cantidad de producciones bibliográficas total del centro por un tipo
 	 * especifico de producción.
 	 * 
-	 * @param id
-	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param centroId id del centro
 	 * @param tipoId tipo de producción
@@ -334,13 +324,47 @@ public class ProduccionDAO {
 	 * Obtiene la cantidad de producciones total del centro por un sub tipo
 	 * especifico de producción.
 	 * 
-	 * @param id
-	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param centroId id del centro
 	 * @param tipoId tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesCentroPorSubTipo(String centroId, String tipoId) {
 		return produccionRepository.getCantidadProduccionesCentroPorSubTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+	}
+	
+	/**
+	 * Obtiene la cantidad de producciones total del programa por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param programaId id del programa
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesProgramaPorTipo(String centroId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesProgramaPorTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+	}
+
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total del centro por un tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param programaId id del programa
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesBProgramaPorTipo(String centroId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesBProgramaPorTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+	}
+	
+	/**
+	 * Obtiene la cantidad de producciones total del programa por un sub tipo
+	 * especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param programaId id del programa
+	 * @param tipoId tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesProgramaPorSubTipo(String centroId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesProgramaPorSubTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
 	}
 }
