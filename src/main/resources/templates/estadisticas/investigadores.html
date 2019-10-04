@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head
-	th:replace="fragments/header :: header('Centros de Investigación')">
+	th:replace="fragments/header :: header('Estadisticas Investigador')">
 <meta charset="utf-8" />
 </head>
 
@@ -157,7 +157,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Demás Trabajos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
-									th:text="${cantidadProduccionesDemasTrabajos}">0</span>
+									th:text="${cantidadProduccionesDemasTrabajos}"></span>
 								</a>
 							</div>
 						</li>
@@ -172,7 +172,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Proyectos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
-									th:text="${cantidadProduccionesProyectos}">0</span>
+									th:text="${cantidadProduccionesProyectos}"></span>
 								</a>
 							</div>
 						</li>

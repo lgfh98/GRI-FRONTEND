@@ -24,6 +24,7 @@ import co.edu.uniquindio.gri.dao.CentroDAO;
 import co.edu.uniquindio.gri.dao.FacultadDAO;
 import co.edu.uniquindio.gri.dao.GrupoDAO;
 import co.edu.uniquindio.gri.dao.InvestigadorDAO;
+import co.edu.uniquindio.gri.dao.LineasInvestigacionDAO;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
 import co.edu.uniquindio.gri.dao.ProgramaDAO;
 import co.edu.uniquindio.gri.model.Centro;
@@ -65,6 +66,9 @@ public class WebController {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	LineasInvestigacionDAO lineasInvestigacionDAO;
+
 	@GetMapping(value = { "/", "inicio" })
 	public String main(Model model) {
 		List<BigInteger> stats = facultadDAO.getStats();
@@ -85,13 +89,173 @@ public class WebController {
 	}
 
 	@GetMapping("/investigadores")
-	public String getInvestigadores(Model model) {
-		model.addAttribute("listaInvestigadores", investigadorDAO.findAll());
+	public String getInvestigadores(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
+		if (Long.parseLong(id) != 0) {
+			if (type.equals("f") || type.equals("u")) {
+				if (subType.equals("ie")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("is")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSeniorFacultad(Long.parseLong(id)));
+				} else if (subType.equals("ia")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresAsociadosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("ij")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresJuniorFacultad(Long.parseLong(id)));
+				} else if (subType.equals("isc")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSinCategoriaFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fd")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosDoctoresFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fm")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosMagisterFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fe")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosEspecialistasFacultad(Long.parseLong(id)));
+				} else if (subType.equals("fp")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
+				} else if (subType.equals("d")) {
+					model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
+				}
+			} else if (type.equals("g")) {
+				if (subType.equals("ie")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresEmeritosGrupo(Long.parseLong(id)));
+				} else if (subType.equals("is")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSeniorGrupo(Long.parseLong(id)));
+				} else if (subType.equals("ia")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresAsociadosGrupo(Long.parseLong(id)));
+				} else if (subType.equals("ij")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresJuniorGrupo(Long.parseLong(id)));
+				} else if (subType.equals("isc")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSinCategoriaGrupo(Long.parseLong(id)));
+				} else if (subType.equals("fd")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosDoctoresGrupo(Long.parseLong(id)));
+				} else if (subType.equals("fm")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosMagisterGrupo(Long.parseLong(id)));
+				} else if (subType.equals("fe")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosEspecialistasGrupo(Long.parseLong(id)));
+				} else if (subType.equals("fp")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosPregradoGrupo(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresGrupo(Long.parseLong(id)));
+				}
+			} else if (type.equals("c")) {
+				if (subType.equals("ie")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresEmeritosCentro(Long.parseLong(id)));
+				} else if (subType.equals("is")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSeniorCentro(Long.parseLong(id)));
+				} else if (subType.equals("ia")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresAsociadosCentro(Long.parseLong(id)));
+				} else if (subType.equals("ij")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresJuniorCentro(Long.parseLong(id)));
+				} else if (subType.equals("isc")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSinCategoriaCentro(Long.parseLong(id)));
+				} else if (subType.equals("fd")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosDoctoresCentro(Long.parseLong(id)));
+				} else if (subType.equals("fm")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosMagisterCentro(Long.parseLong(id)));
+				} else if (subType.equals("fe")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosEspecialistasCentro(Long.parseLong(id)));
+				} else if (subType.equals("fp")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosPregradoCentro(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresCentro(Long.parseLong(id)));
+				}
+			} else if (type.equals("p")) {
+				if (subType.equals("ie")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresEmeritosPrograma(Long.parseLong(id)));
+				} else if (subType.equals("is")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSeniorPrograma(Long.parseLong(id)));
+				} else if (subType.equals("ia")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresAsociadosPrograma(Long.parseLong(id)));
+				} else if (subType.equals("ij")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresJuniorPrograma(Long.parseLong(id)));
+				} else if (subType.equals("isc")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresSinCategoriaPrograma(Long.parseLong(id)));
+				} else if (subType.equals("fd")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosDoctoresPrograma(Long.parseLong(id)));
+				} else if (subType.equals("fm")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosMagisterPrograma(Long.parseLong(id)));
+				} else if (subType.equals("fe")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosEspecialistasPrograma(Long.parseLong(id)));
+				} else if (subType.equals("fp")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresInternosPregradoPrograma(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getInvestigadoresPrograma(Long.parseLong(id)));
+				}
+			}
+		} else {
+			if (subType.equals("ie")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresEmeritos());
+			} else if (subType.equals("is")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresSenior());
+			} else if (subType.equals("ia")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresAsociado());
+			} else if (subType.equals("ij")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresJunior());
+			} else if (subType.equals("isc")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresSinCategoria());
+			} else if (subType.equals("fd")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosDoctores());
+			} else if (subType.equals("fm")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosMagister());
+			} else if (subType.equals("fe")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresEspecialistas());
+			} else if (subType.equals("fp")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresPregrado());
+			} else if (subType.equals("d")) {
+				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternos());
+			} else {
+				model.addAttribute("listaInvestigadores", investigadorDAO.findAll());
+			}
+		}
 		return "investigadores";
 	}
 
 	@GetMapping("/programas")
-	public String getProgramas(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
+	public String getProgramas(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
 		model.addAttribute("type", type);
 		model.addAttribute("id", id);
@@ -105,6 +269,8 @@ public class WebController {
 			} else if (type.equals("pe")) {
 				model.addAttribute("listaProgramas",
 						programaDAO.getProgramasEspecializacionFacultad(Long.parseLong(id)));
+			} else {
+				model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
 			}
 		} else {
 			if (type.equals("pa")) {
@@ -142,14 +308,105 @@ public class WebController {
 	}
 
 	@GetMapping("/grupos")
-	public String getGrupos(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
+	public String getGrupos(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
 		if (Long.parseLong(id) != 0) {
-			model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+			if (type.equals("f") || type.equals("u")) {
+				if (subType.equals("ca1")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Facultad(Long.parseLong(id)));
+				} else if (subType.equals("ca")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposAFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cb")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposBFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cc")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposCFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposReconocidosFacultad(Long.parseLong(id)));
+				} else if (subType.equals("cnr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposNoReconocidosFacultad(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaGrupos", grupoDAO.getAllGruposFacultad(Long.parseLong(id)));
+				}
+			} else if (type.equals("c")) {
+				if (subType.equals("ca1")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Centro(Long.parseLong(id)));
+				} else if (subType.equals("ca")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposACentro(Long.parseLong(id)));
+				} else if (subType.equals("cb")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposBCentro(Long.parseLong(id)));
+				} else if (subType.equals("cc")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposCCentro(Long.parseLong(id)));
+				} else if (subType.equals("cr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposReconocidosCentro(Long.parseLong(id)));
+				} else if (subType.equals("cnr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposNoReconocidosCentro(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaGrupos", grupoDAO.getAllGruposCentro_0(Long.parseLong(id)));
+				}
+			} else if (type.equals("p")) {
+				if (subType.equals("ca1")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Programa(Long.parseLong(id)));
+				} else if (subType.equals("ca")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposAPrograma(Long.parseLong(id)));
+				} else if (subType.equals("cb")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposBPrograma(Long.parseLong(id)));
+				} else if (subType.equals("cc")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposCPrograma(Long.parseLong(id)));
+				} else if (subType.equals("cr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposReconocidosPrograma(Long.parseLong(id)));
+				} else if (subType.equals("cnr")) {
+					model.addAttribute("listaGrupos", grupoDAO.getGruposNoReconocidosPrograma(Long.parseLong(id)));
+				} else {
+					model.addAttribute("listaGrupos", grupoDAO.getAllGruposPrograma(Long.parseLong(id)));
+				}
+			}
 		} else {
-			model.addAttribute("listaGrupos", grupoDAO.findAll());
+			if (subType.equals("ca1")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposA1());
+			} else if (subType.equals("ca")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposA());
+			} else if (subType.equals("cb")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposB());
+			} else if (subType.equals("cc")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposC());
+			} else if (subType.equals("cr")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposReconocidos());
+			} else if (subType.equals("cnr")) {
+				model.addAttribute("listaGrupos", grupoDAO.getAllGruposNoReconocidos());
+			} else {
+				model.addAttribute("listaGrupos", grupoDAO.findAll());
+			}
 		}
 		return "grupos";
+	}
+
+	@GetMapping("/lineas")
+	public String getLineasInvestigacion(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "subType", required = false, defaultValue = "u") String subType,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
+		if (Long.parseLong(id) != 0) {
+			if (type.equals("f") || type.equals("u")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasFacultad(Long.parseLong(id)));
+			} else if (type.equals("c")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasCentro(Long.parseLong(id)));
+			} else if (type.equals("p")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasPrograma(Long.parseLong(id)));
+			} else if (type.equals("g")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasGrupo(Long.parseLong(id)));
+			} else if (type.equals("i")) {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasGrupo(Long.parseLong(id)));
+			} else {
+				model.addAttribute("listaLineas", lineasInvestigacionDAO.findAll());
+			}
+		} else {
+			model.addAttribute("listaLineas", lineasInvestigacionDAO.findAll());
+		}
+		return "lineas";
 	}
 
 	@GetMapping("/general")
@@ -349,9 +606,11 @@ public class WebController {
 		model.addAttribute("color", datos[1]);
 		model.addAttribute("colorTituloBoton", datos[2]);
 		model.addAttribute("colorTotalBoton", datos[3]);
-		model.addAttribute("informaciongeneral", datos[4]);
 
-		String[] contacto = null;
+		List<String> stringinfo = formatoCadena(datos[4]);
+		List<String> stringcontacto = formatoCadena(datos[5]);
+		model.addAttribute("infogeneral", stringinfo);
+		model.addAttribute("contacto", stringcontacto);
 
 		if (type.equals("f")) {
 
@@ -362,24 +621,11 @@ public class WebController {
 			return getEstadisticasProgramas(id, model);
 
 		} else if (type.equals("c")) {
-			if (!datos[5].equals("")) {
-
-				contacto = datos[5].split("\n");
-				model.addAttribute("contactolugar", contacto[0]);
-				model.addAttribute("contactelefono", contacto[1]);
-				model.addAttribute("contactocorreo", contacto[2]);
-				model.addAttribute("contactohorario", contacto[3]);
-
-			}
 
 			return getEstadisticasCentros(id, model);
 
 		} else if (type.equals("g")) {
-			if (!datos[5].equals("")) {
-				contacto = datos[5].split("\n");
-
-			}
-
+			model.addAttribute("infogeneral", datos[4]);
 			return getEstadisticasGrupo(id, model);
 
 		} else if (type.equals("i")) {
@@ -408,8 +654,8 @@ public class WebController {
 			datos[1] = "card-" + f.getId();
 			datos[2] = "btn-title-grid-" + f.getId();
 			datos[3] = "btn-total-grid-" + f.getId();
-			datos[4] = "";
-			datos[5] = "";
+			datos[4] = f.getInformaciongeneral();
+			datos[5] = f.getContacto();
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 
@@ -417,8 +663,8 @@ public class WebController {
 			datos[1] = "card-" + p.getFacultad().getId();
 			datos[2] = "btn-title-grid-" + p.getFacultad().getId();
 			datos[3] = "btn-total-grid-" + p.getFacultad().getId();
-			datos[4] = "";
-			datos[5] = "";
+			datos[4] = p.getInformaciongeneral();
+			datos[5] = p.getContacto();
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 
@@ -437,7 +683,7 @@ public class WebController {
 			datos[2] = "btn-title-grid-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[3] = "btn-total-grid-" + g.getProgramas().get(0).getFacultad().getId();
 			datos[4] = g.getInformaciongeneral();
-			datos[5] = "";
+			datos[5] = g.getContacto();
 
 		} else if (type.equals("i")) {
 			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
@@ -465,6 +711,32 @@ public class WebController {
 			}
 		}
 		return calcularTamanio(tamanio + 1);
+	}
+
+	/**
+	 * metodo que permite dar formato a una cadena quitando - y separandola por \n
+	 * 
+	 * @param cadena cadena a formatear
+	 * @return lista con posiciones por \n
+	 */
+	public List<String> formatoCadena(String cadena) {
+
+		List<String> resultado = new ArrayList<String>();
+
+		if (cadena != null && !cadena.equals("")) {
+			String[] splitcadena = cadena.split("\n");
+
+			for (String string : splitcadena) {
+
+				if (!string.equals("") && !string.contains("N/A")) {
+
+					resultado.add(string);
+
+				}
+			}
+		}
+		return resultado;
+
 	}
 
 	public String getEstadisticasFacultad(String id, Model model) {
@@ -516,15 +788,6 @@ public class WebController {
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(21));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(22));
 
-		model.addAttribute("cantidadGruposTotal", resumen.get(8).add(
-				resumen.get(9).add(resumen.get(10).add(resumen.get(11).add(resumen.get(12).add(resumen.get(13)))))));
-
-		model.addAttribute("cantidadInvestigadoresTotal",
-				resumen.get(14).add(resumen.get(15).add(resumen.get(16).add(resumen.get(17).add(resumen.get(18))))));
-
-		model.addAttribute("cantidadDocentesTotal",
-				resumen.get(19).add(resumen.get(20).add(resumen.get(21).add(resumen.get(22)))));
-
 		model.addAttribute("programaAcademico", "pa");
 		model.addAttribute("programaDoctorado", "pd");
 		model.addAttribute("programaMagister", "pm");
@@ -560,6 +823,75 @@ public class WebController {
 	}
 
 	public String getEstadisticasProgramas(String id, Model model) {
+		// ------Llamado a las consultas en la base de datos para las
+		// ------facultades-----------------------------------------------------------------------
+		List<BigInteger> resumen = programaDAO.getResumenGeneralPrograma(new Long(id));
+
+		// ------Llamado a las consultas en la base de datos para
+		// producciones-----------------------------------------------------------------------
+		model.addAttribute("cantidadActividadesDeFormacion",
+				produccionDAO.getCantidadProduccionesProgramaPorTipo(id, "0"));
+		model.addAttribute("cantidadActividadesEvaluador",
+				produccionDAO.getCantidadProduccionesProgramaPorTipo(id, "1"));
+		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesProgramaPorTipo(id, "2"));
+		model.addAttribute("cantidadProduccionesBibliograficas",
+				produccionDAO.getCantidadProduccionesBProgramaPorTipo(id, "3"));
+		model.addAttribute("cantidadTecnicasTecnologicas",
+				produccionDAO.getCantidadProduccionesProgramaPorTipo(id, "4"));
+		model.addAttribute("cantidadProduccionesArte",
+				String.valueOf(produccionDAO.getCantidadProduccionesProgramaPorTipo(id, "6")));
+		model.addAttribute("cantidadProduccionesDemasTrabajos",
+				produccionDAO.getCantidadProduccionesProgramaPorSubTipo(id, "32"));
+		model.addAttribute("cantidadProduccionesProyectos",
+				produccionDAO.getCantidadProduccionesProgramaPorSubTipo(id, "33"));
+		
+		// ------Adición de atributos al modelo con informacion de
+		// basicas-----------------------------------------------------------------------
+		model.addAttribute("cantidadGruposInvestigacion", resumen.get(0));
+		model.addAttribute("cantidadLineasInvestigacion", resumen.get(1));
+		model.addAttribute("cantidadInvestigadores", resumen.get(2));
+		model.addAttribute("cantidadGruposInvestigacionA1", resumen.get(3));
+		model.addAttribute("cantidadGruposInvestigacionA", resumen.get(4));
+		model.addAttribute("cantidadGruposInvestigacionB", resumen.get(5));
+		model.addAttribute("cantidadGruposInvestigacionC", resumen.get(6));
+		model.addAttribute("cantidadGruposInvestigacionReconocidos", resumen.get(7));
+		model.addAttribute("cantidadGruposInvestigacionNoReconocido", resumen.get(8));
+		model.addAttribute("cantidadInvestigadoresEmeritos", resumen.get(9));
+		model.addAttribute("cantidadInvestigadoresSenior", resumen.get(10));
+		model.addAttribute("cantidadInvestigadoresAsociados", resumen.get(11));
+		model.addAttribute("cantidadInvestigadoresJunior", resumen.get(12));
+		model.addAttribute("cantidadInvestigadoresSinCategoria", resumen.get(13));
+		model.addAttribute("cantidadDocentesDoctores", resumen.get(14));
+		model.addAttribute("cantidadDocentesMagister", resumen.get(15));
+		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(16));
+		model.addAttribute("cantidadDocentesPregrado", resumen.get(17));
+		
+		model.addAttribute("gruposInvestigacion", "g");
+		model.addAttribute("lineasInvestigacion", "l");
+		model.addAttribute("investigadores", "i");
+
+		model.addAttribute("categoriaA1", "ca1");
+		model.addAttribute("categoriaA", "ca");
+		model.addAttribute("categoriaB", "cb");
+		model.addAttribute("categoriaC", "cc");
+		model.addAttribute("categoriaReconocido", "cr");
+		model.addAttribute("categoriaNoReconocido", "cnr");
+
+		model.addAttribute("investigadorEmerito", "ie");
+		model.addAttribute("investigadorSenior", "is");
+		model.addAttribute("investigadorAsociado", "ia");
+		model.addAttribute("investigadorJunior", "ij");
+		model.addAttribute("investigadorSinCategoria", "isc");
+
+		model.addAttribute("formacionDoctor", "fd");
+		model.addAttribute("formacionMagister", "fm");
+		model.addAttribute("formacionEspecialista", "fe");
+		model.addAttribute("formacionPregrado", "fp");
+		model.addAttribute("docentes", "d");
+
+		model.addAttribute("idUniquindio", "0");
+		model.addAttribute("idPrograma", id);
+		
 		return "estadisticas/programas";
 	}
 
@@ -584,14 +916,133 @@ public class WebController {
 		model.addAttribute("cantidadProduccionesProyectos",
 				produccionDAO.getCantidadProduccionesCentroPorSubTipo(id, "33"));
 
+		// ------Adición de atributos al modelo con informacion de
+		// basicas-----------------------------------------------------------------------
+		model.addAttribute("cantidadGruposInvestigacion", resumen.get(0));
+		model.addAttribute("cantidadLineasInvestigacion", resumen.get(1));
+		model.addAttribute("cantidadInvestigadores", resumen.get(2));
+		model.addAttribute("cantidadGruposInvestigacionA1", resumen.get(3));
+		model.addAttribute("cantidadGruposInvestigacionA", resumen.get(4));
+		model.addAttribute("cantidadGruposInvestigacionB", resumen.get(5));
+		model.addAttribute("cantidadGruposInvestigacionC", resumen.get(6));
+		model.addAttribute("cantidadGruposInvestigacionReconocidos", resumen.get(7));
+		model.addAttribute("cantidadGruposInvestigacionNoReconocido", resumen.get(8));
+		model.addAttribute("cantidadInvestigadoresEmeritos", resumen.get(9));
+		model.addAttribute("cantidadInvestigadoresSenior", resumen.get(10));
+		model.addAttribute("cantidadInvestigadoresAsociados", resumen.get(11));
+		model.addAttribute("cantidadInvestigadoresJunior", resumen.get(12));
+		model.addAttribute("cantidadInvestigadoresSinCategoria", resumen.get(13));
+		model.addAttribute("cantidadDocentesDoctores", resumen.get(14));
+		model.addAttribute("cantidadDocentesMagister", resumen.get(15));
+		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(16));
+		model.addAttribute("cantidadDocentesPregrado", resumen.get(17));
+
+		model.addAttribute("gruposInvestigacion", "g");
+		model.addAttribute("lineasInvestigacion", "l");
+		model.addAttribute("investigadores", "i");
+
+		model.addAttribute("categoriaA1", "ca1");
+		model.addAttribute("categoriaA", "ca");
+		model.addAttribute("categoriaB", "cb");
+		model.addAttribute("categoriaC", "cc");
+		model.addAttribute("categoriaReconocido", "cr");
+		model.addAttribute("categoriaNoReconocido", "cnr");
+
+		model.addAttribute("investigadorEmerito", "ie");
+		model.addAttribute("investigadorSenior", "is");
+		model.addAttribute("investigadorAsociado", "ia");
+		model.addAttribute("investigadorJunior", "ij");
+		model.addAttribute("investigadorSinCategoria", "isc");
+
+		model.addAttribute("formacionDoctor", "fd");
+		model.addAttribute("formacionMagister", "fm");
+		model.addAttribute("formacionEspecialista", "fe");
+		model.addAttribute("formacionPregrado", "fp");
+		model.addAttribute("docentes", "d");
+
+		model.addAttribute("idUniquindio", "0");
+		model.addAttribute("idCentro", id);
+
 		return "estadisticas/centros";
 	}
 
 	public String getEstadisticasGrupo(String id, Model model) {
+		// ------Llamado a las consultas en la base de datos para las
+		// ------facultades-----------------------------------------------------------------------
+		List<BigInteger> resumen = grupoDAO.getResumenGeneralGrupo(new Long(id));
+
+		// ------Llamado a las consultas en la base de datos para
+		// producciones-----------------------------------------------------------------------
+		model.addAttribute("cantidadActividadesDeFormacion",
+				produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "0"));
+		model.addAttribute("cantidadActividadesEvaluador",
+				produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "1"));
+		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "2"));
+		model.addAttribute("cantidadProduccionesBibliograficas",
+				produccionDAO.getCantidadProduccionesBGrupoPorTipo(id, "3"));
+		model.addAttribute("cantidadTecnicasTecnologicas",
+				produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "4"));
+		model.addAttribute("cantidadProduccionesArte",
+				String.valueOf(produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "6")));
+		model.addAttribute("cantidadProduccionesDemasTrabajos",
+				produccionDAO.getCantidadProduccionesGrupoPorSubTipo(id, "32"));
+		model.addAttribute("cantidadProduccionesProyectos",
+				produccionDAO.getCantidadProduccionesGrupoPorSubTipo(id, "33"));
+		
+		// ------Adición de atributos al modelo con informacion de
+		// basicas-----------------------------------------------------------------------
+		model.addAttribute("cantidadLineasInvestigacion", resumen.get(0));
+		model.addAttribute("cantidadInvestigadores", resumen.get(1));
+		model.addAttribute("cantidadInvestigadoresEmeritos", resumen.get(2));
+		model.addAttribute("cantidadInvestigadoresSenior", resumen.get(3));
+		model.addAttribute("cantidadInvestigadoresAsociados", resumen.get(4));
+		model.addAttribute("cantidadInvestigadoresJunior", resumen.get(5));
+		model.addAttribute("cantidadInvestigadoresSinCategoria", resumen.get(6));
+		model.addAttribute("cantidadDocentesDoctores", resumen.get(7));
+		model.addAttribute("cantidadDocentesMagister", resumen.get(8));
+		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(9));
+		model.addAttribute("cantidadDocentesPregrado", resumen.get(10));
+		
+		model.addAttribute("gruposInvestigacion", "g");
+		model.addAttribute("lineasInvestigacion", "l");
+		model.addAttribute("investigadores", "i");
+
+
+		model.addAttribute("investigadorEmerito", "ie");
+		model.addAttribute("investigadorSenior", "is");
+		model.addAttribute("investigadorAsociado", "ia");
+		model.addAttribute("investigadorJunior", "ij");
+		model.addAttribute("investigadorSinCategoria", "isc");
+
+		model.addAttribute("formacionDoctor", "fd");
+		model.addAttribute("formacionMagister", "fm");
+		model.addAttribute("formacionEspecialista", "fe");
+		model.addAttribute("formacionPregrado", "fp");
+		model.addAttribute("docentes", "d");
+
+		model.addAttribute("idUniquindio", "0");
+		model.addAttribute("idGrupo", id);
+
 		return "estadisticas/grupos";
 	}
 
 	public String getEstadisticasInvestigador(String id, Model model) {
+		// ------Llamado a las consultas en la base de datos para
+		// producciones-----------------------------------------------------------------------
+		model.addAttribute("cantidadActividadesDeFormacion",
+				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "0"));
+		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "1"));
+		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "2"));
+		model.addAttribute("cantidadProduccionesBibliograficas",
+				produccionDAO.getCantidadProduccionesBInvestigadorPorTipo(id, "3"));
+		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "4"));
+		model.addAttribute("cantidadProduccionesArte",
+				String.valueOf(produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "6")));
+		model.addAttribute("cantidadProduccionesDemasTrabajos",
+				produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(id, "32"));
+		model.addAttribute("cantidadProduccionesProyectos",
+				produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(id, "33"));
+		
 		return "estadisticas/investigadores";
 	}
 
