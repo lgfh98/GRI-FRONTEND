@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.model.LineasInvestigacion;
-import co.edu.uniquindio.gri.model.Tipo;
 import co.edu.uniquindio.gri.repository.LineasInvestigacionRepository;
-import co.edu.uniquindio.gri.repository.TipoRepository;
 
 /**
  * Class TipoDAO.

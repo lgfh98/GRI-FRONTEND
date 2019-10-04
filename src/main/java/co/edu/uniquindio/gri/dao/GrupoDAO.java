@@ -1,5 +1,6 @@
 package co.edu.uniquindio.gri.dao;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -226,4 +227,150 @@ public class GrupoDAO {
 	public List<Grupo> getAllGruposCentro(Long centroId) {
 		return grupoRepository.getGruposCentro(centroId);
 	}
+	
+	/**
+	 * Obtiene los grupos A1 de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos A1 especificado por el id de programa
+	 */
+	public List<Grupo> getGruposA1Programa(Long programaId) {
+		return grupoRepository.getGruposA1Programa(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos A de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos A especificado por el id de programa
+	 */
+	public List<Grupo> getGruposAPrograma(Long programaId) {
+		return grupoRepository.getGruposAPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos B de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos B especificado por el id de programa
+	 */
+	public List<Grupo> getGruposBPrograma(Long programaId) {
+		return grupoRepository.getGruposBPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos C de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos C especificado por el id de programa
+	 */
+	public List<Grupo> getGruposCPrograma(Long programaId) {
+		return grupoRepository.getGruposCPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos reconocidos de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id de la programa
+	 * @return los grupos reconocidos especificado por el id de programa
+	 */
+	public List<Grupo> getGruposReconocidosPrograma(Long programaId) {
+		return grupoRepository.getGruposReconocidosPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene los grupos no reconocidos de investigacion reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return los grupos no reconocidos especificado por el id de programa
+	 */
+	public List<Grupo> getGruposNoReconocidosPrograma(Long programaId) {
+		return grupoRepository.getGruposNoReconocidosPrograma(programaId);
+	}
+	
+	/**
+	 * Obtiene un grupo de investigación no reconocidos especificado por un id de programa.
+	 *
+	 * @param programaId el id del programa
+	 * @return el grupo especificado por el id de programa
+	 */
+	public List<Grupo> getAllGruposPrograma(Long programaId) {
+		return grupoRepository.getAllGruposPrograma(programaId);
+	}
+
+	public List<BigInteger> getResumenGeneralGrupo(Long grupoId) {
+		return grupoRepository.getResumenGeneralGrupo(grupoId);
+	}
+	
+	/**
+	 * Obtiene un grupo de investigación no reconocidos especificado por un id de centro.
+	 *
+	 * @param centroId el id del centro
+	 * @return el grupo especificado por el id de centro
+	 */
+	public List<Grupo> getAllGruposCentro_0(Long centroId) {
+		return grupoRepository.getAllGruposCentro(centroId);
+	}
+	
+	/**
+	 * Obtiene los grupos A1 de investigacion reconocidos especificado por un id de centro.
+	 *
+	 * @param centroId el id del centro
+	 * @return los grupos A1 especificado por el id de centro
+	 */
+	public List<Grupo> getGruposA1Centro(Long centroId) {
+		return grupoRepository.getGruposA1Centro(centroId);
+	}
+	
+	/**
+	 * Obtiene los grupos A de investigacion reconocidos especificado por un id de centro.
+	 *
+	 * @param centroId el id del centro
+	 * @return los grupos A especificado por el id de centro
+	 */
+	public List<Grupo> getGruposACentro(Long centroId) {
+		return grupoRepository.getGruposACentro(centroId);
+	}
+	
+	/**
+	 * Obtiene los grupos B de investigacion reconocidos especificado por un id de centro.
+	 *
+	 * @param centroId el id del centro
+	 * @return los grupos B especificado por el id de centro
+	 */
+	public List<Grupo> getGruposBCentro(Long centroId) {
+		return grupoRepository.getGruposBCentro(centroId);
+	}
+	
+	/**
+	 * Obtiene los grupos C de investigacion reconocidos especificado por un id de centro.
+	 *
+	 * @param centroId el id del centro
+	 * @return los grupos C especificado por el id de centro
+	 */
+	public List<Grupo> getGruposCCentro(Long centroId) {
+		return grupoRepository.getGruposCCentro(centroId);
+	}
+	
+	/**
+	 * Obtiene los grupos reconocidos de investigacion reconocidos especificado por un id de centro.
+	 *
+	 * @param centroId el id de la centro
+	 * @return los grupos reconocidos especificado por el id de centro
+	 */
+	public List<Grupo> getGruposReconocidosCentro(Long centroId) {
+		return grupoRepository.getGruposReconocidosCentro(centroId);
+	}
+	
+	/**
+	 * Obtiene los grupos no reconocidos de investigacion reconocidos especificado por un id de centro.
+	 *
+	 * @param centroId el id del centro
+	 * @return los grupos no reconocidos especificado por el id de centro
+	 */
+	public List<Grupo> getGruposNoReconocidosCentro(Long centroId) {
+		return grupoRepository.getGruposNoReconocidosCentro(centroId);
+	}
+
+
 }

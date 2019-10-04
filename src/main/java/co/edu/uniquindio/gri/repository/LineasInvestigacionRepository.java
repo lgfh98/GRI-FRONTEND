@@ -30,7 +30,7 @@ public interface LineasInvestigacionRepository extends JpaRepository<LineasInves
 	 * @param facultadId el id del centro
 	 * @return las lineas de investigación de un centro
 	 */
-	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id JOIN gri.programas_grupos pg ON pg.grupos_id = g.id JOIN gri.programas p ON p.id = pg.programas_id JOIN gri.facultades f ON f.id = p.facultades_id WHERE f.id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id WHERE g.centros_id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
 	List<LineasInvestigacion> getLineasCentro(@Param("id") Long centroId);
 
 	/**
@@ -39,7 +39,7 @@ public interface LineasInvestigacionRepository extends JpaRepository<LineasInves
 	 * @param programaId el id del programa
 	 * @return las lineas de investigación de un programa
 	 */
-	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id JOIN gri.programas_grupos pg ON pg.grupos_id = g.id JOIN gri.programas p ON p.id = pg.programas_id JOIN gri.facultades f ON f.id = p.facultades_id WHERE f.id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id JOIN gri.programas_grupos pg ON pg.grupos_id = g.id JOIN gri.programas p ON p.id = pg.programas_id WHERE p.id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
 	List<LineasInvestigacion> getLineasPrograma(@Param("id") Long programaId);
 
 	/**
@@ -48,7 +48,7 @@ public interface LineasInvestigacionRepository extends JpaRepository<LineasInves
 	 * @param grupoid el id del grupo
 	 * @return las lineas de investigación de un grupo
 	 */
-	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id JOIN gri.programas_grupos pg ON pg.grupos_id = g.id JOIN gri.programas p ON p.id = pg.programas_id JOIN gri.facultades f ON f.id = p.facultades_id WHERE f.id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
+	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id WHERE gl.grupos_id =:id GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
 	List<LineasInvestigacion> getLineasGrupo(@Param("id") Long grupoid);
 
 	/**
@@ -56,7 +56,7 @@ public interface LineasInvestigacionRepository extends JpaRepository<LineasInves
 	 * 
 	 * @return las lineas de investigación de la universidad
 	 */
-	@Query(value = "SELECT DISTINCT l.id, l.nombre FROM gri.lineasinvestigacion l JOIN (SELECT MAX (l.id) id FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON l.id = gl.lineasinvestigacion_id JOIN gri.grupos g ON gl.grupos_id = g.id JOIN gri.programas_grupos pg ON pg.grupos_id = g.id JOIN gri.programas p ON p.id = pg.programas_id JOIN gri.facultades f ON f.id = p.facultades_id WHERE f.id =1 OR f.id =2 OR f.id =3 OR f.id =4 OR f.id =5 OR f.id =6 OR f.id=7 GROUP BY l.nombre)a ON l.id = a.id", nativeQuery = true)
+	@Query(value = "SELECT MIN (l.id) id, l.nombre nombre FROM gri.lineasinvestigacion l JOIN gri.grupos_lineas gl ON gl.lineasinvestigacion_id=l.id WHERE gl.grupos_id<>0 GROUP BY l.nombre", nativeQuery = true)
 	List<LineasInvestigacion> findAllLineas();
 
 }

@@ -568,4 +568,14 @@ public class InvestigadorDAO {
 	public List<Investigador> getInvestigadoresInternosPregradoPrograma(Long programaid) {
 		return investigadorRepository.getInvestigadoresInternosPregradoPrograma(programaid);
 	}
+
+	/**
+	 * Obtiene los investigadores internos de una facultad
+	 *
+	 * @param facultadId el id de la facultad
+	 * @return lista de investigadores internos de la facultad
+	 */
+	public List<Investigador> getAllInvestigadoresInternosFacultad(Long facultadId) {
+		return investigadorRepository.getInvestigadoresInternosFacultad(facultadId);
+	}
 }
