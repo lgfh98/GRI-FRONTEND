@@ -260,10 +260,12 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	margin: 0 auto;
 	transition: background-color .2s;
 }
+
 .badge-list-value-color1 {
 	box-shadow: 0 0 0 1px #ee4035 inset;
 	color: #ee4035;
 }
+
 .badge-list-value-color2 {
 	box-shadow: 0 0 0 1px #f37736 inset;
 	color: #f37736;
@@ -278,20 +280,21 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	box-shadow: 0 0 0 1px #7bc043 inset;
 	color: #7bc043;
 }
+
 .badge-list-value-color5 {
 	box-shadow: 0 0 0 1px #992c64 inset;
 	color: #992c64;
 }
+
 .badge-list-value-color6 {
 	box-shadow: 0 0 0 1px #0392cf inset;
 	color: #0392cf;
 }
+
 .badge-list-value-color7 {
 	box-shadow: 0 0 0 1px #812c99 inset;
 	color: #812c99;
-	
 }
-
 
 .badge-list-value:hover {
 	background-color: rgba(64, 64, 64, 0.1);
@@ -722,11 +725,8 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	
 	grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-	
-	
+	grid-template-rows: repeat(9, 1fr);
 }
 
 .grid-container-catGrup {
@@ -734,9 +734,7 @@ label {
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
 	grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-	
-	
+	grid-template-rows: repeat(9, 1fr);
 }
 
 .grid-container-catInvestigador {
@@ -744,9 +742,7 @@ label {
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
 	grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-	
-	
+	grid-template-rows: repeat(9, 1fr);
 }
 
 .grid-container-formaciontalentoH {
@@ -754,8 +750,7 @@ label {
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
 	grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-	
+	grid-template-rows: repeat(9, 1fr);
 }
 
 .button-item {
@@ -978,7 +973,6 @@ label {
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-	
 }
 
 .button-title-ingenieria {
@@ -1210,10 +1204,9 @@ estadisticas facultades
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	
 	grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-	
+	grid-template-rows: repeat(2, 1fr);
+
 	/**grid-template-columns: 150px 150px 150px 150px 150px 150px 150px 150px;
 	grid-template-rows: 60px 48px;*/
 }
@@ -1223,9 +1216,8 @@ estadisticas facultades
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
 	grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-	
-	
+	grid-template-rows: repeat(2, 1fr);
+
 	/*grid-template-columns: 150px 150px 150px 150px 150px 150px;
 	grid-template-rows: 60px 48px;*/
 }
@@ -1235,9 +1227,7 @@ estadisticas facultades
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
 	grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-	
-	
+	grid-template-rows: repeat(2, 1fr);
 }
 
 .grid-container-formaciontalentoH-facultad {
@@ -1245,8 +1235,7 @@ estadisticas facultades
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
 	grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-	
+	grid-template-rows: repeat(2, 1fr);
 }
 
 .grid-container-general-grupo {
@@ -1254,7 +1243,7 @@ estadisticas facultades
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
 	grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
 }
 
 .grid-container-general-centro {
@@ -1262,7 +1251,7 @@ estadisticas facultades
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
 	grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
 }
 /*
 colores de botones de las tablas
@@ -1572,15 +1561,26 @@ colores de botones de las tablas
 	text-align: justify;
 	padding: 0.3em 2em;
 	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 0.8em;
 }
 
-.flotante {
+
+/*******
+BTN flotante
+*/
+.floaty {
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}
+
+.floaty-btn {
 	font-size: 1.5rem;
 	width: 2em;
 	height: 2em;
 	line-height: 2em;
 	display: inline-block;
-	overflow: hidden;
 	text-align: center;
 	vertical-align: top;
 	display: scroll;
@@ -1588,13 +1588,38 @@ colores de botones de las tablas
 	bottom: 1em;
 	right: 1em;
 	background: #ffffff;
-	color: #828282;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 	border-radius: 100%;
+	cursor: pointer;
+	float: right;
+	color: #828282;
 }
 
-.flotante:hover {
+.floaty-btn:hover .floaty-btn-label {
+	opacity: 0.5;
+}
+
+.floaty :hover {
 	color: #000000;
+}
+
+.floaty-btn-label {
+	
+	font-family: sans-serif;
+	font-size: 0.9rem;
+	font-style: normal;
+	position: relative;
+	top: -3.5em;
+	right: 10em;
+	padding: 0.5em 0.5em;
+	text-align: center;
+	color: #fff;
+	background-color: #424242;
+	border-radius: 15px;
+	opacity: 0;
+	pointer-events: none;
+	white-space: nowrap;
+	transition: opacity .2s ease-out;
 }
 
 /**
