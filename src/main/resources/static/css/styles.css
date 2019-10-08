@@ -1111,7 +1111,7 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: repeat(6, 1fr);
+	grid-template-columns: repeat(7, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 }
 
@@ -1119,7 +1119,7 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 }
 
@@ -1127,7 +1127,7 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 }
 
@@ -1215,18 +1215,15 @@ estadisticas facultades
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: repeat(6, 1fr);
+	grid-template-columns: repeat(7, 1fr);
 	grid-template-rows: repeat(2, 1fr);
-
-	/*grid-template-columns: 150px 150px 150px 150px 150px 150px;
-	grid-template-rows: 60px 48px;*/
 }
 
 .grid-container-catInvestigador-facultad {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 }
 
@@ -1234,7 +1231,7 @@ estadisticas facultades
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 }
 
@@ -1565,61 +1562,157 @@ colores de botones de las tablas
 	font-size: 0.8em;
 }
 
-
-/*******
-BTN flotante
+/**
+ToolReport--------------------------------------------
 */
-.floaty {
-	position: absolute;
-	bottom: 15px;
-	right: 15px;
-}
-
-.floaty-btn {
-	font-size: 1.5rem;
-	width: 2em;
-	height: 2em;
-	line-height: 2em;
-	display: inline-block;
+.toolbar {
 	text-align: center;
-	vertical-align: top;
-	display: scroll;
-	position: fixed;
-	bottom: 1em;
-	right: 1em;
-	background: #ffffff;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-	border-radius: 100%;
-	cursor: pointer;
-	float: right;
-	color: #828282;
 }
 
-.floaty-btn:hover .floaty-btn-label {
-	opacity: 0.5;
+.toolbar-estadisticas .form-inline .input-group {
+	width: 100%;
 }
 
-.floaty :hover {
-	color: #000000;
-}
-
-.floaty-btn-label {
-	
-	font-family: sans-serif;
-	font-size: 0.9rem;
-	font-style: normal;
-	position: relative;
-	top: -3.5em;
-	right: 10em;
-	padding: 0.5em 0.5em;
-	text-align: center;
+.toolbar-estadisticas {
 	color: #fff;
-	background-color: #424242;
-	border-radius: 15px;
-	opacity: 0;
-	pointer-events: none;
-	white-space: nowrap;
-	transition: opacity .2s ease-out;
+	margin: 0;
+	padding: 1rem 2rem;
+	list-style: none;
+}
+
+.toolbar-estadisticas  .dropdown-toggle::after {
+	width: 1rem;
+	text-align: center;
+	float: right;
+	vertical-align: 0;
+	border: 0;
+	font-weight: 900;
+	content: '\f105';
+	font-family: 'Font Awesome 5 Free';
+}
+
+.toolbar-estadisticas .dropdown-toggle::after {
+	content: '\f107';
+}
+
+.toolbar-estadisticas  .dropdown-toggle::after {
+	display: none;
+}
+
+.toolbar-estadisticas  .nav-link:focus {
+	outline: none;
+}
+
+.toolbar-estadisticas  .badge {
+	position: absolute;
+	margin-left: 0.75rem;
+	top: 0.3rem;
+	font-size: 0.5rem;
+}
+
+--------------------
+.btn-secondary.color, .btn-dropdown.color, .btn-link.color {
+	color: #007398;
+}
+
+.btn-link {
+	color: #007398;
+	float: left;
+}
+
+.btn-secondary, .btn-dropdown, .btn-link {
+	color: #323232;
+}
+
+.btn-primary, .btn-secondary, .btn-secondary-grey, .btn-secondary-gray,
+	.btn-secondary-altBg, .btn-secondary-noBg, .btn-dropdown, .btn-link {
+	padding: .25rem .50rem;
+	position: relative;
+}
+
+.btn-sm {
+	font-size: 1rem;
+}
+
+.btn-sm, .btn-group-sm>.btn {
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+}
+
+.btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
+	border-color: transparent;
+}
+
+.btn-link, .btn-link:active, .btn-link.active, .btn-link[disabled],
+	fieldset[disabled] .btn-link {
+	background-color: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.btn-link {
+	color: #337ab7;
+	font-weight: normal;
+	border-radius: 0;
+}
+
+input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+user agent stylesheet
+
+
+user agent stylesheet
+menu {
+	list-style-type: disc;
+}
+
+*:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/**----------------------list bar---------------------*/
+.list-bar {
+	list-style-type: none;
+	text-align: center;
+}
+
+.item-bar {
+	display: inline;
+	text-align: center;
+	margin: 0 10px 0 0;
+}
+
+.item-bar a {
+	padding: 2px 7px 2px 7px;
+	color: #666;
+	background-color: #eeeeee;
+	border: 1px solid #ccc;
+	text-decoration: none;
+}
+
+.item-bar a:hover {
+	background-color: #333333;
+	color: #ffffff;
 }
 
 /**

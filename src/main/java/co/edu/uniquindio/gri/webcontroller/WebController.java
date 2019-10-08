@@ -650,7 +650,7 @@ public class WebController {
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 
-			datos[0] = "Estadísticas generales de la facultad de " + f.getNombre().toLowerCase();
+			datos[0] = "Estadísticas Generales de la Facultad de " + f.getNombre().toLowerCase();
 			datos[1] = "card-" + f.getId();
 			datos[2] = "btn-title-grid-" + f.getId();
 			datos[3] = "btn-total-grid-" + f.getId();
