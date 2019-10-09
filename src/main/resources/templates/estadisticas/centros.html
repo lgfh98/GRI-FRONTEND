@@ -182,9 +182,9 @@
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}">Total
-										aquí</button>
+								<a class="link" th:href="@{grupos(id=${idCentro}, type=${tipo})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadGruposTotal}"></button>
 								</a>
 							</div>
 
@@ -265,8 +265,9 @@
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}">total aquí</button>
+								<a class="link" th:href="@{investigadores(id=${idCentro}, type=${tipo})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadInvestigadoresTotal}"></button>
 								</a>
 							</div>
 
@@ -337,8 +338,9 @@
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}">total aquí</button>
+								<a class="link" th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${docentes})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadDocentesTotal}"></button>
 								</a>
 							</div>
 
