@@ -683,6 +683,7 @@ label {
 	background-color: #8CFF98 !important;
 }
 
+/**
 .btn-nav {
 	color: rgba(255, 255, 255);
 	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0
@@ -696,8 +697,7 @@ label {
 .btn-nav:hover {
 	color: rgba(255, 255, 255);
 	opacity: 1;
-}
-
+}*/
 .card-ball {
 	width: 40px !important;
 	height: 40px !important;
@@ -1146,13 +1146,15 @@ label {
 	.sidebar {
 		width: 225px !important;
 	}
+
+	/**
 	.sidebar .nav-item .nav-link {
 		display: block;
 		width: 100%;
 		text-align: left;
 		padding: 1rem;
 		width: 225px;
-	}
+	}*/
 	.sidebar .nav-item .nav-link span {
 		font-size: 1rem;
 		display: inline;
@@ -1691,28 +1693,87 @@ menu {
 }
 
 /**----------------------list bar---------------------*/
-.list-bar {
-	list-style-type: none;
-	text-align: center;
+.header-nav {
+	width: 100%;
 }
 
-.item-bar {
-	display: inline;
-	text-align: center;
-	margin: 0 10px 0 0;
+.check-nav {
+	height: 100%;
+	width: 100%;
+	color: white;
 }
 
-.item-bar a {
-	padding: 2px 7px 2px 7px;
-	color: #666;
-	background-color: #eeeeee;
-	border: 1px solid #ccc;
+.header-label {
+	display: none;
+	width: 30px;
+	padding: 0.5em;
+	border-left: 1px solid #fff;
+}
+
+.check-nav:hover ~ .header-label:hover {
+	color: black;
+	background: white;
+	cursor: pointer;
+}
+
+.btn-menu-nav {
+	display: none;
+}
+
+.header-label:hover {
+	background: white;
+}
+
+.header-label:hover i {
+	color: black;
+	cursor: pointer;
+}
+
+.menu-nav-ul {
+	margin: 0;
+	list-style: none;
+	padding: 0;
+	display: flex;
+	justify-content: flex-end;
+	padding: 0;
+}
+
+.menu-nav-li {
+	border-right: 1px solid #fff;
+}
+
+.menu-nav-li:hover {
+	background: #fff;
+}
+
+.menu-nav-li-a {
+	display: block;
+	padding: 0.5em 1em;
+	color: #fff;
 	text-decoration: none;
 }
 
-.item-bar a:hover {
-	background-color: #333333;
-	color: #ffffff;
+.menu-nav-li-a:hover {
+	color: black;
+	text-decoration: none
+}
+
+.menu-nav-li-a-btn {
+	background: none;
+	vertical-align: middle;
+	color: white;
+	border: none;
+	cursor: pointer;
+	outline: inherit;
+	text-decoration: none;
+	font-family: sans-serif;
+	text-align: left;
+	padding: 0.5em 1em;
+}
+
+.menu-nav-li-a-btn:hover {
+	color: black;
+	text-decoration: none
 }
 
 /**
@@ -1772,6 +1833,29 @@ Responsive--------------------------------------------
 		height: 100%;
 		border: 1px solid #009640;
 		border-top: 10px solid #009640;
+	}
+}
+
+@media screen and ( max-width : 920px) {
+	.header-label {
+		display: block;
+		padding: 0.5em;
+		border-left:none;
+	}
+
+	.menu-nav {
+		display: none;
+	}
+	.menu-nav-ul {
+		flex-direction: column;
+	}
+	.menu-nav-li {
+		border-top: 1px solid #ffff;
+		border-left:none;
+	}
+	.btn-menu-nav:checked ~ .menu-nav {
+		display: block;
+		transition: all 0.5s;
 	}
 }
 
