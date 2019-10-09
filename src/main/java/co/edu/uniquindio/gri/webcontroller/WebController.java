@@ -158,6 +158,9 @@ public class WebController {
 				} else if (subType.equals("fp")) {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoGrupo(Long.parseLong(id)));
+				} else if (subType.equals("d")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresGrupo(Long.parseLong(id)));
@@ -190,6 +193,9 @@ public class WebController {
 				} else if (subType.equals("fp")) {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoCentro(Long.parseLong(id)));
+				} else if (subType.equals("d")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresCentro(Long.parseLong(id)));
@@ -222,6 +228,9 @@ public class WebController {
 				} else if (subType.equals("fp")) {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoPrograma(Long.parseLong(id)));
+				} else if (subType.equals("d")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresPrograma(Long.parseLong(id)));
