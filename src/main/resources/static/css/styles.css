@@ -1614,11 +1614,13 @@ ToolReport--------------------------------------------
 
 --------------------
 .btn-secondary.color, .btn-dropdown.color, .btn-link.color {
-	color: #007398;
+	color: #332f2c;
 }
 
+
+
+
 .btn-link {
-	color: #007398;
 	float: left;
 }
 
@@ -1638,13 +1640,15 @@ ToolReport--------------------------------------------
 
 .btn-sm, .btn-group-sm>.btn {
 	padding: 5px 10px;
-	font-size: 12px;
+	font-size: 1rem; cursor : pointer;
 	line-height: 1.5;
 	border-radius: 3px;
+	cursor: pointer;
 }
 
 .btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
 	border-color: transparent;
+	color: #000;
 }
 
 .btn-link, .btn-link:active, .btn-link.active, .btn-link[disabled],
@@ -1840,9 +1844,8 @@ Responsive--------------------------------------------
 	.header-label {
 		display: block;
 		padding: 0.5em;
-		border-left:none;
+		border-left: none;
 	}
-
 	.menu-nav {
 		display: none;
 	}
@@ -1851,7 +1854,7 @@ Responsive--------------------------------------------
 	}
 	.menu-nav-li {
 		border-top: 1px solid #ffff;
-		border-left:none;
+		border-left: none;
 	}
 	.btn-menu-nav:checked ~ .menu-nav {
 		display: block;
