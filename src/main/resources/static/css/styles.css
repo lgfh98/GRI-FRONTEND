@@ -1821,6 +1821,7 @@ user agent stylesheet user agent stylesheet menu {
 	padding: 0.5em 1em;
 	color: #fff;
 	text-decoration: none;
+	text-align: left;
 }
 
 .menu-nav-li-a:hover {
@@ -1829,6 +1830,8 @@ user agent stylesheet user agent stylesheet menu {
 }
 
 .menu-nav-li-a-btn {
+	width: 100%;
+	height: 100%;
 	background: none;
 	vertical-align: middle;
 	color: white;
