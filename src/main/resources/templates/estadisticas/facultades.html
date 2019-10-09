@@ -10,7 +10,7 @@
 
 
 	<nav th:replace="fragments/nav :: nav(${color})"></nav>
-
+	<nav th:replace="fragments/toolReport"></nav>
 
 	<div id="wrapper">
 
@@ -341,10 +341,12 @@
 								<button th:classappend="${colorTituloBoton}"># Doctores</button>
 							</div>
 							<div>
-								<button th:classappend="${colorTituloBoton}"># Magisters</button>
+								<button th:classappend="${colorTituloBoton}">#
+									Magisters</button>
 							</div>
 							<div>
-								<button th:classappend="${colorTituloBoton}"># Especialistas</button>
+								<button th:classappend="${colorTituloBoton}">#
+									Especialistas</button>
 							</div>
 							<div>
 								<button th:classappend="${colorTituloBoton}"># Pregrado</button>

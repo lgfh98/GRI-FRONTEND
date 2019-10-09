@@ -1819,6 +1819,7 @@ user agent stylesheet user agent stylesheet menu {
 .menu-nav-li-a {
 	display: block;
 	padding: 0.5em 1em;
+	text-align: left;
 	color: #fff;
 	text-decoration: none;
 	text-align: left;
@@ -1831,7 +1832,7 @@ user agent stylesheet user agent stylesheet menu {
 
 .menu-nav-li-a-btn {
 	width: 100%;
-	height: 100%;
+	height:100%;
 	background: none;
 	vertical-align: middle;
 	color: white;
