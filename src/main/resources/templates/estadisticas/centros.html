@@ -10,24 +10,7 @@
 
 	<div id="wrapper">
 
-		<!-- Sidebar -->
-		<ul class="sidebar navbar-nav toggled" th:classappend="${color}">
-			<li class="nav-item"><a class="nav-link" href="inicio"> <i
-					class="fas fa-fw fa-home"></i> <span>Inicio</span>
-			</a></li>
-			<li class="nav-item" th:classappend="${tipo}==i ? active"><a
-				class="nav-link" href="investigadores"> <i
-					class="fas fa-fw fa-user"></i> <span>Investigadores</span>
-			</a></li>
-			<li class="nav-item" th:classappend="${tipo}!=i ? active"><a
-				class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i>
-					<span>Grupos de Investigación</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="centros"> <i
-					class="fas fa-fw fa-microscope"></i> <span>Centros de
-						Investigación</span>
-			</a></li>
-		</ul>
+		
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -73,7 +56,7 @@
 									de Investigación</button>
 							</div>
 							<div>
-								<button th:classappend="${colorTituloBoton}"># Lineas
+								<button th:classappend="${colorTituloBoton}"># Líneas
 									de Investigación</button>
 							</div>
 							<div>
@@ -83,19 +66,22 @@
 
 
 							<div>
-								<a class="link" th:href="@{grupos(id=${idCentro}, type=${tipo})}">
+								<a class="link"
+									th:href="@{grupos(id=${idCentro}, type=${tipo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadGruposInvestigacion}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{lineas(id=${idCentro}, type=${tipo})}">
+								<a class="link"
+									th:href="@{lineas(id=${idCentro}, type=${tipo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadLineasInvestigacion}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idCentro}, type=${tipo})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idCentro}, type=${tipo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadInvestigadores}"></button>
 								</a>
@@ -149,7 +135,9 @@
 									# Grupos<br></br>No Reconocidos
 								</button>
 							</div>
-
+							<div>
+								<button th:classappend="${colorTituloBoton}">Total</button>
+							</div>
 
 							<div>
 								<a class="link"
@@ -193,7 +181,12 @@
 										th:text=" ${cantidadGruposInvestigacionNoReconocido}"></button>
 								</a>
 							</div>
-
+							<div>
+								<a class="link">
+									<button th:classappend="${colorTotalBoton}">Total
+										aquí</button>
+								</a>
+							</div>
 
 
 						</div>
@@ -232,6 +225,9 @@
 								<button th:classappend="${colorTituloBoton}"># De
 									investigadores sin categoría</button>
 							</div>
+							<div>
+								<button th:classappend="${colorTituloBoton}">Total</button>
+							</div>
 
 							<div>
 								<a class="link"
@@ -268,6 +264,11 @@
 										th:text=" ${cantidadInvestigadoresSinCategoria}"></button>
 								</a>
 							</div>
+							<div>
+								<a class="link">
+									<button th:classappend="${colorTotalBoton}">total aquí</button>
+								</a>
+							</div>
 
 						</div>
 					</div>
@@ -279,7 +280,7 @@
 					<div class="separador-1"></div>
 					<!-- tabla Formacion de recurso Humano-->
 					<h2 class="h2-titulos-tablas">Nivel de Formación de
-						Investigadores</h2>
+						Investigadores Internos</h2>
 					<div class="separador-1"></div>
 					<div class="content-grid">
 						<div class="grid-container-formaciontalentoH-facultad">
@@ -300,6 +301,9 @@
 							<div>
 								<button th:classappend="${colorTituloBoton}"># De
 									Pregrado</button>
+							</div>
+							<div>
+								<button th:classappend="${colorTituloBoton}">Total</button>
 							</div>
 
 
@@ -330,6 +334,11 @@
 									th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${formacionPregrado})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadDocentesPregrado}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link">
+									<button th:classappend="${colorTotalBoton}">total aquí</button>
 								</a>
 							</div>
 
@@ -445,7 +454,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Demás Trabajos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
-										th:text="${cantidadProduccionesDemasTrabajos}"></span>
+									th:text="${cantidadProduccionesDemasTrabajos}"></span>
 								</a>
 							</div>
 						</li>
@@ -460,7 +469,7 @@
 									<div class="card-title-container">
 										<h3 class="card-title">Proyectos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
-										th:text="${cantidadProduccionesProyectos}"></span>
+									th:text="${cantidadProduccionesProyectos}"></span>
 								</a>
 							</div>
 						</li>

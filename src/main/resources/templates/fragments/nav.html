@@ -12,12 +12,30 @@
 
 	<!-- Navbar -->
 	<ul class="navbar-nav ml-auto ml-md-0">
-		<li sec:authorize="hasRole('ROLE_ADMIN')">
+
+		<li><a>Togle</a>
+			<ul class="list-bar">
+				<li class="item-bar"><a class="nav-link" href="inicio"> <i></i>
+						<span>Inicio</span>
+				</a></li>
+				<li class="item-bar"><a class="nav-link" href="investigadores">
+						<i></i> <span>Investigadores</span>
+				</a></li>
+				<li class="item-bar"><a class="nav-link" href="general"> <i></i>
+						<span>Grupos de Investigación</span></a></li>
+				<li class="item-bar"><a class="nav-link" href="centros">
+						<i></i> <span>Centros de Investigación</span>
+				</a></li>
+
+
+			</ul></li>
+
+
+		<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="inventario">
 			<a href="inventario">
 				<button type="submit" class="btn btn-nav mx-2">
 					Producciones en Custodia</button>
-			</a>
-		</li>
+		</a></li>
 
 		<li>
 			<form th:action="@{/logout}" method="post">

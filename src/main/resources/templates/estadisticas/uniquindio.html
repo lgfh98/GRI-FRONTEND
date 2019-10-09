@@ -9,23 +9,33 @@
 	<nav th:replace="fragments/nav :: nav('card-0')"></nav>
 
 
+
+	<nav th:replace="fragments/toolReport"></nav>
+
+
 	<div id="wrapper">
 
-		<!-- Sidebar -->
-		<ul class="sidebar navbar-nav toggled" style="background-color: #007f36;">
-			<li class="nav-item"><a class="nav-link" href="inicio"> <i class="fas fa-fw fa-home"></i>
-					<span>Inicio</span>
-				</a></li>
-			<li class="nav-item"><a class="nav-link" href="investigadores">
-					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
-				</a></li>
-			<li class="nav-item"><a class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i> <span>Grupos de
-						Investigación</span></a></li>
-			<li class="nav-item active"><a class="nav-link" href="centros">
-					<i class="fas fa-fw fa-microscope"></i> <span>Centros de
-						Investigación</span>
-				</a></li>
-		</ul>
+
+		<!-- Sidebar 
+		<ul class="sidebar navbar-nav toggled"
+		style="background-color: #007f36;">
+		<li class="nav-item"><a class="nav-link" href="inicio"> <i
+				class="fas fa-fw fa-home"></i> <span>Inicio</span>
+		</a></li>
+		<li class="nav-item"><a class="nav-link" href="investigadores">
+				<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
+		</a></li>
+		<li class="nav-item"><a class="nav-link" href="general"> <i
+				class="fas fa-fw fa-users"></i> <span>Grupos de Investigación</span></a></li>
+		<li class="nav-item active"><a class="nav-link" href="centros">
+				<i class="fas fa-fw fa-microscope"></i> <span>Centros de
+					Investigación</span>
+		</a></li>
+	</ul>-->
+
+
+
+
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -84,10 +94,13 @@
 				<br></br>
 				<div class="card-contacto" th:classappend="'card-contacto-'+${color}">
 
-					<p>Contacton Vicerrectoría de Investigaciones</p>
+					<p>Contacto Vicerrectoría de Investigaciones</p>
+					<br></br>
+					<p>Jonatan Ramirez Moreno</p>
 					<br></br>
 					<p>Bloque administrativo 1, Edificio K.</p>
 					<br></br>
+
 					<p>Teléfono: 57 - 6 - 7359300 Ext. 305 - 810 - 1020</p>
 					<br></br>
 					<p>Correo: viceinvestigaciones@uniquindio.edu.co</p>
@@ -127,7 +140,7 @@
 								<button class="button-title"># Grupos de Investigación</button>
 							</div>
 							<div>
-								<button class="button-title"># Lineas de Investigación</button>
+								<button class="button-title"># Líneas de Investigación</button>
 							</div>
 							<div>
 								<button class="button-title"># Investigadores</button>
@@ -1046,21 +1059,19 @@
 							<!--Titulos-->
 							<div></div>
 							<div>
-								<button class="button-title"># De investigadores
-									Eméritos</button>
+								<button class="button-title"># Investigadores Eméritos</button>
 							</div>
 							<div>
-								<button class="button-title"># De investigadores Sénior</button>
+								<button class="button-title"># Investigadores Sénior</button>
 							</div>
 							<div>
-								<button class="button-title"># De investigadores
-									Asociados</button>
+								<button class="button-title"># Investigadores Asociados</button>
 							</div>
 							<div>
-								<button class="button-title"># De investigadores Junior</button>
+								<button class="button-title"># Investigadores Junior</button>
 							</div>
 							<div>
-								<button class="button-title"># De investigadores Sin
+								<button class="button-title"># Investigadores Sin
 									Categoría</button>
 							</div>
 							<div>
@@ -1432,16 +1443,16 @@
 							<!--Titulos-->
 							<div></div>
 							<div>
-								<button class="button-title"># De Doctores</button>
+								<button class="button-title"># Doctores</button>
 							</div>
 							<div>
-								<button class="button-title"># De Magisters</button>
+								<button class="button-title"># Magisters</button>
 							</div>
 							<div>
-								<button class="button-title"># De Especialistas</button>
+								<button class="button-title"># Especialistas</button>
 							</div>
 							<div>
-								<button class="button-title"># De Pregrado</button>
+								<button class="button-title"># Pregrado</button>
 							</div>
 							<div>
 								<button class="button-title button-title-total">Total</button>
@@ -1874,22 +1885,6 @@
 						</li>
 					</ul>
 				</div>
-
-
-				<div class="container">
-					<a href="reporteestadistico">
-						<div class="floaty ">
-							<div class="floaty-btn fas fa-file-download">
-								<span class="floaty-btn-label"> Descargar PDF </span>
-							</div>
-						</div>
-					</a>
-				</div>
-
-
-				<!--  <a class='flotante' href='#'><span
-					class="icono-print fas fa-file-download"></span></a>-->
-
 
 			</div>
 		</div>
