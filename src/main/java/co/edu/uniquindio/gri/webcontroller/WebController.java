@@ -124,7 +124,8 @@ public class WebController {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
@@ -788,6 +789,18 @@ public class WebController {
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(21));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(22));
 
+		model.addAttribute("cantidadProgramasTotal",
+				resumen.get(0).add(resumen.get(1).add(resumen.get(2).add(resumen.get(3)))));
+
+		model.addAttribute("cantidadGruposTotal", resumen.get(8).add(
+				resumen.get(9).add(resumen.get(10).add(resumen.get(11).add(resumen.get(12)).add(resumen.get(13))))));
+
+		model.addAttribute("cantidadInvestigadoresTotal",
+				resumen.get(14).add(resumen.get(15).add(resumen.get(16).add(resumen.get(17).add(resumen.get(18))))));
+
+		model.addAttribute("cantidadDocentesTotal",
+				resumen.get(19).add(resumen.get(20).add(resumen.get(21).add(resumen.get(22)))));
+
 		model.addAttribute("programaAcademico", "pa");
 		model.addAttribute("programaDoctorado", "pd");
 		model.addAttribute("programaMagister", "pm");
@@ -844,7 +857,7 @@ public class WebController {
 				produccionDAO.getCantidadProduccionesProgramaPorSubTipo(id, "32"));
 		model.addAttribute("cantidadProduccionesProyectos",
 				produccionDAO.getCantidadProduccionesProgramaPorSubTipo(id, "33"));
-		
+
 		// ------Adición de atributos al modelo con informacion de
 		// basicas-----------------------------------------------------------------------
 		model.addAttribute("cantidadGruposInvestigacion", resumen.get(0));
@@ -865,7 +878,16 @@ public class WebController {
 		model.addAttribute("cantidadDocentesMagister", resumen.get(15));
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(16));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(17));
-		
+
+		model.addAttribute("cantidadGruposTotal", resumen.get(3).add(
+				resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
+
+		model.addAttribute("cantidadInvestigadoresTotal",
+				resumen.get(9).add(resumen.get(10).add(resumen.get(11).add(resumen.get(12).add(resumen.get(13))))));
+
+		model.addAttribute("cantidadDocentesTotal",
+				resumen.get(14).add(resumen.get(15).add(resumen.get(16).add(resumen.get(17)))));
+
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");
 		model.addAttribute("investigadores", "i");
@@ -891,7 +913,7 @@ public class WebController {
 
 		model.addAttribute("idUniquindio", "0");
 		model.addAttribute("idPrograma", id);
-		
+
 		return "estadisticas/programas";
 	}
 
@@ -936,6 +958,17 @@ public class WebController {
 		model.addAttribute("cantidadDocentesMagister", resumen.get(15));
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(16));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(17));
+		
+
+		model.addAttribute("cantidadGruposTotal", resumen.get(3).add(
+				resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
+
+		model.addAttribute("cantidadInvestigadoresTotal",
+				resumen.get(9).add(resumen.get(10).add(resumen.get(11).add(resumen.get(12).add(resumen.get(13))))));
+
+		model.addAttribute("cantidadDocentesTotal",
+				resumen.get(14).add(resumen.get(15).add(resumen.get(16).add(resumen.get(17)))));
+
 
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");
@@ -975,20 +1008,18 @@ public class WebController {
 		// producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion",
 				produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "0"));
-		model.addAttribute("cantidadActividadesEvaluador",
-				produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "1"));
+		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "1"));
 		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "2"));
 		model.addAttribute("cantidadProduccionesBibliograficas",
 				produccionDAO.getCantidadProduccionesBGrupoPorTipo(id, "3"));
-		model.addAttribute("cantidadTecnicasTecnologicas",
-				produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "4"));
+		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "4"));
 		model.addAttribute("cantidadProduccionesArte",
 				String.valueOf(produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "6")));
 		model.addAttribute("cantidadProduccionesDemasTrabajos",
 				produccionDAO.getCantidadProduccionesGrupoPorSubTipo(id, "32"));
 		model.addAttribute("cantidadProduccionesProyectos",
 				produccionDAO.getCantidadProduccionesGrupoPorSubTipo(id, "33"));
-		
+
 		// ------Adición de atributos al modelo con informacion de
 		// basicas-----------------------------------------------------------------------
 		model.addAttribute("cantidadLineasInvestigacion", resumen.get(0));
@@ -1002,11 +1033,17 @@ public class WebController {
 		model.addAttribute("cantidadDocentesMagister", resumen.get(8));
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(9));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(10));
-		
+
+		model.addAttribute("cantidadInvestigadoresTotal",
+				resumen.get(2).add(resumen.get(3).add(resumen.get(4).add(resumen.get(5).add(resumen.get(6))))));
+
+		model.addAttribute("cantidadDocentesTotal",
+				resumen.get(7).add(resumen.get(8).add(resumen.get(9).add(resumen.get(10)))));
+
+
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");
 		model.addAttribute("investigadores", "i");
-
 
 		model.addAttribute("investigadorEmerito", "ie");
 		model.addAttribute("investigadorSenior", "is");
@@ -1031,18 +1068,21 @@ public class WebController {
 		// producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion",
 				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "0"));
-		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "1"));
-		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "2"));
+		model.addAttribute("cantidadActividadesEvaluador",
+				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "1"));
+		model.addAttribute("cantidadApropiacionSocial",
+				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "2"));
 		model.addAttribute("cantidadProduccionesBibliograficas",
 				produccionDAO.getCantidadProduccionesBInvestigadorPorTipo(id, "3"));
-		model.addAttribute("cantidadTecnicasTecnologicas", produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "4"));
+		model.addAttribute("cantidadTecnicasTecnologicas",
+				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "4"));
 		model.addAttribute("cantidadProduccionesArte",
 				String.valueOf(produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "6")));
 		model.addAttribute("cantidadProduccionesDemasTrabajos",
 				produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(id, "32"));
 		model.addAttribute("cantidadProduccionesProyectos",
 				produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(id, "33"));
-		
+
 		return "estadisticas/investigadores";
 	}
 
