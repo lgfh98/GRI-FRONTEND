@@ -24,25 +24,24 @@
 				</div>
 
 				<div class="separador-1"></div>
-				<div th:classappend="'card-info-'+${color}">
 
-					<p class="text-informacion-general" th:text="${infogeneral}"></p>
+				<div class="panel-info-contacto">
+					<div class="left-div" th:classappend="'card-contacto-'+${color}">
 
+						<p class="text-informacion-general" th:text="${infogeneral}"></p>
+					</div>
+					<div class="right-div card-contacto"
+						th:classappend="'card-contacto-'+${color}">
+						<p>CONTACTO DEL CENTRO</p>
+						<br></br> <br></br>
+						<div th:each="obj: ${contacto}">
+							<p th:text="${obj}"></p>
+							<br></br>
 
-				</div>
-				<br></br>
-				<div class="card-contacto"
-					th:classappend="'card-contacto-'+${color}">
-					<p>CONTACTO DEL CENTRO</p>
-					<br></br> <br></br>
-					<div th:each="obj: ${contacto}">
-						<p th:text="${obj}"></p>
-						<br></br>
-
+						</div>
 					</div>
 				</div>
-
-				<br></br> <br></br>
+				<br></br>
 
 				<div class="resumen_general">
 					<h2 class="h2-titulos-tablas">Resumen General</h2>
@@ -182,7 +181,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idCentro}, type=${tipo})}">
+								<a class="link"
+									th:href="@{grupos(id=${idCentro}, type=${tipo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${cantidadGruposTotal}"></button>
 								</a>
@@ -265,7 +265,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idCentro}, type=${tipo})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idCentro}, type=${tipo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${cantidadInvestigadoresTotal}"></button>
 								</a>
@@ -338,7 +339,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${docentes})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${docentes})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${cantidadDocentesTotal}"></button>
 								</a>

@@ -27,23 +27,26 @@
 					</div>
 				</div>
 				<div class="separador-1"></div>
-				<div th:classappend="'card-info-'+${color}">
-					<div th:each="obj: ${infogeneral}">
-						<p class="text-informacion-general" th:text="${obj}"></p>
+
+
+				<div class="panel-info-contacto">
+					<div class="left-div" th:classappend="'card-contacto-'+${color}">
+						<div th:each="obj: ${infogeneral}">
+							<p class="text-informacion-general" th:text="${obj}"></p>
+						</div>
+					</div>
+
+					<div class="right-div card-contacto"
+						th:classappend="'card-contacto-'+${color}">
+						<p>CONTACTO DEL GRUPO</p>
+						<br></br> <br></br>
+						<div th:each="obj: ${contacto}">
+							<p th:text="${obj}"></p>
+							<br></br>
+
+						</div>
 					</div>
 				</div>
-				<br></br>
-				<div class="card-contacto"
-					th:classappend="'card-contacto-'+${color}">
-					<p>CONTACTO DEL GRUPO</p>
-					<br></br> <br></br>
-					<div th:each="obj: ${contacto}">
-						<p th:text="${obj}"></p>
-						<br></br>
-
-					</div>
-				</div>
-
 				<br></br> <br></br>
 				<div class="resumen_general">
 
@@ -149,7 +152,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idGrupo}, type=${tipo})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${cantidadInvestigadoresTotal}"></button>
 								</a>
@@ -219,7 +223,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${docentes})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idGrupo}, type=${tipo}, subType=${docentes})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${cantidadDocentesTotal}"></button>
 								</a>
