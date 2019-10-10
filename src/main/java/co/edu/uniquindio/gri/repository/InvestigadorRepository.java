@@ -514,4 +514,31 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g where gi.estado = 'ACTUAL' and g.id=:id and i.pertenencia='INVESTIGADOR INTERNO' and i.nivelAcademico like '%PREGRADO%'")
 	List<Investigador> getInvestigadoresInternosPregradoGrupo(@Param("id") Long grupoId);
 	
+	/**
+	 * Obtiene los investigadores internos de un grupo
+	 *
+	 * @param facultadId el id de un grupo
+	 * @return lista de investigadores internos de un grupo
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g where gi.estado = 'ACTUAL' and g.id=:id and i.pertenencia='INVESTIGADOR INTERNO'")
+	List<Investigador> getInvestigadoresInternosGrupo(@Param("id") Long grupoId);
+	
+	/**
+	 * Obtiene los investigadores internos de un centro
+	 *
+	 * @param facultadId el id de un centro
+	 * @return lista de investigadores internos de un centro
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.centro c where gi.estado = 'ACTUAL' and c.id=:id and i.pertenencia='INVESTIGADOR INTERNO'")
+	List<Investigador> getInvestigadoresInternosCentro(@Param("id") Long centroId);
+	
+	/**
+	 * Obtiene los investigadores internos de un programa
+	 *
+	 * @param facultadId el id de un programa
+	 * @return lista de investigadores internos de un programa
+	 */
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p where gi.estado = 'ACTUAL' and p.id=:id and i.pertenencia='INVESTIGADOR INTERNO'")
+	List<Investigador> getInvestigadoresInternosPrograma(@Param("id") Long programaId);
+	
 }

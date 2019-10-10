@@ -7,10 +7,17 @@
 
 <body id="page-top" class="sidebar-toggled">
 	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+<<<<<<< Updated upstream
 	<nav th:replace="fragments/toolReport"></nav>
 	<div id="wrapper">
 
 
+=======
+
+	<div id="wrapper">
+
+		
+>>>>>>> Stashed changes
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -186,8 +193,14 @@
 								</a>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<a class="link">
 									<button th:classappend="${colorTotalBoton}">total aquí</button>
+=======
+								<a class="link" th:href="@{grupos(id=${idPrograma}, type=${tipo})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadGruposTotal}"></button>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</div>
@@ -265,8 +278,14 @@
 								</a>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<a class="link">
 									<button th:classappend="${colorTotalBoton}">total aquí</button>
+=======
+								<a class="link" th:href="@{investigadores(id=${idPrograma}, type=${tipo})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadInvestigadoresTotal}"></button>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</div>
@@ -330,8 +349,14 @@
 								</a>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<a class="link">
 									<button th:classappend="${colorTotalBoton}">total aquí</button>
+=======
+								<a class="link" th:href="@{investigadores(id=${idPrograma}, type=${tipo}, subType=${docentes})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadDocentesTotal}"></button>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</div>

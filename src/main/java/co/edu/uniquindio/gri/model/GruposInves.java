@@ -19,7 +19,7 @@ public class GruposInves implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private CompositeKey id;
-
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("grupos")
 	private Grupo grupos;

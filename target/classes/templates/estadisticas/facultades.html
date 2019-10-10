@@ -2,7 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/header :: header('Estadisticas Facultad')">
+<<<<<<< Updated upstream
 <meta charset="utf-8" />
+=======
+	<meta charset="utf-8" />
+>>>>>>> Stashed changes
 </head>
 
 
@@ -10,7 +14,11 @@
 
 
 	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+<<<<<<< Updated upstream
 	<nav th:replace="fragments/toolReport"></nav>
+=======
+
+>>>>>>> Stashed changes
 
 	<div id="wrapper">
 
@@ -34,8 +42,12 @@
 					</div>
 				</div>
 				<br></br>
+<<<<<<< Updated upstream
 				<div class="card-contacto"
 					th:classappend="'card-contacto-'+${color}">
+=======
+				<div class="card-contacto" th:classappend="'card-contacto-'+${color}">
+>>>>>>> Stashed changes
 					<p>CONTACTO DE LA FACULTAD</p>
 					<br></br> <br></br>
 					<div th:each="obj: ${contacto}">
@@ -91,22 +103,34 @@
 
 
 							<div>
+<<<<<<< Updated upstream
 								<a class="link"
 									th:href="@{programas(id=${idFacultad},type=${programaAcademico})}">
+=======
+								<a class="link" th:href="@{programas(id=${idFacultad},type=${programaAcademico})}">
+>>>>>>> Stashed changes
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadProgramasAcademicos}"></button>
 								</a>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<a class="link"
 									th:href="@{programas(id=${idFacultad},type=${programaDoctorado})}">
+=======
+								<a class="link" th:href="@{programas(id=${idFacultad},type=${programaDoctorado})}">
+>>>>>>> Stashed changes
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadProgramasDoctorado}"></button>
 								</a>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<a class="link"
 									th:href="@{programas(id=${idFacultad},type=${programaMagister})}">
+=======
+								<a class="link" th:href="@{programas(id=${idFacultad},type=${programaMagister})}">
+>>>>>>> Stashed changes
 									<button th:classappend="${colorTotalBoton}"
 										th:text=" ${cantidadProgramasMaestria}"></button>
 								</a>
@@ -238,8 +262,13 @@
 								</a>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<a>
 									<button th:classappend="${colorTotalBoton}">Total aquí</button>
+=======
+								<a class="link" th:href="@{grupos(id=${idFacultad}, type=${tipo})}">
+									<button th:classappend="${colorTotalBoton}" th:text="${cantidadGruposTotal}"></button>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 
@@ -319,8 +348,14 @@
 								</a>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<a>
 									<button th:classappend="${colorTotalBoton}">total aquí</button>
+=======
+								<a class="link" th:href="@{investigadores(id=${idFacultad}, type=${tipo})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadInvestigadoresTotal}"></button>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 
@@ -344,12 +379,19 @@
 								<button th:classappend="${colorTituloBoton}"># Doctores</button>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<button th:classappend="${colorTituloBoton}">#
 									Magisters</button>
 							</div>
 							<div>
 								<button th:classappend="${colorTituloBoton}">#
 									Especialistas</button>
+=======
+								<button th:classappend="${colorTituloBoton}"># Magisters</button>
+							</div>
+							<div>
+								<button th:classappend="${colorTituloBoton}"># Especialistas</button>
+>>>>>>> Stashed changes
 							</div>
 							<div>
 								<button th:classappend="${colorTituloBoton}"># Pregrado</button>
@@ -389,8 +431,15 @@
 								</a>
 							</div>
 							<div>
+<<<<<<< Updated upstream
 								<a>
 									<button th:classappend="${colorTotalBoton}">total aquí</button>
+=======
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultad}, type=${tipo}, subType=${docentes})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadDocentesTotal}"></button>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 
@@ -407,67 +456,107 @@
 					<ul class="cards-list">
 						<li class="ci-4 cards-item">
 							<div class="card">
+<<<<<<< Updated upstream
 								<a th:href="@{formacion(id=${id},type=${tipo})}"
 									class="card-container" rel="keep-params">
+=======
+								<a th:href="@{formacion(id=${id},type=${tipo})}" class="card-container"
+									rel="keep-params">
+>>>>>>> Stashed changes
 									<div class="card-icon card-icon-2">
 										<span class="icono fa fa-graduation-cap"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades de Formación</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
+<<<<<<< Updated upstream
 									th:text="${cantidadActividadesDeFormacion}"></span>
+=======
+										th:text="${cantidadActividadesDeFormacion}"></span>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
+<<<<<<< Updated upstream
 								<a th:href="@{evaluador(id=${id},type=${tipo})}"
 									class="card-container" rel="keep-params">
+=======
+								<a th:href="@{evaluador(id=${id},type=${tipo})}" class="card-container"
+									rel="keep-params">
+>>>>>>> Stashed changes
 									<div class="card-icon card-icon-3">
 										<span class="icono fa fa-pencil-alt"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades como Evaluador</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
+<<<<<<< Updated upstream
 									th:text="${cantidadActividadesEvaluador}"></span>
+=======
+										th:text="${cantidadActividadesEvaluador}"></span>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
+<<<<<<< Updated upstream
 								<a th:href="@{apropiacion(id=${id},type=${tipo})}"
 									class="card-container" rel="keep-params">
+=======
+								<a th:href="@{apropiacion(id=${id},type=${tipo})}" class="card-container"
+									rel="keep-params">
+>>>>>>> Stashed changes
 									<div class="card-icon card-icon-4">
 										<span class="icono fa fa-user-friends"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades de Apropiación Social</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
+<<<<<<< Updated upstream
 									th:text="${cantidadApropiacionSocial}"></span>
+=======
+										th:text="${cantidadApropiacionSocial}"></span>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
+<<<<<<< Updated upstream
 								<a th:href="@{bibliografica(id=${id},type=${tipo})}"
 									class="card-container" rel="keep-params">
+=======
+								<a th:href="@{bibliografica(id=${id},type=${tipo})}" class="card-container"
+									rel="keep-params">
+>>>>>>> Stashed changes
 									<div class="card-icon card-icon-5">
 										<span class="icono fa fa-book-open"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Producciones Bibliográficas</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
+<<<<<<< Updated upstream
 									th:text="${cantidadProduccionesBibliograficas}"></span>
+=======
+										th:text="${cantidadProduccionesBibliograficas}"></span>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
+<<<<<<< Updated upstream
 								<a th:href="@{tecnica(id=${id},type=${tipo})}"
 									class="card-container" rel="keep-params">
+=======
+								<a th:href="@{tecnica(id=${id},type=${tipo})}" class="card-container" rel="keep-params">
+>>>>>>> Stashed changes
 									<div class="card-icon card-icon-6">
 										<span class="icono fa fa-cogs"></span>
 									</div>
@@ -475,14 +564,22 @@
 										<h3 class="card-title">Producciones Técnicas y
 											Tecnológicas</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
+<<<<<<< Updated upstream
 									th:text="${cantidadTecnicasTecnologicas}"></span>
+=======
+										th:text="${cantidadTecnicasTecnologicas}"></span>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
+<<<<<<< Updated upstream
 								<a th:href="@{arte(id=${id},type=${tipo})}"
 									class="card-container" rel="keep-params">
+=======
+								<a th:href="@{arte(id=${id},type=${tipo})}" class="card-container" rel="keep-params">
+>>>>>>> Stashed changes
 
 									<div class="card-icon card-icon-7">
 										<span class="icono fa fa-paint-brush"></span>
@@ -492,36 +589,58 @@
 											Producciones en <br />Arte
 										</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
+<<<<<<< Updated upstream
 									th:text="${cantidadProduccionesArte}"></span>
+=======
+										th:text="${cantidadProduccionesArte}"></span>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
+<<<<<<< Updated upstream
 								<a th:href="@{reporte(id=${id},type=${tipo}, prod=32)}"
 									class="card-container" rel="keep-params">
+=======
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=32)}" class="card-container"
+									rel="keep-params">
+>>>>>>> Stashed changes
 									<div class="card-icon card-icon-1">
 										<span class="icono fab fa-firstdraft"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Demás Trabajos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
+<<<<<<< Updated upstream
 									th:text="${cantidadProduccionesDemasTrabajos}">0</span>
+=======
+										th:text="${cantidadProduccionesDemasTrabajos}">0</span>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
+<<<<<<< Updated upstream
 								<a th:href="@{reporte(id=${id},type=${tipo}, prod=33)}"
 									class="card-container" rel="keep-params">
+=======
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=33)}" class="card-container"
+									rel="keep-params">
+>>>>>>> Stashed changes
 									<div class="card-icon card-icon-2">
 										<span class="icono fa fa-pencil-ruler"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Proyectos</h3>
 									</div> <span class="card-item-cantidad" th:classappend="${color}"
+<<<<<<< Updated upstream
 									th:text="${cantidadProduccionesProyectos}">0</span>
+=======
+										th:text="${cantidadProduccionesProyectos}">0</span>
+>>>>>>> Stashed changes
 								</a>
 							</div>
 						</li>
