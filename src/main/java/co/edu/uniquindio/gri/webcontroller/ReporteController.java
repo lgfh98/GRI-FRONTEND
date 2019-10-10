@@ -49,6 +49,7 @@ public class ReporteController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
+		model.addAttribute("id", datos[2]);
 		model.addAttribute("tipo", tipo.getNombre());
 		model.addAttribute("producciones", produccionDAO.getProducciones(type, Long.parseLong(id), Long.parseLong(tipoProduccion)));
 		

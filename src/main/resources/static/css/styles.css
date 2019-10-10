@@ -351,7 +351,7 @@ button.copyButton::before {
 	content: "\f0c5\00a0";
 	font-weight: 900;
 	background-color: white;
-	color: #009640;
+	color: #000000;
 }
 
 button.excelButton::before {
@@ -359,7 +359,7 @@ button.excelButton::before {
 	content: "\f1c3\00a0";
 	font-weight: 900;
 	background-color: white;
-	color: #009640;
+	color: #000000;
 }
 
 button.pdfButton::before {
@@ -367,7 +367,7 @@ button.pdfButton::before {
 	content: "\f1c1\00a0";
 	font-weight: 900;
 	background-color: white;
-	color: #009640;
+	color: #000000;
 }
 
 button.printButton::before {
@@ -375,7 +375,7 @@ button.printButton::before {
 	content: "\f02f\00a0";
 	font-weight: 900;
 	background-color: white;
-	color: #009640;
+	color: #000000;
 }
 
 .table {
@@ -400,6 +400,206 @@ button.printButton::before {
 .table th {
 	cursor: pointer;
 	background-color: #009640;
+	color: white;
+}
+
+.table-0 {
+	cursor: pointer;
+}
+
+.table-0 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #A6DEA2;
+}
+
+.table-0 tr:hover {
+	background-color: white;
+	color: #009640;
+}
+
+.table-0 th:hover {
+	background-color: white;
+	color: #009640;
+}
+
+.table-0 th {
+	cursor: pointer;
+	background-color: #009640;
+	color: white;
+}
+
+.table-1 {
+	cursor: pointer;
+}
+
+.table-1 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #f6ecbf;
+}
+
+.table-1 tr:hover {
+	background-color: white;
+	color: #FFCC00;
+}
+
+.table-1 th:hover {
+	background-color: white;
+	color: #FFCC00;
+}
+
+.table-1 th {
+	cursor: pointer;
+	background-color: #FFCC00;
+	color: white;
+}
+
+.table-2 {
+	cursor: pointer;
+}
+
+.table-2 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #ffe7ad;
+}
+
+.table-2 tr:hover {
+	background-color: white;
+	color: #DC911B;
+}
+
+.table-2 th:hover {
+	background-color: white;
+	color: #DC911B;
+}
+
+.table-2 th {
+	cursor: pointer;
+	background-color: #DC911B;
+	color: white;
+}
+
+.table-3 {
+	cursor: pointer;
+}
+
+.table-3 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #d5d5ea;
+}
+
+.table-3 tr:hover {
+	background-color: white;
+	color: #1169B0;
+}
+
+.table-3 th:hover {
+	background-color: white;
+	color: #1169B0;
+}
+
+.table-3 th {
+	cursor: pointer;
+	background-color: #1169B0;
+	color: white;
+}
+
+.table-4 {
+	cursor: pointer;
+}
+
+.table-4 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #e0e2f8;
+}
+
+.table-4 tr:hover {
+	background-color: white;
+	color: #009DE0;
+}
+
+.table-4 th:hover {
+	background-color: white;
+	color: #009DE0;
+}
+
+.table-4 th {
+	cursor: pointer;
+	background-color: #009DE0;
+	color: white;
+}
+
+.table-5 {
+	cursor: pointer;
+}
+
+.table-5 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #ff8080;
+}
+
+.table-5 tr:hover {
+	background-color: white;
+	color: #C20B19;
+}
+
+.table-5 th:hover {
+	background-color: white;
+	color: #C20B19;
+}
+
+.table-5 th {
+	cursor: pointer;
+	background-color: #C20B19;
+	color: white;
+}
+
+.table-6 {
+	cursor: pointer;
+}
+
+.table-6 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #dffab7;
+}
+
+.table-6 tr:hover {
+	background-color: white;
+	color: #8FB435;
+}
+
+.table-6 th:hover {
+	background-color: white;
+	color: #8FB435;
+}
+
+.table-6 th {
+	cursor: pointer;
+	background-color: #8FB435;
+	color: white;
+}
+
+.table-7 {
+	cursor: pointer;
+}
+
+.table-7 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #d7cbe8;
+}
+
+.table-7 tr:hover {
+	background-color: white;
+	color: #8E1C7D;
+}
+
+.table-7 th:hover {
+	background-color: white;
+	color: #8E1C7D;
+}
+
+.table-7 th {
+	cursor: pointer;
+	background-color: #8E1C7D;
 	color: white;
 }
 
@@ -500,8 +700,15 @@ button.printButton::before {
 	background-color: #007f36;
 	border: none;
 	text-align: center;
+}
+
+.card-0-nav {
+	background-color: #007f36;
+	border: none;
+	text-align: center;
 	border-bottom: 5px solid;
-	border-image: linear-gradient(to right, #1169B0 12.5%, #009DE0 25%, #8FB435 37.5%, #FFCC00 50%, #DC911B 62.5%, #8E1C7D 75%, #C20B19 87.5%) 5
+	border-image: linear-gradient(to right, #1169B0 12.5%, #009DE0 25%, #8FB435 37.5%,
+			#FFCC00 50%, #DC911B 62.5%, #8E1C7D 75%, #C20B19 87.5%) 5
 }
 
 .card-1 {
@@ -510,10 +717,26 @@ button.printButton::before {
 	text-align: center;
 }
 
+.card-1-nav {
+	background-image: linear-gradient(to right, #ffcc00, #f5c200, #ebb800, #e1ae00, #d7a400);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #FFCC00;
+}
+
 .card-2 {
 	background-color: #DC911B;
 	border: none;
 	text-align: center;
+}
+
+.card-2-nav {
+	background-image: linear-gradient(to right, #dc911b, #e49b26, #eba530, #f3af3a, #fab943);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #DC911B;
 }
 
 .card-3 {
@@ -522,10 +745,26 @@ button.printButton::before {
 	text-align: center;
 }
 
+.card-3-nav {
+	background-image: linear-gradient(to right, #1169b0, #1d73ba, #277dc4, #3087ce, #3991d8);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #1169B0;
+}
+
 .card-4 {
 	background-color: #009DE0;
 	border: none;
 	text-align: center;
+}
+
+.card-4-nav {
+	background-image: linear-gradient(to right, #64c5ff, #54bbf7, #42b1ef, #2ca7e8, #009de0);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #009de0;
 }
 
 .card-5 {
@@ -534,10 +773,26 @@ button.printButton::before {
 	text-align: center;
 }
 
+.card-5-nav {
+	background-image: linear-gradient(to right, #c20b19, #cc1823, #d6222d, #e02b37, #ea3341);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #C20B19;
+}
+
 .card-6 {
 	background-color: #8FB435;
 	border: none;
 	text-align: center;
+}
+
+.card-6-nav {
+	background-image: linear-gradient(to right, #8fb435, #99be3f, #a3c849, #add253, #b7dc5d);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #8FB435;
 }
 
 .card-7 {
@@ -546,10 +801,27 @@ button.printButton::before {
 	text-align: center;
 }
 
+.card-7-nav {
+	background-image: linear-gradient(to right, #8e1c7d, #982787, #a23191, #ac3b9b, #b644a5);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #8E1C7D;
+}
+
 .card-8 {
 	background-image: #009640;
 	border: none;
 	text-align: center;
+}
+
+.card-8-nav {
+	background-color: #009640;
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-image: linear-gradient(to right, #1169B0 12.5%, #009DE0 25%, #8FB435 37.5%,
+			#FFCC00 50%, #DC911B 62.5%, #8E1C7D 75%, #C20B19 87.5%) 5
 }
 
 .lista-miembros {
@@ -1662,13 +1934,11 @@ ToolReport--------------------------------------------
 	font-size: 0.5rem;
 }
 
---------------------
-.btn-secondary.color, .btn-dropdown.color, .btn-link.color {
+-------------------- .btn-secondary.color,
+.btn-dropdown.color,
+.btn-link.color {
 	color: #332f2c;
 }
-
-
-
 
 .btn-link {
 	float: left;
@@ -1699,7 +1969,8 @@ ToolReport--------------------------------------------
 .btn-sm,
 .btn-group-sm>.btn {
 	padding: 5px 10px;
-	font-size: 1rem; cursor : pointer;
+	font-size: 1rem;
+	cursor: pointer;
 	line-height: 1.5;
 	border-radius: 3px;
 	cursor: pointer;
@@ -1780,7 +2051,7 @@ user agent stylesheet user agent stylesheet menu {
 	border-left: 1px solid #fff;
 }
 
-.check-nav:hover ~ .header-label:hover {
+.check-nav:hover~.header-label:hover {
 	color: black;
 	background: white;
 	cursor: pointer;
@@ -1819,6 +2090,7 @@ user agent stylesheet user agent stylesheet menu {
 .menu-nav-li-a {
 	display: block;
 	padding: 0.5em 1em;
+	text-align: left;
 	color: #fff;
 	text-decoration: none;
 	text-align: left;
@@ -1917,29 +2189,33 @@ Responsive--------------------------------------------
 	}
 }
 
-@media screen and ( max-width : 920px) {
+@media screen and (max-width : 920px) {
 	.header-label {
 		display: block;
 		padding: 0.5em;
 		border-left: none;
 	}
+
 	.menu-nav {
 		display: none;
 	}
+
 	.menu-nav-ul {
 		flex-direction: column;
 	}
+
 	.menu-nav-li {
 		border-top: 1px solid #ffff;
 		border-left: none;
 	}
-	.btn-menu-nav:checked ~ .menu-nav {
+
+	.btn-menu-nav:checked~.menu-nav {
 		display: block;
 		transition: all 0.5s;
 	}
 }
 
-@media screen and ( max-width : 768px) {
+@media screen and (max-width : 768px) {
 	.card-contacto-card-0 {
 		width: 50%;
 		height: 100%;

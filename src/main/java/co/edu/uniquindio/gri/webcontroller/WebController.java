@@ -496,6 +496,7 @@ public class WebController {
 			model.addAttribute("nombre", f.getNombre());
 			model.addAttribute("lista", listaGrupos);
 			model.addAttribute("color", "card-" + f.getId());
+			model.addAttribute("id", "" + f.getId());
 			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
 		}
 		return "inventario/inventario";
@@ -508,6 +509,7 @@ public class WebController {
 
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
+		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("producciones", produccionDAO.getAllProducciones(Long.parseLong(id)));
 
 		return "inventario/reporteinventario";

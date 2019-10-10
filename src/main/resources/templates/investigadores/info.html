@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: header('Información Adicional')">
-<meta charset="utf-8" />
+	<meta charset="utf-8" />
 </head>
+
 <body id="page-top" class="sidebar-toggled">
 
-	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
 
 	<div id="wrapper">
 
@@ -85,8 +87,7 @@
 					</div>
 					<div class="contenedor-body">
 						<div id="table">
-							<table id="tabla_idiomas" class="table table-bordered"
-								style="width: 100%">
+							<table id="tabla_idiomas" th:class="'table-'+ ${id} + ' table-bordered'" style="width: 100%">
 								<thead>
 									<tr>
 										<th>IDIOMA</th>
@@ -97,14 +98,14 @@
 									</tr>
 								</thead>
 								<tbody>
-							<tr th:each="idioma : ${listaIdiomas}">
-								<td th:text="${idioma.idioma}"></td>
-								<td th:text="${idioma.habla}"></td>
-								<td th:text="${idioma.escribe}"></td>
-								<td th:text="${idioma.lee}"></td>
-								<td th:text="${idioma.entiende}"></td>
-							</tr>
-						</tbody>
+									<tr th:each="idioma : ${listaIdiomas}">
+										<td th:text="${idioma.idioma}"></td>
+										<td th:text="${idioma.habla}"></td>
+										<td th:text="${idioma.escribe}"></td>
+										<td th:text="${idioma.lee}"></td>
+										<td th:text="${idioma.entiende}"></td>
+									</tr>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -116,4 +117,5 @@
 
 	<div th:replace="fragments/footer"></div>
 </body>
+
 </html>

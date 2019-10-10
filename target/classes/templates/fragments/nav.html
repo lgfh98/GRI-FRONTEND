@@ -1,31 +1,45 @@
-<nav class="navbar navbar-expand navbar-dark static-top"
-	th:fragment="nav (style)" th:classappend="${style}">
 
-	<a class="navbar-brand mr-1" href="inicio">GRI</a>
+<header class="header-nav" th:fragment="nav (style)"
+	th:classappend="${style}">
 
-	<button class="btn btn-link btn-sm text-white order-1 order-sm-0"
-		id="sidebarToggle" href="#">
-		<i class="fas fa-bars"></i>
-	</button>
 
-	<!-- Uso Futuro -->
-	<div
-		class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-	</div>
+	<input id="btn-menu-nav" type="checkbox" class="btn-menu-nav"></input>
+	<label class="header-label " for="btn-menu-nav"><i
+		class=" check-nav fas fa-bars"></i></label>
 
-	<!-- Navbar -->
-	<ul class="navbar-nav ml-auto ml-md-0">
-		<li sec:authorize="hasRole('ROLE_ADMIN')">
-			<a href="inventario"> 
-				<button type="submit" class="btn btn-nav mx-2">
-					Producciones en Custodia</button>
-			</a>
-		</li>
+	<nav class="menu-nav">
+		<!-- Navbar -->
+		<ul class="menu-nav-ul">
 
-		<li>
-			<form th:action="@{/logout}" method="post">
-				<button type="submit" class="btn btn-nav">Salir</button>
-			</form>
-		</li>
-	</ul>
-</nav>
+
+			<li class="menu-nav-li"><a class="menu-nav-li-a" href="inicio">
+					<span>Inicio</span>
+			</a></li>
+			<li class="menu-nav-li"><a class="menu-nav-li-a"
+				href="investigadores"> Investigadores</a></li>
+			<li class="menu-nav-li"><a class="menu-nav-li-a" href="general">
+					Grupos de Investigación</a></li>
+			<li class="menu-nav-li"><a class="menu-nav-li-a" href="centros">
+					Centros de Investigación</a></li>
+			<li class="menu-nav-li" sec:authorize="hasRole('ROLE_ADMIN')"><a
+				class="menu-nav-li-a" href="inventario"> Producciones en
+					Custodia</a></li>
+
+			<li>
+				<form class="menu-nav-li" th:action="@{/logout}" method="post">
+					<button type="submit" class="menu-nav-li-a-btn">Salir</button>
+				</form>
+			</li>
+		</ul>
+
+
+
+
+
+	</nav>
+
+
+
+</header>
+
+
