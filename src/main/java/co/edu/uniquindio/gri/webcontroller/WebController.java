@@ -16,8 +16,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.uniquindio.gri.dao.CentroDAO;
@@ -124,8 +122,7 @@ public class WebController {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
+					model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
@@ -512,14 +509,123 @@ public class WebController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/reporteestadistico")
-	public void getReporteEstadistico(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+	@GetMapping("/imprimir-reporte-estadistico")
+	public void imprimirReporteEstadistico(
+			@RequestParam(name = "type", required = false, defaultValue = "u") String type,
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model,
 			HttpServletResponse response) throws SQLException, IOException, JRException {
 
 		Connection conexion = jdbcTemplate.getDataSource().getConnection();
 
 		List<JasperPrint> jasperPrintList = new ArrayList<>();
+
+		configurarReportes(jasperPrintList, type, id, conexion);
+
+		imprimirReporte(response, jasperPrintList);
+
+		conexion.close();
+
+	}
+
+	/**
+	 * permite obtener el reporte estadistico solicitado en formato pdf
+	 * 
+	 * @param type
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/descargar-reporte-estadistico")
+	public void descargarReporteEstadistico(
+			@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model,
+			HttpServletResponse response) throws SQLException, IOException, JRException {
+
+		Connection conexion = jdbcTemplate.getDataSource().getConnection();
+
+		List<JasperPrint> jasperPrintList = new ArrayList<>();
+
+		configurarReportes(jasperPrintList, type, id, conexion);
+
+		descargarReportePDF(response, jasperPrintList);
+
+		conexion.close();
+
+	}
+
+	/**
+	 * 
+	 * @param response
+	 * @param jasperPrintList
+	 * @throws IOException
+	 * @throws JRException
+	 */
+	private void imprimirReporte(HttpServletResponse response, List<JasperPrint> jasperPrintList)
+			throws IOException, JRException {
+
+		response.setContentType("application/pdf");
+		response.setHeader("Content-disposition", "inline; filename=reporte.pdf");
+
+		final OutputStream outStream = response.getOutputStream();
+
+		JRPdfExporter exporter = new JRPdfExporter();
+
+		exporter.setExporterInput(SimpleExporterInput.getInstance(jasperPrintList));
+
+		SimpleOutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(outStream);
+
+		exporter.setExporterOutput(exporterOutput);
+
+		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+
+		exporter.setConfiguration(configuration);
+
+		exporter.exportReport();
+
+	}
+
+	/**
+	 * 
+	 * @param response
+	 * @param jasperPrintList
+	 * @throws IOException
+	 * @throws JRException
+	 */
+	private void descargarReportePDF(HttpServletResponse response, List<JasperPrint> jasperPrintList)
+			throws IOException, JRException {
+		response.setContentType("application/download");
+
+		response.setHeader("Content-disposition", "inline; filename=reporte.pdf");
+
+		final OutputStream outStream = response.getOutputStream();
+
+		JRPdfExporter exporter = new JRPdfExporter();
+
+		exporter.setExporterInput(SimpleExporterInput.getInstance(jasperPrintList));
+
+		SimpleOutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(outStream);
+
+		exporter.setExporterOutput(exporterOutput);
+
+		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+
+		exporter.setConfiguration(configuration);
+
+		exporter.exportReport();
+
+	}
+
+	/**
+	 * Permite generar un listado de archivos .jasper, que seran exportados en un
+	 * formato posteriormente, como pdf.
+	 * 
+	 * @param jasperPrintList lista de archivos .jasper que será generada
+	 * @param type
+	 * @param id
+	 * @param conexion
+	 */
+	private void configurarReportes(List<JasperPrint> jasperPrintList, String type, String id, Connection conexion)
+			throws JRException {
 
 		String color_facultad = "";
 
@@ -573,26 +679,6 @@ public class WebController {
 			jasperPrintList.add(jasperPrint);
 
 		}
-
-		response.setContentType("application/x-pdf");
-		response.setHeader("Content-disposition", "inline; filename=reporte.pdf");
-
-		final OutputStream outStream = response.getOutputStream();
-
-		JRPdfExporter exporter = new JRPdfExporter();
-
-		exporter.setExporterInput(SimpleExporterInput.getInstance(jasperPrintList));
-
-		SimpleOutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(outStream);
-
-		exporter.setExporterOutput(exporterOutput);
-
-		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
-		exporter.setConfiguration(configuration);
-
-		exporter.exportReport();
-
-		conexion.close();
 
 	}
 
