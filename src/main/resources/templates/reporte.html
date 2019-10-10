@@ -7,7 +7,7 @@
 
 <body id="page-top" class="sidebar-toggled">
 
-<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
+	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
 
 	<div id="wrapper">
 
@@ -42,7 +42,7 @@
 					<div class="contenedor-body">
 						<div id="table">
 							<table id="tabla_reporte"
-								th:class="'table-' + ${id} +' table-striped table-bordered table-hover table-responsive-lg'"
+								th:class="'table-' + ${facultadId} +' table-striped table-bordered table-hover table-responsive-lg'"
 								style="width: 100%">
 								<thead>
 									<tr>
@@ -78,7 +78,7 @@
 
 	<script th:inline="javascript">
 
-		var url = "/ServerSpring/rest/service/producciones/" + [[${param.type}]] + "/" + [[${param.id}]] + "/" + [[${param.prod}]];
+		var url = "/ServerSpring/rest/service/producciones/" + [[${ param.type }]] + "/" + [[${ param.id }]] + "/" + [[${ param.prod }]];
 
 		$.ajax({
 			type: "GET",
@@ -112,8 +112,8 @@
 
 				res.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
-				var titulo = [[${nombre}]] + " - " + [[${tipo}]]
-				const element = document.querySelector('.' + [[${color}]]);
+				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]]
+				const element = document.querySelector('.' + [[${ color }+'-nav']]);
 				const style = getComputedStyle(element);
 				const color = style.backgroundColor;
 

@@ -52,7 +52,7 @@ public class TipologiasController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
-		model.addAttribute("id", datos[2]);
+		model.addAttribute("facultadId", datos[2]);
 
 		if (type.equals("i")) {
 			return "investigadores/apropiacion";
@@ -72,7 +72,7 @@ public class TipologiasController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
-		model.addAttribute("id", datos[2]);
+		model.addAttribute("facultadId", datos[2]);
 
 		if (type.equals("i")) {
 			return "investigadores/arte";
@@ -92,7 +92,7 @@ public class TipologiasController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
-		model.addAttribute("id", datos[2]);
+		model.addAttribute("facultadId", datos[2]);
 
 		if (type.equals("i")) {
 			return "investigadores/bibliografica";
@@ -112,7 +112,7 @@ public class TipologiasController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
-		model.addAttribute("id", datos[2]);
+		model.addAttribute("facultadId", datos[2]);
 
 		if (type.equals("i")) {
 			return "investigadores/evaluador";
@@ -132,7 +132,7 @@ public class TipologiasController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
-		model.addAttribute("id", datos[2]);
+		model.addAttribute("facultadId", datos[2]);
 
 		if (type.equals("i")) {
 			return "investigadores/formacion";
@@ -152,7 +152,7 @@ public class TipologiasController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
-		model.addAttribute("id", datos[2]);
+		model.addAttribute("facultadId", datos[2]);
 
 		if (type.equals("i")) {
 			Investigador inv = investigadorDAO.findOne(Long.parseLong(id));
@@ -221,7 +221,7 @@ public class TipologiasController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
-		model.addAttribute("id", datos[2]);
+		model.addAttribute("facultadId", datos[2]);
 
 		if (type.equals("i")) {
 			return "investigadores/masinfo";
@@ -241,7 +241,7 @@ public class TipologiasController {
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
-		model.addAttribute("id", datos[2]);
+		model.addAttribute("facultadId", datos[2]);
 
 		if (type.equals("i")) {
 			return "investigadores/tecnica";

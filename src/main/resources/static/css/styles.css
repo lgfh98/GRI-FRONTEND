@@ -130,28 +130,25 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
 .sidebar .nav-item .nav-link {
 	color: rgba(255, 255, 255, 0.80);
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0
-		#000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
+	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
 }
 
 .navbar-dark .navbar-nav .nav-link {
 	color: rgba(255, 255, 255, .8);
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0
-		#000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
+	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
 }
 
 .text-white {
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0
-		#000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
+	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
 }
 
 .navbar-brand {
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0
-		#000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
+	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
 }
 
-.sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus,
-	.sidebar .nav-item .nav-link:hover {
+.sidebar .nav-item .nav-link:active,
+.sidebar .nav-item .nav-link:focus,
+.sidebar .nav-item .nav-link:hover {
 	color: rgba(255, 255, 255, 0.90);
 }
 
@@ -678,7 +675,8 @@ button.printButton::before {
 	position: relative;
 }
 
-.card-container, .card-container:hover {
+.card-container,
+.card-container:hover {
 	background-color: #ffffff;
 	text-decoration: none;
 	outline-width: 0px;
@@ -720,6 +718,7 @@ button.printButton::before {
 }
 
 .card-1-nav {
+	background-color: #FFCC00;
 	background-image: linear-gradient(to right, #ffcc00, #f5c200, #ebb800, #e1ae00, #d7a400);
 	border: none;
 	text-align: center;
@@ -734,6 +733,7 @@ button.printButton::before {
 }
 
 .card-2-nav {
+	background-color: #DC911B;
 	background-image: linear-gradient(to right, #dc911b, #e49b26, #eba530, #f3af3a, #fab943);
 	border: none;
 	text-align: center;
@@ -748,6 +748,7 @@ button.printButton::before {
 }
 
 .card-3-nav {
+	background-color: #1169B0;
 	background-image: linear-gradient(to right, #1169b0, #1d73ba, #277dc4, #3087ce, #3991d8);
 	border: none;
 	text-align: center;
@@ -762,6 +763,7 @@ button.printButton::before {
 }
 
 .card-4-nav {
+	background-color: #009de0;
 	background-image: linear-gradient(to right, #64c5ff, #54bbf7, #42b1ef, #2ca7e8, #009de0);
 	border: none;
 	text-align: center;
@@ -776,6 +778,7 @@ button.printButton::before {
 }
 
 .card-5-nav {
+	background-color: #C20B19;
 	background-image: linear-gradient(to right, #c20b19, #cc1823, #d6222d, #e02b37, #ea3341);
 	border: none;
 	text-align: center;
@@ -790,6 +793,7 @@ button.printButton::before {
 }
 
 .card-6-nav {
+	background-color: #8FB435;
 	background-image: linear-gradient(to right, #8fb435, #99be3f, #a3c849, #add253, #b7dc5d);
 	border: none;
 	text-align: center;
@@ -804,6 +808,7 @@ button.printButton::before {
 }
 
 .card-7-nav {
+	background-color: #8E1C7D;
 	background-image: linear-gradient(to right, #8e1c7d, #982787, #a23191, #ac3b9b, #b644a5);
 	border: none;
 	text-align: center;
@@ -818,6 +823,7 @@ button.printButton::before {
 }
 
 .card-8-nav {
+	background-image: #009640;
 	background-color: #009640;
 	border: none;
 	text-align: center;
@@ -1442,10 +1448,11 @@ label {
 	grid-template-rows: repeat(2, 1fr);
 }
 
-@media ( min-width : 768px) {
+@media (min-width : 768px) {
 	body.fixed-nav #content-wrapper {
 		padding-left: 225px;
 	}
+
 	body.fixed-nav.sidebar-toggled #content-wrapper {
 		padding-left: 90px;
 	}
@@ -1472,30 +1479,37 @@ label {
 		font-size: 1rem;
 		display: inline;
 	}
+
 	.sidebar .nav-item .dropdown-menu {
 		position: static !important;
 		margin: 0 1rem;
 		top: 0;
 	}
+
 	.sidebar .nav-item.dropdown .dropdown-toggle::after {
 		display: block;
 	}
+
 	.sidebar.toggled {
 		overflow: visible;
 		width: 100px !important;
 	}
+
 	.sidebar.toggled .nav-item:last-child {
 		margin-bottom: 1rem;
 	}
+
 	.sidebar.toggled .nav-item .nav-link {
 		text-align: center;
 		padding: 0.75rem 1rem;
 		width: 90px;
 	}
+
 	.sidebar.toggled .nav-item .nav-link span {
 		font-size: 0.65rem;
 		display: block;
 	}
+
 	.sidebar.toggled .nav-item .dropdown-menu {
 		position: absolute !important;
 		-webkit-transform: none !important;
@@ -1503,10 +1517,12 @@ label {
 		left: calc(90px + 0.5rem) !important;
 		margin: 0;
 	}
+
 	.sidebar.toggled .nav-item .dropdown-menu.dropup {
 		bottom: 0;
 		top: auto !important;
 	}
+
 	.sidebar.toggled .nav-item.dropdown .dropdown-toggle::after {
 		display: none;
 	}
@@ -1936,12 +1952,20 @@ ToolReport--------------------------------------------
 	float: left;
 }
 
-.btn-secondary, .btn-dropdown, .btn-link {
+.btn-secondary,
+.btn-dropdown,
+.btn-link {
 	color: #323232;
 }
 
-.btn-primary, .btn-secondary, .btn-secondary-grey, .btn-secondary-gray,
-	.btn-secondary-altBg, .btn-secondary-noBg, .btn-dropdown, .btn-link {
+.btn-primary,
+.btn-secondary,
+.btn-secondary-grey,
+.btn-secondary-gray,
+.btn-secondary-altBg,
+.btn-secondary-noBg,
+.btn-dropdown,
+.btn-link {
 	padding: .25rem .50rem;
 	position: relative;
 }
@@ -1950,7 +1974,8 @@ ToolReport--------------------------------------------
 	font-size: 1rem;
 }
 
-.btn-sm, .btn-group-sm>.btn {
+.btn-sm,
+.btn-group-sm>.btn {
 	padding: 5px 10px;
 	font-size: 1rem;
 	cursor: pointer;
@@ -1959,13 +1984,19 @@ ToolReport--------------------------------------------
 	cursor: pointer;
 }
 
-.btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
+.btn-link,
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active {
 	border-color: transparent;
 	color: #000;
 }
 
-.btn-link, .btn-link:active, .btn-link.active, .btn-link[disabled],
-	fieldset[disabled] .btn-link {
+.btn-link,
+.btn-link:active,
+.btn-link.active,
+.btn-link[disabled],
+fieldset[disabled] .btn-link {
 	background-color: transparent;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -1977,7 +2008,10 @@ ToolReport--------------------------------------------
 	border-radius: 0;
 }
 
-input, button, select, textarea {
+input,
+button,
+select,
+textarea {
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
@@ -1993,13 +2027,15 @@ user agent stylesheet user agent stylesheet menu {
 	list-style-type: disc;
 }
 
-*:before, *:after {
+*:before,
+*:after {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
-*:before, *:after {
+*:before,
+*:after {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -2118,7 +2154,8 @@ user agent stylesheet user agent stylesheet menu {
 	text-align: center;
 }
 
-.left-text, .right-text {
+.left-text,
+.right-text {
 	font: 14px 'Source Code Pro', monospace;
 	color: #333;
 }
@@ -2171,8 +2208,10 @@ user agent stylesheet user agent stylesheet menu {
 /**
 Responsive--------------------------------------------
 */
-@media screen and ( max-width : 1060px) {
-	.left-div, .right-div {
+@media screen and (max-width : 1060px) {
+
+	.left-div,
+	.right-div {
 		max-width: 100%;
 	}
 }
