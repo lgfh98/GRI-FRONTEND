@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 Manifest-Version: 1.0
 Implementation-Title: ServerSpring
 Implementation-Version: 0.0.1-SNAPSHOT
@@ -8,3 +9,15 @@ Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 
+=======
+Manifest-Version: 1.0
+Implementation-Title: ServerSpring
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Luis
+Implementation-Vendor-Id: serverspring
+Build-Jdk: 1.8.0_221
+Implementation-URL: http://maven.apache.org
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
+>>>>>>> Stashed changes
