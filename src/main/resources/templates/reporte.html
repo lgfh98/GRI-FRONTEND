@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/header :: header('Reporte')">
-	<meta charset="utf-8" />
+<meta charset="utf-8" />
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -10,9 +10,6 @@
 	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
 
 	<div id="wrapper">
-
-
-
 		<div id="content-wrapper">
 			<div class="container-fluid">
 
@@ -31,7 +28,8 @@
 					<div class="contenedor-header">
 						<i class="fas fa-chart-bar"></i> Reporte gráfico por año
 					</div>
-					<div id="barras-anio" class="contenedor-body" style="width: 200; height: 150"> </div>
+					<div id="barras-anio" class="contenedor-body"
+						style="width: 200; height: 150"></div>
 				</div>
 
 
@@ -59,7 +57,8 @@
 										<td th:text="${produccion.referencia}"></td>
 										<td th:text="${produccion.autores}"></td>
 										<td th:text="${produccion.anio}"></td>
-										<td th:if="${esBibliografica}" th:text="${produccion.identificador}"></td>
+										<td th:if="${esBibliografica}"
+											th:text="${produccion.identificador}"></td>
 									</tr>
 								</tbody>
 							</table>

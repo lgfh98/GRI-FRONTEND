@@ -7,12 +7,9 @@
 
 <body id="page-top" class="sidebar-toggled">
 
-	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
 
 	<div id="wrapper">
-
-
-
 		<div id="content-wrapper">
 			<div class="container-fluid">
 
@@ -73,7 +70,8 @@
 								<label>PERTENECE A: </label>
 							</div>
 							<div id="lista-grupos" class="col-md-6">
-								<p th:each="grupo : ${listaGrupos}" th:text="'• '+${grupo.nombre}"></p>
+								<p th:each="grupo : ${listaGrupos}"
+									th:text="'• '+${grupo.nombre}"></p>
 							</div>
 
 						</div>
