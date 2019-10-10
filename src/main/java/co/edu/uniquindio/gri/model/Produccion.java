@@ -22,7 +22,6 @@ public class Produccion implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
 	/** The id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

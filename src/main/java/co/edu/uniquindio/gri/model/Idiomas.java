@@ -38,7 +38,6 @@ public class Idiomas implements Serializable {
 	/** The habla. */
 	@Column(name = "HABLA")
 	private String habla;
-
 	/** The escribe. */
 	@Column(name = "ESCRIBE")
 	private String escribe;
