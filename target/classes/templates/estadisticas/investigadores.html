@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head
+	th:replace="fragments/header :: header('Estadisticas Investigador')">
+<meta charset="utf-8" />
+</head>
+
+<body id="page-top" class="sidebar-toggled">
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+	<nav th:replace="fragments/toolReport"></nav>
+	<div id="wrapper">
+
+
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 class="titulo-hero" th:text="${nombre}"></h1>
+
+						</div>
+					</div>
+				</div>
+				<div class="separador-1"></div>
+				<div class="card-contacto"
+					th:classappend="'card-contacto-'+${color}">
+
+					<p>Contacto del investigador</p>
+					<p th:text="${nombre}"></p>
+					<p>312XXX</p>
+					<p>inv@XXXX.co</p>
+					<p>DocXX</p>
+
+				</div>
+				<div id="listageneral">
+					<div class="separador-1"></div>
+					<h2 class="h2-titulos-tablas">Producciones Del Investigador</h2>
+					<div class="separador-1"></div>
+					<ul class="cards-list">
+						<li class="ci-4 cards-item">
+							<div class="card">
+								<a th:href="@{formacion(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
+									<div class="card-icon card-icon-2">
+										<span class="icono fa fa-graduation-cap"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Actividades de Formación</h3>
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
+									th:text="${cantidadActividadesDeFormacion}"></span>
+								</a>
+							</div>
+						</li>
+
+						<li class="ci-4 cards-item">
+							<div class="card">
+								<a th:href="@{evaluador(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
+									<div class="card-icon card-icon-3">
+										<span class="icono fa fa-pencil-alt"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Actividades como Evaluador</h3>
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
+									th:text="${cantidadActividadesEvaluador}"></span>
+								</a>
+							</div>
+						</li>
+
+						<li class="ci-4 cards-item">
+							<div class="card">
+								<a th:href="@{apropiacion(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
+									<div class="card-icon card-icon-4">
+										<span class="icono fa fa-user-friends"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Actividades de Apropiación Social</h3>
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
+									th:text="${cantidadApropiacionSocial}"></span>
+								</a>
+							</div>
+						</li>
+
+						<li class="ci-4 cards-item">
+							<div class="card">
+								<a th:href="@{bibliografica(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
+									<div class="card-icon card-icon-5">
+										<span class="icono fa fa-book-open"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Producciones Bibliográficas</h3>
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
+									th:text="${cantidadProduccionesBibliograficas}"></span>
+								</a>
+							</div>
+						</li>
+						<li class="ci-4 cards-item">
+							<div class="card">
+								<a th:href="@{tecnica(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
+									<div class="card-icon card-icon-6">
+										<span class="icono fa fa-cogs"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Producciones Técnicas y
+											Tecnológicas</h3>
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
+									th:text="${cantidadTecnicasTecnologicas}"></span>
+								</a>
+							</div>
+						</li>
+						<li class="ci-4 cards-item">
+							<div class="card">
+								<a th:href="@{arte(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
+
+									<div class="card-icon card-icon-7">
+										<span class="icono fa fa-paint-brush"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">
+											Producciones en <br />Arte
+										</h3>
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
+									th:text="${cantidadProduccionesArte}"></span>
+								</a>
+							</div>
+						</li>
+						<li class="ci-4 cards-item">
+							<div class="card">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=32)}"
+									class="card-container" rel="keep-params">
+									<div class="card-icon card-icon-1">
+										<span class="icono fab fa-firstdraft"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Demás Trabajos</h3>
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
+									th:text="${cantidadProduccionesDemasTrabajos}"></span>
+								</a>
+							</div>
+						</li>
+
+						<li class="ci-4 cards-item">
+							<div class="card">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=33)}"
+									class="card-container" rel="keep-params">
+									<div class="card-icon card-icon-2">
+										<span class="icono fa fa-pencil-ruler"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Proyectos</h3>
+									</div> <span class="card-item-cantidad" th:classappend="${color}"
+									th:text="${cantidadProduccionesProyectos}"></span>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:replace=" fragments/footer"></div>
+</body>
+
+</html>

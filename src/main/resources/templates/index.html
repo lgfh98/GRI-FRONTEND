@@ -7,25 +7,11 @@
 
 <body id="page-top" class="sidebar-toggled">
 
-	<nav th:replace="fragments/nav :: nav('card-0')"></nav>
+	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
 
 	<div id="wrapper">
 
-		<!-- Sidebar -->
-		<ul class="sidebar navbar-nav toggled" style="background-color: #007f36;">
-			<li class="nav-item active"><a class="nav-link" href=""> <i class="fas fa-fw fa-home"></i>
-					<span>Inicio</span>
-				</a></li>
-			<li class="nav-item"><a class="nav-link" href="investigadores">
-					<i class="fas fa-fw fa-user"></i> <span>Investigadores</span>
-				</a></li>
-			<li class="nav-item"><a class="nav-link" href="general"> <i class="fas fa-fw fa-users"></i> <span>Grupos de
-						Investigación</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="centros"> <i class="fas fa-fw fa-microscope"></i>
-					<span>Centros de
-						Investigación</span>
-				</a></li>
-		</ul>
+		
 		
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -70,8 +56,7 @@
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="centros">
 								<span id="badge-centros" class="badge-list-value badge-list-value-color3" th:text="${cantCentros}"></span> <span
-									class="badge-list-label">Centros
-									de Investigación</span>
+									class="badge-list-label">Centros</span>
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="programas">
 								<span id="badge-programas" class="badge-list-value badge-list-value-color4" th:text="${cantProgramas}"></span>
@@ -79,7 +64,7 @@
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="grupos">
 								<span id="badge-grupos" class="badge-list-value badge-list-value-color5" th:text="${cantGrupos}"></span> <span
-									class="badge-list-label">Grupos de Investigación</span>
+									class="badge-list-label">Grupos</span>
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="investigadores"> <span
 									id="badge-investigadores" class="badge-list-value badge-list-value-color6" th:text="${cantInves}"></span>
