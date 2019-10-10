@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/header :: header('Estadisticas UQ')">
-	<meta charset="utf-8" />
+<meta charset="utf-8" />
 </head>
 
 <body id="page-top" class="sidebar-toggled">
 	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
 
 	<nav th:replace="fragments/toolReport"></nav>
-	
+
 
 
 	<div id="wrapper">
@@ -48,67 +48,73 @@
 					</div>
 				</div>
 				<div class="separador-1"></div>
-				<div th:classappend="'card-info-'+${color}">
-					<p class="text-informacion-general">En la Universidad del
-						Quindío, la investigación es un eje estructurante en el desarrollo
-						de la academia, la región y el país; de esta manera se constituye
-						como una función misional y esencial de la institución. Por
-						ello,desde la misión institucional se establece la contribución de
-						la institución a la sociedad, mediante el desarrollo de una
-						investigación pertinente que aporte a la solución de las
-						problemáticas del desarrollo integrada con la extensión y
-						proyección social. En ese orden de ideas en el año 2011 se adoptó
-						la Política de Investigaciones de la institución, a través de la
-						cual se definen las directrices para orientar la gestión de la
-						investigación y a partir de la cual se dio la estructuración del
-						Sistema de Investigaciones en el alma mater quindiana.</p>
-					<p class="text-informacion-general">El Sistema de
-						Investigaciones de la Universidad del Quindío está compuesto por
-						actores de direccionamiento estratégico y actores acción. Uno de
-						los actores de acción fundamentales son los centros y grupos de
-						investigación. Actualmente, la Universidad del Quindío cuenta con
-						5 centros y 74 grupos de investigación, desde allí se desarrollan
-						estudios y proyectos en áreas como las ciencias humanas y bellas
-						artes, las ciencias agroindustriales, las ciencias básicas, las
-						ciencias económicas, las ciencias de la educación, las ciencias de
-						la salud y las ingenierías.</p>
-					<p class="text-informacion-general">El crecimiento de la
-						institución a nivel de investigación ha conllevado a la puesta en
-						marcha de diversos cambios a nivel tecnológico, que incluyen la
-						implementación de diversos aplicativos y plataformas, que le
-						permiten a nuestra institución estar a la vanguardia tecnológica
-						para el mejoramiento de todos los procesos de investigación y que
-						impactan directamente los grupos de investigación.</p>
-					<p class="text-informacion-general">Finalmente, la
-						consolidación de los grupos de investigación de la institución, ha
-						permitido el crecimiento en la categorización de los mismos y la
-						ejecución de más de 1000 proyectos de investigación, a través de
-						los cuales, y con los resultados obtenidos han contribuido a
-						posicionar a la Universidad del Quindío en rankings
-						internacionales de gran impacto como el Scimago, en el cual de
-						acuerdo a los resultados del año 2019, la institución ocupó el
-						puesto 26 a nivel nacional y la posición 757 a nivel mundial.</p>
 
-				</div>
-				<br></br>
-				<div class="card-contacto" th:classappend="'card-contacto-'+${color}">
 
-					<p>Contacto Vicerrectoría de Investigaciones</p>
-					<br></br>
-					<p>Jonatan Ramirez Moreno</p>
-					<br></br>
-					<p>Bloque administrativo 1, Edificio K.</p>
-					<br></br>
+				<div class="panel-info-contacto">
+					<div class="left-div" th:classappend="'card-contacto-'+${color}">
+						<p class="text-informacion-general">En la Universidad del
+							Quindío, la investigación es un eje estructurante en el
+							desarrollo de la academia, la región y el país; de esta manera se
+							constituye como una función misional y esencial de la
+							institución. Por ello,desde la misión institucional se establece
+							la contribución de la institución a la sociedad, mediante el
+							desarrollo de una investigación pertinente que aporte a la
+							solución de las problemáticas del desarrollo integrada con la
+							extensión y proyección social. En ese orden de ideas en el año
+							2011 se adoptó la Política de Investigaciones de la institución,
+							a través de la cual se definen las directrices para orientar la
+							gestión de la investigación y a partir de la cual se dio la
+							estructuración del Sistema de Investigaciones en el alma mater
+							quindiana.</p>
+						<p class="text-informacion-general">El Sistema de
+							Investigaciones de la Universidad del Quindío está compuesto por
+							actores de direccionamiento estratégico y actores acción. Uno de
+							los actores de acción fundamentales son los centros y grupos de
+							investigación. Actualmente, la Universidad del Quindío cuenta con
+							5 centros y 74 grupos de investigación, desde allí se desarrollan
+							estudios y proyectos en áreas como las ciencias humanas y bellas
+							artes, las ciencias agroindustriales, las ciencias básicas, las
+							ciencias económicas, las ciencias de la educación, las ciencias
+							de la salud y las ingenierías.</p>
+						<p class="text-informacion-general">El crecimiento de la
+							institución a nivel de investigación ha conllevado a la puesta en
+							marcha de diversos cambios a nivel tecnológico, que incluyen la
+							implementación de diversos aplicativos y plataformas, que le
+							permiten a nuestra institución estar a la vanguardia tecnológica
+							para el mejoramiento de todos los procesos de investigación y que
+							impactan directamente los grupos de investigación.</p>
+						<p class="text-informacion-general">Finalmente, la
+							consolidación de los grupos de investigación de la institución,
+							ha permitido el crecimiento en la categorización de los mismos y
+							la ejecución de más de 1000 proyectos de investigación, a través
+							de los cuales, y con los resultados obtenidos han contribuido a
+							posicionar a la Universidad del Quindío en rankings
+							internacionales de gran impacto como el Scimago, en el cual de
+							acuerdo a los resultados del año 2019, la institución ocupó el
+							puesto 26 a nivel nacional y la posición 757 a nivel mundial.</p>
 
-					<p>Teléfono: 57 - 6 - 7359300 Ext. 305 - 810 - 1020</p>
-					<br></br>
-					<p>Correo: viceinvestigaciones@uniquindio.edu.co</p>
-					<br></br>
-					<p>Horario de atención:</p>
-					<br></br>
-					<p>Lunes a viernes 8:00 a.m. a 12:00 p.m. y 2:00 p.m. a 6:00
-						p.m.</p>
+					</div>
 
+					<div class="right-div card-contacto"
+						th:classappend="'card-contacto-'+${color}">
+
+						<p>Contacto Vicerrectoría de Investigaciones</p>
+						<br></br>
+						<p>Jonatan Ramirez Moreno</p>
+						<br></br>
+						<p>Bloque administrativo 1, Edificio K.</p>
+						<br></br>
+
+						<p>Teléfono: 57 - 6 - 7359300 Ext. 305 - 810 - 1020</p>
+						<br></br>
+						<p>Correo: viceinvestigaciones@uniquindio.edu.co</p>
+						<br></br>
+						<p>Horario de atención:</p>
+						<br></br>
+						<p>Lunes a viernes 8:00 a.m. a 12:00 p.m. y 2:00 p.m. a 6:00
+							p.m.</p>
+
+					</div>
 				</div>
 				<br></br>
 
@@ -177,25 +183,29 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{centros(id=${idFacultadCienciasBasicas})}">
+								<a class="link"
+									th:href="@{centros(id=${idFacultadCienciasBasicas})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadCentrosInvestigacionCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadCienciasBasicas})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadCienciasBasicas})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadGruposInvestigacionCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{lineas(id=${idFacultadCienciasBasicas})}">
+								<a class="link"
+									th:href="@{lineas(id=${idFacultadCienciasBasicas})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadLineasInvestigacionCienciasBasicas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadCienciasBasicas})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas})}">
 									<button class="button-item button-res-basicas"
 										th:text="${cantidadInvestigadoresCienciasBasicas}"></button>
 								</a>
@@ -251,7 +261,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadEducacion})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadEducacion})}">
 									<button class="button-item button-res-educacion"
 										th:text="${cantidadInvestigadoresEducacion}"></button>
 								</a>
@@ -290,25 +301,29 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{centros(id=${idFacultadCienciasDeLaSalud})}">
+								<a class="link"
+									th:href="@{centros(id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidaCentrosInvestigacionCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadCienciasDeLaSalud})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadGruposInvestigacionCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{lineas(id=${idFacultadCienciasDeLaSalud})}">
+								<a class="link"
+									th:href="@{lineas(id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadLineasInvestigacionCienciasDeLaSalud}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-item button-res-salud"
 										th:text="${cantidadInvestigadoresCienciasDeLaSalud}"></button>
 								</a>
@@ -364,7 +379,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadIngenieria})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadIngenieria})}">
 									<button class="button-item button-res-ingenieria"
 										th:text="${cantidadInvestigadoresIngenieria}"></button>
 								</a>
@@ -403,25 +419,29 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{centros(id=${idFacultadCienciasHumanas})}">
+								<a class="link"
+									th:href="@{centros(id=${idFacultadCienciasHumanas})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadCentrosInvestigacionCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadCienciasHumanas})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadCienciasHumanas})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadGruposInvestigacionCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{lineas(id=${idFacultadCienciasHumanas})}">
+								<a class="link"
+									th:href="@{lineas(id=${idFacultadCienciasHumanas})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadLineasInvestigacionCienciasHumanas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadCienciasHumanas})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas})}">
 									<button class="button-item button-res-humanas"
 										th:text="${cantidadInvestigadoresCienciasHumanas}"></button>
 								</a>
@@ -459,25 +479,29 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{centros(id=${idFacultadAgroindustria})}">
+								<a class="link"
+									th:href="@{centros(id=${idFacultadAgroindustria})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadCentrosInvestigacionAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadAgroindustria})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadAgroindustria})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadGruposInvestigacionAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{lineas(id=${idFacultadAgroindustria})}">
+								<a class="link"
+									th:href="@{lineas(id=${idFacultadAgroindustria})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadLineasInvestigacionAgroindustria}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadAgroindustria})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadAgroindustria})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${cantidadInvestigadoresAgroindustria}"></button>
 								</a>
@@ -516,25 +540,29 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{centros(id=${idFacultadCienciasEconomicas})}">
+								<a class="link"
+									th:href="@{centros(id=${idFacultadCienciasEconomicas})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadCentrosInvestigacionCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadCienciasEconomicas})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadCienciasEconomicas})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadGruposInvestigacionCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{lineas(id=${idFacultadCienciasEconomicas})}">
+								<a class="link"
+									th:href="@{lineas(id=${idFacultadCienciasEconomicas})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadLineasInvestigacionCienciasEconomicas}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadCienciasEconomicas})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas})}">
 									<button class="button-item button-res-economicas"
 										th:text="${cantidadInvestigadoresCienciasEconomicas}"></button>
 								</a>
@@ -544,19 +572,22 @@
 								<button class="button-title button-title-total">Total</button>
 							</div>
 							<div>
-								<a class="link" th:href="@{programas(id=${idUniquindio},type=${programaAcademico})}">
+								<a class="link"
+									th:href="@{programas(id=${idUniquindio},type=${programaAcademico})}">
 									<button class="button-item button-title"
 										th:text="${cantidadProgramasAcademicosTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{programas(id=${idUniquindio},type=${programaDoctorado})}">
+								<a class="link"
+									th:href="@{programas(id=${idUniquindio},type=${programaDoctorado})}">
 									<button class="button-item button-title"
 										th:text="${cantidadProgramasDoctoradoTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{programas(id=${idUniquindio},type=${programaMagister})}">
+								<a class="link"
+									th:href="@{programas(id=${idUniquindio},type=${programaMagister})}">
 									<button class="button-item button-title"
 										th:text="${cantidadProgramasMaestriaTotal}"></button>
 								</a>
@@ -688,7 +719,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadCienciasBasicas})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadCienciasBasicas})}">
 									<button class="button-title"
 										th:text="${cantidadGruposCienciasBasicasTotal}"></button>
 								</a>
@@ -740,7 +772,8 @@
 							</div>
 							<div>
 								<a class="link" th:href="@{grupos(id=${idFacultadEducacion})}">
-									<button class="button-title" th:text="${cantidadGruposEducacionTotal}"></button>
+									<button class="button-title"
+										th:text="${cantidadGruposEducacionTotal}"></button>
 								</a>
 							</div>
 
@@ -791,7 +824,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadCienciasDeLaSalud})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-title"
 										th:text="${cantidadGruposCienciasDeLaSaludTotal}"></button>
 								</a>
@@ -844,7 +878,8 @@
 							</div>
 							<div>
 								<a class="link" th:href="@{grupos(id=${idFacultadIngenieria})}">
-									<button class="button-title" th:text="${cantidadGruposIngenieriaTotal}"></button>
+									<button class="button-title"
+										th:text="${cantidadGruposIngenieriaTotal}"></button>
 								</a>
 							</div>
 
@@ -895,7 +930,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadCienciasHumanas})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadCienciasHumanas})}">
 									<button class="button-title"
 										th:text="${cantidadGruposCienciasHumanasTotal}"></button>
 								</a>
@@ -947,8 +983,10 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadAgroindustria})}">
-									<button class="button-title" th:text="${cantidadGruposAgroindustriaTotal}"></button>
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadAgroindustria})}">
+									<button class="button-title"
+										th:text="${cantidadGruposAgroindustriaTotal}"></button>
 								</a>
 							</div>
 							<div>
@@ -998,7 +1036,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idFacultadCienciasEconomicas})}">
+								<a class="link"
+									th:href="@{grupos(id=${idFacultadCienciasEconomicas})}">
 									<button class="button-title"
 										th:text="${cantidadGruposCienciasEconomicasTotal}"></button>
 								</a>
@@ -1008,39 +1047,47 @@
 								<button class="button-title button-title-total">Total</button>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idUniquindio}, subType=${categoriaA1})}">
+								<a class="link"
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaA1})}">
 									<button class="button-title" th:text="${cantidadGruposA1Total}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idUniquindio}, subType=${categoriaA})}">
+								<a class="link"
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaA})}">
 									<button class="button-title" th:text="${cantidadGruposATotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idUniquindio}, subType=${categoriaB})}">
+								<a class="link"
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaB})}">
 									<button class="button-title" th:text="${cantidadGruposBTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idUniquindio}, subType=${categoriaC})}">
+								<a class="link"
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaC})}">
 									<button class="button-title" th:text="${cantidadGruposCTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{grupos(id=${idUniquindio}, subType=${categoriaReconocido})}">
-									<button class="button-title" th:text="${cantidadGruposReconocidosTotal}"></button>
+								<a class="link"
+									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaReconocido})}">
+									<button class="button-title"
+										th:text="${cantidadGruposReconocidosTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link"
 									th:href="@{grupos(id=${idUniquindio}, subType=${categoriaNoReconocido})}">
-									<button class="button-title" th:text="${cantidadGruposNoReconocidosTotal}"></button>
+									<button class="button-title"
+										th:text="${cantidadGruposNoReconocidosTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link" th:href="@{grupos}">
-									<button class="button-title" th:text="${cantidadGruposInvestigacionTotal}"></button>
+									<button class="button-title"
+										th:text="${cantidadGruposInvestigacionTotal}"></button>
 								</a>
 							</div>
 						</div>
@@ -1116,7 +1163,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadCienciasBasicas})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadCienciasBasicas})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresCienciasBasicasTotal}"></button>
 								</a>
@@ -1160,7 +1208,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadEducacion})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadEducacion})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresEducacionTotal}"></button>
 								</a>
@@ -1205,7 +1254,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresCienciasDeLaSaludTotal}"></button>
 								</a>
@@ -1249,7 +1299,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadIngenieria})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadIngenieria})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresIngenieriaTotal}"></button>
 								</a>
@@ -1294,7 +1345,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadCienciasHumanas})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadCienciasHumanas})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresCienciasHumanasTotal}"></button>
 								</a>
@@ -1338,7 +1390,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadAgroindustria})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadAgroindustria})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresAgroindustriaTotal}"></button>
 								</a>
@@ -1383,7 +1436,8 @@
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(id=${idFacultadCienciasEconomicas})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultadCienciasEconomicas})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresCienciasEconomicasTotal}"></button>
 								</a>
@@ -1392,38 +1446,44 @@
 								<button class="button-title button-title-total">Total</button>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${investigadorEmerito})}">
+								<a class="link"
+									th:href="@{investigadores(subType=${investigadorEmerito})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresEmeritosTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${investigadorSenior})}">
+								<a class="link"
+									th:href="@{investigadores(subType=${investigadorSenior})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresSeniorTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${investigadorAsociado})}">
+								<a class="link"
+									th:href="@{investigadores(subType=${investigadorAsociado})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresAsociadosTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${investigadorJunior})}">
+								<a class="link"
+									th:href="@{investigadores(subType=${investigadorJunior})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresJuniorTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${investigadorSinCategoria})}">
+								<a class="link"
+									th:href="@{investigadores(subType=${investigadorSinCategoria})}">
 									<button class="button-title"
 										th:text="${cantidadInvestigadoresSinCategoriaTotal}"></button>
 								</a>
 							</div>
 							<div>
 								<a class="link" th:href="@{investigadores}">
-									<button class="button-title" th:text="${cantidadInvestigadoresTotal}"></button>
+									<button class="button-title"
+										th:text="${cantidadInvestigadoresTotal}"></button>
 								</a>
 							</div>
 						</div>
@@ -1529,7 +1589,8 @@
 							<div>
 								<a class="link"
 									th:href="@{investigadores(id=${idFacultadEducacion}, subType=${docentes})}">
-									<button class="button-title" th:text="${cantidadDocentesEducacionTotal}"></button>
+									<button class="button-title"
+										th:text="${cantidadDocentesEducacionTotal}"></button>
 								</a>
 							</div>
 							<div>
@@ -1605,7 +1666,8 @@
 							<div>
 								<a class="link"
 									th:href="@{investigadores(id=${idFacultadIngenieria}, subType=${docentes})}">
-									<button class="button-title" th:text="${cantidadDocentesIngenieriaTotal}"></button>
+									<button class="button-title"
+										th:text="${cantidadDocentesIngenieriaTotal}"></button>
 								</a>
 							</div>
 							<div>
@@ -1728,24 +1790,31 @@
 								<button class="button-title button-title-total">Total</button>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${formacionDoctor})}">
-									<button class="button-title" th:text="${cantidadDocentesDoctoresTotal}"></button>
+								<a class="link"
+									th:href="@{investigadores(subType=${formacionDoctor})}">
+									<button class="button-title"
+										th:text="${cantidadDocentesDoctoresTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${formacionMagister})}">
-									<button class="button-title" th:text="${cantidadDocentesMagisterTotal}"></button>
+								<a class="link"
+									th:href="@{investigadores(subType=${formacionMagister})}">
+									<button class="button-title"
+										th:text="${cantidadDocentesMagisterTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${formacionEspecialista})}">
+								<a class="link"
+									th:href="@{investigadores(subType=${formacionEspecialista})}">
 									<button class="button-title"
 										th:text="${cantidadDocentesEspecialistasTotal}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link" th:href="@{investigadores(subType=${formacionPregrado})}">
-									<button class="button-title" th:text="${cantidadDocentesPregradoTotal}"></button>
+								<a class="link"
+									th:href="@{investigadores(subType=${formacionPregrado})}">
+									<button class="button-title"
+										th:text="${cantidadDocentesPregradoTotal}"></button>
 								</a>
 							</div>
 							<div>
@@ -1766,66 +1835,67 @@
 					<ul class="cards-list">
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{formacion(id=${id},type=${tipo})}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{formacion(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-2">
 										<span class="icono fa fa-graduation-cap"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades de Formación</h3>
 									</div> <span class="card-item-cantidad"
-										th:text="${cantidadActividadesDeFormacion}"></span>
+									th:text="${cantidadActividadesDeFormacion}"></span>
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{evaluador(id=${id},type=${tipo})}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{evaluador(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-3">
 										<span class="icono fa fa-pencil-alt"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades como Evaluador</h3>
 									</div> <span class="card-item-cantidad"
-										th:text="${cantidadActividadesEvaluador}"></span>
+									th:text="${cantidadActividadesEvaluador}"></span>
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{apropiacion(id=${id},type=${tipo})}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{apropiacion(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-4">
 										<span class="icono fa fa-user-friends"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Actividades de Apropiación Social</h3>
 									</div> <span class="card-item-cantidad"
-										th:text="${cantidadApropiacionSocial}"></span>
+									th:text="${cantidadApropiacionSocial}"></span>
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{bibliografica(id=${id},type=${tipo})}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{bibliografica(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-5">
 										<span class="icono fa fa-book-open"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Producciones Bibliográficas</h3>
 									</div> <span class="card-item-cantidad"
-										th:text="${cantidadProduccionesBibliograficas}"></span>
+									th:text="${cantidadProduccionesBibliograficas}"></span>
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{tecnica(id=${id},type=${tipo})}" class="card-container" rel="keep-params">
+								<a th:href="@{tecnica(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-6">
 										<span class="icono fa fa-cogs"></span>
 									</div>
@@ -1833,13 +1903,14 @@
 										<h3 class="card-title">Producciones Técnicas y
 											Tecnológicas</h3>
 									</div> <span class="card-item-cantidad"
-										th:text="${cantidadTecnicasTecnologicas}"></span>
+									th:text="${cantidadTecnicasTecnologicas}"></span>
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{arte(id=${id},type=${tipo})}" class="card-container" rel="keep-params">
+								<a th:href="@{arte(id=${id},type=${tipo})}"
+									class="card-container" rel="keep-params">
 
 									<div class="card-icon card-icon-7">
 										<span class="icono fa fa-paint-brush"></span>
@@ -1849,36 +1920,36 @@
 											Producciones en <br />Arte
 										</h3>
 									</div> <span class="card-item-cantidad"
-										th:text="${cantidadProduccionesArte}"></span>
+									th:text="${cantidadProduccionesArte}"></span>
 								</a>
 							</div>
 						</li>
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=32)}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=32)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-1">
 										<span class="icono fab fa-firstdraft"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Demás Trabajos</h3>
 									</div> <span class="card-item-cantidad"
-										th:text="${cantidadProduccionesDemasTrabajos}">0</span>
+									th:text="${cantidadProduccionesDemasTrabajos}">0</span>
 								</a>
 							</div>
 						</li>
 
 						<li class="ci-4 cards-item">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=33)}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=33)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-2">
 										<span class="icono fa fa-pencil-ruler"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">Proyectos</h3>
 									</div> <span class="card-item-cantidad"
-										th:text="${cantidadProduccionesProyectos}">0</span>
+									th:text="${cantidadProduccionesProyectos}">0</span>
 								</a>
 							</div>
 						</li>
