@@ -12,6 +12,7 @@
 	<div id="wrapper">
 
 
+
 		<div id="content-wrapper">
 			<div class="container-fluid">
 
@@ -77,7 +78,7 @@
 
 	<script th:inline="javascript">
 
-		var url = "/ServerSpring/rest/service/producciones/" + [[${ param.type }]] + "/" + [[${ param.id }]] + "/" + [[${ param.prod }]];
+		var url = "/ServerSpring/rest/service/producciones/" + [[${param.type}]] + "/" + [[${param.id}]] + "/" + [[${param.prod}]];
 
 		$.ajax({
 			type: "GET",
@@ -86,7 +87,7 @@
 			dataType: 'json',
 			cache: false,
 			success: function (producciones) {
-				
+
 				var res = [];
 				producciones.forEach(function (item) {
 
@@ -111,8 +112,8 @@
 
 				res.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
-				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]]
-				const element = document.querySelector('.' + [[${ color }]]);
+				var titulo = [[${nombre}]] + " - " + [[${tipo}]]
+				const element = document.querySelector('.' + [[${color}]]);
 				const style = getComputedStyle(element);
 				const color = style.backgroundColor;
 

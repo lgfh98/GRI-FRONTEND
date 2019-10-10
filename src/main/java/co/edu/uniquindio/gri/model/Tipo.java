@@ -29,7 +29,7 @@ public class Tipo implements Serializable {
 	@Id
 	@Column(name = "ID")	
 	private long id;
-
+	
 	/** The nombre. */
 	@Column(name = "NOMBRE", length = 100)	
 	private String nombre;
