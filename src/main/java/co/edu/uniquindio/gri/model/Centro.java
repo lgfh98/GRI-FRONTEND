@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity(name = "CENTROS")
 @Table(name = "CENTROS", schema = "gri")
 public class Centro implements Serializable {
-
+	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 

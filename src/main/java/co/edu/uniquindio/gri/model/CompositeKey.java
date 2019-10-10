@@ -12,7 +12,6 @@ import javax.persistence.Embeddable;
 public class CompositeKey implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	@Column(name = "grupos_id")
 	private long grupos;
 
