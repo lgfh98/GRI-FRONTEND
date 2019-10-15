@@ -7,10 +7,10 @@
 <body id="page-top" class="sidebar-toggled">
 
 	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
-
+	<nav th:replace="fragments/secondarynav"></nav>
 	<div id="wrapper">
 
-	
+
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -20,7 +20,8 @@
 					<input type="text" id="input-busqueda"
 						class="form-control form-control-lg"
 						placeholder="Ingrese su búsqueda..."
-						aria-label="Recipient's username" aria-describedby="basic-addon2" th:value="${cadena}">
+						aria-label="Recipient's username" aria-describedby="basic-addon2"
+						th:value="${cadena}">
 					<div class="input-group-append">
 						<button class="btn btn-outline-success" id="btn-buscar"
 							type="button">Buscar</button>
@@ -31,9 +32,9 @@
 				<div class="px-5">
 					<label class="px-1">Buscar en:</label> <label
 						class="radio-inline px-1"><input type="radio" id="gruplac"
-						name="optradio" th:checked="${esGrupo}"/>GrupLAC</label> <label
+						name="optradio" th:checked="${esGrupo}" />GrupLAC</label> <label
 						class="radio-inline px-1"><input type="radio" id="cvlac"
-						name="optradio" th:checked="${not esGrupo}"/>CvLAC</label>
+						name="optradio" th:checked="${not esGrupo}" />CvLAC</label>
 				</div>
 
 
@@ -75,6 +76,6 @@
 	</div>
 
 	<div th:replace="fragments/footer"></div>
-	
+
 </body>
 </html>

@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Producciones en Custodia')">
-<meta charset="utf-8"/>
+<head
+	th:replace="fragments/header :: header('Producciones en Custodia')">
+<meta charset="utf-8" />
 </head>
 <body id="page-top" class="sidebar-toggled">
 
 	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
-
+	<nav th:replace="fragments/secondarynav"></nav>
 	<div id="wrapper">
 
-	
+
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -17,30 +18,34 @@
 					<div class="contenedor-hero">
 						<div class="contenido-hero">
 							<h1 class="titulo-hero" th:text="${nombre}"></h1>
-							Reportes relacionados a las producciones que se encuentran actualmente en custodia de la Vicerrectoría de Investigaciones.
+							Reportes relacionados a las producciones que se encuentran
+							actualmente en custodia de la Vicerrectoría de Investigaciones.
 						</div>
 					</div>
 				</div>
 				<div class="separador-1"></div>
-				
+
 				<div id="listageneral">
-				<ul class="cards-list">
-				<li class="ci-4 cards-item" th:classappend = "${tamanio}" th:each = "obj : ${lista}">
-								<div class="card">
-									<a th:href="${param.id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}" class="card-container"
-										rel="keep-params">
-										<div class="card-ball card-icon" th:classappend = "${param.id} ? ${color} : card-+${obj.id}">
-											<!--  <span class="icono fa fa-info"></span>-->
-										</div>
-										<div class="card-title-container">
-											<h3 class="card-title" style="font-size: 1rem !important;" th:text="${obj.nombre}">
-											</h3>
-										</div>
-									</a>
-								</div>
-							</li>
-							</ul>
-					</div>
+					<ul class="cards-list">
+						<li class="ci-4 cards-item" th:classappend="${tamanio}"
+							th:each="obj : ${lista}">
+							<div class="card">
+								<a
+									th:href="${param.id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}"
+									class="card-container" rel="keep-params">
+									<div class="card-ball card-icon"
+										th:classappend="${param.id} ? ${color} : card-+${obj.id}">
+										<!--  <span class="icono fa fa-info"></span>-->
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title" style="font-size: 1rem !important;"
+											th:text="${obj.nombre}"></h3>
+									</div>
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
