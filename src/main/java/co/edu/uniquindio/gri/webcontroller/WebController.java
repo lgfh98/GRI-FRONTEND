@@ -7,7 +7,9 @@ import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -122,7 +124,8 @@ public class WebController {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
@@ -627,43 +630,147 @@ public class WebController {
 	private void configurarReportes(List<JasperPrint> jasperPrintList, String type, String id, Connection conexion)
 			throws JRException {
 
-		String color_facultad = "";
+		String color_facultad = "UQ";
+		String mision_facultad = "";
+		String vision_facultad = "";
+		String contacto_facultad = "";
+		String title_facultad = "";
+
+		System.err.println(type + "_" + id);
+
+		String title = "";
+		Long id_programa = null;
+		boolean facultad = false;
+		boolean programa = false;
+		boolean centro = false;
+		boolean grupo = false;
 
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			color_facultad = f.getNombre();
+			facultad = true;
+			title_facultad = "Facultad de "+f.getNombre().toLowerCase();
+			mision_facultad = f.getInformaciongeneral();
+			vision_facultad = f.getInformaciongeneral();
+			contacto_facultad = f.getContacto();
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 			color_facultad = p.getFacultad().getNombre();
+			programa = true;
+			title = p.getNombre();
+			id_programa = p.getId();
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 			color_facultad = c.getFacultad().getNombre();
+			centro = true;
 		} else if (type.equals("g")) {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
 			color_facultad = g.getProgramas().get(0).getFacultad().getNombre();
+			grupo = true;
 		}
 
 		int aux = 1;
 		InputStream input = null;
 
 		while (true) {
+			Map<String, Object> parametros = new HashMap<>();
 
-			if (type.equals("u")) {
-				input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
+			if (color_facultad.equals("UQ")) {
+				if (type.equals("u")) {
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
+				} else if (type.equals("i")) {
+
+				}
 			} else {
 				if (color_facultad.equals("CIENCIAS BÁSICAS")) {
+					if (facultad) {
+						parametros.put("title_facultad", title_facultad);
+						parametros.put("contacto_facultad", contacto_facultad);
+						parametros.put("mision_facultad", mision_facultad);
+						parametros.put("vision_facultad", vision_facultad);
+						input = this.getClass().getResourceAsStream(
+								"/reportes/" + type + "_" + aux + "_" + color_facultad + ".jasper");
+					} else if (programa) {
+						parametros.put("title", title);
+						parametros.put("id_programa", id_programa);
+						input = this.getClass().getResourceAsStream(
+								"/reportes/" + type + "_" + aux + "_" + color_facultad + ".jasper");
+
+					} else if (centro) {
+
+					} else if (grupo) {
+
+					}
 
 				} else if (color_facultad.equals("EDUCACIÓN")) {
+					if (facultad) {
+
+					} else if (programa) {
+						parametros.put("id_programa", id_programa);
+						parametros.put("title", title);
+						input = this.getClass().getResourceAsStream(
+								"/reportes/" + type + "_" + aux + "_" + color_facultad + ".jasper");
+
+					} else if (centro) {
+
+					} else if (grupo) {
+
+					}
 
 				} else if (color_facultad.equals("CIENCIAS DE LA SALUD")) {
+					if (facultad) {
+
+					} else if (programa) {
+
+					} else if (centro) {
+
+					} else if (grupo) {
+
+					}
 
 				} else if (color_facultad.equals("INGENIERÍA")) {
+					if (facultad) {
+
+					} else if (programa) {
+
+					} else if (centro) {
+
+					} else if (grupo) {
+
+					}
 
 				} else if (color_facultad.equals("CIENCIAS HUMANAS")) {
+					if (facultad) {
+
+					} else if (programa) {
+
+					} else if (centro) {
+
+					} else if (grupo) {
+
+					}
 
 				} else if (color_facultad.equals("AGROINDUSTRIA")) {
+					if (facultad) {
+
+					} else if (programa) {
+
+					} else if (centro) {
+
+					} else if (grupo) {
+
+					}
 
 				} else if (color_facultad.equals("CIENCIAS ECONÓMICAS")) {
+					if (facultad) {
+
+					} else if (programa) {
+
+					} else if (centro) {
+
+					} else if (grupo) {
+
+					}
 
 				}
 			}
@@ -675,7 +782,7 @@ public class WebController {
 			}
 
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(input);
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conexion);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, conexion);
 			jasperPrintList.add(jasperPrint);
 
 		}
@@ -965,8 +1072,8 @@ public class WebController {
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(16));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(17));
 
-		model.addAttribute("cantidadGruposTotal", resumen.get(3).add(
-				resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
+		model.addAttribute("cantidadGruposTotal", resumen.get(3)
+				.add(resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
 
 		model.addAttribute("cantidadInvestigadoresTotal",
 				resumen.get(9).add(resumen.get(10).add(resumen.get(11).add(resumen.get(12).add(resumen.get(13))))));
@@ -1044,17 +1151,15 @@ public class WebController {
 		model.addAttribute("cantidadDocentesMagister", resumen.get(15));
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(16));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(17));
-		
 
-		model.addAttribute("cantidadGruposTotal", resumen.get(3).add(
-				resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
+		model.addAttribute("cantidadGruposTotal", resumen.get(3)
+				.add(resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
 
 		model.addAttribute("cantidadInvestigadoresTotal",
 				resumen.get(9).add(resumen.get(10).add(resumen.get(11).add(resumen.get(12).add(resumen.get(13))))));
 
 		model.addAttribute("cantidadDocentesTotal",
 				resumen.get(14).add(resumen.get(15).add(resumen.get(16).add(resumen.get(17)))));
-
 
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");
@@ -1125,7 +1230,6 @@ public class WebController {
 
 		model.addAttribute("cantidadDocentesTotal",
 				resumen.get(7).add(resumen.get(8).add(resumen.get(9).add(resumen.get(10)))));
-
 
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");

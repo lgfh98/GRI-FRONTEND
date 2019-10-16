@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand navbar-dark static-top"
 	th:fragment="nav (style)" th:classappend="${style}">
 
-	
+
 
 	<!-- Uso Futuro -->
 	<div
@@ -10,19 +10,21 @@
 
 
 
-
-
-
 	<!-- Navbar -->
 	<ul class="navbar-nav ml-auto ml-md-0">
 
-		<li class=" nav-item btn-link btn-sm color iconPrintSmall"
+		<a target="_blank"
+			th:href="@{imprimir-reporte-estadistico(id=${id},type=${tipo})}">
+			<li class=" nav-item btn-link btn-sm color iconPrintSmall"
 			title="Imprimir Analiticas"><span class="fas fa-print"
-			aria-hidden="true"></span> <span class="btnText">Imprimir</span></li>
-
-		<li class="nav-item btn-link btn-sm color iconPrintSmall"
+				aria-hidden="true"></span> <span class="btnText">Imprimir</span></li>
+		</a>
+		<a target="_blank"
+			th:href="@{descargar-reporte-estadistico(id=${id},type=${tipo})}">
+			<li class="nav-item btn-link btn-sm color iconPrintSmall"
 			title="Descargar Analiticas"><span class="fas fa-file-download"
-			aria-hidden="true"></span> <span class="btnText">Descargar</span></li>
-		
+				aria-hidden="true"></span> <span class="btnText">Descargar</span></li>
+		</a>
+
 	</ul>
 </nav>
