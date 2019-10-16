@@ -33,9 +33,9 @@
 					<div class="right-div card-contacto"
 						th:classappend="'card-contacto-'+${color}">
 						<p>CONTACTO DEL CENTRO</p>
-						<br></br> <br></br>
+						<br></br> 
 						<div th:each="obj: ${contacto}">
-							<p th:text="${obj}"></p>
+							<p class="text-informacion-general-rigth" th:text="${obj}"></p>
 
 						</div>
 					</div>

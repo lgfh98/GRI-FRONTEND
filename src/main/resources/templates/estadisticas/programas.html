@@ -28,10 +28,11 @@
 				<div class="panel-info-contacto">
 					<div class=" left-div card-contacto"
 						th:classappend="'card-contacto-'+${color}">
-						<div th:each="obj: ${infogeneral}">
+						<div class="text-informacion-general"
+							th:each="obj: ${infogeneral}">
 
-							<p  th:text="${obj}"></p>
-							<br></br>
+							<p th:text="${obj}"></p>
+
 						</div>
 					</div>
 
@@ -39,10 +40,10 @@
 					<div class=" right-div card-contacto"
 						th:classappend="'card-contacto-'+${color}">
 						<p>CONTACTO DEL PROGRAMA</p>
-						<br></br> <br></br>
+						<br></br>
 						<div th:each="obj: ${contacto}">
-							<p th:text="${obj}"></p>
-							
+							<p class="text-informacion-general" th:text="${obj}"></p>
+
 
 						</div>
 					</div>

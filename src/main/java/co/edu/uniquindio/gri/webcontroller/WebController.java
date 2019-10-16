@@ -626,6 +626,8 @@ public class WebController {
 
 		if (type.equals("f")) {
 
+			model.addAttribute("mision", datos[4]);
+			model.addAttribute("vision", datos[6]);
 			return getEstadisticasFacultad(id, model);
 
 		} else if (type.equals("p")) {
@@ -657,7 +659,7 @@ public class WebController {
 	 */
 	public String[] getDatosEstadisticas(String id, String type) {
 
-		String[] datos = new String[6];
+		String[] datos = new String[7];
 
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
@@ -666,8 +668,9 @@ public class WebController {
 			datos[1] = "card-" + f.getId();
 			datos[2] = "btn-title-grid-" + f.getId();
 			datos[3] = "btn-total-grid-" + f.getId();
-			datos[4] = f.getInformaciongeneral();
+			datos[4] = f.getMision();
 			datos[5] = f.getContacto();
+			datos[6] = f.getVision();
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 
@@ -890,8 +893,8 @@ public class WebController {
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(16));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(17));
 
-		model.addAttribute("cantidadGruposTotal", resumen.get(3).add(
-				resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
+		model.addAttribute("cantidadGruposTotal", resumen.get(3)
+				.add(resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
 
 		model.addAttribute("cantidadInvestigadoresTotal",
 				resumen.get(9).add(resumen.get(10).add(resumen.get(11).add(resumen.get(12).add(resumen.get(13))))));
@@ -969,17 +972,15 @@ public class WebController {
 		model.addAttribute("cantidadDocentesMagister", resumen.get(15));
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(16));
 		model.addAttribute("cantidadDocentesPregrado", resumen.get(17));
-		
 
-		model.addAttribute("cantidadGruposTotal", resumen.get(3).add(
-				resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
+		model.addAttribute("cantidadGruposTotal", resumen.get(3)
+				.add(resumen.get(4).add(resumen.get(5).add(resumen.get(6).add(resumen.get(7)).add(resumen.get(8))))));
 
 		model.addAttribute("cantidadInvestigadoresTotal",
 				resumen.get(9).add(resumen.get(10).add(resumen.get(11).add(resumen.get(12).add(resumen.get(13))))));
 
 		model.addAttribute("cantidadDocentesTotal",
 				resumen.get(14).add(resumen.get(15).add(resumen.get(16).add(resumen.get(17)))));
-
 
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");
@@ -1050,7 +1051,6 @@ public class WebController {
 
 		model.addAttribute("cantidadDocentesTotal",
 				resumen.get(7).add(resumen.get(8).add(resumen.get(9).add(resumen.get(10)))));
-
 
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");

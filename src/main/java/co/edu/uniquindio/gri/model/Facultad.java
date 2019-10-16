@@ -23,7 +23,7 @@ public class Facultad implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The id. */
 	@Id
 	@Column(name = "ID")
@@ -34,10 +34,16 @@ public class Facultad implements Serializable {
 	private String nombre;
 
 	/**
-	 * the informaciongeneral
+	 * the mision
 	 */
-	@Column(name = "INFORMACIONGENERAL")
-	private String informaciongeneral;
+	@Column(name = "MISION")
+	private String mision;
+
+	/**
+	 * the vision
+	 */
+	@Column(name = "VISION")
+	private String vision;
 
 	/**
 	 * the contacto
@@ -67,10 +73,11 @@ public class Facultad implements Serializable {
 	 * @param id     the id
 	 * @param nombre the nombre
 	 */
-	public Facultad(long id, String nombre, String informaciongeneral, String contacto) {
+	public Facultad(long id, String nombre, String mision, String contacto, String vision) {
 		this.id = id;
 		this.nombre = nombre;
-		this.informaciongeneral = informaciongeneral;
+		this.mision = mision;
+		this.vision = vision;
 		this.contacto = contacto;
 	}
 
@@ -111,21 +118,39 @@ public class Facultad implements Serializable {
 	}
 
 	/**
-	 * gets the informacion general
+	 * Get the mision
 	 * 
-	 * @return the informaciongeneral
+	 * @return the mision
 	 */
-	public String getInformaciongeneral() {
-		return informaciongeneral;
+	public String getMision() {
+		return mision;
 	}
 
 	/**
-	 * sets the informacion general
+	 * set the mision
 	 * 
-	 * @param the new informaciongeneral
+	 * @param the New mision
 	 */
-	public void setInformaciongeneral(String informaciongeneral) {
-		this.informaciongeneral = informaciongeneral;
+	public void setMision(String mision) {
+		this.mision = mision;
+	}
+
+	/**
+	 * get the vision
+	 * 
+	 * @return the vision
+	 */
+	public String getVision() {
+		return vision;
+	}
+
+	/**
+	 * set the vision
+	 * 
+	 * @param the NEW vision
+	 */
+	public void setVision(String vision) {
+		this.vision = vision;
 	}
 
 	/**

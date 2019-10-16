@@ -31,7 +31,14 @@
 				<div class="panel-info-contacto">
 
 					<div class="left-div" th:classappend="'card-contacto-'+${color}">
-						<div th:each="obj: ${infogeneral}">
+						<p class="card-contacto">Misión</p>
+						<div th:each="obj: ${mision}">
+							<p class="text-informacion-general" th:text="${obj}"></p>
+						</div>
+						<br></br>
+						<p class="card-contacto">Visión</p>
+					
+						<div th:each="obj: ${vision}">
 							<p class="text-informacion-general" th:text="${obj}"></p>
 						</div>
 					</div>
@@ -40,10 +47,10 @@
 					<div class=" right-div card-contacto"
 						th:classappend="'card-contacto-'+${color}">
 						<p>CONTACTO DE LA FACULTAD</p>
-						<br></br> <br></br>
+						<br></br>
 						<div th:each="obj: ${contacto}">
-							<p th:text="${obj}"></p>
-							
+							<p class="text-informacion-general-rigth" th:text="${obj}"></p>
+
 
 						</div>
 					</div>

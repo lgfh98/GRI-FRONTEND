@@ -1855,7 +1855,6 @@ colores de botones de las tablas
 	background: transparent;
 	border-radius: 6px;
 	font-weight: bold;
-	font-size: 0.8em;
 	padding: 1em;
 	margin-right: auto;
 }
@@ -1864,8 +1863,16 @@ colores de botones de las tablas
 	text-align: justify;
 	padding: 0.3em 2em;
 	font-family: sans-serif;
-	font-weight: bold;
-	font-size: 0.8em;
+	font-size: 0.9rem;
+	color: black;
+}
+.text-informacion-general-rigth {
+	text-align: center;
+	padding: 0.3em 2em;
+	font-family: sans-serif;
+	font-size: 0.9rem;
+	font-weight: normal;
+	color: black;
 }
 
 /**
@@ -2115,46 +2122,55 @@ user agent stylesheet user agent stylesheet menu {
 }
 
 .card-contacto-card-0 {
+	color: #009640;
 	border: 1px solid #009640;
 	border-top: 10px solid #009640;
 }
 
 .card-contacto-card-1 {
+	color: #ffcc00;
 	border: 1px solid #ffcc00;
 	border-top: 10px solid #ffcc00;
 }
 
 .card-contacto-card-2 {
+	color: #DC911B;
 	border: 1px solid #DC911B;
 	border-top: 10px solid #DC911B;
 }
 
 .card-contacto-card-3 {
+	color: #1169B0;
 	border: 1px solid #1169B0;
 	border-top: 10px solid #1169B0;
 }
 
 .card-contacto-card-4 {
+		color: #009DE0;
 	border: 1px solid #009DE0;
 	border-top: 10px solid #009DE0;
 }
 
 .card-contacto-card-5 {
+			color: #C20B19;
 	border: 1px solid #C20B19;
 	border-top: 10px solid #C20B19;
 }
 
 .card-contacto-card-6 {
+	color: #8FB435;
 	border: 1px solid #8FB435;
 	border-top: 10px solid #8FB435;
 }
 
 .card-contacto-card-7 {
+	color: #8E1C7D;
 	border: 1px solid #8E1C7D;
 	border-top: 10px solid #8E1C7D;
 }
 
 .card-contacto-card-8 {
+		color: #009640;
 	border: 1px solid #009640;
 	border-top: 10px solid #009640;
 }
