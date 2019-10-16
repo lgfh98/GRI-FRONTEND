@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: header('Estadisticas Grupo')">
+<head th:replace="fragments/header :: header('Estadísticas Grupo')">
 <meta charset="utf-8" />
 </head>
 
@@ -39,10 +39,10 @@
 					<div class="right-div card-contacto"
 						th:classappend="'card-contacto-'+${color}">
 						<p>CONTACTO DEL GRUPO</p>
-						<br></br> <br></br>
+						<br></br>
 						<div th:each="obj: ${contacto}">
-							<p th:text="${obj}"></p>
-							<br></br>
+							<p class="text-informacion-general-rigth" th:text="${obj}"></p>
+
 
 						</div>
 					</div>

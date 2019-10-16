@@ -25,12 +25,11 @@ public class Tipo implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
 	/** The id. */
 	@Id
 	@Column(name = "ID")	
 	private long id;
-
+	
 	/** The nombre. */
 	@Column(name = "NOMBRE", length = 100)	
 	private String nombre;

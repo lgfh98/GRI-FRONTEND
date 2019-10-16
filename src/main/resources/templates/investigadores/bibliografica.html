@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Producción Bibliográfica')">
+<head
+	th:replace="fragments/header :: header('Producción Bibliográfica')">
 <meta charset="utf-8" />
 </head>
 <body id="page-top" class="sidebar-toggled">
 
 	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
-
+	<nav th:replace="fragments/secondarynav"></nav>
 	<div id="wrapper">
 
-		
+
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -29,8 +30,8 @@
 					<ul class="cards-list">
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=15)}"  class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=15)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-1">
 										<span class="icono fas fa-file-alt"></span>
 									</div>
@@ -43,14 +44,14 @@
 
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=17)}"  class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=17)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-2">
 										<span class="icono fas fa-book"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">
-											Libros Publicados <br/>
+											Libros Publicados <br />
 										</h3>
 									</div>
 								</a>
@@ -59,8 +60,8 @@
 
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=19)}"  class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=19)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-3">
 										<span class="icono fa fa-file"></span>
 									</div>
@@ -72,8 +73,8 @@
 						</li>
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=21)}"  class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=21)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-4">
 										<span class="icono fas fa-paperclip"></span>
 									</div>
@@ -86,14 +87,14 @@
 
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=23)}"  class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=23)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-5">
 										<span class="icono fas fa-newspaper"></span>
 									</div>
 									<div class="card-title-container">
 										<h3 class="card-title">
-											Otra Publicación Bibliográfica <br/>
+											Otra Publicación Bibliográfica <br />
 										</h3>
 									</div>
 								</a>
@@ -102,8 +103,8 @@
 
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=22)}"  class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=22)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-6">
 										<span class="icono fab fa-firstdraft"></span>
 									</div>

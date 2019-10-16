@@ -158,6 +158,9 @@ public class WebController {
 				} else if (subType.equals("fp")) {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoGrupo(Long.parseLong(id)));
+				} else if (subType.equals("d")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresGrupo(Long.parseLong(id)));
@@ -190,6 +193,9 @@ public class WebController {
 				} else if (subType.equals("fp")) {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoCentro(Long.parseLong(id)));
+				} else if (subType.equals("d")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresCentro(Long.parseLong(id)));
@@ -222,6 +228,9 @@ public class WebController {
 				} else if (subType.equals("fp")) {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresInternosPregradoPrograma(Long.parseLong(id)));
+				} else if (subType.equals("d")) {
+					model.addAttribute("listaInvestigadores",
+							investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id)));
 				} else {
 					model.addAttribute("listaInvestigadores",
 							investigadorDAO.getInvestigadoresPrograma(Long.parseLong(id)));
@@ -487,6 +496,7 @@ public class WebController {
 			model.addAttribute("nombre", f.getNombre());
 			model.addAttribute("lista", listaGrupos);
 			model.addAttribute("color", "card-" + f.getId());
+			model.addAttribute("id", "" + f.getId());
 			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
 		}
 		return "inventario/inventario";
@@ -499,6 +509,7 @@ public class WebController {
 
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
+		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("producciones", produccionDAO.getAllProducciones(Long.parseLong(id)));
 
 		return "inventario/reporteinventario";
@@ -808,6 +819,8 @@ public class WebController {
 
 		if (type.equals("f")) {
 
+			model.addAttribute("mision", datos[4]);
+			model.addAttribute("vision", datos[6]);
 			return getEstadisticasFacultad(id, model);
 
 		} else if (type.equals("p")) {
@@ -839,7 +852,7 @@ public class WebController {
 	 */
 	public String[] getDatosEstadisticas(String id, String type) {
 
-		String[] datos = new String[6];
+		String[] datos = new String[7];
 
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
@@ -848,8 +861,9 @@ public class WebController {
 			datos[1] = "card-" + f.getId();
 			datos[2] = "btn-title-grid-" + f.getId();
 			datos[3] = "btn-total-grid-" + f.getId();
-			datos[4] = f.getInformaciongeneral();
+			datos[4] = f.getMision();
 			datos[5] = f.getContacto();
+			datos[6] = f.getVision();
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 

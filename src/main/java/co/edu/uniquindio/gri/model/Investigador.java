@@ -23,9 +23,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "INVESTIGADORES", schema = "gri")
 public class Investigador implements Serializable {
 
+
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
+	
 	/** The id. */
 	@Id
 	@Column(name = "ID")

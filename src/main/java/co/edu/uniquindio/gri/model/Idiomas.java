@@ -23,7 +23,7 @@ public class Idiomas implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
+	
 	/** The id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,7 +38,6 @@ public class Idiomas implements Serializable {
 	/** The habla. */
 	@Column(name = "HABLA")
 	private String habla;
-
 	/** The escribe. */
 	@Column(name = "ESCRIBE")
 	private String escribe;

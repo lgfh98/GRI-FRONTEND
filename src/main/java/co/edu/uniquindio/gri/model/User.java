@@ -18,12 +18,11 @@ public class User  implements Serializable{
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-
 	/** The id. */
 	@Id
 	@Column(name = "ID", length = 300)
 	private long id;
-
+	
 	/** The username. */
 	@Column(name = "USERNAME", length = 300)	
 	private String username;
