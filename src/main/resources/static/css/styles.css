@@ -1065,6 +1065,10 @@ label {
 	border-radius: 6px;
 }
 
+.button-item:hover {
+	cursor: pointer;
+}
+
 .button-title {
 	width: 100%;
 	height: 100%;
@@ -1074,6 +1078,23 @@ label {
 	border-radius: 6px;
 	font-weight: bold;
 	font-size: 0.8em;
+}
+
+.button-title-total {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: 1px solid green;
+	border-bottom: 10px solid green;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+.button-title-total:hover {
+	cursor: pointer;
+	background-color: green;
+	color: white;
 }
 
 .card-1-titulo {
@@ -1865,7 +1886,9 @@ colores de botones de las tablas
 	font-family: sans-serif;
 	font-size: 0.9rem;
 	color: black;
+	font-weight: normal;
 }
+
 .text-informacion-general-rigth {
 	text-align: center;
 	padding: 0.3em 2em;
@@ -2047,8 +2070,6 @@ user agent stylesheet user agent stylesheet menu {
 	padding: 0;
 }
 
-
-
 .menu-nav-li {
 	border-right: 1px solid #fff;
 }
@@ -2146,13 +2167,13 @@ user agent stylesheet user agent stylesheet menu {
 }
 
 .card-contacto-card-4 {
-		color: #009DE0;
+	color: #009DE0;
 	border: 1px solid #009DE0;
 	border-top: 10px solid #009DE0;
 }
 
 .card-contacto-card-5 {
-			color: #C20B19;
+	color: #C20B19;
 	border: 1px solid #C20B19;
 	border-top: 10px solid #C20B19;
 }
@@ -2170,7 +2191,7 @@ user agent stylesheet user agent stylesheet menu {
 }
 
 .card-contacto-card-8 {
-		color: #009640;
+	color: #009640;
 	border: 1px solid #009640;
 	border-top: 10px solid #009640;
 }
@@ -2199,11 +2220,9 @@ Responsive--------------------------------------------
 	.menu-nav {
 		display: none;
 	}
-	
 	.menu-nav-ul {
 		flex-direction: column;
 	}
-	
 	.menu-nav-li {
 		border-top: 1px solid #ffff;
 		border-left: none;
