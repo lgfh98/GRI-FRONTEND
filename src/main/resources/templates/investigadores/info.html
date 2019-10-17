@@ -2,17 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/header :: header('Información Adicional')">
-	<meta charset="utf-8" />
+<meta charset="utf-8" />
 </head>
 
 <body id="page-top" class="sidebar-toggled">
 
-	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
-
+	<nav th:replace="fragments/nav :: nav(${color})"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
 	<div id="wrapper">
-
-
-
 		<div id="content-wrapper">
 			<div class="container-fluid">
 
@@ -73,7 +70,8 @@
 								<label>PERTENECE A: </label>
 							</div>
 							<div id="lista-grupos" class="col-md-6">
-								<p th:each="grupo : ${listaGrupos}" th:text="'• '+${grupo.nombre}"></p>
+								<p th:each="grupo : ${listaGrupos}"
+									th:text="'• '+${grupo.nombre}"></p>
 							</div>
 
 						</div>
@@ -87,7 +85,9 @@
 					</div>
 					<div class="contenedor-body">
 						<div id="table">
-							<table id="tabla_idiomas" th:class="'table-'+ ${facultadId} + ' table-bordered'" style="width: 100%">
+							<table id="tabla_idiomas"
+								th:class="'table-'+ ${facultadId} + ' table-bordered'"
+								style="width: 100%">
 								<thead>
 									<tr>
 										<th>IDIOMA</th>

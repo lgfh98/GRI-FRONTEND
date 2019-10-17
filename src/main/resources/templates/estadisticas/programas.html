@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: header('Estadisticas Programa')">
+<head th:replace="fragments/header :: header('Estadísticas Programa')">
 <meta charset="utf-8" />
 </head>
 
@@ -30,19 +30,34 @@
 						th:classappend="'card-contacto-'+${color}">
 						<div th:each="obj: ${infogeneral}">
 
-							<p  th:text="${obj}"></p>
-							<br></br>
+							<p class="text-informacion-general-rigth" th:text="${obj}"></p>
+
 						</div>
+						<p>Misión</p>
+						<br></br>
+						<div  th:each="obj: ${mision}">
+
+							<p class="text-informacion-general" th:text="${obj}"></p>
+
+						</div>
+
+						<p>Visión</p>
+						<div  th:each="obj: ${vision}">
+
+							<p class="text-informacion-general" th:text="${obj}"></p>
+
+						</div>
+						<br></br>
 					</div>
 
 
 					<div class=" right-div card-contacto"
 						th:classappend="'card-contacto-'+${color}">
 						<p>CONTACTO DEL PROGRAMA</p>
-						<br></br> <br></br>
+						<br></br>
 						<div th:each="obj: ${contacto}">
-							<p th:text="${obj}"></p>
-							<br></br>
+							<p class="text-informacion-general-rigth" th:text="${obj}"></p>
+
 
 						</div>
 					</div>
@@ -347,8 +362,7 @@
 				</hr>
 				<div id="listageneral">
 					<div class="separador-1"></div>
-					<h2 class="h2-titulos-tablas">Producciones de la Universidad
-						del Quindío</h2>
+					<h2 class="h2-titulos-tablas">Producciones del Programa</h2>
 					<div class="separador-1"></div>
 					<ul class="cards-list">
 						<li class="ci-4 cards-item">
