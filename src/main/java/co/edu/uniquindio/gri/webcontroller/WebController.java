@@ -7,7 +7,9 @@ import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,8 +18,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import co.edu.uniquindio.gri.dao.CentroDAO;
@@ -523,8 +523,9 @@ public class WebController {
 	 * @param model
 	 * @return
 	 */
-	@GetMapping("/reporteestadistico")
-	public void getReporteEstadistico(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+	@GetMapping("/imprimir-reporte-estadistico")
+	public void imprimirReporteEstadistico(
+			@RequestParam(name = "type", required = false, defaultValue = "u") String type,
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model,
 			HttpServletResponse response) throws SQLException, IOException, JRException {
 
@@ -532,60 +533,51 @@ public class WebController {
 
 		List<JasperPrint> jasperPrintList = new ArrayList<>();
 
-		String color_facultad = "";
+		configurarReportes(jasperPrintList, type, id, conexion);
 
-		if (type.equals("f")) {
-			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
-			color_facultad = f.getNombre();
-		} else if (type.equals("p")) {
-			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
-			color_facultad = p.getFacultad().getNombre();
-		} else if (type.equals("c")) {
-			Centro c = centroDAO.getCentroById(Long.parseLong(id));
-			color_facultad = c.getFacultad().getNombre();
-		} else if (type.equals("g")) {
-			Grupo g = grupoDAO.findOne(Long.parseLong(id));
-			color_facultad = g.getProgramas().get(0).getFacultad().getNombre();
-		}
+		imprimirReporte(response, jasperPrintList);
 
-		int aux = 1;
-		InputStream input = null;
+		conexion.close();
 
-		while (true) {
+	}
 
-			if (type.equals("u")) {
-				input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
-			} else {
-				if (color_facultad.equals("CIENCIAS BÁSICAS")) {
+	/**
+	 * permite obtener el reporte estadistico solicitado en formato pdf
+	 * 
+	 * @param type
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/descargar-reporte-estadistico")
+	public void descargarReporteEstadistico(
+			@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model,
+			HttpServletResponse response) throws SQLException, IOException, JRException {
 
-				} else if (color_facultad.equals("EDUCACIÓN")) {
+		Connection conexion = jdbcTemplate.getDataSource().getConnection();
 
-				} else if (color_facultad.equals("CIENCIAS DE LA SALUD")) {
+		List<JasperPrint> jasperPrintList = new ArrayList<>();
 
-				} else if (color_facultad.equals("INGENIERÍA")) {
+		configurarReportes(jasperPrintList, type, id, conexion);
 
-				} else if (color_facultad.equals("CIENCIAS HUMANAS")) {
+		descargarReportePDF(response, jasperPrintList);
 
-				} else if (color_facultad.equals("AGROINDUSTRIA")) {
+		conexion.close();
 
-				} else if (color_facultad.equals("CIENCIAS ECONÓMICAS")) {
+	}
 
-				}
-			}
+	/**
+	 * 
+	 * @param response
+	 * @param jasperPrintList
+	 * @throws IOException
+	 * @throws JRException
+	 */
+	private void imprimirReporte(HttpServletResponse response, List<JasperPrint> jasperPrintList)
+			throws IOException, JRException {
 
-			if (input == null) {
-				break;
-			} else {
-				aux++;
-			}
-
-			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(input);
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, conexion);
-			jasperPrintList.add(jasperPrint);
-
-		}
-
-		response.setContentType("application/x-pdf");
+		response.setContentType("application/pdf");
 		response.setHeader("Content-disposition", "inline; filename=reporte.pdf");
 
 		final OutputStream outStream = response.getOutputStream();
@@ -599,11 +591,161 @@ public class WebController {
 		exporter.setExporterOutput(exporterOutput);
 
 		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+
 		exporter.setConfiguration(configuration);
 
 		exporter.exportReport();
 
-		conexion.close();
+	}
+
+	/**
+	 * 
+	 * @param response
+	 * @param jasperPrintList
+	 * @throws IOException
+	 * @throws JRException
+	 */
+	private void descargarReportePDF(HttpServletResponse response, List<JasperPrint> jasperPrintList)
+			throws IOException, JRException {
+		response.setContentType("application/download");
+
+		response.setHeader("Content-disposition", "inline; filename=reporte.pdf");
+
+		final OutputStream outStream = response.getOutputStream();
+
+		JRPdfExporter exporter = new JRPdfExporter();
+
+		exporter.setExporterInput(SimpleExporterInput.getInstance(jasperPrintList));
+
+		SimpleOutputStreamExporterOutput exporterOutput = new SimpleOutputStreamExporterOutput(outStream);
+
+		exporter.setExporterOutput(exporterOutput);
+
+		SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
+
+		exporter.setConfiguration(configuration);
+
+		exporter.exportReport();
+
+	}
+
+	/**
+	 * Permite generar un listado de archivos .jasper, que seran exportados en un
+	 * formato posteriormente, como pdf.
+	 * 
+	 * @param jasperPrintList lista de archivos .jasper que será generada
+	 * @param type
+	 * @param id
+	 * @param conexion
+	 */
+	private void configurarReportes(List<JasperPrint> jasperPrintList, String type, String id, Connection conexion)
+			throws JRException {
+
+		// PARAMETROS FACULTAD//
+		String title_facultad = "";
+		String mision_facultad = "";
+		String vision_facultad = "";
+		String contacto_facultad = "";
+		Long id_facultad = null;
+		////////////
+
+		// PARAMETROS PROGRAMA//
+		String title_programa = "";
+		String mision_programa = "";
+		String vision_programa = "";
+		String contacto_programa = "";
+
+		////////////
+
+		boolean facultad = false;
+		boolean programa = false;
+		boolean centro = false;
+		boolean grupo = false;
+		boolean universidad = false;
+		boolean investigador = false;
+
+		if (type.equals("f")) {
+			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
+			facultad = true;
+			title_facultad = f.getNombre().toLowerCase();
+			mision_facultad = f.getMision();
+			vision_facultad = f.getVision();
+			contacto_facultad = f.getContacto();
+			id_facultad = new Long(f.getId());
+			System.err.println(id_facultad);
+
+		} else if (type.equals("p")) {
+			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
+			programa = true;
+			title_programa = p.getNombre().toLowerCase();
+			mision_programa = p.getMision();
+			vision_programa = p.getVision();
+			contacto_programa = p.getContacto();
+
+		} else if (type.equals("c")) {
+			Centro c = centroDAO.getCentroById(Long.parseLong(id));
+			centro = true;
+		} else if (type.equals("g")) {
+			Grupo g = grupoDAO.findOne(Long.parseLong(id));
+			grupo = true;
+		} else if (type.equals("i")) {
+			// Grupo g = grupoDAO.findOne(Long.parseLong(id));
+			investigador = true;
+		} else {
+			universidad = true;
+		}
+
+		int aux = 1;
+		InputStream input = null;
+
+		while (true) {
+			Map<String, Object> parametros = new HashMap<>();
+
+			if (universidad) {
+				if (type.equals("u")) {
+
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
+				} else if (type.equals("i")) {
+
+				}
+			} else {
+				if (facultad) {
+					parametros.put("title_facultad", title_facultad);
+					parametros.put("mision_facultad", mision_facultad);
+					parametros.put("vision_facultad", vision_facultad);
+					parametros.put("contacto_facultad", contacto_facultad);
+					parametros.put("id_facultad", id_facultad);
+
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
+
+				} else if (programa) {
+					parametros.put("title_programa", title_programa);
+					parametros.put("mision_programa", mision_programa);
+					parametros.put("vision_programa", vision_programa);
+					parametros.put("contacto_programa", contacto_programa);
+
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
+
+				} else if (centro) {
+
+				} else if (grupo) {
+
+				} else if (investigador) {
+
+				}
+			}
+
+			if (input == null) {
+				break;
+			} else {
+				aux++;
+			}
+
+			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(input);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, conexion);
+			jasperPrintList.add(jasperPrint);
+
+		}
 
 	}
 
