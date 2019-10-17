@@ -641,43 +641,58 @@ public class WebController {
 	private void configurarReportes(List<JasperPrint> jasperPrintList, String type, String id, Connection conexion)
 			throws JRException {
 
-		String color_facultad = "UQ";
+		// PARAMETROS FACULTAD//
+		String title_facultad = "";
 		String mision_facultad = "";
 		String vision_facultad = "";
 		String contacto_facultad = "";
-		String title_facultad = "";
+		Long id_facultad = null;
+		////////////
 
-		System.err.println(type + "_" + id);
+		// PARAMETROS PROGRAMA//
+		String title_programa = "";
+		String mision_programa = "";
+		String vision_programa = "";
+		String contacto_programa = "";
 
-		String title = "";
-		Long id_programa = null;
+		////////////
+
 		boolean facultad = false;
 		boolean programa = false;
 		boolean centro = false;
 		boolean grupo = false;
+		boolean universidad = false;
+		boolean investigador = false;
 
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
-			color_facultad = f.getNombre();
 			facultad = true;
-			title_facultad = "Facultad de "+f.getNombre().toLowerCase();
-			mision_facultad = f.getInformaciongeneral();
-			vision_facultad = f.getInformaciongeneral();
+			title_facultad = f.getNombre().toLowerCase();
+			mision_facultad = f.getMision();
+			vision_facultad = f.getVision();
 			contacto_facultad = f.getContacto();
+			id_facultad = new Long(f.getId());
+			System.err.println(id_facultad);
+
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
-			color_facultad = p.getFacultad().getNombre();
 			programa = true;
-			title = p.getNombre();
-			id_programa = p.getId();
+			title_programa = p.getNombre().toLowerCase();
+			mision_programa = p.getMision();
+			vision_programa = p.getVision();
+			contacto_programa = p.getContacto();
+
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
-			color_facultad = c.getFacultad().getNombre();
 			centro = true;
 		} else if (type.equals("g")) {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
-			color_facultad = g.getProgramas().get(0).getFacultad().getNombre();
 			grupo = true;
+		} else if (type.equals("i")) {
+			// Grupo g = grupoDAO.findOne(Long.parseLong(id));
+			investigador = true;
+		} else {
+			universidad = true;
 		}
 
 		int aux = 1;
@@ -686,102 +701,36 @@ public class WebController {
 		while (true) {
 			Map<String, Object> parametros = new HashMap<>();
 
-			if (color_facultad.equals("UQ")) {
+			if (universidad) {
 				if (type.equals("u")) {
+
 					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
 				} else if (type.equals("i")) {
 
 				}
 			} else {
-				if (color_facultad.equals("CIENCIAS BÁSICAS")) {
-					if (facultad) {
-						parametros.put("title_facultad", title_facultad);
-						parametros.put("contacto_facultad", contacto_facultad);
-						parametros.put("mision_facultad", mision_facultad);
-						parametros.put("vision_facultad", vision_facultad);
-						input = this.getClass().getResourceAsStream(
-								"/reportes/" + type + "_" + aux + "_" + color_facultad + ".jasper");
-					} else if (programa) {
-						parametros.put("title", title);
-						parametros.put("id_programa", id_programa);
-						input = this.getClass().getResourceAsStream(
-								"/reportes/" + type + "_" + aux + "_" + color_facultad + ".jasper");
+				if (facultad) {
+					parametros.put("title_facultad", title_facultad);
+					parametros.put("mision_facultad", mision_facultad);
+					parametros.put("vision_facultad", vision_facultad);
+					parametros.put("contacto_facultad", contacto_facultad);
+					parametros.put("id_facultad", id_facultad);
 
-					} else if (centro) {
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
 
-					} else if (grupo) {
+				} else if (programa) {
+					parametros.put("title_programa", title_programa);
+					parametros.put("mision_programa", mision_programa);
+					parametros.put("vision_programa", vision_programa);
+					parametros.put("contacto_programa", contacto_programa);
 
-					}
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
 
-				} else if (color_facultad.equals("EDUCACIÓN")) {
-					if (facultad) {
+				} else if (centro) {
 
-					} else if (programa) {
-						parametros.put("id_programa", id_programa);
-						parametros.put("title", title);
-						input = this.getClass().getResourceAsStream(
-								"/reportes/" + type + "_" + aux + "_" + color_facultad + ".jasper");
+				} else if (grupo) {
 
-					} else if (centro) {
-
-					} else if (grupo) {
-
-					}
-
-				} else if (color_facultad.equals("CIENCIAS DE LA SALUD")) {
-					if (facultad) {
-
-					} else if (programa) {
-
-					} else if (centro) {
-
-					} else if (grupo) {
-
-					}
-
-				} else if (color_facultad.equals("INGENIERÍA")) {
-					if (facultad) {
-
-					} else if (programa) {
-
-					} else if (centro) {
-
-					} else if (grupo) {
-
-					}
-
-				} else if (color_facultad.equals("CIENCIAS HUMANAS")) {
-					if (facultad) {
-
-					} else if (programa) {
-
-					} else if (centro) {
-
-					} else if (grupo) {
-
-					}
-
-				} else if (color_facultad.equals("AGROINDUSTRIA")) {
-					if (facultad) {
-
-					} else if (programa) {
-
-					} else if (centro) {
-
-					} else if (grupo) {
-
-					}
-
-				} else if (color_facultad.equals("CIENCIAS ECONÓMICAS")) {
-					if (facultad) {
-
-					} else if (programa) {
-
-					} else if (centro) {
-
-					} else if (grupo) {
-
-					}
+				} else if (investigador) {
 
 				}
 			}
