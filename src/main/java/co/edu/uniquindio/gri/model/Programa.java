@@ -26,7 +26,7 @@ public class Programa implements Serializable {
 
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The id. */
 	@Id
 	@Column(name = "ID")
@@ -39,7 +39,14 @@ public class Programa implements Serializable {
 	/** The nombre. */
 	@Column(name = "INFORMACIONGENERAL")
 	private String informaciongeneral;
-	
+
+	/** The nombre. */
+	@Column(name = "MISION")
+	private String mision;
+	/** The nombre. */
+	@Column(name = "VISION")
+	private String vision;
+
 	/** The contacto. */
 	@Column(name = "CONTACTO")
 	private String contacto;
@@ -67,12 +74,15 @@ public class Programa implements Serializable {
 	 * @param nombre   the nombre
 	 * @param facultad the facultad
 	 */
-	public Programa(long id, String nombre, Facultad facultad, String informaciongenera,String contacto) {
+	public Programa(long id, String nombre, Facultad facultad, String informaciongenera, String contacto, String mision,
+			String vision) {
 		this.id = id;
 		this.nombre = nombre;
 		this.facultad = facultad;
 		this.informaciongeneral = informaciongenera;
-		this.contacto=contacto;
+		this.contacto = contacto;
+		this.mision = mision;
+		this.vision = vision;
 	}
 
 	/**
@@ -110,10 +120,10 @@ public class Programa implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	
+
 	/**
 	 * get the informaciongeneral
+	 * 
 	 * @return the informacion general
 	 */
 	public String getInformaciongeneral() {
@@ -122,24 +132,61 @@ public class Programa implements Serializable {
 
 	/**
 	 * sets the informacion general
+	 * 
 	 * @param the new informaciongeneral
 	 */
 	public void setInformaciongeneral(String informaciongeneral) {
 		this.informaciongeneral = informaciongeneral;
 	}
 
-	
-	
 	/**
 	 * get the contacto
+	 * 
 	 * @return the contacto
 	 */
 	public String getContacto() {
 		return contacto;
 	}
-	
+
+	/**
+	 * get the mision
+	 * 
+	 * @return the vision
+	 */
+	public String getMision() {
+		return mision;
+	}
+
+	/**
+	 * set the mision
+	 * 
+	 * @param the new mision
+	 */
+	public void setMision(String mision) {
+		this.mision = mision;
+	}
+
+	/**
+	 * get the vision
+	 * 
+	 * @return the vision
+	 */
+	public String getVision() {
+		return vision;
+	}
+
+	/**
+	 * set the vision
+	 * 
+	 * @param the new vision
+	 */
+	public void setVision(String vision) {
+		this.vision = vision;
+	}
+
 	/**
 	 * sets the contacto
+	 * 
 	 * @param the New contacto
 	 */
 	public void setContacto(String contacto) {

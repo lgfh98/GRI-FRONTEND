@@ -773,6 +773,10 @@ public class WebController {
 			return getEstadisticasFacultad(id, model);
 
 		} else if (type.equals("p")) {
+			List<String> mision = formatoCadena(datos[6]);
+			List<String> vision = formatoCadena(datos[7]);
+			model.addAttribute("mision", mision);
+			model.addAttribute("vision", vision);
 
 			return getEstadisticasProgramas(id, model);
 
@@ -801,7 +805,7 @@ public class WebController {
 	 */
 	public String[] getDatosEstadisticas(String id, String type) {
 
-		String[] datos = new String[7];
+		String[] datos = new String[8];
 
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
@@ -822,6 +826,8 @@ public class WebController {
 			datos[3] = "btn-total-grid-" + p.getFacultad().getId();
 			datos[4] = p.getInformaciongeneral();
 			datos[5] = p.getContacto();
+			datos[6] = p.getMision();
+			datos[7] = p.getVision();
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 
