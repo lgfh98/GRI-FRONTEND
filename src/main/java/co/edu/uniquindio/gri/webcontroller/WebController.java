@@ -32,6 +32,7 @@ import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.Investigador;
 import co.edu.uniquindio.gri.model.Programa;
+import co.edu.uniquindio.gri.utilities.Util;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -68,6 +69,8 @@ public class WebController {
 
 	@Autowired
 	LineasInvestigacionDAO lineasInvestigacionDAO;
+
+	Util utilidades = new Util();
 
 	@GetMapping(value = { "/", "inicio" })
 	public String main(Model model) {
@@ -429,7 +432,7 @@ public class WebController {
 		if (type.equals("u")) {
 			List<Facultad> facultades = facultadDAO.getAllFacultades();
 
-			model.addAttribute("nombre", "Tipología de Productos Para la Universidad del Quindío");
+			model.addAttribute("nombre", "Tipología De Productos Para La Universidad Del Quindío");
 			model.addAttribute("lista", facultades);
 			model.addAttribute("subtipo", "f");
 			model.addAttribute("color", "card-0");
@@ -439,7 +442,8 @@ public class WebController {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Programa> programas = programaDAO.getProgramasFacultad(Long.parseLong(id));
 
-			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de "+f.getNombre());
+			model.addAttribute("nombre", "Tipología De Productos Para La Facultad De "
+					+ utilidades.convertToTitleCaseIteratingChars(f.getNombre()));
 			model.addAttribute("lista", programas);
 			model.addAttribute("subtipo", "p");
 			model.addAttribute("color", "card-" + f.getId());
@@ -449,7 +453,8 @@ public class WebController {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 			List<Grupo> grupos = grupoDAO.getGruposPrograma(Long.parseLong(id));
 
-			model.addAttribute("nombre", "Tipología de Productos Para el Programa de "+p.getNombre());
+			model.addAttribute("nombre", "Tipología De Productos Para El Programa De "
+					+ utilidades.convertToTitleCaseIteratingChars(p.getNombre()));
 			model.addAttribute("lista", grupos);
 			model.addAttribute("subtipo", "g");
 			model.addAttribute("color", "card-" + p.getFacultad().getId());
@@ -459,7 +464,7 @@ public class WebController {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 			List<Grupo> grupos = grupoDAO.getGruposCentro(Long.parseLong(id));
 
-			model.addAttribute("nombre", c.getNombre());
+			model.addAttribute("nombre", utilidades.convertToTitleCaseIteratingChars(c.getNombre()));
 			model.addAttribute("lista", grupos);
 			model.addAttribute("subtipo", "g");
 			model.addAttribute("color", "card-" + c.getFacultad().getId());
@@ -474,7 +479,8 @@ public class WebController {
 		} else if (type.equals("i")) {
 			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
 
-			model.addAttribute("nombre", i.getNombre());
+			model.addAttribute("nombre",
+					"Tipología De Productos De " + utilidades.convertToTitleCaseIteratingChars(i.getNombre()));
 			model.addAttribute("color", "card-0");
 		}
 
@@ -490,7 +496,7 @@ public class WebController {
 			model.addAttribute("lista", facultadDAO.getAllFacultades());
 			model.addAttribute("tamanio", "ci-4");
 			model.addAttribute("color", "card-0");
-			model.addAttribute("subtipo","f");
+			model.addAttribute("subtipo", "f");
 		} else {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), "f");
