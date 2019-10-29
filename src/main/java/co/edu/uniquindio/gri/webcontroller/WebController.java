@@ -429,7 +429,7 @@ public class WebController {
 		if (type.equals("u")) {
 			List<Facultad> facultades = facultadDAO.getAllFacultades();
 
-			model.addAttribute("nombre", "TIPOLOGÍA DE PRODUCTOS PARA LA UNIVERSIDAD DEL QUINDÍO");
+			model.addAttribute("nombre", "Tipología de Productos Para la Universidad del Quindío");
 			model.addAttribute("lista", facultades);
 			model.addAttribute("subtipo", "f");
 			model.addAttribute("color", "card-0");
@@ -439,7 +439,7 @@ public class WebController {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Programa> programas = programaDAO.getProgramasFacultad(Long.parseLong(id));
 
-			model.addAttribute("nombre", f.getNombre());
+			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de "+f.getNombre());
 			model.addAttribute("lista", programas);
 			model.addAttribute("subtipo", "p");
 			model.addAttribute("color", "card-" + f.getId());
@@ -449,7 +449,7 @@ public class WebController {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 			List<Grupo> grupos = grupoDAO.getGruposPrograma(Long.parseLong(id));
 
-			model.addAttribute("nombre", p.getNombre());
+			model.addAttribute("nombre", "Tipología de Productos Para el Programa de "+p.getNombre());
 			model.addAttribute("lista", grupos);
 			model.addAttribute("subtipo", "g");
 			model.addAttribute("color", "card-" + p.getFacultad().getId());
@@ -490,6 +490,7 @@ public class WebController {
 			model.addAttribute("lista", facultadDAO.getAllFacultades());
 			model.addAttribute("tamanio", "ci-4");
 			model.addAttribute("color", "card-0");
+			model.addAttribute("subtipo","f");
 		} else {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), "f");
@@ -810,7 +811,7 @@ public class WebController {
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 
-			datos[0] = "Estadísticas Generales de la Facultad de " + f.getNombre().toLowerCase();
+			datos[0] = "Estadísticas Generales de la Facultad de " + f.getNombre();
 			datos[1] = "card-" + f.getId();
 			datos[2] = "btn-title-grid-" + f.getId();
 			datos[3] = "btn-total-grid-" + f.getId();

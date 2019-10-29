@@ -27,22 +27,25 @@
 
 				<div id="listageneral">
 					<ul class="cards-list">
-						<li class="ci-4 cards-item" th:classappend="${tamanio}"
+						<li class="ci-7 cards-item" th:classappend="${tamanio}"
 							th:each="obj : ${lista}">
+							
+							
 							<div class="card">
-								<a
-									th:href="${param.id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}"
-									class="card-container" rel="keep-params">
-									<div class="card-ball card-icon"
-										th:classappend="${param.id} ? ${color} : card-+${obj.id}">
-										<!--  <span class="icono fa fa-info"></span>-->
-									</div>
-									<div class="card-title-container">
-										<h3 class="card-title" style="font-size: 1rem !important;"
-											th:text="${obj.nombre}"></h3>
-									</div>
-								</a>
-							</div>
+							
+							
+							
+							
+									<a class="card-container"
+										th:href="${param.id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}">
+										<div class="card-title-container-s">
+											<h3 class="card-title-s" th:text="${obj.nombre}"></h3>
+										</div>
+									</a>
+									<div class="card-bar"
+										th:classappend="${subtipo} == 'f' ? card-+${obj.id} : ${color}"></div>
+								</div>
+								
 						</li>
 					</ul>
 				</div>
