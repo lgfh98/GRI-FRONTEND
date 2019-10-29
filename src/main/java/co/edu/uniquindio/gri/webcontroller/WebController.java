@@ -661,8 +661,8 @@ public class WebController {
 			color_facultad = f.getNombre();
 			facultad = true;
 			title_facultad = "Facultad de "+f.getNombre().toLowerCase();
-			mision_facultad = f.getInformaciongeneral();
-			vision_facultad = f.getInformaciongeneral();
+			mision_facultad = f.getMision();
+			vision_facultad = f.getVision();
 			contacto_facultad = f.getContacto();
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
