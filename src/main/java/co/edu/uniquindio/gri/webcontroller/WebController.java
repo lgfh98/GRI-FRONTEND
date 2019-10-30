@@ -82,7 +82,6 @@ public class WebController {
 		model.addAttribute("cantGrupos", stats.get(3));
 		model.addAttribute("cantInves", stats.get(4));
 		model.addAttribute("estadisticas", "");
-
 		return "index";
 	}
 
