@@ -442,7 +442,7 @@ public class WebController {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Programa> programas = programaDAO.getProgramasFacultad(Long.parseLong(id));
 
-			model.addAttribute("nombre", "Tipología De Productos Para La Facultad De "
+			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de "
 					+ utilidades.convertToTitleCaseIteratingChars(f.getNombre()));
 			model.addAttribute("lista", programas);
 			model.addAttribute("subtipo", "p");
@@ -453,8 +453,7 @@ public class WebController {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 			List<Grupo> grupos = grupoDAO.getGruposPrograma(Long.parseLong(id));
 
-			model.addAttribute("nombre", "Tipología De Productos Para El Programa De "
-					+ utilidades.convertToTitleCaseIteratingChars(p.getNombre()));
+			model.addAttribute("nombre", p.getNombre());
 			model.addAttribute("lista", grupos);
 			model.addAttribute("subtipo", "g");
 			model.addAttribute("color", "card-" + p.getFacultad().getId());
@@ -464,7 +463,7 @@ public class WebController {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 			List<Grupo> grupos = grupoDAO.getGruposCentro(Long.parseLong(id));
 
-			model.addAttribute("nombre", utilidades.convertToTitleCaseIteratingChars(c.getNombre()));
+			model.addAttribute("nombre",c.getNombre());
 			model.addAttribute("lista", grupos);
 			model.addAttribute("subtipo", "g");
 			model.addAttribute("color", "card-" + c.getFacultad().getId());
@@ -480,7 +479,7 @@ public class WebController {
 			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
 
 			model.addAttribute("nombre",
-					"Tipología De Productos De " + utilidades.convertToTitleCaseIteratingChars(i.getNombre()));
+					"Tipología de Productos de " + utilidades.convertToTitleCaseIteratingChars(i.getNombre()));
 			model.addAttribute("color", "card-0");
 		}
 
