@@ -20,6 +20,7 @@
 						<ul id="miembros" class="cards-list">
 							<li class="cards-item" th:classappend="${tamanio}"
 								th:each="obj : ${lista}">
+								
 								<div class="card">
 									<a class="card-container"
 										th:href="@{general(id=${obj.id},type=${subtipo})}">
@@ -30,6 +31,7 @@
 									<div class="card-bar"
 										th:classappend="${subtipo} == 'f' ? card-+${obj.id} : ${color}"></div>
 								</div>
+								
 							</li>
 
 						</ul>
