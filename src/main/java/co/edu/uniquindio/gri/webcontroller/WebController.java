@@ -644,10 +644,9 @@ public class WebController {
 	 * @param id
 	 * @param conexion
 	 */
-	private String configurarReportes(List<JasperPrint> jasperPrintList, String type, String id, Connection conexion)
+	private void configurarReportes(List<JasperPrint> jasperPrintList, String type, String id, Connection conexion)
 			throws JRException {
 
-		String name_pdf = "";
 		// PARAMETROS FACULTAD//
 		String title_facultad = "";
 		String mision_facultad = "";
@@ -698,7 +697,7 @@ public class WebController {
 			contacto_facultad = f.getContacto();
 			id_facultad = new Long(f.getId());
 			System.err.println(id_facultad);
-			name_pdf = "reporte estadístico de investigación-Facultad- " + title_facultad;
+
 
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
@@ -709,7 +708,6 @@ public class WebController {
 			contacto_programa = p.getContacto();
 			id_programa = p.getId();
 			id_facultad = p.getFacultad().getId();
-			name_pdf = "reporte estadístico de investigación-Programa- " + title_programa;
 
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
@@ -719,26 +717,22 @@ public class WebController {
 			contacto_centro = c.getContacto();
 			id_centro = c.getId();
 			id_facultad = c.getFacultad().getId();
-			name_pdf = "reporte estadístico de investigación-Centro de investigación- " + title_centro;
 		} else if (type.equals("g")) {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
 			grupo = true;
 			title_grupo = g.getNombre();
-			info_general = g.getInformaciongeneral();
+			info_general = g.getInformaciongeneral().replaceAll("\n", "");
 			contacto_grupo = g.getContacto();
 			id_grupo = g.getId();
 			id_facultad = g.getCentro().getFacultad().getId();
-			name_pdf = "reporte estadístico de investigación-Grupo de investigación- " + title_grupo;
 		} else if (type.equals("i")) {
 			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
 			investigador = true;
 			nombre_investigador = utilidades.convertToTitleCaseIteratingChars(i.getNombre());
 			id_investigador = i.getId();
-			name_pdf = "reporte estadístico de investigación-Investigador- " + nombre_investigador;
 
 		} else {
 			universidad = true;
-			name_pdf = "reporte estadístico de investigación de la Universidad del Quindío" + nombre_investigador;
 		}
 
 		int aux = 1;
@@ -814,7 +808,7 @@ public class WebController {
 			jasperPrintList.add(jasperPrint);
 
 		}
-		return name_pdf;
+		
 	}
 
 	@GetMapping("/estadisticas")

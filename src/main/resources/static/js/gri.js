@@ -652,7 +652,7 @@
 							$.ajax({
 								type: "POST",
 								contentType: "application/json",
-								url: '/ServerSpring/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
