@@ -122,7 +122,6 @@
 			<dependency>
 				<groupId>gri.uniquindio.fonts</groupId>
 				<artifactId>gri-uniquindio-fonts</artifactId>
-				<scope>system</scope>
 				<version>1.0</version>
 			</dependency>
 		</dependencies>
