@@ -442,8 +442,7 @@ public class WebController {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Programa> programas = programaDAO.getProgramasFacultad(Long.parseLong(id));
 
-			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de "
-					+ utilidades.convertToTitleCaseIteratingChars(f.getNombre()));
+			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de "+f.getNombre());
 			model.addAttribute("lista", programas);
 			model.addAttribute("subtipo", "p");
 			model.addAttribute("color", "card-" + f.getId());
