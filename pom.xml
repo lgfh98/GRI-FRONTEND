@@ -18,6 +18,13 @@
 		<hibernate.version>4.2.21.Final</hibernate.version>
 		<bootstrap.version>4.2.1</bootstrap.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>frontendGRI</id>
+			<name>GRI Frontend</name>
+			<url>file://${project.basedir}/lib</url>
+			</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -106,6 +113,15 @@
 	</dependencies>
 
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>3.7.0.1746</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -123,6 +139,8 @@
 				<groupId>gri.uniquindio.fonts</groupId>
 				<artifactId>gri-uniquindio-fonts</artifactId>
 				<version>1.0</version>
+				<scope>system</scope>
+				<systemPath>${project.basedir}/lib/fonts-extension.jar</systemPath>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
