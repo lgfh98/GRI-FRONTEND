@@ -34,7 +34,7 @@ public class GRITest {
 
 	@Test
 	public void testHelloEndpointIsOK() throws Exception {
-        this.mockMvc.perform(get("/login"))
+        this.mockMvc.perform(get("/inicio"))
             .andExpect(status().isOk());
 	}
 }
