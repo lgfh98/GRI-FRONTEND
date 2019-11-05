@@ -106,10 +106,6 @@
 			<artifactId>jasperreports</artifactId>
 			<version>6.0.0</version>
 		</dependency>
-		<dependency>
-			<groupId>gri.uniquindio.fonts</groupId>
-			<artifactId>gri-uniquindio-fonts</artifactId>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -133,15 +129,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>gri.uniquindio.fonts</groupId>
-				<artifactId>gri-uniquindio-fonts</artifactId>
-				<version>1.0</version>
-				<scope>system</scope>
-				<systemPath>${project.basedir}/lib/fonts-extension.jar</systemPath>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 </project>
