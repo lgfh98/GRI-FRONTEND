@@ -511,7 +511,6 @@ public class WebController {
 	public String getReporteInventario(@RequestParam(name = "id", required = true) String id, Model model) {
 
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
-
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());

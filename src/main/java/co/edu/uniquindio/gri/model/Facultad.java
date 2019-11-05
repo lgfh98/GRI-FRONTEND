@@ -20,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "FACULTADES", schema = "gri")
 
 public class Facultad implements Serializable {
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
