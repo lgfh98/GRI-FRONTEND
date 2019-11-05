@@ -1,31 +1,32 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: header('Programas')">
-<meta charset="utf-8" />
+	<meta charset="utf-8" />
 </head>
+
 <body id="page-top" class="sidebar-toggled">
 
-	<nav th:replace="fragments/nav :: nav('card-0')"></nav>
-
+	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
 	<div id="wrapper">
 
-		
+
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
-				 <div class="region-hero">
-                  <div class="contenedor-hero"> 
-                    <div class="contenido-hero">
-                      <h1 class="titulo-hero">Lineas de Investigación</h1>
-                      Tabla/Reporte de lineas de investigación en el sistema.
-                    </div>
-                  </div>
-                </div>
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 class="titulo-hero">Lineas de Investigación</h1>
+							Tabla/Reporte de lineas de investigación en el sistema.
+						</div>
+					</div>
+				</div>
 				<div class="separador-1"></div>
 
 				<div id="table">
-					<table id="tabla_lineas"
-						class="table table-striped table-bordered table-hover table-responsive-lg"
+					<table id="tabla_lineas" class="table table-striped table-bordered table-hover table-responsive-lg"
 						style="width: 100%">
 						<thead>
 							<tr>
@@ -47,4 +48,5 @@
 
 	<div th:replace="fragments/footer"></div>
 </body>
+
 </html>

@@ -6,13 +6,10 @@
 </head>
 
 <body id="page-top" class="sidebar-toggled">
-
-	<nav th:replace="fragments/nav :: nav('card-0')"></nav>
+	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
 
 	<div id="wrapper">
 
-		
-		
 		<div id="content-wrapper">
 			<div class="container-fluid">
 				<div class="inicio">
@@ -20,8 +17,7 @@
 						<span class="icon"> </span>
 					</div>
 					<div class="cont-titulo">
-						<h1 class="titulo">GRI - Gestión de Resultados de
-							Investigación</h1>
+						<h1 class="titulo">GRI - Gestión de Resultados de Investigación</h1>
 					</div>
 				</div>
 
@@ -55,24 +51,25 @@
 								<span class="badge-list-label">Facultades</span>
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="centros">
-								<span id="badge-centros" class="badge-list-value badge-list-value-color3" th:text="${cantCentros}"></span> <span
-									class="badge-list-label">Centros
-									de Investigación</span>
+								<span id="badge-centros" class="badge-list-value badge-list-value-color3"
+									th:text="${cantCentros}"></span> <span class="badge-list-label">Centros</span>
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="programas">
-								<span id="badge-programas" class="badge-list-value badge-list-value-color4" th:text="${cantProgramas}"></span>
+								<span id="badge-programas" class="badge-list-value badge-list-value-color4"
+									th:text="${cantProgramas}"></span>
 								<span class="badge-list-label">Programas</span>
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="grupos">
-								<span id="badge-grupos" class="badge-list-value badge-list-value-color5" th:text="${cantGrupos}"></span> <span
-									class="badge-list-label">Grupos de Investigación</span>
+								<span id="badge-grupos" class="badge-list-value badge-list-value-color5"
+									th:text="${cantGrupos}"></span> <span class="badge-list-label">Grupos</span>
 							</a></li>
 						<li class="badge-list-item"><a class="link" href="investigadores"> <span
-									id="badge-investigadores" class="badge-list-value badge-list-value-color6" th:text="${cantInves}"></span>
+									id="badge-investigadores" class="badge-list-value badge-list-value-color6"
+									th:text="${cantInves}"></span>
 								<span class="badge-list-label">Investigadores</span>
 							</a></li>
-						<li class="badge-list-item"><a class="link" th:href="@{estadisticas(id=${id},type=${tipo})}" >
-								<span class="badge-list-label">Estadisticas</span>
+						<li class="badge-list-item"><a class="link" th:href="@{estadisticas(id=${id},type=${tipo})}">
+								<span class="badge-list-label">Estadísticas</span>
 								<span class="badge-list-value badge-list-value-color7">
 									<i class="fas fa-chart-bar estadisticas_inicio"></i>
 								</span>

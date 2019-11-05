@@ -1,24 +1,14 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: header('Estadisticas Centro')">
+<head th:replace="fragments/header :: header('Estadísticas Centro')">
 <meta charset="utf-8" />
 </head>
 
 <body id="page-top" class="sidebar-toggled">
-	<nav th:replace="fragments/nav :: nav(${color})"></nav>
-<<<<<<< Updated upstream
+	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
 	<nav th:replace="fragments/toolReport"></nav>
 	<div id="wrapper">
-
-
-=======
-
-	<div id="wrapper">
-
-		
->>>>>>> Stashed changes
-
 		<div id="content-wrapper">
 			<div class="container-fluid">
 				<div class="region-hero">
@@ -31,25 +21,23 @@
 				</div>
 
 				<div class="separador-1"></div>
-				<div th:classappend="'card-info-'+${color}">
 
-					<p class="text-informacion-general" th:text="${infogeneral}"></p>
+				<div class="panel-info-contacto">
+					<div class="left-div" th:classappend="'card-contacto-'+${color}">
 
+						<p class="text-informacion-general" th:text="${infogeneral}"></p>
+					</div>
+					<div class="right-div card-contacto"
+						th:classappend="'card-contacto-'+${color}">
+						<p>CONTACTO DEL CENTRO</p>
+						<br></br> 
+						<div th:each="obj: ${contacto}">
+							<p class="text-informacion-general-rigth" th:text="${obj}"></p>
 
-				</div>
-				<br></br>
-				<div class="card-contacto"
-					th:classappend="'card-contacto-'+${color}">
-					<p>CONTACTO DEL CENTRO</p>
-					<br></br> <br></br>
-					<div th:each="obj: ${contacto}">
-						<p th:text="${obj}"></p>
-						<br></br>
-
+						</div>
 					</div>
 				</div>
-
-				<br></br> <br></br>
+				<br></br>
 
 				<div class="resumen_general">
 					<h2 class="h2-titulos-tablas">Resumen General</h2>
@@ -106,8 +94,8 @@
 				<div class="categoria_investigadores">
 					<div class="separador-1"></div>
 					<!-- tabla resumen categoria investigadores-->
-					<h2 class="h2-titulos-tablas">Categoría de grupos de
-						investigación</h2>
+					<h2 class="h2-titulos-tablas">Categoría de Grupos de
+						Investigación</h2>
 					<div class="separador-1"></div>
 					<div class="content-grid">
 						<div class="grid-container-catGrup-facultad">
@@ -189,14 +177,10 @@
 								</a>
 							</div>
 							<div>
-<<<<<<< Updated upstream
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}">Total aquí</button>
-=======
-								<a class="link" th:href="@{grupos(id=${idCentro}, type=${tipo})}">
+								<a class="link"
+									th:href="@{grupos(id=${idCentro}, type=${tipo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${cantidadGruposTotal}"></button>
->>>>>>> Stashed changes
 								</a>
 							</div>
 
@@ -277,14 +261,10 @@
 								</a>
 							</div>
 							<div>
-<<<<<<< Updated upstream
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}">total aquí</button>
-=======
-								<a class="link" th:href="@{investigadores(id=${idCentro}, type=${tipo})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idCentro}, type=${tipo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${cantidadInvestigadoresTotal}"></button>
->>>>>>> Stashed changes
 								</a>
 							</div>
 
@@ -305,20 +285,16 @@
 							<!--Titulos-->
 
 							<div>
-								<button th:classappend="${colorTituloBoton}"># De
-									Doctores</button>
+								<button th:classappend="${colorTituloBoton}"># Doctores</button>
 							</div>
 							<div>
-								<button th:classappend="${colorTituloBoton}"># De
-									Magisters</button>
+								<button th:classappend="${colorTituloBoton}"># Magisters</button>
 							</div>
 							<div>
-								<button th:classappend="${colorTituloBoton}"># De
-									Especialistas</button>
+								<button th:classappend="${colorTituloBoton}"># Especialistas</button>
 							</div>
 							<div>
-								<button th:classappend="${colorTituloBoton}"># De
-									Pregrado</button>
+								<button th:classappend="${colorTituloBoton}"># Pregrado</button>
 							</div>
 							<div>
 								<button th:classappend="${colorTituloBoton}">Total</button>
@@ -355,14 +331,10 @@
 								</a>
 							</div>
 							<div>
-<<<<<<< Updated upstream
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}">total aquí</button>
-=======
-								<a class="link" th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${docentes})}">
+								<a class="link"
+									th:href="@{investigadores(id=${idCentro}, type=${tipo}, subType=${docentes})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${cantidadDocentesTotal}"></button>
->>>>>>> Stashed changes
 								</a>
 							</div>
 
@@ -373,8 +345,7 @@
 				</hr>
 				<div id="listageneral">
 					<div class="separador-1"></div>
-					<h2 class="h2-titulos-tablas">Producciones de la Universidad
-						del Quindío</h2>
+					<h2 class="h2-titulos-tablas">Producciones del Centro</h2>
 					<div class="separador-1"></div>
 					<ul class="cards-list">
 						<li class="ci-4 cards-item">
