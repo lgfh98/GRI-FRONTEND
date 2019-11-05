@@ -5,7 +5,7 @@ import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
 import org.springframework.boot.test.mock.mockito.*;
-
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -14,7 +14,16 @@ import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import co.edu.uniquindio.gri.dao.CentroDAO;
+import co.edu.uniquindio.gri.dao.FacultadDAO;
+import co.edu.uniquindio.gri.dao.GrupoDAO;
+import co.edu.uniquindio.gri.dao.InvestigadorDAO;
+import co.edu.uniquindio.gri.dao.LineasInvestigacionDAO;
+import co.edu.uniquindio.gri.dao.ProduccionDAO;
+import co.edu.uniquindio.gri.dao.ProgramaDAO;
+
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -24,6 +33,30 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class GRITest {
 	@Autowired
     private WebApplicationContext wac;
+	
+	@Autowired
+	GrupoDAO grupoDAO;
+
+	@Autowired
+	InvestigadorDAO investigadorDAO;
+
+	@Autowired
+	CentroDAO centroDAO;
+
+	@Autowired
+	ProgramaDAO programaDAO;
+
+	@Autowired
+	FacultadDAO facultadDAO;
+
+	@Autowired
+	ProduccionDAO produccionDAO;
+
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	LineasInvestigacionDAO lineasInvestigacionDAO;
 
     private MockMvc mockMvc;
 
@@ -36,5 +69,10 @@ public class GRITest {
 	public void testHelloEndpointIsOK() throws Exception {
         this.mockMvc.perform(get("/login"))
             .andExpect(status().isOk());
+	}
+	
+	@Test
+	public void getInvestigadorestest() throws Exception {
+        assertEquals(1, investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong("4")).size());
 	}
 }
