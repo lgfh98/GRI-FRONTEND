@@ -2,6 +2,7 @@ package co.edu.uniquindio.gri.utilities;
 
 public class Util {
 
+	public static final String CANTIDAD_LINEAS_INVESTIGACION = "cantidadLineasInvestigacion";
 	/**
 	 * constructor de la clase Util
 	 */
