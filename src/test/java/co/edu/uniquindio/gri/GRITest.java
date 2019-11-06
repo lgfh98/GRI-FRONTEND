@@ -75,6 +75,8 @@ public class GRITest {
         .andExpect(status().isOk());
         this.mockMvc.perform(get("/grupos"))
         .andExpect(status().isOk());
+        this.mockMvc.perform(get("/centros"))
+        .andExpect(status().isOk());
 	}
 	
 	@Test
