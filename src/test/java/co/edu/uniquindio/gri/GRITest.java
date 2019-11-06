@@ -1,6 +1,9 @@
 package co.edu.uniquindio.gri;
 
 import org.junit.*;
+
+import java.math.BigInteger;
+import java.util.List;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
@@ -12,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
 
 import co.edu.uniquindio.gri.dao.CentroDAO;
@@ -82,5 +86,16 @@ public class GRITest {
 	@Test
 	public void getInvestigadorestest() throws Exception {
         assertEquals(1, investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong("4")).size());
+	}
+	
+	@Test
+	public void mainTest() {
+		List<BigInteger> stats = facultadDAO.getStats();
+		assertEquals(5, stats.size());
+		assertEquals(7, stats.get(0).intValue());
+		assertEquals(5, stats.get(1).intValue());
+		assertEquals(54, stats.get(2).intValue());
+		assertEquals(74, stats.get(3).intValue());
+		assertEquals(543, stats.get(4).intValue());
 	}
 }
