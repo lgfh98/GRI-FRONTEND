@@ -69,6 +69,12 @@ public class GRITest {
 	public void testHelloEndpointIsOK() throws Exception {
         this.mockMvc.perform(get("/login"))
             .andExpect(status().isOk());
+        this.mockMvc.perform(get("/inicio"))
+        .andExpect(status().isOk());
+        this.mockMvc.perform(get("/investigadores"))
+        .andExpect(status().isOk());
+        this.mockMvc.perform(get("/grupos"))
+        .andExpect(status().isOk());
 	}
 	
 	@Test
