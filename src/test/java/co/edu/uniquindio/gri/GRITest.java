@@ -89,7 +89,7 @@ public class GRITest {
 	@Test
 	@GetMapping(value = { "/", "inicio" })
 	public void mainTest() throws Exception {
-		this.mockMvc.perform(get("/login")).andExpect(status().isOk())
+		this.mockMvc.perform(get("/inicio")).andExpect(status().isOk())
 				.andExpect(model().attribute("cantFacultades", equalTo(new BigInteger("7"))));
 	}
 }
