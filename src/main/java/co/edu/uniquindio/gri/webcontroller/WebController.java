@@ -991,7 +991,7 @@ public class WebController {
 		model.addAttribute("cantidadProgramasMaestria", resumen.get(2));
 		model.addAttribute("cantidadProgramasEspecializacion", resumen.get(3));
 		model.addAttribute("cantidadCentrosInvestigacion", resumen.get(4));
-		model.addAttribute("cantidadGruposInvestigacion", resumen.get(5));
+		model.addAttribute(Util.CANTIDAD_GRUPOS_INVESTIGACION, resumen.get(5));
 		model.addAttribute(Util.CANTIDAD_LINEAS_INVESTIGACION, resumen.get(6));
 		model.addAttribute("cantidadInvestigadores", resumen.get(7));
 		model.addAttribute("cantidadGruposInvestigacionA1", resumen.get(8));
@@ -1081,7 +1081,7 @@ public class WebController {
 
 		// ------Adición de atributos al modelo con informacion de
 		// basicas-----------------------------------------------------------------------
-		model.addAttribute("cantidadGruposInvestigacion", resumen.get(0));
+		model.addAttribute(Util.CANTIDAD_GRUPOS_INVESTIGACION, resumen.get(0));
 		model.addAttribute(Util.CANTIDAD_LINEAS_INVESTIGACION, resumen.get(1));
 		model.addAttribute("cantidadInvestigadores", resumen.get(2));
 		model.addAttribute("cantidadGruposInvestigacionA1", resumen.get(3));
@@ -1161,7 +1161,7 @@ public class WebController {
 
 		// ------Adición de atributos al modelo con informacion de
 		// basicas-----------------------------------------------------------------------
-		model.addAttribute("cantidadGruposInvestigacion", resumen.get(0));
+		model.addAttribute(Util.CANTIDAD_GRUPOS_INVESTIGACION, resumen.get(0));
 		model.addAttribute(Util.CANTIDAD_LINEAS_INVESTIGACION, resumen.get(1));
 		model.addAttribute("cantidadInvestigadores", resumen.get(2));
 		model.addAttribute("cantidadGruposInvestigacionA1", resumen.get(3));

@@ -3,6 +3,7 @@ package co.edu.uniquindio.gri.utilities;
 public class Util {
 
 	public static final String CANTIDAD_LINEAS_INVESTIGACION = "cantidadLineasInvestigacion";
+	public static final String CANTIDAD_GRUPOS_INVESTIGACION = "cantidadGruposInvestigacion";
 	/**
 	 * constructor de la clase Util
 	 */
