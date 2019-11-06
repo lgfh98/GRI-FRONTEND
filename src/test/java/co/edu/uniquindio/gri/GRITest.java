@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.context.WebApplicationContext;
 
 import co.edu.uniquindio.gri.dao.CentroDAO;
@@ -25,8 +26,10 @@ import co.edu.uniquindio.gri.dao.InvestigadorDAO;
 import co.edu.uniquindio.gri.dao.LineasInvestigacionDAO;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
 import co.edu.uniquindio.gri.dao.ProgramaDAO;
+import co.edu.uniquindio.gri.webcontroller.WebController;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -36,8 +39,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = StartWebApplication.class)
 public class GRITest {
 	@Autowired
-    private WebApplicationContext wac;
-	
+	private WebApplicationContext wac;
+
 	@Autowired
 	GrupoDAO grupoDAO;
 
@@ -62,40 +65,31 @@ public class GRITest {
 	@Autowired
 	LineasInvestigacionDAO lineasInvestigacionDAO;
 
-    private MockMvc mockMvc;
+	private MockMvc mockMvc;
 
-    @Before
-    public void setUp() {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
-    }
+	@Before
+	public void setUp() {
+		this.mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+	}
 
 	@Test
 	public void testHelloEndpointIsOK() throws Exception {
-        this.mockMvc.perform(get("/login"))
-            .andExpect(status().isOk());
-        this.mockMvc.perform(get("/inicio"))
-        .andExpect(status().isOk());
-        this.mockMvc.perform(get("/investigadores"))
-        .andExpect(status().isOk());
-        this.mockMvc.perform(get("/grupos"))
-        .andExpect(status().isOk());
-        this.mockMvc.perform(get("/centros"))
-        .andExpect(status().isOk());
+		this.mockMvc.perform(get("/login")).andExpect(status().isOk());
+		this.mockMvc.perform(get("/inicio")).andExpect(status().isOk());
+		this.mockMvc.perform(get("/investigadores")).andExpect(status().isOk());
+		this.mockMvc.perform(get("/grupos")).andExpect(status().isOk());
+		this.mockMvc.perform(get("/centros")).andExpect(status().isOk());
 	}
-	
+
 	@Test
 	public void getInvestigadorestest() throws Exception {
-        assertEquals(1, investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong("4")).size());
+		assertEquals(1, investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong("4")).size());
 	}
-	
+
 	@Test
-	public void mainTest() {
-		List<BigInteger> stats = facultadDAO.getStats();
-		assertEquals(5, stats.size());
-		assertEquals(7, stats.get(0).intValue());
-		assertEquals(5, stats.get(1).intValue());
-		assertEquals(54, stats.get(2).intValue());
-		assertEquals(74, stats.get(3).intValue());
-		assertEquals(543, stats.get(4).intValue());
+	@GetMapping(value = { "/", "inicio" })
+	public void mainTest() throws Exception {
+		this.mockMvc.perform(get("/login")).andExpect(status().isOk())
+				.andExpect(model().attribute("cantFacultades", equalTo(new BigInteger("7"))));
 	}
 }
