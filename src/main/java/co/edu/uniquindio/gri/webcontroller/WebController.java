@@ -442,8 +442,7 @@ public class WebController {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Programa> programas = programaDAO.getProgramasFacultad(Long.parseLong(id));
 
-			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de "
-					+ utilidades.convertToTitleCaseIteratingChars(f.getNombre()));
+			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de " + f.getNombre());
 			model.addAttribute("lista", programas);
 			model.addAttribute("subtipo", "p");
 			model.addAttribute("color", "card-" + f.getId());
@@ -463,7 +462,7 @@ public class WebController {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 			List<Grupo> grupos = grupoDAO.getGruposCentro(Long.parseLong(id));
 
-			model.addAttribute("nombre",c.getNombre());
+			model.addAttribute("nombre", c.getNombre());
 			model.addAttribute("lista", grupos);
 			model.addAttribute("subtipo", "g");
 			model.addAttribute("color", "card-" + c.getFacultad().getId());
@@ -519,6 +518,49 @@ public class WebController {
 		model.addAttribute("producciones", produccionDAO.getAllProducciones(Long.parseLong(id)));
 
 		return "inventario/reporteinventario";
+	}
+
+	@GetMapping("/reportepertenencia")
+	public String getReportePertenencia(@RequestParam(name = "id", required = true) String id, Model model) {
+
+		Grupo g = grupoDAO.findOne(Long.parseLong(id));
+		List<Investigador> integrantes = investigadorDAO.getIntegrantes("g", Long.parseLong(id));
+
+		model.addAttribute("nombre", g.getNombre());
+		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
+		model.addAttribute("integrantes", integrantes);
+
+		return "pertenencia_investigadores/reportepertenencia";
+
+	}
+
+	@GetMapping("/pertenencia")
+	public String getPertenencia(@RequestParam(name = "id", required = false, defaultValue = "u") String id,
+			Model model) {
+
+		if (id.equals("u")) {
+
+			model.addAttribute("nombre", "Pertenencia de Investigadores");
+			model.addAttribute("lista", facultadDAO.getAllFacultades());
+			model.addAttribute("tamanio", "ci-4");
+			model.addAttribute("color", "card-0");
+			model.addAttribute("subtipo", "f");
+		}
+
+		else {
+
+			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
+			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), "f");
+			model.addAttribute("nombre", f.getNombre());
+			model.addAttribute("lista", listaGrupos);
+			model.addAttribute("color", "card-" + f.getId());
+			model.addAttribute("id", "" + f.getId());
+			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
+
+		}
+
+		return "pertenencia_investigadores/pertenencia";
+
 	}
 
 	/**
@@ -584,7 +626,7 @@ public class WebController {
 			throws IOException, JRException {
 
 		response.setContentType("application/pdf");
-		response.setHeader("Content-disposition", "inline; filename=reporte.pdf");
+		response.setHeader("Content-disposition", "inline; filename=reporte de investigación.pdf");
 
 		final OutputStream outStream = response.getOutputStream();
 
@@ -615,7 +657,7 @@ public class WebController {
 			throws IOException, JRException {
 		response.setContentType("application/download");
 
-		response.setHeader("Content-disposition", "inline; filename=reporte.pdf");
+		response.setHeader("Content-disposition", "inline; filename=reporte de investigación.pdf");
 
 		final OutputStream outStream = response.getOutputStream();
 
@@ -660,7 +702,25 @@ public class WebController {
 		String mision_programa = "";
 		String vision_programa = "";
 		String contacto_programa = "";
+		Long id_programa = null;
+		////////////
 
+		// PARAMETROS CENTRO//
+		String title_centro = "";
+		String info_general = "";
+		String contacto_centro = "";
+		Long id_centro = null;
+		////////////
+
+		// PARAMETROS GRUPO//
+		String title_grupo = "";
+		String contacto_grupo = "";
+		Long id_grupo = null;
+		////////////
+
+		// PARAMETROS INVESTIGADOR//
+		String nombre_investigador = "";
+		Long id_investigador = null;
 		////////////
 
 		boolean facultad = false;
@@ -673,7 +733,7 @@ public class WebController {
 		if (type.equals("f")) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			facultad = true;
-			title_facultad = f.getNombre().toLowerCase();
+			title_facultad = f.getNombre();
 			mision_facultad = f.getMision();
 			vision_facultad = f.getVision();
 			contacto_facultad = f.getContacto();
@@ -683,20 +743,35 @@ public class WebController {
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 			programa = true;
-			title_programa = p.getNombre().toLowerCase();
+			title_programa = p.getNombre();
 			mision_programa = p.getMision();
 			vision_programa = p.getVision();
 			contacto_programa = p.getContacto();
+			id_programa = p.getId();
+			id_facultad = p.getFacultad().getId();
 
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 			centro = true;
+			title_centro = c.getNombre();
+			info_general = c.getInformaciongeneral();
+			contacto_centro = c.getContacto();
+			id_centro = c.getId();
+			id_facultad = c.getFacultad().getId();
 		} else if (type.equals("g")) {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
 			grupo = true;
+			title_grupo = g.getNombre();
+			info_general = g.getInformaciongeneral().replaceAll("\n", "");
+			contacto_grupo = g.getContacto();
+			id_grupo = g.getId();
+			id_facultad = g.getCentro().getFacultad().getId();
 		} else if (type.equals("i")) {
-			// Grupo g = grupoDAO.findOne(Long.parseLong(id));
+			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
 			investigador = true;
+			nombre_investigador = utilidades.convertToTitleCaseIteratingChars(i.getNombre());
+			id_investigador = i.getId();
+
 		} else {
 			universidad = true;
 		}
@@ -729,14 +804,36 @@ public class WebController {
 					parametros.put("mision_programa", mision_programa);
 					parametros.put("vision_programa", vision_programa);
 					parametros.put("contacto_programa", contacto_programa);
+					parametros.put("id_facultad", id_facultad);
+					parametros.put("id_programa", id_programa);
 
 					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
 
 				} else if (centro) {
 
+					parametros.put("title_centro", title_centro);
+					parametros.put("info_general", info_general);
+					parametros.put("contacto_centro", contacto_centro);
+					parametros.put("id_facultad", id_facultad);
+					parametros.put("id_centro", id_centro);
+
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
+
 				} else if (grupo) {
 
+					parametros.put("title_grupo", title_grupo);
+					parametros.put("info_general", info_general);
+					parametros.put("contacto_grupo", contacto_grupo);
+					parametros.put("id_facultad", id_facultad);
+					parametros.put("id_grupo", id_grupo);
+
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
+
 				} else if (investigador) {
+					parametros.put("nombre_investigador", nombre_investigador);
+					parametros.put("id_investigador", id_investigador);
+
+					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
 
 				}
 			}

@@ -2197,6 +2197,10 @@ user agent stylesheet user agent stylesheet menu {
 	border-top: 10px solid #009640;
 }
 
+.comboPertenencia {
+	text-align: center;
+}
+
 /**
 Responsive--------------------------------------------
 */
