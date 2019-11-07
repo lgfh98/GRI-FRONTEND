@@ -8,7 +8,8 @@
 			$(".sidebar").toggleClass("toggled");
 		});
 
-		// Prevent the content wrapper from scrolling when the fixed side navigation hovered over
+		// Prevent the content wrapper from scrolling when the fixed side
+		// navigation hovered over
 		$('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (e) {
 			if ($(window).width() > 768) {
 				var e0 = e.originalEvent,
@@ -37,7 +38,7 @@
 			}
 		});
 
-		//Configuración de búsqueda en Datatables.
+		// Configuración de búsqueda en Datatables.
 		$.fn.DataTable.ext.type.search['string'] = function (data) {
 			return !data ?
 				'' :
@@ -70,7 +71,7 @@
 		};
 
 
-		//Configuración por defecto de botones e idioma de DataTables.
+		// Configuración por defecto de botones e idioma de DataTables.
 		if (document.getElementById('table')) {
 			$.extend($.fn.dataTable.defaults, {
 				responsive: true,
@@ -85,7 +86,7 @@
 						extend: 'excel',
 						text: 'Excel',
 						className: 'excelButton',
-						//Encabezado del documento excel
+						// Encabezado del documento excel
 						customize: function (xlsx) {
 							var sheet = xlsx.xl.worksheets['sheet1.xml'];
 							if (document.getElementById('tabla_integrantes')) {
@@ -117,7 +118,7 @@
 								$('c[r=A1] t', sheet).text('Lineas de Investigación');
 							}
 						},
-						//Nombre de archivo personalizado    
+						// Nombre de archivo personalizado
 						filename: function () {
 							if (document.getElementById('tabla_integrantes')) {
 								return 'INTEGRANTES - ' + document.getElementById('titulo').textContent;
@@ -153,7 +154,7 @@
 						extend: 'pdf',
 						text: 'PDF',
 						className: 'pdfButton',
-						//Nombre de archivo personalizado
+						// Nombre de archivo personalizado
 						filename: function () {
 							if (document.getElementById('tabla_integrantes')) {
 								return 'INTEGRANTES - ' + document.getElementById('titulo').textContent;
@@ -183,7 +184,7 @@
 								return 'Lineas de Investigación';
 							}
 						},
-						//Encabezado del PDF
+						// Encabezado del PDF
 						title: function () {
 							if (document.getElementById('tabla_integrantes')) {
 								return 'INTEGRANTES - ' + document.getElementById('titulo').textContent;
@@ -247,7 +248,7 @@
 				}
 			});
 		}
-		//Definición de las tablas
+		// Definición de las tablas
 		var tabla_investigadores = $('#tabla_investigadores').DataTable({
 			responsive: true,
 			rowId: 'id',
@@ -261,7 +262,7 @@
 		});
 
 		$('#tabla_investigadores_filter input').keyup(function () {
-			//Busqueda con tildes
+			// Busqueda con tildes
 			tabla_investigadores
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
@@ -286,7 +287,7 @@
 		});
 
 		$('#tabla_programas_filter input').keyup(function () {
-			//Busqueda con tildes
+			// Busqueda con tildes
 			tabla_programas
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
@@ -310,7 +311,7 @@
 		});
 
 		$('#tabla_lineas_filter input').keyup(function () {
-			//Busqueda con tildes
+			// Busqueda con tildes
 			tabla_lineas
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
@@ -329,7 +330,7 @@
 		});
 
 		$('#tabla_facultades_filter input').keyup(function () {
-			//Busqueda con tildes
+			// Busqueda con tildes
 			tabla_facultades
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
@@ -354,7 +355,7 @@
 		});
 
 		$('#tabla_centros_filter input').keyup(function () {
-			//Busqueda con tildes
+			// Busqueda con tildes
 			tabla_centros
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
@@ -381,7 +382,7 @@
 		});
 
 		$('#tabla_grupos input').keyup(function () {
-			//Busqueda con tildes
+			// Busqueda con tildes
 			tabla_grupos
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
@@ -453,7 +454,7 @@
 		});
 
 		$('#tabla_reporte_filter input').keyup(function () {
-			//Busqeuda con tildes
+			// Busqeuda con tildes
 			table
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
@@ -470,7 +471,36 @@
 				)
 				.draw();
 		});
-		//Definición tabla Inventario
+		
+		// .---------------------------------------------------------------
+		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({
+			responsive: true,
+			rowId: 'id',
+			columns: [
+				{ data: "id", visible: false },
+				{ data: "pertenencia"},
+				{ data: "nombre" },
+				{ data: "categoria" },
+				{ data: "nivelAcademico" }
+			]
+		});
+
+		$('#tabla_pertenencia_filter input').keyup(function () {
+			// Busqueda con tildes
+			tabla_investigadores
+				.search(
+					jQuery.fn.DataTable.ext.type.search.string(this.value)
+				)
+				.draw();
+		});
+
+		$('#tabla_pertenencia tbody').on('click', 'tr', function () {
+			var data = tabla_pertenencia.row(this).data();
+			// window.location.href = "general?id=" + data.id + "&type=i";
+		});
+		
+		
+		// Definición tabla Inventario
 		var table = $('#tabla_inventario')
 			.DataTable(
 				{
@@ -483,17 +513,17 @@
 							className: 'copyButton'
 						},
 						{
-							//Excel que obtiene los datos de la tabla
+							// Excel que obtiene los datos de la tabla
 							extend: 'excel',
 							text: 'Reporte de Tabla',
 							className: 'excelButton',
 							customize: function (xlsx) {
 								var sheet = xlsx.xl.worksheets['sheet1.xml'];
 								$('c[r=A1] t', sheet).text('INVENTARIO - ' + document.getElementById('titulo').textContent);
-								//Interación entre cada dato del EXCEL
+								// Interación entre cada dato del EXCEL
 								$('row c[r^="A"]', sheet).each(function (i) {
 									if ($(this).text() == 1) {
-										//Pinta la celda completa de verde
+										// Pinta la celda completa de verde
 										$(this).attr('s', '15');
 										$('c[r=B' + (i + 2) + ']', sheet).attr('s', '15');
 										$('c[r=C' + (i + 2) + ']', sheet).attr('s', '15');
@@ -570,7 +600,7 @@
 
 
 
-		//Evento para el checkbox
+		// Evento para el checkbox
 
 		$('#tabla_inventario tbody').on(
 			'click',
