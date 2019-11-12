@@ -50,16 +50,7 @@
 								<tbody>
 									<tr th:each="investigador : ${integrantes}">
 										<td th:text="${investigador.id}"></td>
-										<td class="comboPertenencia"><SELECT
-											id="comboPertenencia" NAME="selCombo" SIZE="1">
-												<OPTION VALUE="Indefinido">Indefinido</OPTION>
-												<OPTION VALUE="Docente de Planta">D.P</OPTION>
-												<OPTION VALUE="Docente Catedratico">D.C</OPTION>
-												<OPTION VALUE="Docente Ocasional">D.O</OPTION>
-												<OPTION VALUE="Administrativo">A.D.M</OPTION>
-												<OPTION VALUE="Investigador Externo">I.E</OPTION>
-												<OPTION VALUE="Estudiante Investigador">E.I</OPTION>
-										</SELECT></td>
+										<td></td>
 										<td th:text="${investigador.nombre}"></td>
 										<td th:text="${investigador.categoria}"></td>
 										<td th:text="${investigador.nivelAcademico}"></td>
@@ -77,6 +68,10 @@
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<div th:replace="fragments/footer"></div>
+
+
+
+
 	<script type="text/javascript" th:inline="javascript"> 
 	var data = [[${integrantes}]];
 	console.log(data);
@@ -173,6 +168,9 @@
 	      }
 	    } );
 	  
+	  
+		
+		
 	</script>
 
 </body>

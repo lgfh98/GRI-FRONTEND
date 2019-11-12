@@ -26,19 +26,20 @@
 			<li class="menu-nav-li"><a class="menu-nav-li-a"
 				href="investigadores"> Investigadores</a></li>
 
-			<li class="menu-nav-li" sec:authorize="hasRole('ROLE_ADMIN')"><a
-				class="menu-nav-li-a" href="pertenencia">Pertenencia de
-					Investigadores</a></li>
+
+
+
 
 			<li class="menu-nav-li" sec:authorize="hasRole('ROLE_ADMIN')"><a
-				class="menu-nav-li-a" href="inventario"> Producciones en
-					Custodia</a></li>
+				class="menu-nav-li-a" href="admin"><span class="fas fa-cog"
+					aria-hidden="true"></span></a></li>
 
 			<li>
 				<form class="menu-nav-li" th:action="@{/logout}" method="post">
 					<button type="submit" class="menu-nav-li-a-btn">Salir</button>
 				</form>
 			</li>
+
 		</ul>
 
 

@@ -529,6 +529,7 @@ public class WebController {
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("integrantes", integrantes);
+		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());
 
 		return "pertenencia_investigadores/reportepertenencia";
 
@@ -562,6 +563,20 @@ public class WebController {
 		return "pertenencia_investigadores/pertenencia";
 
 	}
+	
+	@GetMapping("/admin")
+	public String getAdmin(Model model) {
+		
+		model.addAttribute("tamanio","2");
+		
+		return "admin";
+		
+		
+	}
+	
+	
+	
+	
 
 	/**
 	 * permite obtener el reporte estadistico solicitado en formato pdf
