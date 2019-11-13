@@ -491,7 +491,7 @@
 					cellData, rowData, row,
 					col) {
 					$(td)
-					.html("<div id='mk-selectmenu-container' class='mk-selectmenu-container'> <select id='producto' name='producto'onchange='ShowSelected(this.value)' class='mk-selectmenu'><option value='0'>Indefinido</option><option value='1'>D.P</option><option value='2'>D.C</option><option value='3'>D.O</option><option value='4'>A.D.M</option><option value='5'>I.E</option><option value='6'>I.E</option></select></div>");
+					.html("<div id='mk-selectmenu-container' class='mk-selectmenu-container'> <select id='comboPertenencia' name='comboPertenencia' class='mk-selectmenu'><option value='0'>Indefinido</option><option value='1'>D.P</option><option value='2'>D.C</option><option value='3'>D.O</option><option value='4'>A.D.M</option><option value='5'>I.E</option><option value='6'>I.E</option></select></div>");
 				}
 			}
 		]
@@ -519,11 +519,12 @@
 			// window.location.href = "general?id=" + data.id + "&type=i";
 		});
 		
-	$('producto').on('change',function ShowSelected(val){
-		
-		alert(val);
-		
-	});
+		$('#comboPertenencia select').on('changeSelection',function (){
+			
+			
+			alert("hola");
+			
+		});
 		
 		
 		
