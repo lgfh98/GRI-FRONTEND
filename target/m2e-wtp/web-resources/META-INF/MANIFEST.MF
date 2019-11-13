@@ -1,42 +1,10 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 Manifest-Version: 1.0
-Implementation-Title: ServerSpring
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Jefferson Arenas
-Implementation-Vendor-Id: serverspring
-Build-Jdk: 1.8.0_221
-Implementation-URL: http://maven.apache.org
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
-
-=======
-Manifest-Version: 1.0
-Implementation-Title: ServerSpring
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Luis
-Implementation-Vendor-Id: serverspring
-Build-Jdk: 1.8.0_221
-Implementation-URL: http://maven.apache.org
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
-
->>>>>>> Stashed changes
-=======
-Manifest-Version: 1.0
-Implementation-Title: ServerSpring
-Implementation-Version: 0.0.1-SNAPSHOT
-<<<<<<< Updated upstream
-Built-By: Jefferson Arenas
-Implementation-Vendor-Id: serverspring
-Build-Jdk: 1.8.0_221
-=======
 Built-By: juan
+Build-Jdk: 11.0.5
+Implementation-Title: ServerSpring
+Implementation-Version: 0.0.1-SNAPSHOT
 Implementation-Vendor-Id: serverspring
-Build-Jdk: 1.8.0_201
->>>>>>> Stashed changes
+Implementation-Vendor: Pivotal Software, Inc.
 Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
 
->>>>>>> jefferson

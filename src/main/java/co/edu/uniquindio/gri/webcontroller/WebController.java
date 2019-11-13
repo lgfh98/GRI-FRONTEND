@@ -525,7 +525,17 @@ public class WebController {
 
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
 		List<Investigador> integrantes = investigadorDAO.getIntegrantes("g", Long.parseLong(id));
+		List<String> pertenencias = new ArrayList<String>();
+		
+		pertenencias.add(Util.PERTENENCIA_INDEFINIDO);
+		pertenencias.add(Util.PERTENENCIA_ADMINISTRATIVO);
+		pertenencias.add(Util.PERTENENCIA_DOCENTE_PLANTA);
+		pertenencias.add(Util.PERTENENCIA_DOCENTE_CATEDRATICO);
+		pertenencias.add(Util.PERTENENCIA_DOCENTE_OCASIONAL);
+		pertenencias.add(Util.PERTENENCIA_EXTERNO);
+		pertenencias.add(Util.PERTENENCIA_ESTUDIANTE);
 
+		model.addAttribute("operators", pertenencias);
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("integrantes", integrantes);
@@ -563,20 +573,15 @@ public class WebController {
 		return "pertenencia_investigadores/pertenencia";
 
 	}
-	
+
 	@GetMapping("/admin")
 	public String getAdmin(Model model) {
-		
-		model.addAttribute("tamanio","2");
-		
+
+		model.addAttribute("tamanio", "2");
+
 		return "admin";
-		
-		
+
 	}
-	
-	
-	
-	
 
 	/**
 	 * permite obtener el reporte estadistico solicitado en formato pdf
