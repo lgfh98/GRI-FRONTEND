@@ -471,14 +471,22 @@
 				)
 				.draw();
 		});
+<<<<<<< Updated upstream
 
+=======
+		
+>>>>>>> Stashed changes
 		// .---------------------------PERTENENCIA------------------------------------
 		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({
 			responsive: true,
 			rowId: 'id',
 			columns: [
 				{ data: "id", visible: false },
+<<<<<<< Updated upstream
 				{ data: "pertenencia" },
+=======
+				{ data: "pertenencia"},
+>>>>>>> Stashed changes
 				{ data: "nombre" },
 				{ data: "categoria" },
 				{ data: "nivelAcademico" }
@@ -509,6 +517,7 @@
 				.draw();
 		});
 
+<<<<<<< Updated upstream
 		//$('#tabla_pertenencia tbody').on('click', 'tr', function () {
 		//	var data = tabla_pertenencia.row($(this)).data();
 		//	var invId = data[0];
@@ -528,6 +537,16 @@
 				var data_2 = e.options[e.selectedIndex].value
 				alert(data_2);
 			});
+=======
+		$('#tabla_pertenencia tbody').on('click', 'tr', function () {
+			var data = tabla_pertenencia.row(this).data();
+			
+		
+			
+			
+			
+			// window.location.href = "general?id=" + data.id + "&type=i";
+>>>>>>> Stashed changes
 		});
 		
 		$('#comboPertenencia select').on('changeSelection',function (){

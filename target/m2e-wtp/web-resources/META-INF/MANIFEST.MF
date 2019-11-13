@@ -3,8 +3,14 @@ Built-By: juan
 Build-Jdk: 11.0.5
 Implementation-Title: ServerSpring
 Implementation-Version: 0.0.1-SNAPSHOT
+<<<<<<< Updated upstream
 Implementation-Vendor-Id: serverspring
 Implementation-Vendor: Pivotal Software, Inc.
+=======
+Built-By: Jefferson Arenas
+Implementation-Vendor-Id: serverspring
+Build-Jdk: 1.8.0_221
+>>>>>>> Stashed changes
 Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
 
