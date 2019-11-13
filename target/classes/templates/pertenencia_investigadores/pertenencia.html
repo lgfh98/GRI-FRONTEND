@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/header :: header('Producciones en Custodia')">
+	th:replace="fragments/header :: header('Pertenencia Investigadores')">
 <meta charset="utf-8" />
 </head>
 <body id="page-top" class="sidebar-toggled">
@@ -17,16 +17,15 @@
 				<div class="region-hero">
 					<div class="contenedor-hero">
 						<div class="contenido-hero">
-							<h1 class="titulo-hero" th:text="${nombre}">
-							</h1>
-							Reportes relacionados a las producciones que se encuentran
-							actualmente en custodia de la Vicerrectoría de Investigaciones.
+							<h1 class="titulo-hero" th:text="${nombre}"></h1>
+							Reportes relacionados a la pertenencia de los investigadores en
+							la universidad del Quindío.
 						</div>
 					</div>
 				</div>
 				<div class="separador-1"></div>
 
-				<br></br> 
+				<br></br>
 
 				<div id="listageneral">
 					<ul class="cards-list">
@@ -40,7 +39,7 @@
 
 
 								<a class="card-container"
-									th:href="${param.id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}">
+									th:href="${param.id} ? @{reportepertenencia(id=${obj.id})} :  @{pertenencia(id=${obj.id})}">
 									<div class="card-title-container-s">
 										<h3 class="card-title-s" th:text="${obj.nombre}"></h3>
 									</div>

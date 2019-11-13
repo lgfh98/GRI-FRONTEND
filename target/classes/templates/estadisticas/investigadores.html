@@ -2,23 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head
-	th:replace="fragments/header :: header('Estadisticas Investigador')">
+	th:replace="fragments/header :: header('Estadísticas Investigador')">
 <meta charset="utf-8" />
 </head>
 
 <body id="page-top" class="sidebar-toggled">
-	<nav th:replace="fragments/nav :: nav(${color})"></nav>
-<<<<<<< Updated upstream
+	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
 	<nav th:replace="fragments/toolReport"></nav>
 	<div id="wrapper">
 
 
-=======
-
-	<div id="wrapper">
-
-	
->>>>>>> Stashed changes
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -31,16 +24,7 @@
 					</div>
 				</div>
 				<div class="separador-1"></div>
-				<div class="card-contacto"
-					th:classappend="'card-contacto-'+${color}">
-
-					<p>Contacto del investigador</p>
-					<p th:text="${nombre}"></p>
-					<p>312XXX</p>
-					<p>inv@XXXX.co</p>
-					<p>DocXX</p>
-
-				</div>
+			
 				<div id="listageneral">
 					<div class="separador-1"></div>
 					<h2 class="h2-titulos-tablas">Producciones Del Investigador</h2>

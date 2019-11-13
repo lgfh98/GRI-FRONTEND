@@ -114,7 +114,7 @@
 							}
 							else if (document.getElementById('tabla_grupos_wrapper')) {
 								$('c[r=A1] t', sheet).text('Grupos');
-							}else if (document.getElementById('tabla_lineas_wrapper')) {
+							} else if (document.getElementById('tabla_lineas_wrapper')) {
 								$('c[r=A1] t', sheet).text('Lineas de Investigación');
 							}
 						},
@@ -209,7 +209,7 @@
 							}
 							else if (document.getElementById('tabla_grupos_wrapper')) {
 								return 'Grupos';
-							}else if (document.getElementById('tabla_lineas_wrapper')) {
+							} else if (document.getElementById('tabla_lineas_wrapper')) {
 								return 'Lineas de Investigación';
 							}
 						},
@@ -376,7 +376,7 @@
 				{ data: "nombre" },
 				{ data: "programas.get(0).facultad.nombre" },
 				{ data: "centro.nombre" },
-				{ data: "programas.lider" }, 
+				{ data: "programas.lider" },
 				{ data: "programas.categoria" }
 			]
 		});
@@ -471,14 +471,14 @@
 				)
 				.draw();
 		});
-		
+
 		// .---------------------------PERTENENCIA------------------------------------
 		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({
 			responsive: true,
 			rowId: 'id',
 			columns: [
 				{ data: "id", visible: false },
-				{ data: "pertenencia"},
+				{ data: "pertenencia" },
 				{ data: "nombre" },
 				{ data: "categoria" },
 				{ data: "nivelAcademico" }
@@ -509,14 +509,25 @@
 				.draw();
 		});
 
-		$('#tabla_pertenencia tbody').on('click', 'tr', function () {
-			var data = tabla_pertenencia.row(this).data();
-			
-		
-			
-			
-			
-			// window.location.href = "general?id=" + data.id + "&type=i";
+		//$('#tabla_pertenencia tbody').on('click', 'tr', function () {
+		//	var data = tabla_pertenencia.row($(this)).data();
+		//	var invId = data[0];
+		//	var e = document.getElementById("dropOperator"+invId);
+		//	alert(invId);
+
+
+
+
+		//window.location.href = "general?id=" + data.id + "&type=i";
+		//});
+
+		$(document).ready(function () {
+			$('#tabla_pertenencia td').click(function (event) {
+				var elID = $(this).attr('id');
+				var e = document.getElementById("dropOperator"+elID);
+				var data_2 = e.options[e.selectedIndex].value
+				alert(data_2);
+			});
 		});
 		
 		$('#comboPertenencia select').on('changeSelection',function (){

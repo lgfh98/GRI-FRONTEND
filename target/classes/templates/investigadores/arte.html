@@ -5,11 +5,11 @@
 </head>
 <body id="page-top" class="sidebar-toggled">
 
-	<nav th:replace="fragments/nav :: nav(${color})"></nav>
-
+	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
 	<div id="wrapper">
 
-		
+
 
 		<div id="content-wrapper">
 			<div class="container-fluid">
@@ -17,7 +17,7 @@
 				<div class="region-hero">
 					<div class="contenedor-hero">
 						<div class="contenido-hero">
-							<h1 id="titulo" class="titulo-hero" th:text = "${nombre}"></h1>
+							<h1 id="titulo" class="titulo-hero" th:text="${nombre}"></h1>
 							Producción en Arte
 						</div>
 					</div>
@@ -29,8 +29,8 @@
 					<ul class="cards-list">
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=34)}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=34)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-1">
 										<span class="icono fa fa-puzzle-piece"></span>
 									</div>
@@ -43,8 +43,8 @@
 
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=35)}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=35)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-2">
 										<span class="icono fa fa-copyright"></span>
 									</div>
@@ -57,8 +57,8 @@
 
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=36)}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=36)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-3">
 										<span class="icono fa fa-industry"></span>
 									</div>
@@ -71,8 +71,8 @@
 
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=37)}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=37)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-4">
 										<span class="icono fa fa-users"></span>
 									</div>
@@ -85,8 +85,8 @@
 
 						<li class="cards-item ci-3">
 							<div class="card">
-								<a th:href="@{reporte(id=${id},type=${tipo}, prod=38)}" class="card-container"
-									rel="keep-params">
+								<a th:href="@{reporte(id=${id},type=${tipo}, prod=38)}"
+									class="card-container" rel="keep-params">
 									<div class="card-icon card-icon-5">
 										<span class="icono fa fa-paint-brush"></span>
 									</div>

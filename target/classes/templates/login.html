@@ -1,17 +1,5 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<<<<<<< Updated upstream
-<head th:replace="fragments/header :: header('Inicio')">
-<meta charset="utf-8" />
-</head>
-<body id="page-top" class="sidebar-toggled">
-
-	<nav class="navbar navbar-expand navbar-dark static-top"
-		style="background-color: #007f36;">
-		<a class="navbar-brand mr-1" href="#">GRI</a>
-		<div
-			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-=======
 
 <head th:replace="fragments/header :: header('Inicio')">
 	<meta charset="utf-8" />
@@ -27,7 +15,6 @@
 	border-bottom: 5px solid;
 	border-image: linear-gradient(to right, #1169B0 12.5%, #009DE0 25%, #8FB435 37.5%, #FFCC00 50%, #DC911B 62.5%, #8E1C7D 75%, #C20B19 87.5%) 5">
 		<div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
->>>>>>> Stashed changes
 		</div>
 		<!-- Navbar -->
 		<ul class="navbar-nav ml-auto ml-md-0">
@@ -51,37 +38,21 @@
 									<h1 class="titulo">GRI - Inicio</h1>
 								</div>
 								<div class="alert alert-danger mt-4" role="alert" th:if="${param.error}">
-<<<<<<< Updated upstream
-								Datos Incorrectos
-=======
 									Datos Incorrectos
->>>>>>> Stashed changes
 								</div>
 								<form th:action="@{/login}" method="post">
 									<div class="form-group my-2">
 										<input type="user" id="userInput" name="username"
-<<<<<<< Updated upstream
-											placeholder="Ingrese su usuario" class="form-control"/>
-=======
 											placeholder="Ingrese su usuario" class="form-control" />
->>>>>>> Stashed changes
 									</div>
 
 									<div class="form-group my-2">
 										<input type="password" id="passwordInput" name="password"
-<<<<<<< Updated upstream
-											placeholder="Ingrese su contraseña" class="form-control"/>
-									</div>
-
-									<button id="login" type="submit"
-										class="btn btn-success btn-block mt-4">Iniciar Sesión</button>
-=======
 											placeholder="Ingrese su contraseña" class="form-control" />
 									</div>
 
 									<button id="login" type="submit" class="btn btn-success btn-block mt-4">Iniciar
 										Sesión</button>
->>>>>>> Stashed changes
 								</form>
 							</div>
 						</div>
@@ -97,8 +68,5 @@
 
 	<div th:replace="fragments/footer"></div>
 </body>
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 </html>
