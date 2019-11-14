@@ -524,7 +524,7 @@ public class WebController {
 	public String getReportePertenencia(@RequestParam(name = "id", required = true) String id, Model model) {
 
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
-		List<Investigador> integrantes = investigadorDAO.getIntegrantes("g", Long.parseLong(id));
+		List<Investigador> integrantes = investigadorDAO.getInvestigadoresGrupoPertenencia(Long.parseLong(id));
 		List<String> pertenencias = new ArrayList<String>();
 		
 		pertenencias.add(Util.PERTENENCIA_INDEFINIDO);
