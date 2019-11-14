@@ -2197,6 +2197,12 @@ user agent stylesheet user agent stylesheet menu {
 	border-top: 10px solid #009640;
 }
 
+/**----------------combo*/
+.mk-selectmenu {
+	width: 100%;
+	height: 100%;
+}
+
 /**
 Responsive--------------------------------------------
 */

@@ -2,27 +2,33 @@
 	th:fragment="nav (style)" th:classappend="${style}">
 
 	
+	
+	<a class=" nav-item btn-link btn-sm color iconPrintSmall"
+			href="javascript:history.back()" title="Ir a página anterior"><span class="fas fa-arrow-left"
+			aria-hidden="true"></span> <span class="btnText">Atras</span></a>
+	
+
 
 	<!-- Uso Futuro -->
 	<div
 		class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 	</div>
 
-
-
-
-
-
 	<!-- Navbar -->
 	<ul class="navbar-nav ml-auto ml-md-0">
 
-		<li class=" nav-item btn-link btn-sm color iconPrintSmall"
+		<a target="_blank"
+			th:href="@{imprimir-reporte-estadistico(id=${id},type=${tipo})}">
+			<li class=" nav-item btn-link btn-sm color iconPrintSmall"
 			title="Imprimir Analiticas"><span class="fas fa-print"
-			aria-hidden="true"></span> <span class="btnText">Imprimir</span></li>
-
-		<li class="nav-item btn-link btn-sm color iconPrintSmall"
+				aria-hidden="true"></span> <span class="btnText">Imprimir</span></li>
+		</a>
+		<a target="_blank"
+			th:href="@{descargar-reporte-estadistico(id=${id},type=${tipo})}">
+			<li class="nav-item btn-link btn-sm color iconPrintSmall"
 			title="Descargar Analiticas"><span class="fas fa-file-download"
-			aria-hidden="true"></span> <span class="btnText">Descargar</span></li>
-		
+				aria-hidden="true"></span> <span class="btnText">Descargar</span></li>
+		</a>
+
 	</ul>
 </nav>

@@ -130,17 +130,12 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
 .sidebar .nav-item .nav-link {
 	color: rgba(255, 255, 255, 0.80);
-<<<<<<< Updated upstream
 	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0
 		#000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
-=======
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
->>>>>>> Stashed changes
 }
 
 .navbar-dark .navbar-nav .nav-link {
 	color: rgba(255, 255, 255, .8);
-<<<<<<< Updated upstream
 	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0
 		#000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
 }
@@ -157,22 +152,6 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 
 .sidebar .nav-item .nav-link:active, .sidebar .nav-item .nav-link:focus,
 	.sidebar .nav-item .nav-link:hover {
-=======
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
-}
-
-.text-white {
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
-}
-
-.navbar-brand {
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
-}
-
-.sidebar .nav-item .nav-link:active,
-.sidebar .nav-item .nav-link:focus,
-.sidebar .nav-item .nav-link:hover {
->>>>>>> Stashed changes
 	color: rgba(255, 255, 255, 0.90);
 }
 
@@ -252,8 +231,8 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	display: block;
 	position: relative;
 	flex-grow: 1;
-	padding-right: 2rem;
-	padding-left: 2rem;
+	padding-right: 1.5rem;
+	padding-left: 1.5rem;
 	padding-top: 1.2rem;
 	font-size: 1.4rem;
 	display: flex;
@@ -359,6 +338,7 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	font-size: 1.2rem;
 	line-height: 2rem;
 	color: #6c6c6c;
+	text-align: center;
 }
 
 .titulo-hero {
@@ -374,52 +354,38 @@ button.copyButton::before {
 	font-family: 'Font Awesome\ 5 Free';
 	content: "\f0c5\00a0";
 	font-weight: 900;
-<<<<<<< Updated upstream
-=======
 	background-color: white;
-	color: #009640;
->>>>>>> Stashed changes
+	color: #000000;
 }
 
 button.excelButton::before {
 	font-family: 'Font Awesome\ 5 Free';
 	content: "\f1c3\00a0";
 	font-weight: 900;
-<<<<<<< Updated upstream
-=======
 	background-color: white;
-	color: #009640;
->>>>>>> Stashed changes
+	color: #000000;
 }
 
 button.pdfButton::before {
 	font-family: 'Font Awesome\ 5 Free';
 	content: "\f1c1\00a0";
 	font-weight: 900;
-<<<<<<< Updated upstream
-=======
 	background-color: white;
-	color: #009640;
->>>>>>> Stashed changes
+	color: #000000;
 }
 
 button.printButton::before {
 	font-family: 'Font Awesome\ 5 Free';
 	content: "\f02f\00a0";
 	font-weight: 900;
-<<<<<<< Updated upstream
-=======
 	background-color: white;
-	color: #009640;
->>>>>>> Stashed changes
+	color: #000000;
 }
 
 .table {
 	cursor: pointer;
 }
 
-<<<<<<< Updated upstream
-=======
 .table tr:nth-child(even) {
 	cursor: pointer;
 	background-color: #A6DEA2;
@@ -441,7 +407,206 @@ button.printButton::before {
 	color: white;
 }
 
->>>>>>> Stashed changes
+.table-0 {
+	cursor: pointer;
+}
+
+.table-0 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #A6DEA2;
+}
+
+.table-0 tr:hover {
+	background-color: white;
+	color: #009640;
+}
+
+.table-0 th:hover {
+	background-color: white;
+	color: #009640;
+}
+
+.table-0 th {
+	cursor: pointer;
+	background-color: #009640;
+	color: white;
+}
+
+.table-1 {
+	cursor: pointer;
+}
+
+.table-1 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #f6ecbf;
+}
+
+.table-1 tr:hover {
+	background-color: white;
+	color: #FFCC00;
+}
+
+.table-1 th:hover {
+	background-color: white;
+	color: #FFCC00;
+}
+
+.table-1 th {
+	cursor: pointer;
+	background-color: #FFCC00;
+	color: white;
+}
+
+.table-2 {
+	cursor: pointer;
+}
+
+.table-2 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #ffe7ad;
+}
+
+.table-2 tr:hover {
+	background-color: white;
+	color: #DC911B;
+}
+
+.table-2 th:hover {
+	background-color: white;
+	color: #DC911B;
+}
+
+.table-2 th {
+	cursor: pointer;
+	background-color: #DC911B;
+	color: white;
+}
+
+.table-3 {
+	cursor: pointer;
+}
+
+.table-3 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #d5d5ea;
+}
+
+.table-3 tr:hover {
+	background-color: white;
+	color: #1169B0;
+}
+
+.table-3 th:hover {
+	background-color: white;
+	color: #1169B0;
+}
+
+.table-3 th {
+	cursor: pointer;
+	background-color: #1169B0;
+	color: white;
+}
+
+.table-4 {
+	cursor: pointer;
+}
+
+.table-4 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #e0e2f8;
+}
+
+.table-4 tr:hover {
+	background-color: white;
+	color: #009DE0;
+}
+
+.table-4 th:hover {
+	background-color: white;
+	color: #009DE0;
+}
+
+.table-4 th {
+	cursor: pointer;
+	background-color: #009DE0;
+	color: white;
+}
+
+.table-5 {
+	cursor: pointer;
+}
+
+.table-5 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #ff8080;
+}
+
+.table-5 tr:hover {
+	background-color: white;
+	color: #C20B19;
+}
+
+.table-5 th:hover {
+	background-color: white;
+	color: #C20B19;
+}
+
+.table-5 th {
+	cursor: pointer;
+	background-color: #C20B19;
+	color: white;
+}
+
+.table-6 {
+	cursor: pointer;
+}
+
+.table-6 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #dffab7;
+}
+
+.table-6 tr:hover {
+	background-color: white;
+	color: #8FB435;
+}
+
+.table-6 th:hover {
+	background-color: white;
+	color: #8FB435;
+}
+
+.table-6 th {
+	cursor: pointer;
+	background-color: #8FB435;
+	color: white;
+}
+
+.table-7 {
+	cursor: pointer;
+}
+
+.table-7 tr:nth-child(even) {
+	cursor: pointer;
+	background-color: #d7cbe8;
+}
+
+.table-7 tr:hover {
+	background-color: white;
+	color: #8E1C7D;
+}
+
+.table-7 th:hover {
+	background-color: white;
+	color: #8E1C7D;
+}
+
+.table-7 th {
+	cursor: pointer;
+	background-color: #8E1C7D;
+	color: white;
+}
+
 .cards-list {
 	display: flex;
 	flex-direction: row;
@@ -514,12 +679,7 @@ button.printButton::before {
 	position: relative;
 }
 
-<<<<<<< Updated upstream
 .card-container, .card-container:hover {
-=======
-.card-container,
-.card-container:hover {
->>>>>>> Stashed changes
 	background-color: #ffffff;
 	text-decoration: none;
 	outline-width: 0px;
@@ -542,86 +702,137 @@ button.printButton::before {
 .card-0 {
 	background-color: #007f36;
 	border: none;
-<<<<<<< Updated upstream
-=======
+	text-align: center;
+}
+
+.card-0-nav {
+	background-color: #007f36;
+	border: none;
 	text-align: center;
 	border-bottom: 5px solid;
-	border-image: linear-gradient(to right, #1169B0 12.5%, #009DE0 25%, #8FB435 37.5%, #FFCC00 50%, #DC911B 62.5%, #8E1C7D 75%, #C20B19 87.5%) 5
->>>>>>> Stashed changes
+	border-image: linear-gradient(to right, #1169B0 12.5%, #009DE0 25%, #8FB435 37.5%,
+		#FFCC00 50%, #DC911B 62.5%, #8E1C7D 75%, #C20B19 87.5%) 5
 }
 
 .card-1 {
 	background-color: #FFCC00;
 	border: none;
-<<<<<<< Updated upstream
-=======
 	text-align: center;
->>>>>>> Stashed changes
+}
+
+.card-1-nav {
+	background-color: #FFCC00;
+	background-image: linear-gradient(to right, #ffcc00, #f5c200, #ebb800, #e1ae00, #d7a400);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #FFCC00;
 }
 
 .card-2 {
 	background-color: #DC911B;
 	border: none;
-<<<<<<< Updated upstream
-=======
 	text-align: center;
->>>>>>> Stashed changes
+}
+
+.card-2-nav {
+	background-color: #DC911B;
+	background-image: linear-gradient(to right, #dc911b, #e49b26, #eba530, #f3af3a, #fab943);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #DC911B;
 }
 
 .card-3 {
 	background-color: #1169B0;
 	border: none;
-<<<<<<< Updated upstream
-=======
 	text-align: center;
->>>>>>> Stashed changes
+}
+
+.card-3-nav {
+	background-color: #1169B0;
+	background-image: linear-gradient(to right, #1169b0, #1d73ba, #277dc4, #3087ce, #3991d8);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #1169B0;
 }
 
 .card-4 {
 	background-color: #009DE0;
 	border: none;
-<<<<<<< Updated upstream
-=======
 	text-align: center;
->>>>>>> Stashed changes
+}
+
+.card-4-nav {
+	background-color: #009de0;
+	background-image: linear-gradient(to right, #64c5ff, #54bbf7, #42b1ef, #2ca7e8, #009de0);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #009de0;
 }
 
 .card-5 {
 	background-color: #C20B19;
 	border: none;
-<<<<<<< Updated upstream
-=======
 	text-align: center;
->>>>>>> Stashed changes
+}
+
+.card-5-nav {
+	background-color: #C20B19;
+	background-image: linear-gradient(to right, #c20b19, #cc1823, #d6222d, #e02b37, #ea3341);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #C20B19;
 }
 
 .card-6 {
 	background-color: #8FB435;
 	border: none;
-<<<<<<< Updated upstream
-=======
 	text-align: center;
->>>>>>> Stashed changes
+}
+
+.card-6-nav {
+	background-color: #8FB435;
+	background-image: linear-gradient(to right, #8fb435, #99be3f, #a3c849, #add253, #b7dc5d);
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #8FB435;
 }
 
 .card-7 {
 	background-color: #8E1C7D;
 	border: none;
-<<<<<<< Updated upstream
+	text-align: center;
 }
 
-.card-8 {
-	background-color: #009640;
+.card-7-nav {
+	background-color: #8E1C7D;
+	background-image: linear-gradient(to right, #8e1c7d, #982787, #a23191, #ac3b9b, #b644a5);
 	border: none;
-=======
 	text-align: center;
+	border-bottom: 5px solid;
+	border-bottom-color: #8E1C7D;
 }
 
 .card-8 {
 	background-image: #009640;
 	border: none;
 	text-align: center;
->>>>>>> Stashed changes
+}
+
+.card-8-nav {
+	background-image: #009640;
+	background-color: #009640;
+	border: none;
+	text-align: center;
+	border-bottom: 5px solid;
+	border-image: linear-gradient(to right, #1169B0 12.5%, #009DE0 25%, #8FB435 37.5%,
+		#FFCC00 50%, #DC911B 62.5%, #8E1C7D 75%, #C20B19 87.5%) 5
 }
 
 .lista-miembros {
@@ -793,25 +1004,6 @@ label {
 	background-color: #8CFF98 !important;
 }
 
-/**
-.btn-nav {
-	color: rgba(255, 255, 255);
-<<<<<<< Updated upstream
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0
-		#000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
-=======
-	text-shadow: -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000, -1px 0 0 #000;
->>>>>>> Stashed changes
-	opacity: 0.9;
-	-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-	-moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
-}
-
-.btn-nav:hover {
-	color: rgba(255, 255, 255);
-	opacity: 1;
-}*/
 .card-ball {
 	width: 40px !important;
 	height: 40px !important;
@@ -874,6 +1066,10 @@ label {
 	border-radius: 6px;
 }
 
+.button-item:hover {
+	cursor: pointer;
+}
+
 .button-title {
 	width: 100%;
 	height: 100%;
@@ -883,6 +1079,23 @@ label {
 	border-radius: 6px;
 	font-weight: bold;
 	font-size: 0.8em;
+}
+
+.button-title-total {
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border: 1px solid green;
+	border-bottom: 10px solid green;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 0.8em;
+}
+
+.button-title-total:hover {
+	cursor: pointer;
+	background-color: green;
+	color: white;
 }
 
 .card-1-titulo {
@@ -1209,10 +1422,6 @@ label {
 	text-align: center;
 }
 
-.scrollable {
-	overflow: scroll;
-}
-
 .grid-container-res-programa {
 	display: grid;
 	grid-column-gap: 10px;
@@ -1245,7 +1454,6 @@ label {
 	grid-template-rows: repeat(2, 1fr);
 }
 
-<<<<<<< Updated upstream
 @media ( min-width : 768px) {
 	body.fixed-nav #content-wrapper {
 		padding-left: 225px;
@@ -1253,25 +1461,12 @@ label {
 	body.fixed-nav.sidebar-toggled #content-wrapper {
 		padding-left: 90px;
 	}
-=======
-@media (min-width : 768px) {
-	body.fixed-nav #content-wrapper {
-		padding-left: 225px;
-	}
 
-	body.fixed-nav.sidebar-toggled #content-wrapper {
-		padding-left: 90px;
-	}
-
->>>>>>> Stashed changes
 	/*---------*/
 	.navbar-nav .form-inline .input-group {
 		width: auto;
 	}
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 	/*----------*/
 	.sidebar {
 		width: 225px !important;
@@ -1289,58 +1484,30 @@ label {
 		font-size: 1rem;
 		display: inline;
 	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 	.sidebar .nav-item .dropdown-menu {
 		position: static !important;
 		margin: 0 1rem;
 		top: 0;
 	}
-<<<<<<< Updated upstream
 	.sidebar .nav-item.dropdown .dropdown-toggle::after {
 		display: block;
 	}
-=======
-
-	.sidebar .nav-item.dropdown .dropdown-toggle::after {
-		display: block;
-	}
-
->>>>>>> Stashed changes
 	.sidebar.toggled {
 		overflow: visible;
 		width: 100px !important;
 	}
-<<<<<<< Updated upstream
 	.sidebar.toggled .nav-item:last-child {
 		margin-bottom: 1rem;
 	}
-=======
-
-	.sidebar.toggled .nav-item:last-child {
-		margin-bottom: 1rem;
-	}
-
->>>>>>> Stashed changes
 	.sidebar.toggled .nav-item .nav-link {
 		text-align: center;
 		padding: 0.75rem 1rem;
 		width: 90px;
 	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 	.sidebar.toggled .nav-item .nav-link span {
 		font-size: 0.65rem;
 		display: block;
 	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 	.sidebar.toggled .nav-item .dropdown-menu {
 		position: absolute !important;
 		-webkit-transform: none !important;
@@ -1348,18 +1515,10 @@ label {
 		left: calc(90px + 0.5rem) !important;
 		margin: 0;
 	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 	.sidebar.toggled .nav-item .dropdown-menu.dropup {
 		bottom: 0;
 		top: auto !important;
 	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 	.sidebar.toggled .nav-item.dropdown .dropdown-toggle::after {
 		display: none;
 	}
@@ -1418,10 +1577,7 @@ estadisticas facultades
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 }
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 /*
 colores de botones de las tablas
 */
@@ -1721,7 +1877,6 @@ colores de botones de las tablas
 	background: transparent;
 	border-radius: 6px;
 	font-weight: bold;
-	font-size: 0.8em;
 	padding: 1em;
 	margin-right: auto;
 }
@@ -1730,8 +1885,18 @@ colores de botones de las tablas
 	text-align: justify;
 	padding: 0.3em 2em;
 	font-family: sans-serif;
-	font-weight: bold;
-	font-size: 0.8em;
+	font-size: 0.9rem;
+	color: black;
+	font-weight: normal;
+}
+
+.text-informacion-general-rigth {
+	text-align: center;
+	padding: 0.3em 2em;
+	font-family: sans-serif;
+	font-size: 0.9rem;
+	font-weight: normal;
+	color: black;
 }
 
 /**
@@ -1752,11 +1917,7 @@ ToolReport--------------------------------------------
 	list-style: none;
 }
 
-<<<<<<< Updated upstream
-.toolbar-estadisticas  .dropdown-toggle::after {
-=======
 .toolbar-estadisticas .dropdown-toggle::after {
->>>>>>> Stashed changes
 	width: 1rem;
 	text-align: center;
 	float: right;
@@ -1771,17 +1932,6 @@ ToolReport--------------------------------------------
 	content: '\f107';
 }
 
-<<<<<<< Updated upstream
-.toolbar-estadisticas  .dropdown-toggle::after {
-	display: none;
-}
-
-.toolbar-estadisticas  .nav-link:focus {
-	outline: none;
-}
-
-.toolbar-estadisticas  .badge {
-=======
 .toolbar-estadisticas .dropdown-toggle::after {
 	display: none;
 }
@@ -1791,7 +1941,6 @@ ToolReport--------------------------------------------
 }
 
 .toolbar-estadisticas .badge {
->>>>>>> Stashed changes
 	position: absolute;
 	margin-left: 0.75rem;
 	top: 0.3rem;
@@ -1803,36 +1952,16 @@ ToolReport--------------------------------------------
 	color: #332f2c;
 }
 
-
-
-
 .btn-link {
 	float: left;
 }
 
-<<<<<<< Updated upstream
 .btn-secondary, .btn-dropdown, .btn-link {
 	color: #323232;
 }
 
 .btn-primary, .btn-secondary, .btn-secondary-grey, .btn-secondary-gray,
 	.btn-secondary-altBg, .btn-secondary-noBg, .btn-dropdown, .btn-link {
-=======
-.btn-secondary,
-.btn-dropdown,
-.btn-link {
-	color: #323232;
-}
-
-.btn-primary,
-.btn-secondary,
-.btn-secondary-grey,
-.btn-secondary-gray,
-.btn-secondary-altBg,
-.btn-secondary-noBg,
-.btn-dropdown,
-.btn-link {
->>>>>>> Stashed changes
 	padding: .25rem .50rem;
 	position: relative;
 }
@@ -1841,41 +1970,22 @@ ToolReport--------------------------------------------
 	font-size: 1rem;
 }
 
-<<<<<<< Updated upstream
 .btn-sm, .btn-group-sm>.btn {
-=======
-.btn-sm,
-.btn-group-sm>.btn {
->>>>>>> Stashed changes
 	padding: 5px 10px;
-	font-size: 1rem; cursor : pointer;
+	font-size: 1rem;
+	cursor: pointer;
 	line-height: 1.5;
 	border-radius: 3px;
 	cursor: pointer;
 }
 
-<<<<<<< Updated upstream
 .btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
-=======
-.btn-link,
-.btn-link:hover,
-.btn-link:focus,
-.btn-link:active {
->>>>>>> Stashed changes
 	border-color: transparent;
 	color: #000;
 }
 
-<<<<<<< Updated upstream
 .btn-link, .btn-link:active, .btn-link.active, .btn-link[disabled],
 	fieldset[disabled] .btn-link {
-=======
-.btn-link,
-.btn-link:active,
-.btn-link.active,
-.btn-link[disabled],
-fieldset[disabled] .btn-link {
->>>>>>> Stashed changes
 	background-color: transparent;
 	-webkit-box-shadow: none;
 	box-shadow: none;
@@ -1887,14 +1997,7 @@ fieldset[disabled] .btn-link {
 	border-radius: 0;
 }
 
-<<<<<<< Updated upstream
 input, button, select, textarea {
-=======
-input,
-button,
-select,
-textarea {
->>>>>>> Stashed changes
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
@@ -1906,35 +2009,17 @@ textarea {
 	box-sizing: border-box;
 }
 
-<<<<<<< Updated upstream
-user agent stylesheet
-
-
-user agent stylesheet
-menu {
-	list-style-type: disc;
-}
-
-*:before, *:after {
-=======
 user agent stylesheet user agent stylesheet menu {
 	list-style-type: disc;
 }
 
-*:before,
-*:after {
->>>>>>> Stashed changes
+*:before, *:after {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
-<<<<<<< Updated upstream
 *:before, *:after {
-=======
-*:before,
-*:after {
->>>>>>> Stashed changes
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -1958,7 +2043,7 @@ user agent stylesheet user agent stylesheet menu {
 	border-left: 1px solid #fff;
 }
 
-.check-nav:hover ~ .header-label:hover {
+.check-nav:hover ~.header-label:hover {
 	color: black;
 	background: white;
 	cursor: pointer;
@@ -1997,15 +2082,10 @@ user agent stylesheet user agent stylesheet menu {
 .menu-nav-li-a {
 	display: block;
 	padding: 0.5em 1em;
-<<<<<<< Updated upstream
 	text-align: left;
 	color: #fff;
 	text-decoration: none;
-=======
-	color: #fff;
-	text-decoration: none;
 	text-align: left;
->>>>>>> Stashed changes
 }
 
 .menu-nav-li-a:hover {
@@ -2015,11 +2095,7 @@ user agent stylesheet user agent stylesheet menu {
 
 .menu-nav-li-a-btn {
 	width: 100%;
-<<<<<<< Updated upstream
-	height:100%;
-=======
 	height: 100%;
->>>>>>> Stashed changes
 	background: none;
 	vertical-align: middle;
 	color: white;
@@ -2037,99 +2113,112 @@ user agent stylesheet user agent stylesheet menu {
 	text-decoration: none
 }
 
+/**----------panel-info-contacto-------------*/
+.panel-info-contacto {
+	text-align: center;
+	padding: 15px;
+}
+
+.left-div {
+	display: inline-block;
+	max-width: 50%;
+	text-align: center;
+	padding: 30px;
+	border-radius: 3px;
+	margin: 15px;
+	vertical-align: top;
+}
+
+.right-div {
+	display: inline-block;
+	max-width: 50%;
+	padding: 30px;
+	border-radius: 3px;
+	margin: 15px;
+	text-align: center;
+}
+
+.left-text, .right-text {
+	font: 14px 'Source Code Pro', monospace;
+	color: #333;
+}
+
+.card-contacto-card-0 {
+	color: #009640;
+	border: 1px solid #009640;
+	border-top: 10px solid #009640;
+}
+
+.card-contacto-card-1 {
+	color: #ffcc00;
+	border: 1px solid #ffcc00;
+	border-top: 10px solid #ffcc00;
+}
+
+.card-contacto-card-2 {
+	color: #DC911B;
+	border: 1px solid #DC911B;
+	border-top: 10px solid #DC911B;
+}
+
+.card-contacto-card-3 {
+	color: #1169B0;
+	border: 1px solid #1169B0;
+	border-top: 10px solid #1169B0;
+}
+
+.card-contacto-card-4 {
+	color: #009DE0;
+	border: 1px solid #009DE0;
+	border-top: 10px solid #009DE0;
+}
+
+.card-contacto-card-5 {
+	color: #C20B19;
+	border: 1px solid #C20B19;
+	border-top: 10px solid #C20B19;
+}
+
+.card-contacto-card-6 {
+	color: #8FB435;
+	border: 1px solid #8FB435;
+	border-top: 10px solid #8FB435;
+}
+
+.card-contacto-card-7 {
+	color: #8E1C7D;
+	border: 1px solid #8E1C7D;
+	border-top: 10px solid #8E1C7D;
+}
+
+.card-contacto-card-8 {
+	color: #009640;
+	border: 1px solid #009640;
+	border-top: 10px solid #009640;
+}
+
+/**----------------combo*/
+.mk-selectmenu {
+	width: 100%;
+	height: 100%;
+}
+
 /**
 Responsive--------------------------------------------
 */
-@media screen and (max-width: 4000px) {
-	.card-contacto-card-0 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #009640;
-		border-top: 10px solid #009640;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-1 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #ffcc00;
-		border-top: 10px solid #ffcc00;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-2 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #DC911B;
-		border-top: 10px solid #DC911B;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-3 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #1169B0;
-		border-top: 10px solid #1169B0;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-4 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #009DE0;
-		border-top: 10px solid #009DE0;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-5 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #C20B19;
-		border-top: 10px solid #C20B19;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-6 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #8FB435;
-		border-top: 10px solid #8FB435;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-7 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #8E1C7D;
-		border-top: 10px solid #8E1C7D;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-8 {
-		width: 40%;
-		height: 100%;
-		border: 1px solid #009640;
-		border-top: 10px solid #009640;
+@media screen and (max-width : 1060px) {
+	.left-div, .right-div {
+		max-width: 100%;
 	}
 }
 
-@media screen and ( max-width : 920px) {
+@media screen and (max-width : 960px) {
+	.scrollable {
+		overflow: scroll;
+	}
+}
+
+@media screen and (max-width : 920px) {
 	.header-label {
 		display: block;
 		padding: 0.5em;
@@ -2145,285 +2234,8 @@ Responsive--------------------------------------------
 		border-top: 1px solid #ffff;
 		border-left: none;
 	}
-	.btn-menu-nav:checked ~ .menu-nav {
+	.btn-menu-nav:checked ~.menu-nav {
 		display: block;
 		transition: all 0.5s;
-	}
-}
-
-@media screen and ( max-width : 768px) {
-	.card-contacto-card-0 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #009640;
-		border-top: 10px solid #009640;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-1 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #ffcc00;
-		border-top: 10px solid #ffcc00;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-2 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #DC911B;
-		border-top: 10px solid #DC911B;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-4 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #1169B0;
-		border-top: 10px solid #1169B0;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-4 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #009DE0;
-		border-top: 10px solid #009DE0;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-5 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #C20B19;
-		border-top: 10px solid #C20B19;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-6 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #8FB435;
-		border-top: 10px solid #8FB435;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-7 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #8E1C7D;
-		border-top: 10px solid #8E1C7D;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-8 {
-		width: 50%;
-		height: 100%;
-		border: 1px solid #009640;
-		border-top: 10px solid #009640;
-	}
-}
-
-@media screen and (max-width: 480px) {
-	.card-contacto-card-0 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #009640;
-		border-top: 10px solid #009640;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-1 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #ffcc00;
-		border-top: 10px solid #ffcc00;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-2 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #DC911B;
-		border-top: 10px solid #DC911B;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-3 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #1169B0;
-		border-top: 10px solid #1169B0;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-4 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #009DE0;
-		border-top: 10px solid #009DE0;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-5 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #C20B19;
-		border-top: 10px solid #C20B19;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-6 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #8FB435;
-		border-top: 10px solid #8FB435;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-7 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #8E1C7D;
-		border-top: 10px solid #8E1C7D;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-8 {
-		width: 65%;
-		height: 100%;
-		border: 1px solid #009640;
-		border-top: 10px solid #009640;
-	}
-}
-
-@media screen and (max-width: 320px) {
-	.card-contacto-card-0 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #009640;
-		border-top: 10px solid #009640;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-1 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #ffcc00;
-		border-top: 10px solid #ffcc00;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-2 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #DC911B;
-		border-top: 10px solid #DC911B;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-3 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #1169B0;
-		border-top: 10px solid #1169B0;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-4 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #009DE0;
-		border-top: 10px solid #009DE0;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-5 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #C20B19;
-		border-top: 10px solid #C20B19;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-5 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #C20B19;
-		border-top: 10px solid #C20B19;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-6 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #8FB435;
-		border-top: 10px solid #8FB435;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-7 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #8E1C7D;
-		border-top: 10px solid #8E1C7D;
-	}
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-	.card-contacto-card-8 {
-		width: 100%;
-		height: 100%;
-		border: 1px solid #009640;
-		border-top: 10px solid #009640;
 	}
 }

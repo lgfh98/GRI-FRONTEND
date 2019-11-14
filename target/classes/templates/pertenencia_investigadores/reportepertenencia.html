@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header('Reporte Pertenencis de Investigadores')">
+	<meta charset="utf-8" />
+
+</head>
+
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
+
+	<div id="wrapper">
+
+
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero" th:text="${nombre}"></h1>
+							Reportes relacionados a la pertenencia de los investigadores en
+							la universidad del Quindío.
+						</div>
+					</div>
+				</div>
+
+				<div class="separador-1"></div>
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Reporte en tabla
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_pertenencia"
+								th:class="'table-' + ${id} + ' table-striped table-bordered table-hover table-responsive-lg'"
+								style="width: 100%">
+								<thead>
+									<tr>
+										<th></th>
+										<th class="comboPertenencia">PERTENENCIA</th>
+										<th>NOMBRE Y APELLIDOS</th>
+										<th>CATEGORÍA COLCIENCIAS</th>
+										<th>NIVEL ACADEMICO</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="investigador : ${integrantes}">
+										<td th:text="${investigador.id}"></td>
+										<td>
+											<select class="form-control" th:id="'dropOperator'+${investigador.id}">
+												<option th:each="operator : ${operators}" th:value="${operator}"
+													th:text="${operator}"></option>
+											</select>
+										</td>
+										<td th:text="${investigador.nombre}"></td>
+										<td th:text="${investigador.categoria}"></td>
+										<td th:text="${investigador.nivelAcademico}"></td>
+
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<div th:replace="fragments/footer"></div>
+
+
+
+
+	<script type="text/javascript" th:inline="javascript">
+		var data = [[${ integrantes }]];
+		console.log(data);
+		console.log(data.length);
+		$.extend($.fn.dataTable.defaults, {
+			/* responsive: true,
+			dom: 'Bfrtip',
+			buttons: [
+			{
+				extend: 'copy',
+				text: 'Copiar',
+				className: 'copyButton'
+			}, 
+			{ 
+				extend: 'excel',
+				text: 'Excel',
+				className: 'excelButton',
+				customize: function ( xlsx ) {
+						var sheet = xlsx.xl.worksheets['sheet1.xml'];
+							$('c[r=A1] t', sheet).text( 'INVENTARIO - '+document.getElementById('titulo').textContent) ;
+							data.forEach(function(item, i){
+									if(data[i][6] == 1){
+										console.log(data[i]);
+										console.log(i);
+										$('c[r=D'+i+']', sheet ).attr( 's', '15' );
+										//$('#tabla_inventario').jexcel('setStyle', 'A2', 'background-color', 'yellow');
+									}
+								});
+							
+					},
+					exportOptions: {
+							columns: [ 7,1, ':visible' ],
+						//modifier: { order: 1 }
+					},
+			filename: function() {
+					return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
+				}   
+			}, 
+			{
+				extend: 'pdf',
+				text: 'PDF',
+				className: 'pdfButton',
+				customize: function (doc){
+					data.forEach(function(item, i){
+						console.log(data[i][6]);
+						if(data[i][6] == 1){
+							console.log(data[i]);
+							doc.content[1].table.body[i+1][3].fillColor = 'blue';
+						}
+					});
+				},  
+		  
+				filename: function() {
+				 
+						return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
+				  
+					},
+					title : function() {
+					  
+							return 'INVENTARIO - '+document.getElementById('titulo').textContent ;
+					  
+						},
+						exportOptions: {
+								columns: ':visible'
+						}
+			},
+			{
+				extend: 'print',
+				text: 'Imprimir',
+				className: 'printButton',
+				exportOptions: {
+						columns: ':visible',
+						stripHtml: false
+				}
+			}
+			], */
+			language: {
+				processing: "Procesamiento en curso...",
+				search: "Buscar: ",
+				lengthMenu: "Mostrando _MENU_ elementos",
+				info: "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+				infoEmpty: "Mostrando 0 a 0 de 0 elementos",
+				infoFiltered: "(filtrado de _MAX_ elementos en total)",
+				infoPostFix: "",
+				loadingRecords: "Cargando resultados...",
+				zeroRecords: "No hay información para mostrar",
+				emptyTable: "No hay información para mostrar",
+				paginate: {
+					first: "Primera",
+					previous: "Anterior",
+					next: "Siguiente",
+					last: "última"
+				}
+			}
+		});
+
+
+
+
+	</script>
+
+</body>
+
+</html>

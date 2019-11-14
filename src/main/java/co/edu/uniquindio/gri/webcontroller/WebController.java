@@ -442,8 +442,7 @@ public class WebController {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Programa> programas = programaDAO.getProgramasFacultad(Long.parseLong(id));
 
-			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de "
-					+ utilidades.convertToTitleCaseIteratingChars(f.getNombre()));
+			model.addAttribute("nombre", "Tipología de Productos Para la Facultad de " + f.getNombre());
 			model.addAttribute("lista", programas);
 			model.addAttribute("subtipo", "p");
 			model.addAttribute("color", "card-" + f.getId());
@@ -519,6 +518,69 @@ public class WebController {
 		model.addAttribute("producciones", produccionDAO.getAllProducciones(Long.parseLong(id)));
 
 		return "inventario/reporteinventario";
+	}
+
+	@GetMapping("/reportepertenencia")
+	public String getReportePertenencia(@RequestParam(name = "id", required = true) String id, Model model) {
+
+		Grupo g = grupoDAO.findOne(Long.parseLong(id));
+		List<Investigador> integrantes = investigadorDAO.getInvestigadoresGrupoPertenencia(Long.parseLong(id));
+		List<String> pertenencias = new ArrayList<String>();
+		
+		pertenencias.add(Util.PERTENENCIA_INDEFINIDO);
+		pertenencias.add(Util.PERTENENCIA_ADMINISTRATIVO);
+		pertenencias.add(Util.PERTENENCIA_DOCENTE_PLANTA);
+		pertenencias.add(Util.PERTENENCIA_DOCENTE_CATEDRATICO);
+		pertenencias.add(Util.PERTENENCIA_DOCENTE_OCASIONAL);
+		pertenencias.add(Util.PERTENENCIA_EXTERNO);
+		pertenencias.add(Util.PERTENENCIA_ESTUDIANTE);
+
+		model.addAttribute("pertenencias", pertenencias);
+		model.addAttribute("nombre", g.getNombre());
+		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
+		model.addAttribute("integrantes", integrantes);
+		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());
+
+		return "pertenencia_investigadores/reportepertenencia";
+
+	}
+
+	@GetMapping("/pertenencia")
+	public String getPertenencia(@RequestParam(name = "id", required = false, defaultValue = "u") String id,
+			Model model) {
+
+		if (id.equals("u")) {
+
+			model.addAttribute("nombre", "Pertenencia de Investigadores");
+			model.addAttribute("lista", facultadDAO.getAllFacultades());
+			model.addAttribute("tamanio", "ci-4");
+			model.addAttribute("color", "card-0");
+			model.addAttribute("subtipo", "f");
+		}
+
+		else {
+
+			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
+			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), "f");
+			model.addAttribute("nombre", f.getNombre());
+			model.addAttribute("lista", listaGrupos);
+			model.addAttribute("color", "card-" + f.getId());
+			model.addAttribute("id", "" + f.getId());
+			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
+
+		}
+
+		return "pertenencia_investigadores/pertenencia";
+
+	}
+
+	@GetMapping("/admin")
+	public String getAdmin(Model model) {
+
+		model.addAttribute("tamanio", "2");
+
+		return "admin";
+
 	}
 
 	/**
@@ -698,7 +760,6 @@ public class WebController {
 			id_facultad = new Long(f.getId());
 			System.err.println(id_facultad);
 
-
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 			programa = true;
@@ -808,7 +869,7 @@ public class WebController {
 			jasperPrintList.add(jasperPrint);
 
 		}
-		
+
 	}
 
 	@GetMapping("/estadisticas")
