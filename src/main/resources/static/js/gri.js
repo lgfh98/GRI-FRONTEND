@@ -481,12 +481,7 @@
 				{ data: "pertenencia" },
 				{ data: "nombre" },
 				{ data: "categoria" },
-				{ data: "nivelAcademico" },
-				{ data: "pertenenciaText", visible: false}
-			]
-
-
-
+				{ data: "nivelAcademico" }]
 		});
 
 		$('#tabla_pertenencia_filter input').keyup(function () {

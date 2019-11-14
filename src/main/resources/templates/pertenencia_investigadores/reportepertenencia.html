@@ -45,7 +45,6 @@
 										<th>NOMBRE Y APELLIDOS</th>
 										<th>CATEGORÍA COLCIENCIAS</th>
 										<th>NIVEL ACADEMICO</th>
-										<th></th>
 
 									</tr>
 								</thead>
@@ -54,15 +53,28 @@
 									<tr th:each="investigador : ${integrantes}">
 										<td th:text="${investigador.id}"></td>
 										<td>
-											<select class="form-control" th:id="'menuPertenencias'+${investigador.id}">
-												<option th:each="pertenencia : ${pertenencias}" th:value="${pertenencia}"
-													th:text="${pertenencia}"></option>
-											</select>
+											<div th:switch="${investigador.pertenencia}">
+												<p th:case="null">
+													<select class="form-control"
+														th:id="'menuPertenencia'+${investigador.id}">
+														<option th:each="pertenencia : ${pertenencias}"
+															th:value="${pertenencia}" th:text="${pertenencia}" th:selected="${pertenencia=='INDEFINIDO'}">
+														</option>
+													</select>
+												</p>
+												<p th:case="*">
+													<select class="form-control"
+														th:id="'menuPertenencia'+${investigador.id}">
+														<option th:each="pertenencia : ${pertenencias}"
+															th:value="${pertenencia}" th:text="${pertenencia}" th:selected="${pertenencia==investigador.pertenencia}">
+														</option>
+													</select>
+												</p>
+											</div>
 										</td>
 										<td th:text="${investigador.nombre}"></td>
 										<td th:text="${investigador.categoria}"></td>
 										<td th:text="${investigador.nivelAcademico}"></td>
-										<td th:text="${investigador.pertenencia}"></td>
 
 
 									</tr>
