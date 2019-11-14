@@ -497,20 +497,34 @@
 		$(document).ready(function () {
 			$('#tabla_pertenencia td').click(function (event) {
 				var elID = $(this).closest('tr').attr('id');
-				var e = document.getElementById("menuPertenencia" + elID);
+				var e = document.getElementById("menuPertenencias" + elID);
 				$(e).change(() => {
 					var data_2 = e.options[e.selectedIndex].value
-					alert(data_2);
+					
+					
+					
+					$.ajax({
+						type: "POST",
+						contentType: "application/json",
+						url: '/ServerSpring/rest/service/pertenencia/' + elID + '/' + data_2,
+						dataType: 'json',
+						cache: false
+						
+					
+					});
+					
+					
+					
 				});
 			});
 		});
-
-
-
-
-
-
-		// ---------------------------------FIN PERTENENCIA-----------------------------
+		
+		
+		
+		
+		
+		
+// ---------------------------------FIN PERTENENCIA-----------------------------
 		// Definición tabla Inventario
 		var table = $('#tabla_inventario')
 			.DataTable(

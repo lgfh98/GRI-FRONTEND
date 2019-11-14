@@ -141,7 +141,7 @@ public class TipologiasController {
 			return "grupos/formacion";
 		}
 	}
-
+	
 	@GetMapping("info")
 	public String getInfo(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
