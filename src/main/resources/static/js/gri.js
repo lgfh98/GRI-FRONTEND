@@ -481,12 +481,7 @@
 				{ data: "pertenencia" },
 				{ data: "nombre" },
 				{ data: "categoria" },
-				{ data: "nivelAcademico" },
-				{ data: "pertenenciaText", visible: false}
-			]
-
-
-
+				{ data: "nivelAcademico" }]
 		});
 
 		$('#tabla_pertenencia_filter input').keyup(function () {
@@ -500,11 +495,13 @@
 
 
 		$(document).ready(function () {
-			$('#tabla_pertenencia tr').click(function (event) {
-				var elID = $(this).attr('id');
-				var e = document.getElementById("dropOperator" + elID);
-				var data_2 = e.options[e.selectedIndex].value
-				alert(data_2);
+			$('#tabla_pertenencia td').click(function (event) {
+				var elID = $(this).closest('tr').attr('id');
+				var e = document.getElementById("menuPertenencia" + elID);
+				$(e).change(() => {
+					var data_2 = e.options[e.selectedIndex].value
+					alert(data_2);
+				});
 			});
 		});
 
