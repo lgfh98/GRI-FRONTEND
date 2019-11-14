@@ -546,7 +546,7 @@ public interface InvestigadorRepository extends JpaRepository<Investigador, Long
 	 * @param id el id del grupo de investigación
 	 * @return la lista de investigadores y su pertenencia
 	 */
-	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos gi join gi.grupos g join g.programas p where gi.estado = 'ACTUAL' and p.id=:id and i.pertenencia='INVESTIGADOR INTERNO'")
-	List<Investigador> getInvestigadoresGrupoPertenencia(Long id);
+	@Query("select distinct NEW co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, per.pertenencia) FROM co.edu.uniquindio.gri.model.Investigador i left join co.edu.uniquindio.gri.model.Pertenencia per on i.id = per.investigador_id join i.grupos gi join gi.grupos g where gi.estado = 'ACTUAL' and g.id=:id")
+	List<Investigador> getInvestigadoresGrupoPertenencia(@Param("id") Long id);
 	
 }

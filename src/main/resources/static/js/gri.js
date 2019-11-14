@@ -481,23 +481,12 @@
 				{ data: "pertenencia" },
 				{ data: "nombre" },
 				{ data: "categoria" },
-				{ data: "nivelAcademico" }
-			],
-		
-		"columnDefs": [
-			{
-				"targets": 1,
-				"createdCell": function (td,
-					cellData, rowData, row,
-					col) {
-					$(td)
-					.html("<div id='mk-selectmenu-container' class='mk-selectmenu-container'> <select id='comboPertenencia' name='comboPertenencia' class='mk-selectmenu'><option value='0'>Indefinido</option><option value='1'>D.P</option><option value='2'>D.C</option><option value='3'>D.O</option><option value='4'>A.D.M</option><option value='5'>I.E</option><option value='6'>I.E</option></select></div>");
-				}
-			}
-		]
-		
-		
-		
+				{ data: "nivelAcademico" },
+				{ data: "pertenenciaText", visible: false}
+			]
+
+
+
 		});
 
 		$('#tabla_pertenencia_filter input').keyup(function () {
@@ -509,38 +498,22 @@
 				.draw();
 		});
 
-		//$('#tabla_pertenencia tbody').on('click', 'tr', function () {
-		//	var data = tabla_pertenencia.row($(this)).data();
-		//	var invId = data[0];
-		//	var e = document.getElementById("dropOperator"+invId);
-		//	alert(invId);
-
-
-
-
-		//window.location.href = "general?id=" + data.id + "&type=i";
-		//});
 
 		$(document).ready(function () {
-			$('#tabla_pertenencia td').click(function (event) {
+			$('#tabla_pertenencia tr').click(function (event) {
 				var elID = $(this).attr('id');
-				var e = document.getElementById("dropOperator"+elID);
+				var e = document.getElementById("dropOperator" + elID);
 				var data_2 = e.options[e.selectedIndex].value
 				alert(data_2);
 			});
 		});
-		
-		$('#comboPertenencia select').on('changeSelection',function (){
-			
-			
-			alert("hola");
-			
-		});
-		
-		
-		
-		
-// ---------------------------------FIN PERTENENCIA-----------------------------
+
+
+
+
+
+
+		// ---------------------------------FIN PERTENENCIA-----------------------------
 		// Definición tabla Inventario
 		var table = $('#tabla_inventario')
 			.DataTable(

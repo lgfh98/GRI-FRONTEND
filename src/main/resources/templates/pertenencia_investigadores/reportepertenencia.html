@@ -45,6 +45,7 @@
 										<th>NOMBRE Y APELLIDOS</th>
 										<th>CATEGORÍA COLCIENCIAS</th>
 										<th>NIVEL ACADEMICO</th>
+										<th></th>
 
 									</tr>
 								</thead>
@@ -60,6 +61,7 @@
 										<td th:text="${investigador.nombre}"></td>
 										<td th:text="${investigador.categoria}"></td>
 										<td th:text="${investigador.nivelAcademico}"></td>
+										<td th:text="${investigador.pertenencia}"></td>
 
 
 									</tr>
@@ -74,8 +76,6 @@
 
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<div th:replace="fragments/footer"></div>
-
-
 
 
 	<script type="text/javascript" th:inline="javascript">
