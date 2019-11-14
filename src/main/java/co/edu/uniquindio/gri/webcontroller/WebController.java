@@ -535,7 +535,7 @@ public class WebController {
 		pertenencias.add(Util.PERTENENCIA_EXTERNO);
 		pertenencias.add(Util.PERTENENCIA_ESTUDIANTE);
 
-		model.addAttribute("operators", pertenencias);
+		model.addAttribute("pertenencias", pertenencias);
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("integrantes", integrantes);

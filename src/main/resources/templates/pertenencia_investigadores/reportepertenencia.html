@@ -50,12 +50,13 @@
 									</tr>
 								</thead>
 								<tbody>
+									
 									<tr th:each="investigador : ${integrantes}">
 										<td th:text="${investigador.id}"></td>
 										<td>
-											<select class="form-control" th:id="'dropOperator'+${investigador.id}">
-												<option th:each="operator : ${operators}" th:value="${operator}"
-													th:text="${operator}"></option>
+											<select class="form-control" th:id="'menuPertenencias'+${investigador.id}">
+												<option th:each="pertenencia : ${pertenencias}" th:value="${pertenencia}"
+													th:text="${pertenencia}"></option>
 											</select>
 										</td>
 										<td th:text="${investigador.nombre}"></td>

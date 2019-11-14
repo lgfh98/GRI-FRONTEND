@@ -500,11 +500,27 @@
 
 
 		$(document).ready(function () {
-			$('#tabla_pertenencia tr').click(function (event) {
-				var elID = $(this).attr('id');
-				var e = document.getElementById("dropOperator" + elID);
-				var data_2 = e.options[e.selectedIndex].value
-				alert(data_2);
+			$('#tabla_pertenencia td').click(function (event) {
+				var elID = $(this).closest('tr').attr('id');
+				var e = document.getElementById("menuPertenencias" + elID);
+				$(e).change(() => {
+					var data_2 = e.options[e.selectedIndex].value
+					
+					
+					
+					$.ajax({
+						type: "POST",
+						contentType: "application/json",
+						url: '/ServerSpring/rest/service/pertenencia/' + elID + '/' + data_2,
+						dataType: 'json',
+						cache: false
+						
+					
+					});
+					
+					
+					
+				});
 			});
 		});
 		
