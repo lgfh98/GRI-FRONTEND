@@ -471,38 +471,18 @@
 				)
 				.draw();
 		});
-<<<<<<< Updated upstream
 
-=======
-		
->>>>>>> Stashed changes
 		// .---------------------------PERTENENCIA------------------------------------
 		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({
 			responsive: true,
 			rowId: 'id',
 			columns: [
 				{ data: "id", visible: false },
-<<<<<<< Updated upstream
 				{ data: "pertenencia" },
-=======
-				{ data: "pertenencia"},
->>>>>>> Stashed changes
 				{ data: "nombre" },
 				{ data: "categoria" },
 				{ data: "nivelAcademico" }
-			],
-		
-		"columnDefs": [
-			{
-				"targets": 1,
-				"createdCell": function (td,
-					cellData, rowData, row,
-					col) {
-					$(td)
-					.html("<div id='mk-selectmenu-container' class='mk-selectmenu-container'> <select id='comboPertenencia' name='comboPertenencia' class='mk-selectmenu'><option value='0'>Indefinido</option><option value='1'>D.P</option><option value='2'>D.C</option><option value='3'>D.O</option><option value='4'>A.D.M</option><option value='5'>I.E</option><option value='6'>I.E</option></select></div>");
-				}
-			}
-		]
+			]
 		
 		
 		
@@ -517,18 +497,6 @@
 				.draw();
 		});
 
-<<<<<<< Updated upstream
-		//$('#tabla_pertenencia tbody').on('click', 'tr', function () {
-		//	var data = tabla_pertenencia.row($(this)).data();
-		//	var invId = data[0];
-		//	var e = document.getElementById("dropOperator"+invId);
-		//	alert(invId);
-
-
-
-
-		//window.location.href = "general?id=" + data.id + "&type=i";
-		//});
 
 		$(document).ready(function () {
 			$('#tabla_pertenencia td').click(function (event) {
@@ -537,24 +505,9 @@
 				var data_2 = e.options[e.selectedIndex].value
 				alert(data_2);
 			});
-=======
-		$('#tabla_pertenencia tbody').on('click', 'tr', function () {
-			var data = tabla_pertenencia.row(this).data();
-			
-		
-			
-			
-			
-			// window.location.href = "general?id=" + data.id + "&type=i";
->>>>>>> Stashed changes
 		});
 		
-		$('#comboPertenencia select').on('changeSelection',function (){
-			
-			
-			alert("hola");
-			
-		});
+		
 		
 		
 		

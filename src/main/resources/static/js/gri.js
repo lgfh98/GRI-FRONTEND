@@ -507,13 +507,13 @@
 				alert(data_2);
 			});
 		});
-
-
-
-
-
-
-		// ---------------------------------FIN PERTENENCIA-----------------------------
+		
+		
+		
+		
+		
+		
+// ---------------------------------FIN PERTENENCIA-----------------------------
 		// Definición tabla Inventario
 		var table = $('#tabla_inventario')
 			.DataTable(
