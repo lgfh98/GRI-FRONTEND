@@ -13,8 +13,6 @@
 
 	<div id="wrapper">
 
-
-
 		<div id="content-wrapper">
 			<div class="container-fluid">
 				<div class="region-hero">
@@ -56,7 +54,7 @@
 											<div th:switch="${investigador.pertenencia}">
 												<p th:case="null">
 													<select class="form-control"
-														th:id="'menuPertenencia'+${investigador.id}">
+														th:id="'menuPertenencias'+${investigador.id}">
 														<option th:each="pertenencia : ${pertenencias}"
 															th:value="${pertenencia}" th:text="${pertenencia}" th:selected="${pertenencia=='INDEFINIDO'}">
 														</option>
@@ -64,7 +62,7 @@
 												</p>
 												<p th:case="*">
 													<select class="form-control"
-														th:id="'menuPertenencia'+${investigador.id}">
+														th:id="'menuPertenencias'+${investigador.id}">
 														<option th:each="pertenencia : ${pertenencias}"
 															th:value="${pertenencia}" th:text="${pertenencia}" th:selected="${pertenencia==investigador.pertenencia}">
 														</option>
@@ -75,7 +73,6 @@
 										<td th:text="${investigador.nombre}"></td>
 										<td th:text="${investigador.categoria}"></td>
 										<td th:text="${investigador.nivelAcademico}"></td>
-
 
 									</tr>
 								</tbody>
