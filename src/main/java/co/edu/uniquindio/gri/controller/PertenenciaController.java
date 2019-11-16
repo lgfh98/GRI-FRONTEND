@@ -38,8 +38,6 @@ public class PertenenciaController {
 		// si no existe un registro con el id del investigador (AGREGAR)
 		else {
 
-			System.out.println("entré");
-
 			return pertenenciaDAO.agregarNuevaPertenencia(Long.parseLong(id_invest), pertenencia);
 
 		}

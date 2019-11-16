@@ -687,7 +687,7 @@
 							$.ajax({
 								type: "POST",
 								contentType: "application/json",
-								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/ServerSpring/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
@@ -730,7 +730,7 @@
 							$.ajax({
 								type: "POST",
 								contentType: "application/json",
-								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/ServerSpring/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
