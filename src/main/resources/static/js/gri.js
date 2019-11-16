@@ -501,21 +501,44 @@
 				$(e).change(() => {
 					var data_2 = e.options[e.selectedIndex].value
 					
-					
-					
-					$.ajax({
-						type: "POST",
-						contentType: "application/json",
-						url: '/ServerSpring/rest/service/pertenencia/' + elID + '/' + data_2,
-						dataType: 'json',
-						cache: false
+				
+					swal({
+						text: "¿Desea cambiar la pertenencia del investigador?",
+						icon: "warning",
+						dangerMode: true,
+						buttons: {
+							cancel: {
+								text: "Cancelar",
+								value: null,
+								visible: true,
+								className: "",
+								closeModal: true,
+							},
+							confirm: {
+								text: "Aceptar",
+								value: true,
+								visible: true,
+								className: "",
+								closeModal: true
+							}
+						},
+					}).then((value) => {
+						if (value) {
 						
-					
+							$.ajax({
+								type: "POST",
+								contentType: "application/json",
+								url: '/ServerSpring/rest/service/pertenencia/' + elID + '/' + data_2,
+								dataType: 'json',
+								cache: false
+								
+							
+							});
+							
+						} 
 					});
-					
-					
-					
-				});
+															
+					});
 			});
 		});
 		
