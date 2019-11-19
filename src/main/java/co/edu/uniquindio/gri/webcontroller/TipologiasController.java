@@ -15,6 +15,7 @@ import co.edu.uniquindio.gri.dao.CentroDAO;
 import co.edu.uniquindio.gri.dao.FacultadDAO;
 import co.edu.uniquindio.gri.dao.GrupoDAO;
 import co.edu.uniquindio.gri.dao.InvestigadorDAO;
+import co.edu.uniquindio.gri.dao.PertenenciaDAO;
 import co.edu.uniquindio.gri.dao.ProgramaDAO;
 import co.edu.uniquindio.gri.dao.TipoDAO;
 import co.edu.uniquindio.gri.model.Centro;
@@ -22,6 +23,7 @@ import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.GruposInves;
 import co.edu.uniquindio.gri.model.Investigador;
+import co.edu.uniquindio.gri.model.Pertenencia;
 import co.edu.uniquindio.gri.model.Programa;
 
 @Controller
@@ -32,6 +34,9 @@ public class TipologiasController {
 
 	@Autowired
 	InvestigadorDAO investigadorDAO;
+
+	@Autowired
+	PertenenciaDAO pertenenciaDAO;
 
 	@Autowired
 	CentroDAO centroDAO;
@@ -141,7 +146,7 @@ public class TipologiasController {
 			return "grupos/formacion";
 		}
 	}
-	
+
 	@GetMapping("info")
 	public String getInfo(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
@@ -156,6 +161,16 @@ public class TipologiasController {
 
 		if (type.equals("i")) {
 			Investigador inv = investigadorDAO.findOne(Long.parseLong(id));
+
+			Pertenencia pertenecia_investigador = pertenenciaDAO.getPertenenciaByIdInves(inv.getId());
+			if (pertenecia_investigador != null) {
+				inv.setPertenencia(pertenecia_investigador.getPertenencia());
+			} else {
+
+				inv.setPertenencia("INDEFINIDO");
+
+			}
+
 			List<GruposInves> gruposInves = inv.getGrupos();
 			List<Grupo> grupos = new ArrayList<>();
 			for (GruposInves grupoInves : gruposInves) {
@@ -174,6 +189,18 @@ public class TipologiasController {
 			Map<String, Integer> datosFormacion = new HashMap<>();
 
 			for (Investigador investigador : integrantes) {
+
+				// colocar categoria reaL
+
+				Pertenencia pertenecia_investigador = pertenenciaDAO.getPertenenciaByIdInves(investigador.getId());
+				if (pertenecia_investigador != null) {
+					investigador.setPertenencia(pertenecia_investigador.getPertenencia());
+				} else {
+
+					investigador.setPertenencia("INDEFINIDO");
+
+				}
+
 				String categoria = investigador.getCategoria();
 				if (datosCategoria.containsKey(categoria)) {
 					int valor = datosCategoria.get(categoria);
@@ -194,6 +221,7 @@ public class TipologiasController {
 			}
 
 			model.addAttribute("integrantes", integrantes);
+
 			model.addAttribute("clavesCategoria", datosCategoria.keySet());
 			model.addAttribute("datosCategoria", datosCategoria.values());
 

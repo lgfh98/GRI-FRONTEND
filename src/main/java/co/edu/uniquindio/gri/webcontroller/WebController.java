@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +27,14 @@ import co.edu.uniquindio.gri.dao.FacultadDAO;
 import co.edu.uniquindio.gri.dao.GrupoDAO;
 import co.edu.uniquindio.gri.dao.InvestigadorDAO;
 import co.edu.uniquindio.gri.dao.LineasInvestigacionDAO;
+import co.edu.uniquindio.gri.dao.PertenenciaDAO;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
 import co.edu.uniquindio.gri.dao.ProgramaDAO;
 import co.edu.uniquindio.gri.model.Centro;
 import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.Investigador;
+import co.edu.uniquindio.gri.model.Pertenencia;
 import co.edu.uniquindio.gri.model.Programa;
 import co.edu.uniquindio.gri.utilities.Util;
 import net.sf.jasperreports.engine.JRException;
@@ -51,6 +55,9 @@ public class WebController {
 
 	@Autowired
 	InvestigadorDAO investigadorDAO;
+
+	@Autowired
+	PertenenciaDAO pertenenciaDAO;
 
 	@Autowired
 	CentroDAO centroDAO;
@@ -88,7 +95,16 @@ public class WebController {
 
 	@GetMapping("/login")
 	public String getLogin(Model model) {
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+
+			return main(model);
+		}
+
 		return "login";
+
 	}
 
 	@GetMapping("/investigadores")
@@ -97,173 +113,149 @@ public class WebController {
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
 		model.addAttribute("type", type);
 		model.addAttribute("id", id);
+
+		List<Investigador> investigadores = new ArrayList<Investigador>();
 		if (Long.parseLong(id) != 0) {
 			if (type.equals("f") || type.equals("u")) {
 				if (subType.equals("ie")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id));
 				} else if (subType.equals("is")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSeniorFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSeniorFacultad(Long.parseLong(id));
 				} else if (subType.equals("ia")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresAsociadosFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresAsociadosFacultad(Long.parseLong(id));
 				} else if (subType.equals("ij")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresJuniorFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresJuniorFacultad(Long.parseLong(id));
 				} else if (subType.equals("isc")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSinCategoriaFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSinCategoriaFacultad(Long.parseLong(id));
 				} else if (subType.equals("fd")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosDoctoresFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosDoctoresFacultad(Long.parseLong(id));
 				} else if (subType.equals("fm")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosMagisterFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosMagisterFacultad(Long.parseLong(id));
 				} else if (subType.equals("fe")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosEspecialistasFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosEspecialistasFacultad(Long.parseLong(id));
 				} else if (subType.equals("fp")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 				} else {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id));
 				}
 			} else if (type.equals("g")) {
 				if (subType.equals("ie")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresEmeritosGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresEmeritosGrupo(Long.parseLong(id));
 				} else if (subType.equals("is")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSeniorGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSeniorGrupo(Long.parseLong(id));
 				} else if (subType.equals("ia")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresAsociadosGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresAsociadosGrupo(Long.parseLong(id));
 				} else if (subType.equals("ij")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresJuniorGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresJuniorGrupo(Long.parseLong(id));
 				} else if (subType.equals("isc")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSinCategoriaGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSinCategoriaGrupo(Long.parseLong(id));
 				} else if (subType.equals("fd")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosDoctoresGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosDoctoresGrupo(Long.parseLong(id));
 				} else if (subType.equals("fm")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosMagisterGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosMagisterGrupo(Long.parseLong(id));
 				} else if (subType.equals("fe")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosEspecialistasGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosEspecialistasGrupo(Long.parseLong(id));
 				} else if (subType.equals("fp")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosPregradoGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosPregradoGrupo(Long.parseLong(id));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 				} else {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresGrupo(Long.parseLong(id));
 				}
 			} else if (type.equals("c")) {
 				if (subType.equals("ie")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresEmeritosCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresEmeritosCentro(Long.parseLong(id));
 				} else if (subType.equals("is")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSeniorCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSeniorCentro(Long.parseLong(id));
 				} else if (subType.equals("ia")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresAsociadosCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresAsociadosCentro(Long.parseLong(id));
 				} else if (subType.equals("ij")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresJuniorCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresJuniorCentro(Long.parseLong(id));
 				} else if (subType.equals("isc")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSinCategoriaCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSinCategoriaCentro(Long.parseLong(id));
 				} else if (subType.equals("fd")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosDoctoresCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosDoctoresCentro(Long.parseLong(id));
 				} else if (subType.equals("fm")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosMagisterCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosMagisterCentro(Long.parseLong(id));
 				} else if (subType.equals("fe")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosEspecialistasCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosEspecialistasCentro(Long.parseLong(id));
 				} else if (subType.equals("fp")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosPregradoCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosPregradoCentro(Long.parseLong(id));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 				} else {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresCentro(Long.parseLong(id));
 				}
 			} else if (type.equals("p")) {
 				if (subType.equals("ie")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresEmeritosPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresEmeritosPrograma(Long.parseLong(id));
 				} else if (subType.equals("is")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSeniorPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSeniorPrograma(Long.parseLong(id));
 				} else if (subType.equals("ia")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresAsociadosPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresAsociadosPrograma(Long.parseLong(id));
 				} else if (subType.equals("ij")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresJuniorPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresJuniorPrograma(Long.parseLong(id));
 				} else if (subType.equals("isc")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSinCategoriaPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSinCategoriaPrograma(Long.parseLong(id));
 				} else if (subType.equals("fd")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosDoctoresPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosDoctoresPrograma(Long.parseLong(id));
 				} else if (subType.equals("fm")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosMagisterPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosMagisterPrograma(Long.parseLong(id));
 				} else if (subType.equals("fe")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosEspecialistasPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosEspecialistasPrograma(Long.parseLong(id));
 				} else if (subType.equals("fp")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosPregradoPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosPregradoPrograma(Long.parseLong(id));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 				} else {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresPrograma(Long.parseLong(id));
 				}
 			}
 		} else {
 			if (subType.equals("ie")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresEmeritos());
+				investigadores = investigadorDAO.getAllInvestigadoresEmeritos();
 			} else if (subType.equals("is")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresSenior());
+				investigadores = investigadorDAO.getAllInvestigadoresSenior();
 			} else if (subType.equals("ia")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresAsociado());
+				investigadores = investigadorDAO.getAllInvestigadoresAsociado();
 			} else if (subType.equals("ij")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresJunior());
+				investigadores = investigadorDAO.getAllInvestigadoresJunior();
 			} else if (subType.equals("isc")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresSinCategoria());
+				investigadores = investigadorDAO.getAllInvestigadoresSinCategoria();
 			} else if (subType.equals("fd")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosDoctores());
+				investigadores = investigadorDAO.getAllInvestigadoresInternosDoctores();
 			} else if (subType.equals("fm")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosMagister());
+				investigadores = investigadorDAO.getAllInvestigadoresInternosMagister();
 			} else if (subType.equals("fe")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresEspecialistas());
+				investigadores = investigadorDAO.getAllInvestigadoresEspecialistas();
 			} else if (subType.equals("fp")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresPregrado());
+				investigadores = investigadorDAO.getAllInvestigadoresPregrado();
 			} else if (subType.equals("d")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternos());
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 			} else {
-				model.addAttribute("listaInvestigadores", investigadorDAO.findAll());
+				investigadores = investigadorDAO.findAll();
 			}
 		}
+
+		for (Investigador investigador : investigadores) {
+
+			Pertenencia pertenecia_investigador = pertenenciaDAO.getPertenenciaByIdInves(investigador.getId());
+
+			if (pertenecia_investigador != null) {
+
+				investigador.setPertenencia(pertenecia_investigador.getPertenencia());
+
+			} else {
+
+				investigador.setPertenencia("INDEFINIDO");
+
+			}
+
+		}
+
+		model.addAttribute("listaInvestigadores", investigadores);
 		return "investigadores";
 	}
 
@@ -526,7 +518,7 @@ public class WebController {
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
 		List<Investigador> integrantes = investigadorDAO.getInvestigadoresGrupoPertenencia(Long.parseLong(id));
 		List<String> pertenencias = new ArrayList<String>();
-		
+
 		pertenencias.add(Util.PERTENENCIA_INDEFINIDO);
 		pertenencias.add(Util.PERTENENCIA_ADMINISTRATIVO);
 		pertenencias.add(Util.PERTENENCIA_DOCENTE_PLANTA);
