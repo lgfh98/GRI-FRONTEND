@@ -71,10 +71,11 @@
 							</div>
 							<div id="lista-grupos" class="col-md-6">
 								<p th:each="grupo : ${listaGrupos}"
-									th:text="'• '+${grupo.nombre}"></p>
+									th:text="${grupo.nombre}"></p>
 							</div>
 
 						</div>
+						
 
 					</div>
 				</div>

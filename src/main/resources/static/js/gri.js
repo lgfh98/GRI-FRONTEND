@@ -257,7 +257,8 @@
 				{ data: "id", visible: false },
 				{ data: "nombre" },
 				{ data: "categoria" },
-				{ data: "nivelAcademico" }
+				{ data: "nivelAcademico" },
+				{data: "pertenencia"}
 			]
 		});
 
@@ -436,6 +437,7 @@
 				{ data: "nombre" },
 				{ data: "categoria" },
 				{ data: "lider" }
+				
 			]
 		});
 

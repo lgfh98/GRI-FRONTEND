@@ -31,7 +31,6 @@ public class PertenenciaDAO {
 	}
 
 	public boolean agregarNuevaPertenencia(long id_invest, String pertenencia) {
-
 		pertenenciaRepository.agregarNuevaPertenencia(id_invest, pertenencia);
 		return true;
 	}
