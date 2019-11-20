@@ -530,7 +530,7 @@
 							$.ajax({
 								type: "POST",
 								contentType: "application/json",
-								url: '/ServerSpring/rest/service/pertenencia/' + elID + '/' + data_2,
+								url: '/gri/rest/service/pertenencia/' + elID + '/' + data_2,
 								dataType: 'json',
 								cache: false
 								

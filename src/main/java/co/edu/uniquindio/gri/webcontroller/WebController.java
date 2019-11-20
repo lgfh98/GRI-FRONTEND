@@ -239,23 +239,9 @@ public class WebController {
 			}
 		}
 
-		for (Investigador investigador : investigadores) {
+		List<Investigador> investigadores_pertenencia = utilidades.agregarPertenenciaInves(investigadores);
 
-			Pertenencia pertenecia_investigador = pertenenciaDAO.getPertenenciaByIdInves(investigador.getId());
-
-			if (pertenecia_investigador != null) {
-
-				investigador.setPertenencia(pertenecia_investigador.getPertenencia());
-
-			} else {
-
-				investigador.setPertenencia("INDEFINIDO");
-
-			}
-
-		}
-
-		model.addAttribute("listaInvestigadores", investigadores);
+		model.addAttribute("listaInvestigadores", investigadores_pertenencia);
 		return "investigadores";
 	}
 
@@ -1061,6 +1047,7 @@ public class WebController {
 		model.addAttribute("cantidadInvestigadoresAsociados", resumen.get(16));
 		model.addAttribute("cantidadInvestigadoresJunior", resumen.get(17));
 		model.addAttribute("cantidadInvestigadoresSinCategoria", resumen.get(18));
+
 		model.addAttribute("cantidadDocentesDoctores", resumen.get(19));
 		model.addAttribute("cantidadDocentesMagister", resumen.get(20));
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(21));
@@ -1814,6 +1801,17 @@ public class WebController {
 																																				.get(21)
 																																				.add(resumenCienciasEconomicas
 																																						.get(22)))))))))))))))))))))))))))));
+		/////////////////// Tabla Pertenencia////////////////////////////////////
+
+//		List<Investigador> investigadores_pertenencia_Basicas= investigadorDAO.getInvestigadoresFacultadPertenencia(1l);
+//		List<Investigador> investigadores_pertenencia_Educacion= investigadorDAO.getInvestigadoresFacultadPertenencia(2l);
+//		List<Investigador> investigadores_pertenencia_Salud= investigadorDAO.getInvestigadoresFacultadPertenencia(3l);
+//		List<Investigador> investigadores_pertenencia_Ingenieria= investigadorDAO.getInvestigadoresFacultadPertenencia(4l);
+//		List<Investigador> investigadores_pertenencia_Humanas= investigadorDAO.getInvestigadoresFacultadPertenencia(5l);
+//		List<Investigador> investigadores_pertenencia_Agro= investigadorDAO.getInvestigadoresFacultadPertenencia(6l);
+//		List<Investigador> investigadores_pertenencia_Economicas= investigadorDAO.getInvestigadoresFacultadPertenencia(7l);
+//		
+//		
 
 		// ------Adición de atributos al modelo para referenciar a páginas
 		// especificas-----------------------------------------------------------------------
