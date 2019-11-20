@@ -1,7 +1,18 @@
 package co.edu.uniquindio.gri.utilities;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import co.edu.uniquindio.gri.dao.PertenenciaDAO;
+import co.edu.uniquindio.gri.model.Investigador;
+import co.edu.uniquindio.gri.model.Pertenencia;
+
 public class Util {
-	
+
+	@Autowired
+	PertenenciaDAO pertenenciaDAO;
+
 	public static final String PERTENENCIA_INDEFINIDO = "INDEFINIDO";
 	public static final String PERTENENCIA_DOCENTE_PLANTA = "DOCENTE PLANTA";
 	public static final String PERTENENCIA_DOCENTE_CATEDRATICO = "DOCENTE CATEDRÁTICO";
@@ -9,7 +20,6 @@ public class Util {
 	public static final String PERTENENCIA_ADMINISTRATIVO = "ADMINISTRATIVO";
 	public static final String PERTENENCIA_EXTERNO = "INVESTIGADOR EXTERNO";
 	public static final String PERTENENCIA_ESTUDIANTE = "ESTUDIANTE INVESTIGADOR";
-	
 
 	/**
 	 * constructor de la clase Util
@@ -47,8 +57,27 @@ public class Util {
 
 		return converted.toString();
 	}
-	
-	
-	
+
+	public List<Investigador> agregarPertenenciaInves(List<Investigador> investigadores) {
+
+		for (Investigador investigador : investigadores) {
+
+			Pertenencia pertenecia_investigador = pertenenciaDAO.getPertenenciaByIdInves(investigador.getId());
+
+			if (pertenecia_investigador != null) {
+
+				investigador.setPertenencia(pertenecia_investigador.getPertenencia());
+
+			} else {
+
+				investigador.setPertenencia("INDEFINIDO");
+
+			}
+
+		}
+
+		return investigadores;
+
+	}
 
 }

@@ -15,7 +15,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<properties>
-		<hibernate.version>5.1.1.Final</hibernate.version>
+		<hibernate.version>4.2.21.Final</hibernate.version>
 		<bootstrap.version>4.2.1</bootstrap.version>
 	</properties>
 	<dependencies>
