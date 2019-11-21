@@ -8,8 +8,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -717,7 +719,7 @@ public class WebController {
 		model.addAttribute("pertenencias", pertenencias);
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
-		model.addAttribute("integrantes", integrantes);
+		model.addAttribute("integrantes", investigadores);
 		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());
 
 		return "pertenencia_investigadores/reportepertenencia";

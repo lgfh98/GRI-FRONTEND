@@ -70,7 +70,6 @@ public class Util {
 	public List<Investigador> agregarPertenenciaInves(List<Investigador> investigadores) {
 
 		for (Investigador investigador : investigadores) {
-
 			Pertenencia pertenecia_investigador = pertenenciaDAO.getPertenenciaByIdInves(investigador.getId());
 
 			if (pertenecia_investigador != null) {
