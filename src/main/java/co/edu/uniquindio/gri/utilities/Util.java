@@ -3,11 +3,14 @@ package co.edu.uniquindio.gri.utilities;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.dao.PertenenciaDAO;
 import co.edu.uniquindio.gri.model.Investigador;
 import co.edu.uniquindio.gri.model.Pertenencia;
 
+@Service
 public class Util {
 
 	@Autowired
@@ -61,7 +64,6 @@ public class Util {
 	public List<Investigador> agregarPertenenciaInves(List<Investigador> investigadores) {
 
 		for (Investigador investigador : investigadores) {
-
 			Pertenencia pertenecia_investigador = pertenenciaDAO.getPertenenciaByIdInves(investigador.getId());
 
 			if (pertenecia_investigador != null) {

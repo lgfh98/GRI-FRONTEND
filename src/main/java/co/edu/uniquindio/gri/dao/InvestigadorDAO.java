@@ -617,16 +617,4 @@ public class InvestigadorDAO {
 		return investigadorRepository.getInvestigadoresInternosPrograma(programaId);
 	}
 	
-	
-	/**
-	 * Obtiene los investigadores actuales con la pertenencia de una facultad determinada
-	 * @param facultadId id de la facultad
-	 * @return los investigadores con su respectiva pertenencia
-	 */
-	public List<Investigador> getInvestigadoresFacultadPertenencia(Long facultadId){
-		
-		return investigadorRepository.getInvestigadoresFacultadPertenencia(facultadId);
-		
-	}
-	
 }
