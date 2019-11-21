@@ -60,15 +60,15 @@ public class InvestigadorDAO {
 
 	}
 
-	/**
-	 * Método para obtener la lista de investigadores y su pertenencia
-	 * 
-	 * @param id el id del grupo de investigación
-	 * @return la lista de investigadores y su pertenencia
-	 */
-	public List<Investigador> getInvestigadoresGrupoPertenencia(Long id) {
-		return investigadorRepository.getInvestigadoresGrupoPertenencia(id);
-	}
+//	/**
+//	 * Método para obtener la lista de investigadores y su pertenencia
+//	 * 
+//	 * @param id el id del grupo de investigación
+//	 * @return la lista de investigadores y su pertenencia
+//	 */
+//	public List<Investigador> getInvestigadoresGrupoPertenencia(Long id) {
+//		return investigadorRepository.getInvestigadoresGrupoPertenencia(id);
+//	}
 
 	/**
 	 * Obtiene los investigadores emeritos especificado por un id de facultad.
@@ -618,15 +618,15 @@ public class InvestigadorDAO {
 	}
 	
 	
-	/**
-	 * Obtiene los investigadores actuales con la pertenencia de una facultad determinada
-	 * @param facultadId id de la facultad
-	 * @return los investigadores con su respectiva pertenencia
-	 */
-	public List<Investigador> getInvestigadoresFacultadPertenencia(Long facultadId){
-		
-		return investigadorRepository.getInvestigadoresFacultadPertenencia(facultadId);
-		
-	}
+//	/**
+//	 * Obtiene los investigadores actuales con la pertenencia de una facultad determinada
+//	 * @param facultadId id de la facultad
+//	 * @return los investigadores con su respectiva pertenencia
+//	 */
+//	public List<Investigador> getInvestigadoresFacultadPertenencia(Long facultadId){
+//		
+//		return investigadorRepository.getInvestigadoresFacultadPertenencia(facultadId);
+//		
+//	}
 	
 }
