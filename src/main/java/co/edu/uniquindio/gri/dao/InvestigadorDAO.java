@@ -59,15 +59,16 @@ public class InvestigadorDAO {
 		}
 
 	}
-	
-	/**
-	 * Método para obtener la lista de investigadores y su pertenencia
-	 * @param id el id del grupo de investigación
-	 * @return la lista de investigadores y su pertenencia
-	 */
-	public List<Investigador> getInvestigadoresGrupoPertenencia(Long id) {
-		return investigadorRepository.getInvestigadoresGrupoPertenencia(id);
-	}
+
+//	/**
+//	 * Método para obtener la lista de investigadores y su pertenencia
+//	 * 
+//	 * @param id el id del grupo de investigación
+//	 * @return la lista de investigadores y su pertenencia
+//	 */
+//	public List<Investigador> getInvestigadoresGrupoPertenencia(Long id) {
+//		return investigadorRepository.getInvestigadoresGrupoPertenencia(id);
+//	}
 
 	/**
 	 * Obtiene los investigadores emeritos especificado por un id de facultad.
@@ -162,7 +163,6 @@ public class InvestigadorDAO {
 	public List<Investigador> getInvestigadoresInternosPregradoFacultad(Long facultadid) {
 		return investigadorRepository.getInvestigadoresInternosPregradoFacultad(facultadid);
 	}
-	
 
 	/**
 	 * Obtiene los investigadores internos de la facultad
@@ -255,16 +255,16 @@ public class InvestigadorDAO {
 	public List<Investigador> getAllInvestigadoresPregrado() {
 		return investigadorRepository.getAllInvestigadoresPregrado();
 	}
-	
+
 	/**
 	 * Obtiene los investigadores internos de la universidad
 	 *
 	 * @return lista de investigadores internos de la facultad
 	 */
-	public Object getAllInvestigadoresInternos() {
+	public List<Investigador> getAllInvestigadoresInternos() {
 		return investigadorRepository.getAllInvestigadoresInternos();
 	}
-	
+
 	/**
 	 * Obtiene los investigadores internos del centro
 	 *
@@ -368,7 +368,6 @@ public class InvestigadorDAO {
 	public List<Investigador> getInvestigadoresInternosPregradoCentro(Long centroid) {
 		return investigadorRepository.getInvestigadoresInternosPregradoCentro(centroid);
 	}
-	
 
 	/**
 	 * Obtiene los investigadores internos del grupo
@@ -379,7 +378,7 @@ public class InvestigadorDAO {
 	public List<Investigador> getInvestigadoresGrupo(Long grupoid) {
 		return investigadorRepository.getInvestigadoresGrupo(grupoid);
 	}
-	
+
 	/**
 	 * Obtiene los investigadores emeritos especificado por un id de grupo.
 	 *
@@ -473,7 +472,7 @@ public class InvestigadorDAO {
 	public List<Investigador> getInvestigadoresInternosPregradoGrupo(Long grupoid) {
 		return investigadorRepository.getInvestigadoresInternosPregradoGrupo(grupoid);
 	}
-	
+
 	/**
 	 * Obtiene los investigadores internos del programa
 	 *
@@ -483,7 +482,7 @@ public class InvestigadorDAO {
 	public List<Investigador> getInvestigadoresPrograma(Long programaid) {
 		return investigadorRepository.getInvestigadoresPrograma(programaid);
 	}
-	
+
 	/**
 	 * Obtiene los investigadores emeritos especificado por un id de programa.
 	 *
@@ -587,7 +586,7 @@ public class InvestigadorDAO {
 	public List<Investigador> getAllInvestigadoresInternosFacultad(Long facultadId) {
 		return investigadorRepository.getInvestigadoresInternosFacultad(facultadId);
 	}
-	
+
 	/**
 	 * Obtiene los investigadores internos de un grupo
 	 *
@@ -597,7 +596,7 @@ public class InvestigadorDAO {
 	public List<Investigador> getAllInvestigadoresInternosGrupo(Long grupoId) {
 		return investigadorRepository.getInvestigadoresInternosGrupo(grupoId);
 	}
-	
+
 	/**
 	 * Obtiene los investigadores internos de un centro
 	 *
@@ -607,7 +606,7 @@ public class InvestigadorDAO {
 	public List<Investigador> getAllInvestigadoresInternosCentro(Long centroId) {
 		return investigadorRepository.getInvestigadoresInternosCentro(centroId);
 	}
-	
+
 	/**
 	 * Obtiene los investigadores internos de un programa
 	 *
@@ -617,4 +616,5 @@ public class InvestigadorDAO {
 	public List<Investigador> getAllInvestigadoresInternosPrograma(Long programaId) {
 		return investigadorRepository.getInvestigadoresInternosPrograma(programaId);
 	}
+	
 }

@@ -248,6 +248,8 @@
 				}
 			});
 		}
+
+
 		// Definición de las tablas
 		var tabla_investigadores = $('#tabla_investigadores').DataTable({
 			responsive: true,
@@ -257,7 +259,8 @@
 				{ data: "id", visible: false },
 				{ data: "nombre" },
 				{ data: "categoria" },
-				{ data: "nivelAcademico" }
+				{ data: "nivelAcademico" },
+				{ data: "pertenencia" }
 			]
 		});
 
@@ -436,6 +439,7 @@
 				{ data: "nombre" },
 				{ data: "categoria" },
 				{ data: "lider" }
+
 			]
 		});
 
@@ -475,13 +479,56 @@
 		// .---------------------------PERTENENCIA------------------------------------
 		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({
 			responsive: true,
+			dom: 'Bfrtip',
 			rowId: 'id',
 			columns: [
 				{ data: "id", visible: false },
 				{ data: "pertenencia" },
 				{ data: "nombre" },
 				{ data: "categoria" },
-				{ data: "nivelAcademico" }]
+				{ data: "nivelAcademico" }],
+			buttons: [
+				{
+					text: 'Guardar Cambios',
+					className: 'saveButton'
+				}
+			],
+			language: {
+					processing: "Procesamiento en curso...",
+					search: "Buscar: ",
+					lengthMenu: "Mostrando _MENU_ elementos",
+					info: "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+					infoEmpty: "Mostrando 0 a 0 de 0 elementos",
+					infoFiltered: "(filtrado de _MAX_ elementos en total)",
+					infoPostFix: "",
+					loadingRecords: "Cargando resultados...",
+					zeroRecords: "No hay información para mostrar",
+					emptyTable: "No hay información para mostrar",
+					paginate: {
+						first: "Primera",
+						previous: "Anterior",
+						next: "Siguiente",
+						last: "última"
+					}
+				}
+		});
+
+		$('.saveButton').on('click', function () {
+			$('#tabla_pertenencia > tbody  > tr').each(function () {
+				var elID = $(this).attr('id');
+				var e = document.getElementById("menuPertenencias" + elID);
+				var data_2 = e.options[e.selectedIndex].value
+				$.ajax({
+					type: "POST",
+					contentType: "application/json",
+					url: '/ServerSpring/rest/service/pertenencia/' + elID + '/' + data_2,
+					dataType: 'json',
+					cache: false
+
+
+				});
+			});
+			alert("Cambios guardados");
 		});
 
 		$('#tabla_pertenencia_filter input').keyup(function () {
@@ -494,37 +541,11 @@
 		});
 
 
-		$(document).ready(function () {
-			$('#tabla_pertenencia td').click(function (event) {
-				var elID = $(this).closest('tr').attr('id');
-				var e = document.getElementById("menuPertenencias" + elID);
-				$(e).change(() => {
-					var data_2 = e.options[e.selectedIndex].value
-					
-					
-					
-					$.ajax({
-						type: "POST",
-						contentType: "application/json",
-						url: '/ServerSpring/rest/service/pertenencia/' + elID + '/' + data_2,
-						dataType: 'json',
-						cache: false
-						
-					
-					});
-					
-					
-					
-				});
-			});
-		});
-		
-		
-		
-		
-		
-		
-// ---------------------------------FIN PERTENENCIA-----------------------------
+
+
+
+
+		// ---------------------------------FIN PERTENENCIA-----------------------------
 		// Definición tabla Inventario
 		var table = $('#tabla_inventario')
 			.DataTable(
@@ -664,7 +685,7 @@
 							$.ajax({
 								type: "POST",
 								contentType: "application/json",
-								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/ServerSpring/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
@@ -707,7 +728,7 @@
 							$.ajax({
 								type: "POST",
 								contentType: "application/json",
-								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/ServerSpring/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {

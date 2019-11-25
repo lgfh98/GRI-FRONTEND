@@ -8,13 +8,17 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +29,14 @@ import co.edu.uniquindio.gri.dao.FacultadDAO;
 import co.edu.uniquindio.gri.dao.GrupoDAO;
 import co.edu.uniquindio.gri.dao.InvestigadorDAO;
 import co.edu.uniquindio.gri.dao.LineasInvestigacionDAO;
+import co.edu.uniquindio.gri.dao.PertenenciaDAO;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
 import co.edu.uniquindio.gri.dao.ProgramaDAO;
 import co.edu.uniquindio.gri.model.Centro;
 import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.Investigador;
+import co.edu.uniquindio.gri.model.Pertenencia;
 import co.edu.uniquindio.gri.model.Programa;
 import co.edu.uniquindio.gri.utilities.Util;
 import net.sf.jasperreports.engine.JRException;
@@ -53,6 +59,9 @@ public class WebController {
 	InvestigadorDAO investigadorDAO;
 
 	@Autowired
+	PertenenciaDAO pertenenciaDAO;
+
+	@Autowired
 	CentroDAO centroDAO;
 
 	@Autowired
@@ -69,7 +78,7 @@ public class WebController {
 
 	@Autowired
 	LineasInvestigacionDAO lineasInvestigacionDAO;
-
+	@Autowired
 	Util utilidades = new Util();
 
 	@GetMapping(value = { "/", "inicio" })
@@ -88,7 +97,210 @@ public class WebController {
 
 	@GetMapping("/login")
 	public String getLogin(Model model) {
+
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+
+			return main(model);
+		}
+
 		return "login";
+
+	}
+
+	@GetMapping("/investigadoresP")
+	public String getInvestigadoresPertenencia(
+			@RequestParam(name = "type", required = false, defaultValue = "u") String type,
+			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
+			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+		model.addAttribute("type", type);
+		model.addAttribute("id", id);
+
+		List<Investigador> investigadores = new ArrayList<Investigador>();
+		if (Long.parseLong(id) != 0) {
+			if (type.equals("f") || type.equals("u")) {
+				if (subType.equals("adm")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_ADMINISTRATIVO);
+				} else if (subType.equals("dp")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				} else if (subType.equals("dc")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				} else if (subType.equals("do")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				} else if (subType.equals("ie")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_EXTERNO);
+				} else if (subType.equals("ei")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_ESTUDIANTE);
+				} else {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				}
+
+			} else if (type.equals("g")) {
+				if (subType.equals("adm")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_ADMINISTRATIVO);
+				} else if (subType.equals("dp")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				} else if (subType.equals("dc")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				} else if (subType.equals("do")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				} else if (subType.equals("ie")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_EXTERNO);
+				} else if (subType.equals("ei")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_ESTUDIANTE);
+				} else {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				}
+			} else if (type.equals("c")) {
+				if (subType.equals("adm")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_ADMINISTRATIVO);
+				} else if (subType.equals("dp")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				} else if (subType.equals("dc")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				} else if (subType.equals("do")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				} else if (subType.equals("ie")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_EXTERNO);
+				} else if (subType.equals("ei")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_ESTUDIANTE);
+				} else {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				}
+			} else if (type.equals("p")) {
+				if (subType.equals("adm")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_ADMINISTRATIVO);
+				} else if (subType.equals("dp")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				} else if (subType.equals("dc")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				} else if (subType.equals("do")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				} else if (subType.equals("ie")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_EXTERNO);
+				} else if (subType.equals("ei")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_ESTUDIANTE);
+				} else {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				}
+			}
+		} else {
+			if (subType.equals("adm")) {
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
+				investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+						utilidades.PERTENENCIA_ADMINISTRATIVO);
+			} else if (subType.equals("dp")) {
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
+				investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+						utilidades.PERTENENCIA_DOCENTE_PLANTA);
+			} else if (subType.equals("dc")) {
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
+				investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+						utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+			} else if (subType.equals("do")) {
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
+				investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+						utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+			} else if (subType.equals("ie")) {
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
+				investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+						utilidades.PERTENENCIA_EXTERNO);
+			} else if (subType.equals("ei")) {
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
+				investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+						utilidades.PERTENENCIA_ESTUDIANTE);
+			} else {
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
+				investigadores = utilidades.agregarPertenenciaInves(investigadores);
+			}
+		}
+
+		model.addAttribute("listaInvestigadores", investigadores);
+
+		return "investigadores";
 	}
 
 	@GetMapping("/investigadores")
@@ -97,173 +309,135 @@ public class WebController {
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
 		model.addAttribute("type", type);
 		model.addAttribute("id", id);
+
+		List<Investigador> investigadores = new ArrayList<Investigador>();
 		if (Long.parseLong(id) != 0) {
 			if (type.equals("f") || type.equals("u")) {
 				if (subType.equals("ie")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id));
 				} else if (subType.equals("is")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSeniorFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSeniorFacultad(Long.parseLong(id));
 				} else if (subType.equals("ia")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresAsociadosFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresAsociadosFacultad(Long.parseLong(id));
 				} else if (subType.equals("ij")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresJuniorFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresJuniorFacultad(Long.parseLong(id));
 				} else if (subType.equals("isc")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSinCategoriaFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSinCategoriaFacultad(Long.parseLong(id));
 				} else if (subType.equals("fd")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosDoctoresFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosDoctoresFacultad(Long.parseLong(id));
 				} else if (subType.equals("fm")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosMagisterFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosMagisterFacultad(Long.parseLong(id));
 				} else if (subType.equals("fe")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosEspecialistasFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosEspecialistasFacultad(Long.parseLong(id));
 				} else if (subType.equals("fp")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosPregradoFacultad(Long.parseLong(id));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 				} else {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresFacultad(Long.parseLong(id));
 				}
 			} else if (type.equals("g")) {
 				if (subType.equals("ie")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresEmeritosGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresEmeritosGrupo(Long.parseLong(id));
 				} else if (subType.equals("is")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSeniorGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSeniorGrupo(Long.parseLong(id));
 				} else if (subType.equals("ia")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresAsociadosGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresAsociadosGrupo(Long.parseLong(id));
 				} else if (subType.equals("ij")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresJuniorGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresJuniorGrupo(Long.parseLong(id));
 				} else if (subType.equals("isc")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSinCategoriaGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSinCategoriaGrupo(Long.parseLong(id));
 				} else if (subType.equals("fd")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosDoctoresGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosDoctoresGrupo(Long.parseLong(id));
 				} else if (subType.equals("fm")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosMagisterGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosMagisterGrupo(Long.parseLong(id));
 				} else if (subType.equals("fe")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosEspecialistasGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosEspecialistasGrupo(Long.parseLong(id));
 				} else if (subType.equals("fp")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosPregradoGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosPregradoGrupo(Long.parseLong(id));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 				} else {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresGrupo(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresGrupo(Long.parseLong(id));
 				}
 			} else if (type.equals("c")) {
 				if (subType.equals("ie")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresEmeritosCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresEmeritosCentro(Long.parseLong(id));
 				} else if (subType.equals("is")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSeniorCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSeniorCentro(Long.parseLong(id));
 				} else if (subType.equals("ia")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresAsociadosCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresAsociadosCentro(Long.parseLong(id));
 				} else if (subType.equals("ij")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresJuniorCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresJuniorCentro(Long.parseLong(id));
 				} else if (subType.equals("isc")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSinCategoriaCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSinCategoriaCentro(Long.parseLong(id));
 				} else if (subType.equals("fd")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosDoctoresCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosDoctoresCentro(Long.parseLong(id));
 				} else if (subType.equals("fm")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosMagisterCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosMagisterCentro(Long.parseLong(id));
 				} else if (subType.equals("fe")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosEspecialistasCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosEspecialistasCentro(Long.parseLong(id));
 				} else if (subType.equals("fp")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosPregradoCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosPregradoCentro(Long.parseLong(id));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 				} else {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresCentro(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresCentro(Long.parseLong(id));
 				}
 			} else if (type.equals("p")) {
 				if (subType.equals("ie")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresEmeritosPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresEmeritosPrograma(Long.parseLong(id));
 				} else if (subType.equals("is")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSeniorPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSeniorPrograma(Long.parseLong(id));
 				} else if (subType.equals("ia")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresAsociadosPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresAsociadosPrograma(Long.parseLong(id));
 				} else if (subType.equals("ij")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresJuniorPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresJuniorPrograma(Long.parseLong(id));
 				} else if (subType.equals("isc")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresSinCategoriaPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresSinCategoriaPrograma(Long.parseLong(id));
 				} else if (subType.equals("fd")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosDoctoresPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosDoctoresPrograma(Long.parseLong(id));
 				} else if (subType.equals("fm")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosMagisterPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosMagisterPrograma(Long.parseLong(id));
 				} else if (subType.equals("fe")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosEspecialistasPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosEspecialistasPrograma(Long.parseLong(id));
 				} else if (subType.equals("fp")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresInternosPregradoPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresInternosPregradoPrograma(Long.parseLong(id));
 				} else if (subType.equals("d")) {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 				} else {
-					model.addAttribute("listaInvestigadores",
-							investigadorDAO.getInvestigadoresPrograma(Long.parseLong(id)));
+					investigadores = investigadorDAO.getInvestigadoresPrograma(Long.parseLong(id));
 				}
 			}
 		} else {
 			if (subType.equals("ie")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresEmeritos());
+				investigadores = investigadorDAO.getAllInvestigadoresEmeritos();
 			} else if (subType.equals("is")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresSenior());
+				investigadores = investigadorDAO.getAllInvestigadoresSenior();
 			} else if (subType.equals("ia")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresAsociado());
+				investigadores = investigadorDAO.getAllInvestigadoresAsociado();
 			} else if (subType.equals("ij")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresJunior());
+				investigadores = investigadorDAO.getAllInvestigadoresJunior();
 			} else if (subType.equals("isc")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresSinCategoria());
+				investigadores = investigadorDAO.getAllInvestigadoresSinCategoria();
 			} else if (subType.equals("fd")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosDoctores());
+				investigadores = investigadorDAO.getAllInvestigadoresInternosDoctores();
 			} else if (subType.equals("fm")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternosMagister());
+				investigadores = investigadorDAO.getAllInvestigadoresInternosMagister();
 			} else if (subType.equals("fe")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresEspecialistas());
+				investigadores = investigadorDAO.getAllInvestigadoresEspecialistas();
 			} else if (subType.equals("fp")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresPregrado());
+				investigadores = investigadorDAO.getAllInvestigadoresPregrado();
 			} else if (subType.equals("d")) {
-				model.addAttribute("listaInvestigadores", investigadorDAO.getAllInvestigadoresInternos());
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 			} else {
-				model.addAttribute("listaInvestigadores", investigadorDAO.findAll());
+				investigadores = investigadorDAO.findAll();
 			}
 		}
+
+		List<Investigador> investigadores_pertenencia = utilidades.agregarPertenenciaInves(investigadores);
+
+		model.addAttribute("listaInvestigadores", investigadores_pertenencia);
 		return "investigadores";
 	}
 
@@ -524,8 +698,14 @@ public class WebController {
 	public String getReportePertenencia(@RequestParam(name = "id", required = true) String id, Model model) {
 
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
-		List<Investigador> integrantes = investigadorDAO.getInvestigadoresGrupoPertenencia(Long.parseLong(id));
+
+		List<Investigador> integrantes = new ArrayList<Investigador>();
+
+		integrantes = investigadorDAO.getInvestigadoresGrupo(Long.parseLong(id));
+
 		List<String> pertenencias = new ArrayList<String>();
+
+		utilidades.agregarPertenenciaInves(integrantes);
 
 		pertenencias.add(Util.PERTENENCIA_INDEFINIDO);
 		pertenencias.add(Util.PERTENENCIA_ADMINISTRATIVO);
@@ -1237,6 +1417,7 @@ public class WebController {
 		model.addAttribute("cantidadInvestigadoresAsociados", resumen.get(16));
 		model.addAttribute("cantidadInvestigadoresJunior", resumen.get(17));
 		model.addAttribute("cantidadInvestigadoresSinCategoria", resumen.get(18));
+
 		model.addAttribute("cantidadDocentesDoctores", resumen.get(19));
 		model.addAttribute("cantidadDocentesMagister", resumen.get(20));
 		model.addAttribute("cantidadDocentesEspecialistas", resumen.get(21));
@@ -1990,6 +2171,249 @@ public class WebController {
 																																				.get(21)
 																																				.add(resumenCienciasEconomicas
 																																						.get(22)))))))))))))))))))))))))))));
+		/////////////////// Tabla Pertenencia////////////////////////////////////
+
+		List<Investigador> investigadores_Basicas = investigadorDAO.getAllInvestigadoresInternosFacultad(1l);
+		List<Investigador> investigadores_pertenencia_Basicas = utilidades
+				.agregarPertenenciaInves(investigadores_Basicas);
+
+		List<Investigador> investigadores_Educacion = investigadorDAO.getAllInvestigadoresInternosFacultad(2l);
+		List<Investigador> investigadores_pertenencia_Educacion = utilidades
+				.agregarPertenenciaInves(investigadores_Educacion);
+
+		List<Investigador> investigadores_Salud = investigadorDAO.getAllInvestigadoresInternosFacultad(3l);
+		List<Investigador> investigadores_pertenencia_Salud = utilidades.agregarPertenenciaInves(investigadores_Salud);
+
+		List<Investigador> investigadores_Ingenieria = investigadorDAO.getAllInvestigadoresInternosFacultad(4l);
+		List<Investigador> investigadores_pertenencia_Ingenieria = utilidades
+				.agregarPertenenciaInves(investigadores_Ingenieria);
+
+		List<Investigador> investigadores_Humanas = investigadorDAO.getAllInvestigadoresInternosFacultad(5l);
+		List<Investigador> investigadores_pertenencia_Humanas = utilidades
+				.agregarPertenenciaInves(investigadores_Humanas);
+
+		List<Investigador> investigadores_Agro = investigadorDAO.getAllInvestigadoresInternosFacultad(6l);
+		List<Investigador> investigadores_pertenencia_Agro = utilidades.agregarPertenenciaInves(investigadores_Agro);
+
+		List<Investigador> investigadores_Economicas = investigadorDAO.getAllInvestigadoresInternosFacultad(7l);
+		List<Investigador> investigadores_pertenencia_Economicas = utilidades
+				.agregarPertenenciaInves(investigadores_Economicas);
+
+		// ---------------BASICAS-----------------------------
+
+		List<Investigador> lista_investigadores_Basicas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_basicas_Admin", lista_investigadores_Basicas_Adm.size());
+
+		List<Investigador> lista_investigadores_Basicas_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_basicas_dp", lista_investigadores_Basicas_DP.size());
+
+		List<Investigador> lista_investigadores_Basicas_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_basicas_dc", lista_investigadores_Basicas_DC.size());
+
+		List<Investigador> lista_investigadores_Basicas_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_basicas_do", lista_investigadores_Basicas_DO.size());
+
+		List<Investigador> lista_investigadores_Basicas_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_basicas_ie", lista_investigadores_Basicas_IE.size());
+
+		List<Investigador> lista_investigadores_Basicas_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_basicas_ei", lista_investigadores_Basicas_EI.size());
+
+		// --------------------EDUCACION----------------------
+
+		List<Investigador> lista_investigadores_Educacion_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_educacion_Admin", lista_investigadores_Educacion_Adm.size());
+
+		List<Investigador> lista_investigadores_Educacion_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_educacion_dp", lista_investigadores_Educacion_DP.size());
+
+		List<Investigador> lista_investigadores_Educacion_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_educacion_dc", lista_investigadores_Educacion_DC.size());
+
+		List<Investigador> lista_investigadores_Educacion_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_educacion_do", lista_investigadores_Educacion_DO.size());
+		List<Investigador> lista_investigadores_Educacion_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_educacion_ie", lista_investigadores_Educacion_IE.size());
+
+		List<Investigador> lista_investigadores_Educacion_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_educacion_ei", lista_investigadores_Educacion_EI.size());
+
+		// -----------------------SALUD----------------------------
+
+		List<Investigador> lista_investigadores_Salud_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_salud_Admin", lista_investigadores_Salud_Adm.size());
+
+		List<Investigador> lista_investigadores_Salud_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_salud_dp", lista_investigadores_Salud_DP.size());
+
+		List<Investigador> lista_investigadores_Salud_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_salud_dc", lista_investigadores_Salud_DC.size());
+
+		List<Investigador> lista_investigadores_Salud_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_salud_do", lista_investigadores_Salud_DO.size());
+		List<Investigador> lista_investigadores_Salud_IE = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Salud, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_salud_ie", lista_investigadores_Salud_IE.size());
+
+		List<Investigador> lista_investigadores_Salud_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_salud_ei", lista_investigadores_Salud_EI.size());
+
+		// -----------------INGENIERIA-------------------------
+
+		List<Investigador> lista_investigadores_Ingenieria_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_ingenieria_Admin", lista_investigadores_Ingenieria_Adm.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_ingenieria_dp", lista_investigadores_Ingenieria_DP.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_ingenieria_dc", lista_investigadores_Ingenieria_DC.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_ingenieria_do", lista_investigadores_Ingenieria_DO.size());
+		List<Investigador> lista_investigadores_Ingenieria_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_ingenieria_ie", lista_investigadores_Ingenieria_IE.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_ingenieria_ei", lista_investigadores_Ingenieria_EI.size());
+
+		// -----------------------------HUMANAS---------------------------
+
+		List<Investigador> lista_investigadores_Humanas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_humanas_Admin", lista_investigadores_Humanas_Adm.size());
+
+		List<Investigador> lista_investigadores_Humanas_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_humanas_dp", lista_investigadores_Humanas_DP.size());
+
+		List<Investigador> lista_investigadores_Humanas_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_humanas_dc", lista_investigadores_Humanas_DC.size());
+
+		List<Investigador> lista_investigadores_Humanas_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_humanas_do", lista_investigadores_Humanas_DO.size());
+		List<Investigador> lista_investigadores_Humanas_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_humanas_ie", lista_investigadores_Humanas_IE.size());
+
+		List<Investigador> lista_investigadores_Humanas_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_humanas_ei", lista_investigadores_Humanas_EI.size());
+
+		// --------------------AGRO-------------------------------
+
+		List<Investigador> lista_investigadores_Agro_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_agro_Admin", lista_investigadores_Agro_Adm.size());
+
+		List<Investigador> lista_investigadores_Agro_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_agro_dp", lista_investigadores_Agro_DP.size());
+
+		List<Investigador> lista_investigadores_Agro_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_agro_dc", lista_investigadores_Agro_DC.size());
+
+		List<Investigador> lista_investigadores_Agro_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_agro_do", lista_investigadores_Agro_DO.size());
+		List<Investigador> lista_investigadores_Agro_IE = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Agro, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_agro_ie", lista_investigadores_Agro_IE.size());
+
+		List<Investigador> lista_investigadores_Agro_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_agro_ei", lista_investigadores_Agro_EI.size());
+
+		// -------------------Economicas-------------------------------
+		List<Investigador> lista_investigadores_Economicas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_economicas_Admin", lista_investigadores_Economicas_Adm.size());
+
+		List<Investigador> lista_investigadores_Economicas_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_economicas_dp", lista_investigadores_Economicas_DP.size());
+
+		List<Investigador> lista_investigadores_Economicas_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_economicas_dc", lista_investigadores_Economicas_DC.size());
+
+		List<Investigador> lista_investigadores_Economicas_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_economicas_do", lista_investigadores_Economicas_DO.size());
+		List<Investigador> lista_investigadores_Economicas_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_economicas_ie", lista_investigadores_Economicas_IE.size());
+
+		List<Investigador> lista_investigadores_Economicas_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_economicas_ei", lista_investigadores_Economicas_EI.size());
+
+		// -------------------------------TOTAL-------------------------------------------
+
+		int total_investigadores_Adm = lista_investigadores_Basicas_Adm.size()
+				+ lista_investigadores_Educacion_Adm.size() + lista_investigadores_Salud_Adm.size()
+				+ lista_investigadores_Ingenieria_Adm.size() + lista_investigadores_Humanas_Adm.size()
+				+ lista_investigadores_Agro_Adm.size() + lista_investigadores_Economicas_Adm.size();
+		int total_investigadores_DP = lista_investigadores_Basicas_DP.size() + lista_investigadores_Educacion_DP.size()
+				+ lista_investigadores_Salud_DP.size() + lista_investigadores_Ingenieria_DP.size()
+				+ lista_investigadores_Humanas_DP.size() + lista_investigadores_Agro_DP.size()
+				+ lista_investigadores_Economicas_DP.size();
+		int total_investigadores_DC = lista_investigadores_Basicas_DC.size() + lista_investigadores_Educacion_DC.size()
+				+ lista_investigadores_Salud_DC.size() + lista_investigadores_Ingenieria_DC.size()
+				+ lista_investigadores_Humanas_DC.size() + lista_investigadores_Agro_DC.size()
+				+ lista_investigadores_Economicas_DC.size();
+		int total_investigadores_DO = lista_investigadores_Basicas_DO.size() + lista_investigadores_Educacion_DO.size()
+				+ lista_investigadores_Salud_DO.size() + lista_investigadores_Ingenieria_DO.size()
+				+ lista_investigadores_Humanas_DO.size() + lista_investigadores_Agro_DO.size()
+				+ lista_investigadores_Economicas_DO.size();
+		int total_investigadores_IE = lista_investigadores_Basicas_IE.size() + lista_investigadores_Educacion_IE.size()
+				+ lista_investigadores_Salud_IE.size() + lista_investigadores_Ingenieria_IE.size()
+				+ lista_investigadores_Humanas_IE.size() + lista_investigadores_Agro_IE.size()
+				+ lista_investigadores_Economicas_IE.size();
+		int total_investigadores_EI = lista_investigadores_Basicas_EI.size() + lista_investigadores_Educacion_EI.size()
+				+ lista_investigadores_Salud_EI.size() + lista_investigadores_Ingenieria_EI.size()
+				+ lista_investigadores_Humanas_EI.size() + lista_investigadores_Agro_EI.size()
+				+ lista_investigadores_Economicas_EI.size();
+
+		model.addAttribute("total_adm", total_investigadores_Adm);
+		model.addAttribute("total_DP", total_investigadores_DP);
+		model.addAttribute("total_DC", total_investigadores_DC);
+		model.addAttribute("total_DO", total_investigadores_DO);
+		model.addAttribute("total_IE", total_investigadores_IE);
+		model.addAttribute("total_EI", total_investigadores_EI);
+
+		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peDp", "dp");
+		model.addAttribute("peDc", "dc");
+		model.addAttribute("peDo", "do");
+		model.addAttribute("peIe", "ie");
+		model.addAttribute("peEi", "ei");
 
 		// ------Adición de atributos al modelo para referenciar a páginas
 		// especificas-----------------------------------------------------------------------

@@ -22,4 +22,5 @@ public interface PertenenciaRepository extends JpaRepository<Pertenencia, Long> 
 	@Query(value = "INSERT INTO gri.pertenencia_inves (investigadores_id,pertenencia) VALUES  (:id_invest,:pertenencia)", nativeQuery = true)
 	public void agregarNuevaPertenencia(@Param("id_invest") Long id_invest, @Param("pertenencia") String pertenencia);
 
+	
 }
