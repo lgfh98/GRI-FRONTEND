@@ -526,7 +526,7 @@ public class WebController {
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
 		List<Investigador> integrantes = investigadorDAO.getInvestigadoresGrupoPertenencia(Long.parseLong(id));
 		List<String> pertenencias = new ArrayList<String>();
-		
+
 		pertenencias.add(Util.PERTENENCIA_INDEFINIDO);
 		pertenencias.add(Util.PERTENENCIA_ADMINISTRATIVO);
 		pertenencias.add(Util.PERTENENCIA_DOCENTE_PLANTA);
@@ -709,6 +709,10 @@ public class WebController {
 	private void configurarReportes(List<JasperPrint> jasperPrintList, String type, String id, Connection conexion)
 			throws JRException {
 
+		BigInteger cantidad_grupos = new BigInteger("0");
+		BigInteger cantidad_investigadores = new BigInteger("0");
+		BigInteger cantidad_producciones = new BigInteger("0");
+
 		// PARAMETROS FACULTAD//
 		String title_facultad = "";
 		String mision_facultad = "";
@@ -758,7 +762,28 @@ public class WebController {
 			vision_facultad = f.getVision();
 			contacto_facultad = f.getContacto();
 			id_facultad = new Long(f.getId());
-			System.err.println(id_facultad);
+
+			cantidad_grupos = BigInteger.valueOf(grupoDAO.getAllGruposFacultad(id_facultad).size());
+			cantidad_investigadores = BigInteger.valueOf(investigadorDAO.getInvestigadoresFacultad(id_facultad).size());
+
+			int suma = 0;
+
+			for (int j = 0; j < 7; j++) {
+				if (j != 5) {
+					suma += produccionDAO.getCantidadProduccionesFacultadPorTipo(String.valueOf(id_facultad), j + "")
+							.intValue();
+				} else {
+					suma += produccionDAO.getCantidadProduccionesFacultadPorTipo(String.valueOf(id_facultad), j + "")
+							.intValue();
+				}
+
+			}
+
+			suma += produccionDAO.getCantidadProduccionesFacultadPorSubTipo(String.valueOf(id_facultad), "32")
+					.intValue();
+			suma += produccionDAO.getCantidadProduccionesFacultadPorSubTipo(String.valueOf(id_facultad), "33").intValue();
+
+			cantidad_producciones = new BigInteger(String.valueOf(suma));
 
 		} else if (type.equals("p")) {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
@@ -770,6 +795,28 @@ public class WebController {
 			id_programa = p.getId();
 			id_facultad = p.getFacultad().getId();
 
+			cantidad_grupos = BigInteger.valueOf(grupoDAO.getAllGruposPrograma(id_programa).size());
+			cantidad_investigadores = BigInteger.valueOf(investigadorDAO.getInvestigadoresPrograma(id_programa).size());
+
+			int suma = 0;
+
+			for (int j = 0; j < 7; j++) {
+				if (j != 5) {
+					suma += produccionDAO.getCantidadProduccionesProgramaPorTipo(String.valueOf(id_programa), j + "")
+							.intValue();
+				} else {
+					suma += produccionDAO.getCantidadProduccionesProgramaPorTipo(String.valueOf(id_programa), j + "")
+							.intValue();
+				}
+
+			}
+
+			suma += produccionDAO.getCantidadProduccionesProgramaPorSubTipo(String.valueOf(id_programa), "32")
+					.intValue();
+			suma += produccionDAO.getCantidadProduccionesProgramaPorSubTipo(String.valueOf(id_programa), "33").intValue();
+
+			cantidad_producciones = new BigInteger(String.valueOf(suma));
+
 		} else if (type.equals("c")) {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 			centro = true;
@@ -778,6 +825,29 @@ public class WebController {
 			contacto_centro = c.getContacto();
 			id_centro = c.getId();
 			id_facultad = c.getFacultad().getId();
+
+			cantidad_grupos = BigInteger.valueOf(grupoDAO.getAllGruposCentro(id_centro).size());
+			cantidad_investigadores = BigInteger.valueOf(investigadorDAO.getInvestigadoresCentro(id_centro).size());
+
+			int suma = 0;
+
+			for (int j = 0; j < 7; j++) {
+				if (j != 5) {
+					suma += produccionDAO.getCantidadProduccionesCentroPorTipo(String.valueOf(id_centro), j + "")
+							.intValue();
+				} else {
+					suma += produccionDAO.getCantidadProduccionesCentroPorTipo(String.valueOf(id_centro), j + "")
+							.intValue();
+				}
+
+			}
+
+			suma += produccionDAO.getCantidadProduccionesCentroPorSubTipo(String.valueOf(id_centro), "32")
+					.intValue();
+			suma += produccionDAO.getCantidadProduccionesCentroPorSubTipo(String.valueOf(id_centro), "33").intValue();
+
+			cantidad_producciones = new BigInteger(String.valueOf(suma));
+
 		} else if (type.equals("g")) {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
 			grupo = true;
@@ -786,14 +856,68 @@ public class WebController {
 			contacto_grupo = g.getContacto();
 			id_grupo = g.getId();
 			id_facultad = g.getCentro().getFacultad().getId();
+
+			cantidad_investigadores = BigInteger.valueOf(investigadorDAO.getInvestigadoresGrupo(id_grupo).size());
+			int suma = 0;
+
+			for (int j = 0; j < 7; j++) {
+				if (j != 5) {
+					suma += produccionDAO.getCantidadProduccionesGrupoPorTipo(String.valueOf(id_grupo), j + "")
+							.intValue();
+				} else {
+					suma += produccionDAO.getCantidadProduccionesGrupoPorTipo(String.valueOf(id_grupo), j + "")
+							.intValue();
+				}
+
+			}
+
+			suma += produccionDAO.getCantidadProduccionesGrupoPorSubTipo(String.valueOf(id_grupo), "32")
+					.intValue();
+			suma += produccionDAO.getCantidadProduccionesGrupoPorSubTipo(String.valueOf(id_grupo), "33").intValue();
+
+			cantidad_producciones = new BigInteger(String.valueOf(suma));
+
 		} else if (type.equals("i")) {
 			Investigador i = investigadorDAO.findOne(Long.parseLong(id));
 			investigador = true;
 			nombre_investigador = utilidades.convertToTitleCaseIteratingChars(i.getNombre());
 			id_investigador = i.getId();
 
+			int suma = 0;
+
+			for (int j = 0; j < 7; j++) {
+				if (j != 5) {
+					suma += produccionDAO.getCantidadProduccionesInvestigadorPorTipo(String.valueOf(id_investigador), j + "")
+							.intValue();
+				} else {
+					suma += produccionDAO.getCantidadProduccionesInvestigadorPorTipo(String.valueOf(id_investigador), j + "")
+							.intValue();
+				}
+
+			}
+
+			suma += produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(String.valueOf(id_investigador), "32")
+					.intValue();
+			suma += produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(String.valueOf(id_investigador), "33").intValue();
+
+			cantidad_producciones = new BigInteger(String.valueOf(suma));
+
 		} else {
 			universidad = true;
+//			cantidad_grupos = facultadDAO.getStats().get(3);
+//
+//			for (int i = 1; i < 8; i++) {
+//				for (int j = 1; j < 9; j++) {
+//					if (j != 3) {
+//						cantidad_producciones.add(produccionDAO.getCantidadProduccionesFacultadPorTipo(i + "", j + ""));
+//					} else {
+//						cantidad_producciones
+//								.add(produccionDAO.getCantidadProduccionesBFacultadPorTipo(i + "", j + ""));
+//					}
+//
+//				}
+//			}
+
 		}
 
 		int aux = 1;
@@ -803,6 +927,7 @@ public class WebController {
 			Map<String, Object> parametros = new HashMap<>();
 
 			if (universidad) {
+
 				if (type.equals("u")) {
 
 					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
@@ -811,6 +936,17 @@ public class WebController {
 				}
 			} else {
 				if (facultad) {
+					if (aux == 4 && cantidad_grupos.intValue() == 0) {
+						aux++;
+						continue;
+					}
+					if ((aux == 6 || aux == 7) && cantidad_investigadores.intValue() == 0) {
+						aux++;
+						continue;
+					}
+					if (aux == 9 && cantidad_producciones.intValue() == 0) {
+						break;
+					}
 					parametros.put("title_facultad", title_facultad);
 					parametros.put("mision_facultad", mision_facultad);
 					parametros.put("vision_facultad", vision_facultad);
@@ -820,6 +956,18 @@ public class WebController {
 					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
 
 				} else if (programa) {
+
+					if (aux == 4 && cantidad_grupos.intValue() == 0) {
+						aux++;
+						continue;
+					}
+					if ((aux == 5 || aux == 6) && cantidad_investigadores.intValue() == 0) {
+						aux++;
+						continue;
+					}
+					if (aux == 8 && cantidad_producciones.intValue() == 0) {
+						break;
+					}
 					parametros.put("title_programa", title_programa);
 					parametros.put("mision_programa", mision_programa);
 					parametros.put("vision_programa", vision_programa);
@@ -830,7 +978,17 @@ public class WebController {
 					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
 
 				} else if (centro) {
-
+					if (aux == 4 && cantidad_grupos.intValue() == 0) {
+						aux++;
+						continue;
+					}
+					if ((aux == 5 || aux == 6) && cantidad_investigadores.intValue() == 0) {
+						aux++;
+						continue;
+					}
+					if (aux == 8 && cantidad_producciones.intValue() == 0) {
+						break;
+					}
 					parametros.put("title_centro", title_centro);
 					parametros.put("info_general", info_general);
 					parametros.put("contacto_centro", contacto_centro);
@@ -841,6 +999,13 @@ public class WebController {
 
 				} else if (grupo) {
 
+					if ((aux == 4 || aux == 5) && cantidad_investigadores.intValue() == 0) {
+						aux++;
+						continue;
+					}
+					if (aux == 7 && cantidad_producciones.intValue() == 0) {
+						break;
+					}
 					parametros.put("title_grupo", title_grupo);
 					parametros.put("info_general", info_general);
 					parametros.put("contacto_grupo", contacto_grupo);
@@ -850,6 +1015,9 @@ public class WebController {
 					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + aux + ".jasper");
 
 				} else if (investigador) {
+					if (aux == 3 && cantidad_producciones.intValue() == 0) {
+						break;
+					}
 					parametros.put("nombre_investigador", nombre_investigador);
 					parametros.put("id_investigador", id_investigador);
 
