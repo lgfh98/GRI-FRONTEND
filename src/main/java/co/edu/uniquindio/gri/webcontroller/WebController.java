@@ -117,7 +117,6 @@ public class WebController {
 		model.addAttribute("type", type);
 		model.addAttribute("id", id);
 
-		System.err.println(type + " " + subType + " " + id);
 		List<Investigador> investigadores = new ArrayList<Investigador>();
 		if (Long.parseLong(id) != 0) {
 			if (type.equals("f") || type.equals("u")) {
@@ -719,7 +718,7 @@ public class WebController {
 		model.addAttribute("pertenencias", pertenencias);
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
-		model.addAttribute("integrantes", investigadores);
+		model.addAttribute("integrantes", integrantes);
 		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());
 
 		return "pertenencia_investigadores/reportepertenencia";
@@ -2031,45 +2030,216 @@ public class WebController {
 		List<Investigador> investigadores_Economicas = investigadorDAO.getAllInvestigadoresInternosFacultad(7l);
 		List<Investigador> investigadores_pertenencia_Economicas = utilidades
 				.agregarPertenenciaInves(investigadores_Economicas);
-		;
 
-		List<Investigador> lista_investigadores = utilidades.seleccionarInvestigadoresPertenencia(
+		// ---------------BASICAS-----------------------------
+
+		List<Investigador> lista_investigadores_Basicas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
 				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_ADMINISTRATIVO);
-		model.addAttribute("Num_inves_basicas_Admin", lista_investigadores.size());
+		model.addAttribute("Num_inves_basicas_Admin", lista_investigadores_Basicas_Adm.size());
 
-		lista_investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Basicas,
-				utilidades.PERTENENCIA_DOCENTE_PLANTA);
-		model.addAttribute("Num_inves_basicas_dp", lista_investigadores.size());
-		
+		List<Investigador> lista_investigadores_Basicas_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_basicas_dp", lista_investigadores_Basicas_DP.size());
 
-		lista_investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Basicas,
-				utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
-		model.addAttribute("Num_inves_basicas_dc", lista_investigadores.size());
-		
+		List<Investigador> lista_investigadores_Basicas_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_basicas_dc", lista_investigadores_Basicas_DC.size());
 
-		lista_investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Basicas,
-				utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
-		model.addAttribute("Num_inves_basicas_do", lista_investigadores.size());
-	
+		List<Investigador> lista_investigadores_Basicas_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_basicas_do", lista_investigadores_Basicas_DO.size());
 
-		lista_investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Basicas,
-				utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
-		model.addAttribute("Num_inves_basicas_do", lista_investigadores.size());
-		
+		List<Investigador> lista_investigadores_Basicas_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_basicas_ie", lista_investigadores_Basicas_IE.size());
 
-		lista_investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Basicas,
-				utilidades.PERTENENCIA_EXTERNO);
-		model.addAttribute("Num_inves_basicas_ie", lista_investigadores.size());
-		
+		List<Investigador> lista_investigadores_Basicas_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_basicas_ei", lista_investigadores_Basicas_EI.size());
 
-		lista_investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Basicas,
-				utilidades.PERTENENCIA_ESTUDIANTE);
-		model.addAttribute("Num_inves_basicas_ei", lista_investigadores.size());
-		
-		
-		
-		
-		
+		// --------------------EDUCACION----------------------
+
+		List<Investigador> lista_investigadores_Educacion_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_educacion_Admin", lista_investigadores_Educacion_Adm.size());
+
+		List<Investigador> lista_investigadores_Educacion_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_educacion_dp", lista_investigadores_Educacion_DP.size());
+
+		List<Investigador> lista_investigadores_Educacion_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_educacion_dc", lista_investigadores_Educacion_DC.size());
+
+		List<Investigador> lista_investigadores_Educacion_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_educacion_do", lista_investigadores_Educacion_DO.size());
+		List<Investigador> lista_investigadores_Educacion_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_educacion_ie", lista_investigadores_Educacion_IE.size());
+
+		List<Investigador> lista_investigadores_Educacion_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_educacion_ei", lista_investigadores_Educacion_EI.size());
+
+		// -----------------------SALUD----------------------------
+
+		List<Investigador> lista_investigadores_Salud_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_salud_Admin", lista_investigadores_Salud_Adm.size());
+
+		List<Investigador> lista_investigadores_Salud_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_salud_dp", lista_investigadores_Salud_DP.size());
+
+		List<Investigador> lista_investigadores_Salud_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_salud_dc", lista_investigadores_Salud_DC.size());
+
+		List<Investigador> lista_investigadores_Salud_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_salud_do", lista_investigadores_Salud_DO.size());
+		List<Investigador> lista_investigadores_Salud_IE = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Salud, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_salud_ie", lista_investigadores_Salud_IE.size());
+
+		List<Investigador> lista_investigadores_Salud_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_salud_ei", lista_investigadores_Salud_EI.size());
+
+		// -----------------INGENIERIA-------------------------
+
+		List<Investigador> lista_investigadores_Ingenieria_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_ingenieria_Admin", lista_investigadores_Ingenieria_Adm.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_ingenieria_dp", lista_investigadores_Ingenieria_DP.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_ingenieria_dc", lista_investigadores_Ingenieria_DC.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_ingenieria_do", lista_investigadores_Ingenieria_DO.size());
+		List<Investigador> lista_investigadores_Ingenieria_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_ingenieria_ie", lista_investigadores_Ingenieria_IE.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_ingenieria_ei", lista_investigadores_Ingenieria_EI.size());
+
+		// -----------------------------HUMANAS---------------------------
+
+		List<Investigador> lista_investigadores_Humanas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_humanas_Admin", lista_investigadores_Humanas_Adm.size());
+
+		List<Investigador> lista_investigadores_Humanas_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_humanas_dp", lista_investigadores_Humanas_DP.size());
+
+		List<Investigador> lista_investigadores_Humanas_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_humanas_dc", lista_investigadores_Humanas_DC.size());
+
+		List<Investigador> lista_investigadores_Humanas_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_humanas_do", lista_investigadores_Humanas_DO.size());
+		List<Investigador> lista_investigadores_Humanas_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_humanas_ie", lista_investigadores_Humanas_IE.size());
+
+		List<Investigador> lista_investigadores_Humanas_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_humanas_ei", lista_investigadores_Humanas_EI.size());
+
+		// --------------------AGRO-------------------------------
+
+		List<Investigador> lista_investigadores_Agro_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_agro_Admin", lista_investigadores_Agro_Adm.size());
+
+		List<Investigador> lista_investigadores_Agro_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_agro_dp", lista_investigadores_Agro_DP.size());
+
+		List<Investigador> lista_investigadores_Agro_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_agro_dc", lista_investigadores_Agro_DC.size());
+
+		List<Investigador> lista_investigadores_Agro_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_agro_do", lista_investigadores_Agro_DO.size());
+		List<Investigador> lista_investigadores_Agro_IE = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Agro, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_agro_ie", lista_investigadores_Agro_IE.size());
+
+		List<Investigador> lista_investigadores_Agro_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_agro_ei", lista_investigadores_Agro_EI.size());
+
+		// -------------------Economicas-------------------------------
+		List<Investigador> lista_investigadores_Economicas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		model.addAttribute("Num_inves_economicas_Admin", lista_investigadores_Economicas_Adm.size());
+
+		List<Investigador> lista_investigadores_Economicas_DP = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		model.addAttribute("Num_inves_economicas_dp", lista_investigadores_Economicas_DP.size());
+
+		List<Investigador> lista_investigadores_Economicas_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		model.addAttribute("Num_inves_economicas_dc", lista_investigadores_Economicas_DC.size());
+
+		List<Investigador> lista_investigadores_Economicas_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		model.addAttribute("Num_inves_economicas_do", lista_investigadores_Economicas_DO.size());
+		List<Investigador> lista_investigadores_Economicas_IE = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_EXTERNO);
+		model.addAttribute("Num_inves_economicas_ie", lista_investigadores_Economicas_IE.size());
+
+		List<Investigador> lista_investigadores_Economicas_EI = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_ESTUDIANTE);
+		model.addAttribute("Num_inves_economicas_ei", lista_investigadores_Economicas_EI.size());
+
+		// -------------------------------TOTAL-------------------------------------------
+
+		int total_investigadores_Adm = lista_investigadores_Basicas_Adm.size()
+				+ lista_investigadores_Educacion_Adm.size() + lista_investigadores_Salud_Adm.size()
+				+ lista_investigadores_Ingenieria_Adm.size() + lista_investigadores_Humanas_Adm.size()
+				+ lista_investigadores_Agro_Adm.size() + lista_investigadores_Economicas_Adm.size();
+		int total_investigadores_DP = lista_investigadores_Basicas_DP.size() + lista_investigadores_Educacion_DP.size()
+				+ lista_investigadores_Salud_DP.size() + lista_investigadores_Ingenieria_DP.size()
+				+ lista_investigadores_Humanas_DP.size() + lista_investigadores_Agro_DP.size()
+				+ lista_investigadores_Economicas_DP.size();
+		int total_investigadores_DC = lista_investigadores_Basicas_DC.size() + lista_investigadores_Educacion_DC.size()
+				+ lista_investigadores_Salud_DC.size() + lista_investigadores_Ingenieria_DC.size()
+				+ lista_investigadores_Humanas_DC.size() + lista_investigadores_Agro_DC.size()
+				+ lista_investigadores_Economicas_DC.size();
+		int total_investigadores_DO = lista_investigadores_Basicas_DO.size() + lista_investigadores_Educacion_DO.size()
+				+ lista_investigadores_Salud_DO.size() + lista_investigadores_Ingenieria_DO.size()
+				+ lista_investigadores_Humanas_DO.size() + lista_investigadores_Agro_DO.size()
+				+ lista_investigadores_Economicas_DO.size();
+		int total_investigadores_IE = lista_investigadores_Basicas_IE.size() + lista_investigadores_Educacion_IE.size()
+				+ lista_investigadores_Salud_IE.size() + lista_investigadores_Ingenieria_IE.size()
+				+ lista_investigadores_Humanas_IE.size() + lista_investigadores_Agro_IE.size()
+				+ lista_investigadores_Economicas_IE.size();
+		int total_investigadores_EI = lista_investigadores_Basicas_EI.size() + lista_investigadores_Educacion_EI.size()
+				+ lista_investigadores_Salud_EI.size() + lista_investigadores_Ingenieria_EI.size()
+				+ lista_investigadores_Humanas_EI.size() + lista_investigadores_Agro_EI.size()
+				+ lista_investigadores_Economicas_EI.size();
+
+		model.addAttribute("total_adm", total_investigadores_Adm);
+		model.addAttribute("total_DP", total_investigadores_DP);
+		model.addAttribute("total_DC", total_investigadores_DC);
+		model.addAttribute("total_DO", total_investigadores_DO);
+		model.addAttribute("total_IE", total_investigadores_IE);
+		model.addAttribute("total_EI", total_investigadores_EI);
+
 		model.addAttribute("peAdm", "adm");
 		model.addAttribute("peDp", "dp");
 		model.addAttribute("peDc", "dc");

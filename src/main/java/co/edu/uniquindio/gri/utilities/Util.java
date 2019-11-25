@@ -74,8 +74,13 @@ public class Util {
 
 			if (pertenecia_investigador != null) {
 
-				investigador.setPertenencia(pertenecia_investigador.getPertenencia());
+				if (pertenecia_investigador.getPertenencia().equals("DOCENTE CATEDRÃTICO")) {
 
+					investigador.setPertenencia("DOCENTE CATEDRÁTICO");
+
+				} else {
+					investigador.setPertenencia(pertenecia_investigador.getPertenencia());
+				}
 			} else {
 
 				investigador.setPertenencia("INDEFINIDO");
