@@ -60,15 +60,15 @@ public class InvestigadorDAO {
 
 	}
 
-	/**
-	 * Método para obtener la lista de investigadores y su pertenencia
-	 * 
-	 * @param id el id del grupo de investigación
-	 * @return la lista de investigadores y su pertenencia
-	 */
-	public List<Investigador> getInvestigadoresGrupoPertenencia(Long id) {
-		return investigadorRepository.getInvestigadoresGrupoPertenencia(id);
-	}
+//	/**
+//	 * Método para obtener la lista de investigadores y su pertenencia
+//	 * 
+//	 * @param id el id del grupo de investigación
+//	 * @return la lista de investigadores y su pertenencia
+//	 */
+//	public List<Investigador> getInvestigadoresGrupoPertenencia(Long id) {
+//		return investigadorRepository.getInvestigadoresGrupoPertenencia(id);
+//	}
 
 	/**
 	 * Obtiene los investigadores emeritos especificado por un id de facultad.

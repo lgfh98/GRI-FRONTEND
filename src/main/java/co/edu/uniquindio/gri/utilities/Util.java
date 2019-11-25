@@ -1,9 +1,9 @@
 package co.edu.uniquindio.gri.utilities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.dao.PertenenciaDAO;
@@ -61,6 +61,12 @@ public class Util {
 		return converted.toString();
 	}
 
+	/**
+	 * permite agregarle la pertenencia a los investigadors
+	 * 
+	 * @param investigadores
+	 * @return
+	 */
 	public List<Investigador> agregarPertenenciaInves(List<Investigador> investigadores) {
 
 		for (Investigador investigador : investigadores) {
@@ -68,8 +74,13 @@ public class Util {
 
 			if (pertenecia_investigador != null) {
 
-				investigador.setPertenencia(pertenecia_investigador.getPertenencia());
+				if (pertenecia_investigador.getPertenencia().equals("DOCENTE CATEDRÃTICO")) {
 
+					investigador.setPertenencia("DOCENTE CATEDRÁTICO");
+
+				} else {
+					investigador.setPertenencia(pertenecia_investigador.getPertenencia());
+				}
 			} else {
 
 				investigador.setPertenencia("INDEFINIDO");
@@ -79,6 +90,30 @@ public class Util {
 		}
 
 		return investigadores;
+
+	}
+
+	/**
+	 * Metodo que permite extraer de una lista los investigadores dependiendo de la
+	 * pertenencia que se necesite
+	 * 
+	 * @param investigadores lista de investigadores
+	 * @param pertenencia    tipo de pertenencia que se requiere
+	 * @return una lista con los investigadores de dicha pertenencia
+	 */
+	public List<Investigador> seleccionarInvestigadoresPertenencia(List<Investigador> investigadores,
+			String pertenencia) {
+
+		List<Investigador> investigadores_resultantes = new ArrayList<Investigador>();
+
+		for (Investigador investigador : investigadores) {
+
+			if (investigador.getPertenencia().equals(pertenencia))
+				investigadores_resultantes.add(investigador);
+
+		}
+
+		return investigadores_resultantes;
 
 	}
 
