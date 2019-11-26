@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: header('Reporte Pertenencis de Investigadores')">
-	<meta charset="utf-8" />
+<head
+	th:replace="fragments/header :: header('Reporte Pertenencis de Investigadores')">
+<meta charset="utf-8" />
 
 </head>
 
@@ -22,7 +23,7 @@
 						<div class="contenido-hero">
 							<h1 id="titulo" class="titulo-hero" th:text="${nombre}"></h1>
 							Reportes relacionados a la pertenencia de los investigadores en
-							la universidad del Quindío.
+							la Universidad del Quindío.
 						</div>
 					</div>
 				</div>
@@ -49,7 +50,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									
+
 									<tr th:each="investigador : ${integrantes}">
 										<td th:text="${investigador.id}"></td>
 										<td>
@@ -58,15 +59,16 @@
 													<select class="form-control"
 														th:id="'menuPertenencias'+${investigador.id}">
 														<option th:each="pertenencia : ${pertenencias}"
-															th:value="${pertenencia}" th:text="${pertenencia}" th:selected="${pertenencia=='INDEFINIDO'}">
-														</option>
+															th:value="${pertenencia}" th:text="${pertenencia}"
+															th:selected="${pertenencia=='INDEFINIDO'}"></option>
 													</select>
 												</p>
 												<p th:case="*">
 													<select class="form-control"
 														th:id="'menuPertenencias'+${investigador.id}">
 														<option th:each="pertenencia : ${pertenencias}"
-															th:value="${pertenencia}" th:text="${pertenencia}" th:selected="${pertenencia==investigador.pertenencia}">
+															th:value="${pertenencia}" th:text="${pertenencia}"
+															th:selected="${pertenencia==investigador.pertenencia}">
 														</option>
 													</select>
 												</p>

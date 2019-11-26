@@ -1267,6 +1267,36 @@ public class WebController {
 		model.addAttribute("cantidadDocentesTotal",
 				resumen.get(19).add(resumen.get(20).add(resumen.get(21).add(resumen.get(22)))));
 
+		List<Investigador> investigadores_facultad = utilidades
+				.agregarPertenenciaInves(investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
+
+		List<Investigador> investigadores_facultad_Adm = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		List<Investigador> investigadores_facultad_DP = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		List<Investigador> investigadores_facultad_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_facultad, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		List<Investigador> investigadores_facultad_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_facultad, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		List<Investigador> investigadores_facultad_IE = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_EXTERNO);
+		List<Investigador> investigadores_facultad_EI = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_ESTUDIANTE);
+
+		model.addAttribute("num_inves_Adm", investigadores_facultad_Adm.size());
+		model.addAttribute("num_inves_DP", investigadores_facultad_DP.size());
+		model.addAttribute("num_inves_DC", investigadores_facultad_DC.size());
+		model.addAttribute("num_inves_DO", investigadores_facultad_DO.size());
+		model.addAttribute("num_inves_IE", investigadores_facultad_IE.size());
+		model.addAttribute("num_inves_EI", investigadores_facultad_EI.size());
+
+		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peDp", "dp");
+		model.addAttribute("peDc", "dc");
+		model.addAttribute("peDo", "do");
+		model.addAttribute("peIe", "ie");
+		model.addAttribute("peEi", "ei");
+
 		model.addAttribute("programaAcademico", "pa");
 		model.addAttribute("programaDoctorado", "pd");
 		model.addAttribute("programaMagister", "pm");
@@ -1353,6 +1383,36 @@ public class WebController {
 
 		model.addAttribute("cantidadDocentesTotal",
 				resumen.get(14).add(resumen.get(15).add(resumen.get(16).add(resumen.get(17)))));
+
+		List<Investigador> investigadores_programa = utilidades
+				.agregarPertenenciaInves(investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id)));
+
+		List<Investigador> investigadores_programa_Adm = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		List<Investigador> investigadores_programa_DP = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		List<Investigador> investigadores_programa_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_programa, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		List<Investigador> investigadores_programa_DO = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_programa, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		List<Investigador> investigadores_programa_IE = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_EXTERNO);
+		List<Investigador> investigadores_programa_EI = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_ESTUDIANTE);
+
+		model.addAttribute("num_inves_Adm", investigadores_programa_Adm.size());
+		model.addAttribute("num_inves_DP", investigadores_programa_DP.size());
+		model.addAttribute("num_inves_DC", investigadores_programa_DC.size());
+		model.addAttribute("num_inves_DO", investigadores_programa_DO.size());
+		model.addAttribute("num_inves_IE", investigadores_programa_IE.size());
+		model.addAttribute("num_inves_EI", investigadores_programa_EI.size());
+
+		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peDp", "dp");
+		model.addAttribute("peDc", "dc");
+		model.addAttribute("peDo", "do");
+		model.addAttribute("peIe", "ie");
+		model.addAttribute("peEi", "ei");
 
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");
@@ -1460,6 +1520,36 @@ public class WebController {
 		model.addAttribute("idUniquindio", "0");
 		model.addAttribute("idCentro", id);
 
+		List<Investigador> investigadores_centro = utilidades
+				.agregarPertenenciaInves(investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id)));
+
+		List<Investigador> investigadores_centro_Adm = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		List<Investigador> investigadores_centro_DP = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		List<Investigador> investigadores_centro_DC = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_centro, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		List<Investigador> investigadores_centro_DO = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		List<Investigador> investigadores_centro_IE = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_EXTERNO);
+		List<Investigador> investigadores_centro_EI = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_ESTUDIANTE);
+
+		model.addAttribute("num_inves_Adm", investigadores_centro_Adm.size());
+		model.addAttribute("num_inves_DP", investigadores_centro_DP.size());
+		model.addAttribute("num_inves_DC", investigadores_centro_DC.size());
+		model.addAttribute("num_inves_DO", investigadores_centro_DO.size());
+		model.addAttribute("num_inves_IE", investigadores_centro_IE.size());
+		model.addAttribute("num_inves_EI", investigadores_centro_EI.size());
+
+		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peDp", "dp");
+		model.addAttribute("peDc", "dc");
+		model.addAttribute("peDo", "do");
+		model.addAttribute("peIe", "ie");
+		model.addAttribute("peEi", "ei");
+
 		return "estadisticas/centros";
 	}
 
@@ -1522,6 +1612,36 @@ public class WebController {
 
 		model.addAttribute("idUniquindio", "0");
 		model.addAttribute("idGrupo", id);
+
+		List<Investigador> investigadores_grupo = utilidades
+				.agregarPertenenciaInves(investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id)));
+
+		List<Investigador> investigadores_grupo_Adm = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_ADMINISTRATIVO);
+		List<Investigador> investigadores_grupo_DP = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+		List<Investigador> investigadores_grupo_DC = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+		List<Investigador> investigadores_grupo_DO = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+		List<Investigador> investigadores_grupo_IE = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_EXTERNO);
+		List<Investigador> investigadores_grupo_EI = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_ESTUDIANTE);
+
+		model.addAttribute("num_inves_Adm", investigadores_grupo_Adm.size());
+		model.addAttribute("num_inves_DP", investigadores_grupo_DP.size());
+		model.addAttribute("num_inves_DC", investigadores_grupo_DC.size());
+		model.addAttribute("num_inves_DO", investigadores_grupo_DO.size());
+		model.addAttribute("num_inves_IE", investigadores_grupo_IE.size());
+		model.addAttribute("num_inves_EI", investigadores_grupo_EI.size());
+
+		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peDp", "dp");
+		model.addAttribute("peDc", "dc");
+		model.addAttribute("peDo", "do");
+		model.addAttribute("peIe", "ie");
+		model.addAttribute("peEi", "ei");
 
 		return "estadisticas/grupos";
 	}
