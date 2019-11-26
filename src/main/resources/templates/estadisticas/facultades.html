@@ -457,38 +457,52 @@
 							</div>
 
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}"></button>
+								<a class="link"
+									th:href="@{investigadoresP(type='f',subType=${peAdm},id=${idFacultad})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_Adm}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}"></button>
+								<a class="link"
+									th:href="@{investigadoresP(type='f',subType=${peDp},id=${idFacultad})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_DP}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}"></button>
+								<a class="link"
+									th:href="@{investigadoresP(type='f',subType=${peDc},id=${idFacultad})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_DC}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}"></button>
+								<a class="link"
+									th:href="@{investigadoresP(type='f',subType=${peDo},id=${idFacultad})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_DO}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}"></button>
+								<a class="link"
+									th:href="@{investigadoresP(type='f',subType=${peIe},id=${idFacultad})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_IE}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}"></button>
+								<a class="link"
+									th:href="@{investigadoresP(type='f',subType=${peEi},id=${idFacultad})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_EI}"></button>
 								</a>
 							</div>
 							<div>
-								<a class="link">
-									<button th:classappend="${colorTotalBoton}"></button>
+								<a class="link"
+									th:href="@{investigadores(id=${idFacultad}, type='f')}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${cantidadInvestigadoresTotal}"></button>
 								</a>
 							</div>
 
