@@ -371,53 +371,42 @@
 						<div class="grid-container-pertenencia-facultad scrollable">
 							<!--Titulos-->
 
-							<div>
-								<button th:classappend="${colorTituloBoton}">#
-									Administrativos</button>
-							</div>
+
 							<div>
 								<button th:classappend="${colorTituloBoton}"># Docentes
 									de Planta</button>
 							</div>
 							<div>
 								<button th:classappend="${colorTituloBoton}"># Docentes
-									Catedráticos</button>
+									Ocasionales</button>
 							</div>
 							<div>
 								<button th:classappend="${colorTituloBoton}"># Docentes
-									Ocasionales</button>
+									Catedráticos</button>
 							</div>
+
 							<div>
 								<button th:classappend="${colorTituloBoton}">#
 									Investigadores Externos</button>
 							</div>
 							<div>
 								<button th:classappend="${colorTituloBoton}">#
-									Estudiante Investigador</button>
+									Administrativos</button>
+							</div>
+							<div>
+								<button th:classappend="${colorTituloBoton}">#
+									Estudiantes Investigadores</button>
 							</div>
 							<div>
 								<button th:classappend="${colorTituloBoton}">Total</button>
 							</div>
 
-							<div>
-								<a class="link"
-									th:href="@{investigadoresP(type=${tipo},subType=${peAdm},id=${idPrograma})}">
-									<button th:classappend="${colorTotalBoton}"
-										th:text="${num_inves_Adm}"></button>
-								</a>
-							</div>
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(type=${tipo},subType=${peDp},id=${idPrograma})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${num_inves_DP}"></button>
-								</a>
-							</div>
-							<div>
-								<a class="link"
-									th:href="@{investigadoresP(type=${tipo},subType=${peDc},id=${idPrograma})}">
-									<button th:classappend="${colorTotalBoton}"
-										th:text="${num_inves_DC}"></button>
 								</a>
 							</div>
 							<div>
@@ -429,9 +418,24 @@
 							</div>
 							<div>
 								<a class="link"
+									th:href="@{investigadoresP(type=${tipo},subType=${peDc},id=${idPrograma})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_DC}"></button>
+								</a>
+							</div>
+
+							<div>
+								<a class="link"
 									th:href="@{investigadoresP(type=${tipo},subType=${peIe},id=${idPrograma})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${num_inves_IE}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link"
+									th:href="@{investigadoresP(type=${tipo},subType=${peAdm},id=${idPrograma})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_Adm}"></button>
 								</a>
 							</div>
 							<div>
