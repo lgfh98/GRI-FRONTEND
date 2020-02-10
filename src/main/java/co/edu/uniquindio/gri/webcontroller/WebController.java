@@ -938,8 +938,18 @@ public class WebController {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			facultad = true;
 			title_facultad = f.getNombre();
-			mision_facultad = f.getMision();
-			vision_facultad = f.getVision();
+
+			if (f.getMision() != null) {
+
+				mision_facultad = f.getMision().replaceAll("\n", " ");
+
+			}
+			if (f.getVision() != null) {
+
+				vision_facultad = f.getVision().replaceAll("\n", " ");
+
+			}
+
 			contacto_facultad = f.getContacto();
 			id_facultad = new Long(f.getId());
 
@@ -961,7 +971,8 @@ public class WebController {
 
 			suma += produccionDAO.getCantidadProduccionesFacultadPorSubTipo(String.valueOf(id_facultad), "32")
 					.intValue();
-			suma += produccionDAO.getCantidadProduccionesFacultadPorSubTipo(String.valueOf(id_facultad), "33").intValue();
+			suma += produccionDAO.getCantidadProduccionesFacultadPorSubTipo(String.valueOf(id_facultad), "33")
+					.intValue();
 
 			cantidad_producciones = new BigInteger(String.valueOf(suma));
 
@@ -969,8 +980,18 @@ public class WebController {
 			Programa p = programaDAO.getProgramaById(Long.parseLong(id));
 			programa = true;
 			title_programa = p.getNombre();
-			mision_programa = p.getMision();
-			vision_programa = p.getVision();
+
+			if (p.getMision() != null) {
+
+				mision_programa = p.getMision().replaceAll("\n", " ");
+
+			}
+			if (p.getVision() != null) {
+
+				vision_programa = p.getVision().replaceAll("\n", " ");
+
+			}
+
 			contacto_programa = p.getContacto();
 			id_programa = p.getId();
 			id_facultad = p.getFacultad().getId();
@@ -993,7 +1014,8 @@ public class WebController {
 
 			suma += produccionDAO.getCantidadProduccionesProgramaPorSubTipo(String.valueOf(id_programa), "32")
 					.intValue();
-			suma += produccionDAO.getCantidadProduccionesProgramaPorSubTipo(String.valueOf(id_programa), "33").intValue();
+			suma += produccionDAO.getCantidadProduccionesProgramaPorSubTipo(String.valueOf(id_programa), "33")
+					.intValue();
 
 			cantidad_producciones = new BigInteger(String.valueOf(suma));
 
@@ -1001,11 +1023,12 @@ public class WebController {
 			Centro c = centroDAO.getCentroById(Long.parseLong(id));
 			centro = true;
 			title_centro = c.getNombre();
-			info_general = c.getInformaciongeneral();
+
+			info_general = c.getInformaciongeneral().replaceAll("\n", " ");
+
 			contacto_centro = c.getContacto();
 			id_centro = c.getId();
 			id_facultad = c.getFacultad().getId();
-
 			cantidad_grupos = BigInteger.valueOf(grupoDAO.getAllGruposCentro(id_centro).size());
 			cantidad_investigadores = BigInteger.valueOf(investigadorDAO.getInvestigadoresCentro(id_centro).size());
 
@@ -1022,8 +1045,7 @@ public class WebController {
 
 			}
 
-			suma += produccionDAO.getCantidadProduccionesCentroPorSubTipo(String.valueOf(id_centro), "32")
-					.intValue();
+			suma += produccionDAO.getCantidadProduccionesCentroPorSubTipo(String.valueOf(id_centro), "32").intValue();
 			suma += produccionDAO.getCantidadProduccionesCentroPorSubTipo(String.valueOf(id_centro), "33").intValue();
 
 			cantidad_producciones = new BigInteger(String.valueOf(suma));
@@ -1032,10 +1054,16 @@ public class WebController {
 			Grupo g = grupoDAO.findOne(Long.parseLong(id));
 			grupo = true;
 			title_grupo = g.getNombre();
-			info_general = g.getInformaciongeneral().replaceAll("\n", "");
+
+			if (g.getInformaciongeneral() != null) {
+
+				info_general = g.getInformaciongeneral().replaceAll("\n", " ");
+
+			}
+
 			contacto_grupo = g.getContacto();
 			id_grupo = g.getId();
-			id_facultad = g.getCentro().getFacultad().getId();
+			id_facultad = g.getProgramas().get(0).getFacultad().getId();
 
 			cantidad_investigadores = BigInteger.valueOf(investigadorDAO.getInvestigadoresGrupo(id_grupo).size());
 			int suma = 0;
@@ -1051,8 +1079,7 @@ public class WebController {
 
 			}
 
-			suma += produccionDAO.getCantidadProduccionesGrupoPorSubTipo(String.valueOf(id_grupo), "32")
-					.intValue();
+			suma += produccionDAO.getCantidadProduccionesGrupoPorSubTipo(String.valueOf(id_grupo), "32").intValue();
 			suma += produccionDAO.getCantidadProduccionesGrupoPorSubTipo(String.valueOf(id_grupo), "33").intValue();
 
 			cantidad_producciones = new BigInteger(String.valueOf(suma));
@@ -1067,10 +1094,12 @@ public class WebController {
 
 			for (int j = 0; j < 7; j++) {
 				if (j != 5) {
-					suma += produccionDAO.getCantidadProduccionesInvestigadorPorTipo(String.valueOf(id_investigador), j + "")
+					suma += produccionDAO
+							.getCantidadProduccionesInvestigadorPorTipo(String.valueOf(id_investigador), j + "")
 							.intValue();
 				} else {
-					suma += produccionDAO.getCantidadProduccionesInvestigadorPorTipo(String.valueOf(id_investigador), j + "")
+					suma += produccionDAO
+							.getCantidadProduccionesInvestigadorPorTipo(String.valueOf(id_investigador), j + "")
 							.intValue();
 				}
 
@@ -1078,7 +1107,8 @@ public class WebController {
 
 			suma += produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(String.valueOf(id_investigador), "32")
 					.intValue();
-			suma += produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(String.valueOf(id_investigador), "33").intValue();
+			suma += produccionDAO.getCantidadProduccionesInvestigadorPorSubTipo(String.valueOf(id_investigador), "33")
+					.intValue();
 
 			cantidad_producciones = new BigInteger(String.valueOf(suma));
 
