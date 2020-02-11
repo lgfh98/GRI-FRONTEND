@@ -74,7 +74,7 @@ public class Util {
 
 			if (pertenecia_investigador != null) {
 
-				if (pertenecia_investigador.getPertenencia().equals("DOCENTE CATEDRÃTICO")) {
+				if (pertenecia_investigador.getPertenencia().contains("CATED")) {
 
 					investigador.setPertenencia("DOCENTE CATEDRÁTICO");
 

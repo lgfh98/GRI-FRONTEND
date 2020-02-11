@@ -77,7 +77,7 @@
 
 	<script th:inline="javascript">
 
-		var url = "/ServerSpring/rest/service/producciones/" + [[${ param.type }]] + "/" + [[${ param.id }]] + "/" + [[${ param.prod }]];
+		var url = "/gri/rest/service/producciones/" + [[${ param.type }]] + "/" + [[${ param.id }]] + "/" + [[${ param.prod }]];
 
 		$.ajax({
 			type: "GET",
