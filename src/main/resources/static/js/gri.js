@@ -524,7 +524,7 @@
 				$.ajax({
 					type: "POST",
 					contentType: "application/json",
-					url: '/ServerSpring/rest/service/pertenencia/' + elID + '/' + data_2,
+					url: '/gri/rest/service/pertenencia/' + elID + '/' + data_2,
 					dataType: 'json',
 					cache: false
 				});
@@ -687,7 +687,7 @@
 							$.ajax({
 								type: "POST",
 								contentType: "application/json",
-								url: '/ServerSpring/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
@@ -730,7 +730,7 @@
 							$.ajax({
 								type: "POST",
 								contentType: "application/json",
-								url: '/ServerSpring/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
