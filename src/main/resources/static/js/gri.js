@@ -476,16 +476,16 @@
 				.draw();
 		});
 
-		// .---------------------------PERTENENCIA------------------------------------
-		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({
-			responsive: true,
-			dom: 'Bfrti',
-			scrollY: "50vh",
-			scrollCollapse: true,
-			paging: false,
-			rowId: 'id',
-			columns: [
-				{ data: "id", visible: false },
+		// .---------------------------PERTENENCIA------------------------------------ 
+		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({ 
+			responsive: true, 
+			dom: 'Bfrti', 
+			scrollY: "50vh", 
+			scrollCollapse: true, 
+			paging: false, 
+			rowId: 'id', 
+			columns: [ 
+				{ data: "id", visible: false }, 
 				{ data: "pertenencia" },
 				{ data: "nombre" },
 				{ data: "categoria" },
@@ -494,29 +494,29 @@
 				{
 					text: 'Guardar Cambios',
 					className: 'saveButton'
-				}
-			],
-			language: {
-				processing: "Procesamiento en curso...",
-				search: "Buscar: ",
-				lengthMenu: "Mostrando _MENU_ elementos",
-				info: "Mostrando _START_ a _END_ de _TOTAL_ elementos",
-				infoEmpty: "Mostrando 0 a 0 de 0 elementos",
-				infoFiltered: "(filtrado de _MAX_ elementos en total)",
-				infoPostFix: "",
-				loadingRecords: "Cargando resultados...",
-				zeroRecords: "No hay información para mostrar",
-				emptyTable: "No hay información para mostrar",
-				paginate: {
-					first: "Primera",
-					previous: "Anterior",
-					next: "Siguiente",
-					last: "última"
-				}
-			}
-		});
-
-		$('.saveButton').on('click', function () {
+								} 
+			], 
+			language: { 
+				processing: "Procesamiento en curso...", 
+				search: "Buscar: ", 
+				lengthMenu: "Mostrando _MENU_ elementos", 
+				info: "Mostrando _START_ a _END_ de _TOTAL_ elementos", 
+				infoEmpty: "Mostrando 0 a 0 de 0 elementos", 
+				infoFiltered: "(filtrado de _MAX_ elementos en total)", 
+				infoPostFix: "", 
+				loadingRecords: "Cargando resultados...", 
+				zeroRecords: "No hay información para mostrar", 
+				emptyTable: "No hay información para mostrar", 
+				paginate: { 
+					first: "Primera", 
+					previous: "Anterior", 
+					next: "Siguiente", 
+					last: "última" 
+				} 
+			} 
+		}); 
+ 
+		$('.saveButton').on('click', function () { 
 			$('#tabla_pertenencia > tbody  > tr').each(function () {
 				var elID = $(this).attr('id');
 				var e = document.getElementById("menuPertenencias" + elID);
