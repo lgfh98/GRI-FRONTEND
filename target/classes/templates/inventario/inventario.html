@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/header :: header('Producciones en Custodia')">
+<meta charset="utf-8" />
+</head>
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
+	<div id="wrapper">
+
+
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 class="titulo-hero" th:text="${nombre}">
+							</h1>
+							Reportes relacionados a las producciones que se encuentran
+							actualmente en custodia de la Vicerrectoría de Investigaciones.
+						</div>
+					</div>
+				</div>
+				<div class="separador-1"></div>
+
+				<br></br> 
+
+				<div id="listageneral">
+					<ul class="cards-list">
+						<li class="ci-7 cards-item" th:classappend="${tamanio}"
+							th:each="obj : ${lista}">
+
+
+							<div class="card">
+
+
+
+
+								<a class="card-container"
+									th:href="${param.id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}">
+									<div class="card-title-container-s">
+										<h3 class="card-title-s" th:text="${obj.nombre}"></h3>
+									</div>
+								</a>
+								<div class="card-bar"
+									th:classappend="${subtipo} == 'f' ? card-+${obj.id} : ${color}"></div>
+							</div>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+</body>
+</html>
