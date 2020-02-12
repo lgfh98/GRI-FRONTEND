@@ -65,7 +65,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param facultadId el id de la facultad
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :facultadId and g.categoria like '%A1 CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :facultadId and g.categoria = 'A1'")
 	List<Grupo> getGruposA1Facultad(@Param(value="facultadId") Long facultadId);
 	
 	/**
@@ -73,7 +73,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param facultadId el id de la facultad
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :facultadId and g.categoria like '%A CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :facultadId and g.categoria = 'A'")
 	List<Grupo> getGruposAFacultad(@Param(value="facultadId") Long facultadId);
 	
 	/**
@@ -81,7 +81,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param facultadId el id de la facultad
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :facultadId and g.categoria like '%B CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :facultadId and g.categoria = 'B'")
 	List<Grupo> getGruposBFacultad(@Param(value="facultadId") Long facultadId);
 	
 	/**
@@ -89,7 +89,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param facultadId el id de la facultad
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :facultadId and g.categoria like '%C CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where f.id = :facultadId and g.categoria = 'C'")
 	List<Grupo> getGruposCFacultad(@Param(value="facultadId") Long facultadId);
 	
 	/**
@@ -113,7 +113,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param facultadId el id de la facultad
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria like '%A1 CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria = 'A1'")
 	List<Grupo> getAllGruposA1();
 	
 	/**
@@ -121,7 +121,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param facultadId el id de la facultad
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria like '%A CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria = 'A'")
 	List<Grupo> getAllGruposA();
 	
 	/**
@@ -129,7 +129,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param facultadId el id de la facultad
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria like '%B CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria = 'B'")
 	List<Grupo> getAllGruposB();
 	
 	/**
@@ -137,7 +137,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param facultadId el id de la facultad
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria like '%C CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join p.facultad f join g.centro c where g.categoria = 'C'")
 	List<Grupo> getAllGruposC();
 	
 	/**
@@ -169,7 +169,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param programaId el id del programa
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%A1 CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria = 'A1'")
 	List<Grupo> getGruposA1Programa(@Param(value="programaId") Long programaId);
 	
 	/**
@@ -177,7 +177,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param programaId el id del programa
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%A CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria = 'A'")
 	List<Grupo> getGruposAPrograma(@Param(value="programaId") Long programaId);
 	
 	/**
@@ -185,7 +185,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param programaId el id del programa
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%B CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria = 'B'")
 	List<Grupo> getGruposBPrograma(@Param(value="programaId") Long programaId);
 	
 	/**momoomm
@@ -193,7 +193,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param programaId el id del programa
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria like '%C CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where p.id = :programaId and g.categoria = 'C'")
 	List<Grupo> getGruposCPrograma(@Param(value="programaId") Long programaId);
 	
 	/**
@@ -247,7 +247,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param centroId el id del centro
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%A1 CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria = 'A1'")
 	List<Grupo> getGruposA1Centro(@Param(value="centroId") Long centroId);
 	
 	/**
@@ -255,7 +255,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param centroId el id del centro
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%A CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria = 'A'")
 	List<Grupo> getGruposACentro(@Param(value="centroId") Long centroId);
 	
 	/**
@@ -263,7 +263,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param centroId el id del centro
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%B CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria = 'B'")
 	List<Grupo> getGruposBCentro(@Param(value="centroId") Long centroId);
 	
 	/**momoomm
@@ -271,7 +271,7 @@ public interface GrupoRepository extends JpaRepository<Grupo, Long>{
 	 * 
 	 * @param centroId el id del centro
 	 */
-	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria like '%C CON VIGENCIA%'")
+	@Query("SELECT NEW co.edu.uniquindio.gri.model.Grupo(g.id, g.nombre, g.categoria, g.lider, p, c) FROM co.edu.uniquindio.gri.model.Grupo g join g.programas p join g.centro c where c.id = :centroId and g.categoria = 'C'")
 	List<Grupo> getGruposCCentro(@Param(value="centroId") Long centroId);
 	
 	/**
