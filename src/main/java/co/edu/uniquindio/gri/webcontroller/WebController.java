@@ -150,6 +150,11 @@ public class WebController {
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
 							utilidades.PERTENENCIA_ESTUDIANTE);
+				} else if (subType.equals("ind")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_INDEFINIDO);
 				} else {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
@@ -186,6 +191,11 @@ public class WebController {
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
 							utilidades.PERTENENCIA_ESTUDIANTE);
+				} else if (subType.equals("ind")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_INDEFINIDO);
 				} else {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
@@ -221,6 +231,11 @@ public class WebController {
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
 							utilidades.PERTENENCIA_ESTUDIANTE);
+				} else if (subType.equals("ind")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_INDEFINIDO);
 				} else {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
@@ -256,6 +271,11 @@ public class WebController {
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
 							utilidades.PERTENENCIA_ESTUDIANTE);
+				} else if (subType.equals("ind")) {
+					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
+					investigadores = utilidades.agregarPertenenciaInves(investigadores);
+					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+							utilidades.PERTENENCIA_INDEFINIDO);
 				} else {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
@@ -292,6 +312,11 @@ public class WebController {
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
 						utilidades.PERTENENCIA_ESTUDIANTE);
+			} else if (subType.equals("ind")) {
+				investigadores = investigadorDAO.getAllInvestigadoresInternos();
+				investigadores = utilidades.agregarPertenenciaInves(investigadores);
+				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+						utilidades.PERTENENCIA_INDEFINIDO);
 			} else {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
@@ -1480,13 +1505,16 @@ public class WebController {
 				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_EXTERNO);
 		List<Investigador> investigadores_facultad_EI = utilidades
 				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_ESTUDIANTE);
-
+		List<Investigador> investigadores_facultad_IND = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_INDEFINIDO);
+		
 		model.addAttribute("num_inves_Adm", investigadores_facultad_Adm.size());
 		model.addAttribute("num_inves_DP", investigadores_facultad_DP.size());
 		model.addAttribute("num_inves_DC", investigadores_facultad_DC.size());
 		model.addAttribute("num_inves_DO", investigadores_facultad_DO.size());
 		model.addAttribute("num_inves_IE", investigadores_facultad_IE.size());
 		model.addAttribute("num_inves_EI", investigadores_facultad_EI.size());
+		model.addAttribute("num_inves_IND", investigadores_facultad_IND.size());
 
 		model.addAttribute("peAdm", "adm");
 		model.addAttribute("peDp", "dp");
@@ -1494,6 +1522,7 @@ public class WebController {
 		model.addAttribute("peDo", "do");
 		model.addAttribute("peIe", "ie");
 		model.addAttribute("peEi", "ei");
+		model.addAttribute("peInd", "ind");
 
 		model.addAttribute("programaAcademico", "pa");
 		model.addAttribute("programaDoctorado", "pd");
@@ -1597,6 +1626,8 @@ public class WebController {
 				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_EXTERNO);
 		List<Investigador> investigadores_programa_EI = utilidades
 				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_ESTUDIANTE);
+		List<Investigador> investigadores_programa_IND = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_INDEFINIDO);
 
 		model.addAttribute("num_inves_Adm", investigadores_programa_Adm.size());
 		model.addAttribute("num_inves_DP", investigadores_programa_DP.size());
@@ -1604,6 +1635,7 @@ public class WebController {
 		model.addAttribute("num_inves_DO", investigadores_programa_DO.size());
 		model.addAttribute("num_inves_IE", investigadores_programa_IE.size());
 		model.addAttribute("num_inves_EI", investigadores_programa_EI.size());
+		model.addAttribute("num_inves_IND", investigadores_programa_IND.size());
 
 		model.addAttribute("peAdm", "adm");
 		model.addAttribute("peDp", "dp");
@@ -1611,6 +1643,7 @@ public class WebController {
 		model.addAttribute("peDo", "do");
 		model.addAttribute("peIe", "ie");
 		model.addAttribute("peEi", "ei");
+		model.addAttribute("peInd", "ind");
 
 		model.addAttribute("gruposInvestigacion", "g");
 		model.addAttribute("lineasInvestigacion", "l");
@@ -1733,13 +1766,17 @@ public class WebController {
 				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_EXTERNO);
 		List<Investigador> investigadores_centro_EI = utilidades
 				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_ESTUDIANTE);
+		List<Investigador> investigadores_centro_IND = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_INDEFINIDO);
 
+		
 		model.addAttribute("num_inves_Adm", investigadores_centro_Adm.size());
 		model.addAttribute("num_inves_DP", investigadores_centro_DP.size());
 		model.addAttribute("num_inves_DC", investigadores_centro_DC.size());
 		model.addAttribute("num_inves_DO", investigadores_centro_DO.size());
 		model.addAttribute("num_inves_IE", investigadores_centro_IE.size());
 		model.addAttribute("num_inves_EI", investigadores_centro_EI.size());
+		model.addAttribute("num_inves_IND", investigadores_centro_IND.size());
 
 		model.addAttribute("peAdm", "adm");
 		model.addAttribute("peDp", "dp");
@@ -1747,6 +1784,7 @@ public class WebController {
 		model.addAttribute("peDo", "do");
 		model.addAttribute("peIe", "ie");
 		model.addAttribute("peEi", "ei");
+		model.addAttribute("peInd", "ind");
 
 		return "estadisticas/centros";
 	}
@@ -1826,13 +1864,18 @@ public class WebController {
 				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_EXTERNO);
 		List<Investigador> investigadores_grupo_EI = utilidades
 				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_ESTUDIANTE);
+		List<Investigador> investigadores_grupo_IND = utilidades
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_INDEFINIDO);
 
+		
+		
 		model.addAttribute("num_inves_Adm", investigadores_grupo_Adm.size());
 		model.addAttribute("num_inves_DP", investigadores_grupo_DP.size());
 		model.addAttribute("num_inves_DC", investigadores_grupo_DC.size());
 		model.addAttribute("num_inves_DO", investigadores_grupo_DO.size());
 		model.addAttribute("num_inves_IE", investigadores_grupo_IE.size());
 		model.addAttribute("num_inves_EI", investigadores_grupo_EI.size());
+		model.addAttribute("num_inves_IND", investigadores_grupo_IND.size());
 
 		model.addAttribute("peAdm", "adm");
 		model.addAttribute("peDp", "dp");
@@ -1840,6 +1883,7 @@ public class WebController {
 		model.addAttribute("peDo", "do");
 		model.addAttribute("peIe", "ie");
 		model.addAttribute("peEi", "ei");
+		model.addAttribute("peInd", "ind");
 
 		return "estadisticas/grupos";
 	}
@@ -2375,6 +2419,10 @@ public class WebController {
 				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_basicas_ei", lista_investigadores_Basicas_EI.size());
 
+		List<Investigador> lista_investigadores_Basicas_IND = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_INDEFINIDO);
+		model.addAttribute("Num_inves_basicas_ind", lista_investigadores_Basicas_IND.size());
+
 		// --------------------EDUCACION----------------------
 
 		List<Investigador> lista_investigadores_Educacion_Adm = utilidades.seleccionarInvestigadoresPertenencia(
@@ -2399,6 +2447,10 @@ public class WebController {
 		List<Investigador> lista_investigadores_Educacion_EI = utilidades.seleccionarInvestigadoresPertenencia(
 				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_educacion_ei", lista_investigadores_Educacion_EI.size());
+
+		List<Investigador> lista_investigadores_Educacion_IND = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_INDEFINIDO);
+		model.addAttribute("Num_inves_educacion_ind", lista_investigadores_Educacion_IND.size());
 
 		// -----------------------SALUD----------------------------
 
@@ -2425,6 +2477,10 @@ public class WebController {
 				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_salud_ei", lista_investigadores_Salud_EI.size());
 
+		List<Investigador> lista_investigadores_Salud_IND = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_INDEFINIDO);
+		model.addAttribute("Num_inves_salud_ind", lista_investigadores_Salud_IND.size());
+
 		// -----------------INGENIERIA-------------------------
 
 		List<Investigador> lista_investigadores_Ingenieria_Adm = utilidades.seleccionarInvestigadoresPertenencia(
@@ -2449,6 +2505,10 @@ public class WebController {
 		List<Investigador> lista_investigadores_Ingenieria_EI = utilidades.seleccionarInvestigadoresPertenencia(
 				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_ingenieria_ei", lista_investigadores_Ingenieria_EI.size());
+
+		List<Investigador> lista_investigadores_Ingenieria_IND = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_INDEFINIDO);
+		model.addAttribute("Num_inves_ingenieria_ind", lista_investigadores_Ingenieria_IND.size());
 
 		// -----------------------------HUMANAS---------------------------
 
@@ -2475,6 +2535,10 @@ public class WebController {
 				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_humanas_ei", lista_investigadores_Humanas_EI.size());
 
+		List<Investigador> lista_investigadores_Humanas_IND = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_INDEFINIDO);
+		model.addAttribute("Num_inves_humanas_ind", lista_investigadores_Humanas_IND.size());
+
 		// --------------------AGRO-------------------------------
 
 		List<Investigador> lista_investigadores_Agro_Adm = utilidades.seleccionarInvestigadoresPertenencia(
@@ -2500,6 +2564,10 @@ public class WebController {
 				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_agro_ei", lista_investigadores_Agro_EI.size());
 
+		List<Investigador> lista_investigadores_Agro_IND = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_INDEFINIDO);
+		model.addAttribute("Num_inves_agro_ind", lista_investigadores_Agro_IND.size());
+
 		// -------------------Economicas-------------------------------
 		List<Investigador> lista_investigadores_Economicas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
 				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_ADMINISTRATIVO);
@@ -2523,6 +2591,10 @@ public class WebController {
 		List<Investigador> lista_investigadores_Economicas_EI = utilidades.seleccionarInvestigadoresPertenencia(
 				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_economicas_ei", lista_investigadores_Economicas_EI.size());
+
+		List<Investigador> lista_investigadores_Economicas_IND = utilidades.seleccionarInvestigadoresPertenencia(
+				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_INDEFINIDO);
+		model.addAttribute("Num_inves_economicas_ind", lista_investigadores_Economicas_IND.size());
 
 		// -------------------------------TOTAL-------------------------------------------
 
@@ -2551,12 +2623,18 @@ public class WebController {
 				+ lista_investigadores_Humanas_EI.size() + lista_investigadores_Agro_EI.size()
 				+ lista_investigadores_Economicas_EI.size();
 
+		int total_investigadores_IND = lista_investigadores_Basicas_IND.size()
+				+ lista_investigadores_Educacion_IND.size() + lista_investigadores_Salud_IND.size()
+				+ lista_investigadores_Ingenieria_IND.size() + lista_investigadores_Humanas_IND.size()
+				+ lista_investigadores_Agro_IND.size() + lista_investigadores_Economicas_IND.size();
+
 		model.addAttribute("total_adm", total_investigadores_Adm);
 		model.addAttribute("total_DP", total_investigadores_DP);
 		model.addAttribute("total_DC", total_investigadores_DC);
 		model.addAttribute("total_DO", total_investigadores_DO);
 		model.addAttribute("total_IE", total_investigadores_IE);
 		model.addAttribute("total_EI", total_investigadores_EI);
+		model.addAttribute("total_IND", total_investigadores_IND);
 
 		model.addAttribute("peAdm", "adm");
 		model.addAttribute("peDp", "dp");
@@ -2564,6 +2642,7 @@ public class WebController {
 		model.addAttribute("peDo", "do");
 		model.addAttribute("peIe", "ie");
 		model.addAttribute("peEi", "ei");
+		model.addAttribute("peInd", "ind");
 
 		// ------Adición de atributos al modelo para referenciar a páginas
 		// especificas-----------------------------------------------------------------------
