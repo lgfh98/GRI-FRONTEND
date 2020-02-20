@@ -85,12 +85,12 @@ public class WebController {
 	public String main(Model model) {
 		List<BigInteger> stats = facultadDAO.getStats();
 
-		model.addAttribute("cantFacultades", stats.get(0));
-		model.addAttribute("cantCentros", stats.get(1));
-		model.addAttribute("cantProgramas", stats.get(2));
-		model.addAttribute("cantGrupos", stats.get(3));
-		model.addAttribute("cantInves", stats.get(4));
-		model.addAttribute("estadisticas", "");
+		model.addAttribute(Util.CANTIDAD_FACULTADES, stats.get(Util.CANTIDAD_FACULTADES_ID));
+		model.addAttribute(Util.CANTIDAD_CENTROS, stats.get(Util.CANTIDAD_CENTROS_ID));
+		model.addAttribute(Util.CANTIDAD_PROGRAMAS, stats.get(Util.CANTIDAD_PROGRAMAS_ID));
+		model.addAttribute(Util.CANTIDAD_GRUPOS, stats.get(Util.CANTIDAD_GRUPOS_ID));
+		model.addAttribute(Util.CANTIDAD_INVESTIGADORES, stats.get(Util.CANTIDAD_INVESTIGADORES_ID));
+		model.addAttribute(Util.ESTATICA_ESTADISTICAS, "");
 
 		return "index";
 	}

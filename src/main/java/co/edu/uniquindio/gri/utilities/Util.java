@@ -23,6 +23,24 @@ public class Util {
 	public static final String PERTENENCIA_ADMINISTRATIVO = "ADMINISTRATIVO";
 	public static final String PERTENENCIA_EXTERNO = "INVESTIGADOR EXTERNO";
 	public static final String PERTENENCIA_ESTUDIANTE = "ESTUDIANTE INVESTIGADOR";
+	
+	public static final String CANTIDAD_FACULTADES = "cantFacultades";
+	public static final String CANTIDAD_CENTROS = "cantCentros";
+	public static final String CANTIDAD_PROGRAMAS = "cantProgramas";
+	public static final String CANTIDAD_GRUPOS = "cantGrupos";
+	public static final String CANTIDAD_INVESTIGADORES = "cantInves";
+	public static final String ESTATICA_ESTADISTICAS = "estadisticas";
+	
+	public static final int CANTIDAD_FACULTADES_ID = 0;
+	public static final int CANTIDAD_CENTROS_ID = 1;
+	public static final int CANTIDAD_PROGRAMAS_ID = 2;
+	public static final int CANTIDAD_GRUPOS_ID = 3;
+	public static final int CANTIDAD_INVESTIGADORES_ID = 4;
+	
+	public static final String PARAM_TYPE = "type";
+	public static final String PARAM_SUBTYPE = "subtype";
+	
+	
 
 	/**
 	 * constructor de la clase Util
