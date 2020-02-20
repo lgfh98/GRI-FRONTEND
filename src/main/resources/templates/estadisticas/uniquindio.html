@@ -1870,7 +1870,11 @@
 								<button class="button-title"># Administrativos</button>
 							</div>
 							<div>
-								<button class="button-title"># Estudiantes Investigadores</button>
+								<button class="button-title"># Estudiantes
+									Investigadores</button>
+							</div>
+							<div>
+								<button class="button-title"># Indefinidos</button>
 							</div>
 							<div>
 								<button class="button-title button-title">Total</button>
@@ -1923,6 +1927,13 @@
 								</a>
 							</div>
 							<div>
+								<a class="link"
+									th:href="@{investigadoresP(subType=${peInd},id=${idFacultadCienciasBasicas})}">
+									<button class="button-item button-res-basicas"
+										th:text="${Num_inves_basicas_ind}"></button>
+								</a>
+							</div>
+							<div>
 
 								<a class="link"
 									th:href="@{investigadoresP(id=${idFacultadCienciasBasicas})}">
@@ -1937,7 +1948,7 @@
 
 
 
-						
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDp},id=${idFacultadEducacion})}">
@@ -1952,7 +1963,7 @@
 										th:text="${Num_inves_educacion_do}"></button>
 								</a>
 							</div>
-							
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDc},id=${idFacultadEducacion})}">
@@ -1960,7 +1971,7 @@
 										th:text="${Num_inves_educacion_dc}"></button>
 								</a>
 							</div>
-							
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peIe},id=${idFacultadEducacion})}">
@@ -1968,10 +1979,10 @@
 										th:text="${Num_inves_educacion_ie}"></button>
 								</a>
 							</div>
-								<div>
+							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peAdm},id=${idFacultadEducacion})}">
-									<button class="button-item button-res-basicas"
+									<button class="button-item button-res-educacion"
 										th:text="${Num_inves_educacion_Admin}"></button>
 								</a>
 							</div>
@@ -1980,6 +1991,13 @@
 									th:href="@{investigadoresP(subType=${peEi},id=${idFacultadEducacion})}">
 									<button class="button-item button-res-educacion"
 										th:text="${Num_inves_educacion_ei}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link"
+									th:href="@{investigadoresP(subType=${peInd},id=${idFacultadEducacion})}">
+									<button class="button-item button-res-educacion"
+										th:text="${Num_inves_educacion_ind}"></button>
 								</a>
 							</div>
 							<div>
@@ -1996,7 +2014,7 @@
 							</div>
 
 
-						
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDp},id=${idFacultadCienciasDeLaSalud})}">
@@ -2004,7 +2022,7 @@
 										th:text="${Num_inves_salud_dp}"></button>
 								</a>
 							</div>
-								<div>
+							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDo},id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-item button-res-salud"
@@ -2018,7 +2036,7 @@
 										th:text="${Num_inves_salud_dc}"></button>
 								</a>
 							</div>
-						
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peIe},id=${idFacultadCienciasDeLaSalud})}">
@@ -2026,7 +2044,7 @@
 										th:text="${Num_inves_salud_ie}"></button>
 								</a>
 							</div>
-								<div>
+							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peAdm},id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-item button-res-salud"
@@ -2038,6 +2056,13 @@
 									th:href="@{investigadoresP(subType=${peEi},id=${idFacultadCienciasDeLaSalud})}">
 									<button class="button-item button-res-salud"
 										th:text="${Num_inves_salud_ei}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link"
+									th:href="@{investigadoresP(subType=${peInd},id=${idFacultadCienciasDeLaSalud})}">
+									<button class="button-item button-res-salud"
+										th:text="${Num_inves_salud_ind}"></button>
 								</a>
 							</div>
 							<div>
@@ -2053,7 +2078,7 @@
 							</div>
 
 
-							
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDp},id=${idFacultadIngenieria})}">
@@ -2061,7 +2086,7 @@
 										th:text="${Num_inves_ingenieria_dp}"></button>
 								</a>
 							</div>
-								<div>
+							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDo},id=${idFacultadIngenieria})}">
 									<button class="button-item button-res-ingenieria"
@@ -2075,7 +2100,7 @@
 										th:text="${Num_inves_ingenieria_dc}"></button>
 								</a>
 							</div>
-						
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peIe},id=${idFacultadIngenieria})}">
@@ -2098,6 +2123,13 @@
 								</a>
 							</div>
 							<div>
+								<a class="link"
+									th:href="@{investigadoresP(subType=${peInd},id=${idFacultadIngenieria})}">
+									<button class="button-item button-res-ingenieria"
+										th:text="${Num_inves_ingenieria_ind}"></button>
+								</a>
+							</div>
+							<div>
 
 								<a class="link"
 									th:href="@{investigadoresP(id=${idFacultadIngenieria})}">
@@ -2112,7 +2144,7 @@
 
 
 
-							
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDp},id=${idFacultadCienciasHumanas})}">
@@ -2134,7 +2166,7 @@
 										th:text="${Num_inves_humanas_dc}"></button>
 								</a>
 							</div>
-							
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peIe},id=${idFacultadCienciasHumanas})}">
@@ -2157,6 +2189,13 @@
 								</a>
 							</div>
 							<div>
+								<a class="link"
+									th:href="@{investigadoresP(subType=${peInd},id=${idFacultadCienciasHumanas})}">
+									<button class="button-item button-res-humanas"
+										th:text="${Num_inves_humanas_ind}"></button>
+								</a>
+							</div>
+							<div>
 
 								<a class="link"
 									th:href="@{investigadoresP(id=${idFacultadCienciasHumanas})}">
@@ -2169,7 +2208,7 @@
 									Agroindustriales</button>
 							</div>
 
-						
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDp},id=${idFacultadAgroindustria})}">
@@ -2191,7 +2230,7 @@
 										th:text="${Num_inves_agro_dc}"></button>
 								</a>
 							</div>
-							
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peIe},id=${idFacultadAgroindustria})}">
@@ -2199,7 +2238,7 @@
 										th:text="${Num_inves_agro_ie}"></button>
 								</a>
 							</div>
-								<div>
+							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peAdm},id=${idFacultadAgroindustria})}">
 									<button class="button-item button-res-agroindustria"
@@ -2211,6 +2250,13 @@
 									th:href="@{investigadoresP(subType=${peEi},id=${idFacultadAgroindustria})}">
 									<button class="button-item button-res-agroindustria"
 										th:text="${Num_inves_agro_ei}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link"
+									th:href="@{investigadoresP(subType=${peInd},id=${idFacultadAgroindustria})}">
+									<button class="button-item button-res-agroindustria"
+										th:text="${Num_inves_agro_ind}"></button>
 								</a>
 							</div>
 							<div>
@@ -2226,7 +2272,7 @@
 									Económicas</button>
 							</div>
 
-							
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peDp},id=${idFacultadCienciasEconomicas})}">
@@ -2248,7 +2294,7 @@
 										th:text="${Num_inves_economicas_dc}"></button>
 								</a>
 							</div>
-							
+
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(subType=${peIe},id=${idFacultadCienciasEconomicas})}">
@@ -2271,6 +2317,13 @@
 								</a>
 							</div>
 							<div>
+								<a class="link"
+									th:href="@{investigadoresP(subType=${peInd},id=${idFacultadCienciasEconomicas})}">
+									<button class="button-item button-res-economicas"
+										th:text="${Num_inves_economicas_ind}"></button>
+								</a>
+							</div>
+							<div>
 
 								<a class="link"
 									th:href="@{investigadoresP(id=${idFacultadCienciasEconomicas})}">
@@ -2281,7 +2334,7 @@
 							<div>
 								<button class="button-title button-title">Total</button>
 							</div>
-						
+
 
 							<div>
 								<a class="link" th:href="@{investigadoresP(subType=${peDp})}">
@@ -2298,13 +2351,13 @@
 									<button class="button-title-total" th:text="${total_DC}"></button>
 								</a>
 							</div>
-							
+
 							<div>
 								<a class="link" th:href="@{investigadoresP(subType=${peIe})}">
 									<button class="button-title-total" th:text="${total_IE}"></button>
 								</a>
 							</div>
-								<div>
+							<div>
 								<a class="link" th:href="@{investigadoresP(subType=${peAdm})}">
 									<button class="button-title-total" th:text="${total_adm}"></button>
 								</a>
@@ -2312,6 +2365,11 @@
 							<div>
 								<a class="link" th:href="@{investigadoresP(subType=${peEi})}">
 									<button class="button-title-total" th:text="${total_EI}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link" th:href="@{investigadoresP(subType=${peInd})}">
+									<button class="button-title-total" th:text="${total_IND}"></button>
 								</a>
 							</div>
 							<div>
