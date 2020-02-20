@@ -47,7 +47,9 @@ public class Investigador implements Serializable {
 	/** The pertenencia. */
 	@Column(name = "PERTENENCIA", length = 50)
 	private String pertenencia;
-
+	@Column(name = "SEXO", length = 50)
+	private String sexo; 
+	
 	/** The idiomas. */
 	@OneToMany( mappedBy = "investigador", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Idiomas> idiomas = new ArrayList<Idiomas>();
@@ -84,7 +86,7 @@ public class Investigador implements Serializable {
 	 * @param producciones the producciones
 	 * @param produccionesBibliograficas the producciones bibliograficas
 	 */
-	public Investigador(long id, String nombre, String categoria, String nivelAcademico, List<Idiomas> idiomas,
+	public Investigador(long id, String nombre, String categoria,String sexo, String nivelAcademico, List<Idiomas> idiomas,
 			List<LineasInvestigacion> lineasInvestigacion, List<Produccion> producciones,
 			List<ProduccionB> produccionesBibliograficas) {
 		this.id = id;
@@ -92,6 +94,7 @@ public class Investigador implements Serializable {
 		this.categoria = categoria;
 		this.nivelAcademico = nivelAcademico;
 		this.idiomas = idiomas;
+		this.sexo = sexo;
 		this.lineasInvestigacion = lineasInvestigacion;
 		this.produccionesBibliograficas = produccionesBibliograficas;
 
@@ -176,6 +179,22 @@ public class Investigador implements Serializable {
 	public String getCategoria() {
 		return categoria;
 	}
+
+	
+	
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+
+
+
+
+
 
 	/**
 	 * Sets the categoria.
