@@ -115,12 +115,13 @@ public class Investigador implements Serializable {
 	 * @param nivelAcademico the nivel academico
 	 * @param pertenencia the pertenencia
 	 */
-	public Investigador(long id, String nombre, String categoria, String nivelAcademico, String pertenencia) {
+	public Investigador(long id, String nombre, String categoria, String nivelAcademico, String pertenencia,String sexo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.nivelAcademico = nivelAcademico;
 		this.pertenencia = pertenencia;
+		this.sexo=sexo;
 	}
 
 
