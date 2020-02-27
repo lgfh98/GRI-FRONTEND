@@ -38,7 +38,23 @@ public class Util {
 	public static final int CANTIDAD_INVESTIGADORES_ID = 4;
 	
 	public static final String PARAM_TYPE = "type";
-	public static final String PARAM_SUBTYPE = "subtype";
+	public static final String PARAM_SUBTYPE = "subType";
+	public static final String PARAM_ID = "id";
+	
+	public static final String UNIVERSITY_PARAM_ID = "u";
+	public static final String FACULTY_PARAM_ID = "f";
+	
+	public static final String UNDERGRADUATE_PROGRAM_PARAM_ID = "pa";
+	
+	public static final String PARAM_UNIVERSITY_LEVEL_ID = "0";
+	
+	public static final String PARAM_UNIVERSITY_LEVEL = "idUniquindio";
+	
+	public static final String ADMIN_BELOGNING_PARAM_ID = "adm";
+	
+	
+	
+	
 	
 	
 

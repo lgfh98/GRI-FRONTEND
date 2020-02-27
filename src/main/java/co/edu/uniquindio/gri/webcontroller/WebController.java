@@ -111,187 +111,187 @@ public class WebController {
 
 	@GetMapping("/investigadoresP")
 	public String getInvestigadoresPertenencia(
-			@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
-		model.addAttribute("type", type);
-		model.addAttribute("id", id);
+			@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_SUBTYPE, required = false, defaultValue = Util.UNDERGRADUATE_PROGRAM_PARAM_ID) String subType,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model) {
+		model.addAttribute(Util.PARAM_TYPE, type);
+		model.addAttribute(Util.PARAM_ID, id);
 
 		List<Investigador> investigadores = new ArrayList<Investigador>();
 		if (Long.parseLong(id) != 0) {
-			if (type.equals("f") || type.equals("u")) {
-				if (subType.equals("adm")) {
+			if (type.equals(Util.FACULTY_PARAM_ID) || type.equals(Util.UNIVERSITY_PARAM_ID)) {
+				if (subType.equals(Util.ADMIN_BELOGNING_PARAM_ID)) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_ADMINISTRATIVO);
+							Util.PERTENENCIA_ADMINISTRATIVO);
 				} else if (subType.equals("dp")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_PLANTA);
+							Util.PERTENENCIA_DOCENTE_PLANTA);
 				} else if (subType.equals("dc")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+							Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 				} else if (subType.equals("do")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+							Util.PERTENENCIA_DOCENTE_OCASIONAL);
 				} else if (subType.equals("ie")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_EXTERNO);
+							Util.PERTENENCIA_EXTERNO);
 				} else if (subType.equals("ei")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_ESTUDIANTE);
+							Util.PERTENENCIA_ESTUDIANTE);
 				} else {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				}
 
 			} else if (type.equals("g")) {
-				if (subType.equals("adm")) {
+				if (subType.equals(Util.ADMIN_BELOGNING_PARAM_ID)) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_ADMINISTRATIVO);
+							Util.PERTENENCIA_ADMINISTRATIVO);
 				} else if (subType.equals("dp")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_PLANTA);
+							Util.PERTENENCIA_DOCENTE_PLANTA);
 				} else if (subType.equals("dc")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+							Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 				} else if (subType.equals("do")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+							Util.PERTENENCIA_DOCENTE_OCASIONAL);
 				} else if (subType.equals("ie")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_EXTERNO);
+							Util.PERTENENCIA_EXTERNO);
 				} else if (subType.equals("ei")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_ESTUDIANTE);
+							Util.PERTENENCIA_ESTUDIANTE);
 				} else {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				}
 			} else if (type.equals("c")) {
-				if (subType.equals("adm")) {
+				if (subType.equals(Util.ADMIN_BELOGNING_PARAM_ID)) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_ADMINISTRATIVO);
+							Util.PERTENENCIA_ADMINISTRATIVO);
 				} else if (subType.equals("dp")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_PLANTA);
+							Util.PERTENENCIA_DOCENTE_PLANTA);
 				} else if (subType.equals("dc")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+							Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 				} else if (subType.equals("do")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+							Util.PERTENENCIA_DOCENTE_OCASIONAL);
 				} else if (subType.equals("ie")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_EXTERNO);
+							Util.PERTENENCIA_EXTERNO);
 				} else if (subType.equals("ei")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_ESTUDIANTE);
+							Util.PERTENENCIA_ESTUDIANTE);
 				} else {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				}
 			} else if (type.equals("p")) {
-				if (subType.equals("adm")) {
+				if (subType.equals(Util.ADMIN_BELOGNING_PARAM_ID)) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_ADMINISTRATIVO);
+							Util.PERTENENCIA_ADMINISTRATIVO);
 				} else if (subType.equals("dp")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_PLANTA);
+							Util.PERTENENCIA_DOCENTE_PLANTA);
 				} else if (subType.equals("dc")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+							Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 				} else if (subType.equals("do")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+							Util.PERTENENCIA_DOCENTE_OCASIONAL);
 				} else if (subType.equals("ie")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_EXTERNO);
+							Util.PERTENENCIA_EXTERNO);
 				} else if (subType.equals("ei")) {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 					investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-							utilidades.PERTENENCIA_ESTUDIANTE);
+							Util.PERTENENCIA_ESTUDIANTE);
 				} else {
 					investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
 					investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				}
 			}
 		} else {
-			if (subType.equals("adm")) {
+			if (subType.equals(Util.ADMIN_BELOGNING_PARAM_ID)) {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-						utilidades.PERTENENCIA_ADMINISTRATIVO);
+						Util.PERTENENCIA_ADMINISTRATIVO);
 			} else if (subType.equals("dp")) {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-						utilidades.PERTENENCIA_DOCENTE_PLANTA);
+						Util.PERTENENCIA_DOCENTE_PLANTA);
 			} else if (subType.equals("dc")) {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-						utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+						Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 			} else if (subType.equals("do")) {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-						utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+						Util.PERTENENCIA_DOCENTE_OCASIONAL);
 			} else if (subType.equals("ie")) {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-						utilidades.PERTENENCIA_EXTERNO);
+						Util.PERTENENCIA_EXTERNO);
 			} else if (subType.equals("ei")) {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
 				investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
-						utilidades.PERTENENCIA_ESTUDIANTE);
+						Util.PERTENENCIA_ESTUDIANTE);
 			} else {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 				investigadores = utilidades.agregarPertenenciaInves(investigadores);
@@ -304,15 +304,15 @@ public class WebController {
 	}
 
 	@GetMapping("/investigadores")
-	public String getInvestigadores(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
-		model.addAttribute("type", type);
-		model.addAttribute("id", id);
+	public String getInvestigadores(@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_SUBTYPE, required = false, defaultValue = Util.UNDERGRADUATE_PROGRAM_PARAM_ID) String subType,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model) {
+		model.addAttribute(Util.PARAM_TYPE, type);
+		model.addAttribute(Util.PARAM_ID, id);
 
 		List<Investigador> investigadores = new ArrayList<Investigador>();
 		if (Long.parseLong(id) != 0) {
-			if (type.equals("f") || type.equals("u")) {
+			if (type.equals(Util.FACULTY_PARAM_ID) || type.equals(Util.UNIVERSITY_PARAM_ID)) {
 				if (subType.equals("ie")) {
 					investigadores = investigadorDAO.getInvestigadoresEmeritosFacultad(Long.parseLong(id));
 				} else if (subType.equals("is")) {
@@ -442,12 +442,12 @@ public class WebController {
 	}
 
 	@GetMapping("/programas")
-	public String getProgramas(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
-		model.addAttribute("type", type);
-		model.addAttribute("id", id);
+	public String getProgramas(@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model) {
+		model.addAttribute(Util.PARAM_TYPE, type);
+		model.addAttribute(Util.PARAM_ID, id);
 		if (Long.parseLong(id) != 0) {
-			if (type.equals("pa")) {
+			if (type.equals(Util.UNDERGRADUATE_PROGRAM_PARAM_ID)) {
 				model.addAttribute("listaProgramas", programaDAO.getProgramasAcademicosFacultad(Long.parseLong(id)));
 			} else if (type.equals("pd")) {
 				model.addAttribute("listaProgramas", programaDAO.getProgramasDoctoradoFacultad(Long.parseLong(id)));
@@ -460,7 +460,7 @@ public class WebController {
 				model.addAttribute("listaProgramas", programaDAO.getAllProgramas());
 			}
 		} else {
-			if (type.equals("pa")) {
+			if (type.equals(Util.UNDERGRADUATE_PROGRAM_PARAM_ID)) {
 				model.addAttribute("listaProgramas", programaDAO.getProgramasAcademicos());
 			} else if (type.equals("pd")) {
 				model.addAttribute("listaProgramas", programaDAO.getProgramasDoctorado());
@@ -482,10 +482,10 @@ public class WebController {
 	}
 
 	@GetMapping("/centros")
-	public String getCentros(@RequestParam(name = "type", required = false, defaultValue = "pa") String type,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
-		model.addAttribute("type", type);
-		model.addAttribute("id", id);
+	public String getCentros(@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNDERGRADUATE_PROGRAM_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model) {
+		model.addAttribute(Util.PARAM_TYPE, type);
+		model.addAttribute(Util.PARAM_ID, id);
 		if (Long.parseLong(id) != 0) {
 			model.addAttribute("listaCentros", centroDAO.getAllCentrosFacultad(Long.parseLong(id)));
 		} else {
@@ -495,13 +495,13 @@ public class WebController {
 	}
 
 	@GetMapping("/grupos")
-	public String getGrupos(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
-		model.addAttribute("type", type);
-		model.addAttribute("id", id);
+	public String getGrupos(@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_SUBTYPE, required = false, defaultValue = Util.UNDERGRADUATE_PROGRAM_PARAM_ID) String subType,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model) {
+		model.addAttribute(Util.PARAM_TYPE, type);
+		model.addAttribute(Util.PARAM_ID, id);
 		if (Long.parseLong(id) != 0) {
-			if (type.equals("f") || type.equals("u")) {
+			if (type.equals(Util.FACULTY_PARAM_ID) || type.equals(Util.UNIVERSITY_PARAM_ID)) {
 				if (subType.equals("ca1")) {
 					model.addAttribute("listaGrupos", grupoDAO.getGruposA1Facultad(Long.parseLong(id)));
 				} else if (subType.equals("ca")) {
@@ -571,13 +571,13 @@ public class WebController {
 	}
 
 	@GetMapping("/lineas")
-	public String getLineasInvestigacion(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "subType", required = false, defaultValue = "u") String subType,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
-		model.addAttribute("type", type);
-		model.addAttribute("id", id);
+	public String getLineasInvestigacion(@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_SUBTYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String subType,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model) {
+		model.addAttribute(Util.PARAM_TYPE, type);
+		model.addAttribute(Util.PARAM_ID, id);
 		if (Long.parseLong(id) != 0) {
-			if (type.equals("f") || type.equals("u")) {
+			if (type.equals(Util.FACULTY_PARAM_ID) || type.equals(Util.UNIVERSITY_PARAM_ID)) {
 				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasFacultad(Long.parseLong(id)));
 			} else if (type.equals("c")) {
 				model.addAttribute("listaLineas", lineasInvestigacionDAO.getLineasCentro(Long.parseLong(id)));
@@ -597,22 +597,22 @@ public class WebController {
 	}
 
 	@GetMapping("/general")
-	public String getTipologias(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+	public String getTipologias(@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model) {
 
-		model.addAttribute("id", id);
+		model.addAttribute(Util.PARAM_ID, id);
 		model.addAttribute("tipo", type);
 
-		if (type.equals("u")) {
+		if (type.equals(Util.UNIVERSITY_PARAM_ID)) {
 			List<Facultad> facultades = facultadDAO.getAllFacultades();
 
 			model.addAttribute("nombre", "Tipología De Productos Para La Universidad Del Quindío");
 			model.addAttribute("lista", facultades);
-			model.addAttribute("subtipo", "f");
+			model.addAttribute("subtipo", Util.FACULTY_PARAM_ID);
 			model.addAttribute("color", "card-0");
 			model.addAttribute("tamanio", "ci-" + calcularTamanio(facultades.size()));
 
-		} else if (type.equals("f")) {
+		} else if (type.equals(Util.FACULTY_PARAM_ID)) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			List<Programa> programas = programaDAO.getProgramasFacultad(Long.parseLong(id));
 
@@ -660,42 +660,42 @@ public class WebController {
 	}
 
 	@GetMapping("/inventario")
-	public String getInventario(@RequestParam(name = "id", required = false, defaultValue = "u") String id,
+	public String getInventario(@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String id,
 			Model model) {
 
-		if (id.equals("u")) {
+		if (id.equals(Util.UNIVERSITY_PARAM_ID)) {
 			model.addAttribute("nombre", "Producciones en Custodia");
 			model.addAttribute("lista", facultadDAO.getAllFacultades());
 			model.addAttribute("tamanio", "ci-4");
 			model.addAttribute("color", "card-0");
-			model.addAttribute("subtipo", "f");
+			model.addAttribute("subtipo", Util.FACULTY_PARAM_ID);
 		} else {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
-			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), "f");
+			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), Util.FACULTY_PARAM_ID);
 			model.addAttribute("nombre", f.getNombre());
 			model.addAttribute("lista", listaGrupos);
 			model.addAttribute("color", "card-" + f.getId());
-			model.addAttribute("id", "" + f.getId());
+			model.addAttribute(Util.PARAM_ID, "" + f.getId());
 			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
 		}
 		return "inventario/inventario";
 	}
 
 	@GetMapping("/reporteinventario")
-	public String getReporteInventario(@RequestParam(name = "id", required = true) String id, Model model) {
+	public String getReporteInventario(@RequestParam(name = Util.PARAM_ID, required = true) String id, Model model) {
 
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
 
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
-		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());
+		model.addAttribute(Util.PARAM_ID, "" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("producciones", produccionDAO.getAllProducciones(Long.parseLong(id)));
 
 		return "inventario/reporteinventario";
 	}
 
 	@GetMapping("/reportepertenencia")
-	public String getReportePertenencia(@RequestParam(name = "id", required = true) String id, Model model) {
+	public String getReportePertenencia(@RequestParam(name = Util.PARAM_ID, required = true) String id, Model model) {
 
 		Grupo g = grupoDAO.findOne(Long.parseLong(id));
 
@@ -719,33 +719,33 @@ public class WebController {
 		model.addAttribute("nombre", g.getNombre());
 		model.addAttribute("color", "card-" + g.getProgramas().get(0).getFacultad().getId());
 		model.addAttribute("integrantes", integrantes);
-		model.addAttribute("id", "" + g.getProgramas().get(0).getFacultad().getId());
+		model.addAttribute(Util.PARAM_ID, "" + g.getProgramas().get(0).getFacultad().getId());
 
 		return "pertenencia_investigadores/reportepertenencia";
 
 	}
 
 	@GetMapping("/pertenencia")
-	public String getPertenencia(@RequestParam(name = "id", required = false, defaultValue = "u") String id,
+	public String getPertenencia(@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String id,
 			Model model) {
 
-		if (id.equals("u")) {
+		if (id.equals(Util.UNIVERSITY_PARAM_ID)) {
 
 			model.addAttribute("nombre", "Pertenencia de Investigadores");
 			model.addAttribute("lista", facultadDAO.getAllFacultades());
 			model.addAttribute("tamanio", "ci-4");
 			model.addAttribute("color", "card-0");
-			model.addAttribute("subtipo", "f");
+			model.addAttribute("subtipo", Util.FACULTY_PARAM_ID);
 		}
 
 		else {
 
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
-			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), "f");
+			List<Grupo> listaGrupos = grupoDAO.getGruposPertenecientes(Long.parseLong(id), Util.FACULTY_PARAM_ID);
 			model.addAttribute("nombre", f.getNombre());
 			model.addAttribute("lista", listaGrupos);
 			model.addAttribute("color", "card-" + f.getId());
-			model.addAttribute("id", "" + f.getId());
+			model.addAttribute(Util.PARAM_ID, "" + f.getId());
 			model.addAttribute("tamanio", "ci-" + calcularTamanio(listaGrupos.size()));
 
 		}
@@ -773,8 +773,8 @@ public class WebController {
 	 */
 	@GetMapping("/imprimir-reporte-estadistico")
 	public void imprimirReporteEstadistico(
-			@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model,
+			@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model,
 			HttpServletResponse response) throws SQLException, IOException, JRException {
 
 		Connection conexion = jdbcTemplate.getDataSource().getConnection();
@@ -799,8 +799,8 @@ public class WebController {
 	 */
 	@GetMapping("/descargar-reporte-estadistico")
 	public void descargarReporteEstadistico(
-			@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model,
+			@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model,
 			HttpServletResponse response) throws SQLException, IOException, JRException {
 
 		Connection conexion = jdbcTemplate.getDataSource().getConnection();
@@ -889,9 +889,9 @@ public class WebController {
 	private void configurarReportes(List<JasperPrint> jasperPrintList, String type, String id, Connection conexion)
 			throws JRException {
 
-		BigInteger cantidad_grupos = new BigInteger("0");
-		BigInteger cantidad_investigadores = new BigInteger("0");
-		BigInteger cantidad_producciones = new BigInteger("0");
+		BigInteger cantidad_grupos = new BigInteger(Util.PARAM_UNIVERSITY_LEVEL_ID);
+		BigInteger cantidad_investigadores = new BigInteger(Util.PARAM_UNIVERSITY_LEVEL_ID);
+		BigInteger cantidad_producciones = new BigInteger(Util.PARAM_UNIVERSITY_LEVEL_ID);
 
 		// PARAMETROS FACULTAD//
 		String title_facultad = "";
@@ -934,7 +934,7 @@ public class WebController {
 		boolean universidad = false;
 		boolean investigador = false;
 
-		if (type.equals("f")) {
+		if (type.equals(Util.FACULTY_PARAM_ID)) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 			facultad = true;
 			title_facultad = f.getNombre();
@@ -1138,7 +1138,7 @@ public class WebController {
 
 			if (universidad) {
 
-				if (type.equals("u")) {
+				if (type.equals(Util.UNIVERSITY_PARAM_ID)) {
 
 					input = this.getClass().getResourceAsStream("/reportes/" + type + "_" + id + "_" + aux + ".jasper");
 				} else if (type.equals("i")) {
@@ -1251,11 +1251,11 @@ public class WebController {
 	}
 
 	@GetMapping("/estadisticas")
-	public String getEstadisticas(@RequestParam(name = "type", required = false, defaultValue = "u") String type,
-			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+	public String getEstadisticas(@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id, Model model) {
 
 		String[] datos = getDatosEstadisticas(id, type);
-		model.addAttribute("id", id);
+		model.addAttribute(Util.PARAM_ID, id);
 		model.addAttribute("tipo", type);
 		model.addAttribute("nombre", datos[0]);
 		model.addAttribute("color", datos[1]);
@@ -1267,7 +1267,7 @@ public class WebController {
 		model.addAttribute("infogeneral", stringinfo);
 		model.addAttribute("contacto", stringcontacto);
 
-		if (type.equals("f")) {
+		if (type.equals(Util.FACULTY_PARAM_ID)) {
 
 			model.addAttribute("mision", datos[4]);
 			model.addAttribute("vision", datos[6]);
@@ -1308,7 +1308,7 @@ public class WebController {
 
 		String[] datos = new String[8];
 
-		if (type.equals("f")) {
+		if (type.equals(Util.FACULTY_PARAM_ID)) {
 			Facultad f = facultadDAO.getFacultadById(Long.parseLong(id));
 
 			datos[0] = "Estadísticas Generales de la Facultad de " + f.getNombre();
@@ -1411,7 +1411,7 @@ public class WebController {
 		// ------Llamado a las consultas en la base de datos para
 		// producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion",
-				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "0"));
+				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, Util.PARAM_UNIVERSITY_LEVEL_ID));
 		model.addAttribute("cantidadActividadesEvaluador",
 				produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "1"));
 		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesFacultadPorTipo(id, "2"));
@@ -1469,17 +1469,17 @@ public class WebController {
 				.agregarPertenenciaInves(investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id)));
 
 		List<Investigador> investigadores_facultad_Adm = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, Util.PERTENENCIA_ADMINISTRATIVO);
 		List<Investigador> investigadores_facultad_DP = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, Util.PERTENENCIA_DOCENTE_PLANTA);
 		List<Investigador> investigadores_facultad_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_facultad, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_facultad, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		List<Investigador> investigadores_facultad_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_facultad, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_facultad, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		List<Investigador> investigadores_facultad_IE = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_EXTERNO);
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, Util.PERTENENCIA_EXTERNO);
 		List<Investigador> investigadores_facultad_EI = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_facultad, utilidades.PERTENENCIA_ESTUDIANTE);
+				.seleccionarInvestigadoresPertenencia(investigadores_facultad, Util.PERTENENCIA_ESTUDIANTE);
 
 		model.addAttribute("num_inves_Adm", investigadores_facultad_Adm.size());
 		model.addAttribute("num_inves_DP", investigadores_facultad_DP.size());
@@ -1488,14 +1488,14 @@ public class WebController {
 		model.addAttribute("num_inves_IE", investigadores_facultad_IE.size());
 		model.addAttribute("num_inves_EI", investigadores_facultad_EI.size());
 
-		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peAdm", Util.ADMIN_BELOGNING_PARAM_ID);
 		model.addAttribute("peDp", "dp");
 		model.addAttribute("peDc", "dc");
 		model.addAttribute("peDo", "do");
 		model.addAttribute("peIe", "ie");
 		model.addAttribute("peEi", "ei");
 
-		model.addAttribute("programaAcademico", "pa");
+		model.addAttribute("programaAcademico", Util.UNDERGRADUATE_PROGRAM_PARAM_ID);
 		model.addAttribute("programaDoctorado", "pd");
 		model.addAttribute("programaMagister", "pm");
 		model.addAttribute("programaEspecializacion", "pe");
@@ -1523,7 +1523,7 @@ public class WebController {
 		model.addAttribute("formacionPregrado", "fp");
 		model.addAttribute("docentes", "d");
 
-		model.addAttribute("idUniquindio", "0");
+		model.addAttribute(Util.PARAM_UNIVERSITY_LEVEL, Util.PARAM_UNIVERSITY_LEVEL_ID);
 		model.addAttribute("idFacultad", id);
 
 		return "estadisticas/facultades";
@@ -1537,7 +1537,7 @@ public class WebController {
 		// ------Llamado a las consultas en la base de datos para
 		// producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion",
-				produccionDAO.getCantidadProduccionesProgramaPorTipo(id, "0"));
+				produccionDAO.getCantidadProduccionesProgramaPorTipo(id, Util.PARAM_UNIVERSITY_LEVEL_ID));
 		model.addAttribute("cantidadActividadesEvaluador",
 				produccionDAO.getCantidadProduccionesProgramaPorTipo(id, "1"));
 		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesProgramaPorTipo(id, "2"));
@@ -1586,17 +1586,17 @@ public class WebController {
 				.agregarPertenenciaInves(investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id)));
 
 		List<Investigador> investigadores_programa_Adm = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, Util.PERTENENCIA_ADMINISTRATIVO);
 		List<Investigador> investigadores_programa_DP = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, Util.PERTENENCIA_DOCENTE_PLANTA);
 		List<Investigador> investigadores_programa_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_programa, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_programa, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		List<Investigador> investigadores_programa_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_programa, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_programa, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		List<Investigador> investigadores_programa_IE = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_EXTERNO);
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, Util.PERTENENCIA_EXTERNO);
 		List<Investigador> investigadores_programa_EI = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_programa, utilidades.PERTENENCIA_ESTUDIANTE);
+				.seleccionarInvestigadoresPertenencia(investigadores_programa, Util.PERTENENCIA_ESTUDIANTE);
 
 		model.addAttribute("num_inves_Adm", investigadores_programa_Adm.size());
 		model.addAttribute("num_inves_DP", investigadores_programa_DP.size());
@@ -1605,7 +1605,7 @@ public class WebController {
 		model.addAttribute("num_inves_IE", investigadores_programa_IE.size());
 		model.addAttribute("num_inves_EI", investigadores_programa_EI.size());
 
-		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peAdm", Util.ADMIN_BELOGNING_PARAM_ID);
 		model.addAttribute("peDp", "dp");
 		model.addAttribute("peDc", "dc");
 		model.addAttribute("peDo", "do");
@@ -1635,7 +1635,7 @@ public class WebController {
 		model.addAttribute("formacionPregrado", "fp");
 		model.addAttribute("docentes", "d");
 
-		model.addAttribute("idUniquindio", "0");
+		model.addAttribute(Util.PARAM_UNIVERSITY_LEVEL, Util.PARAM_UNIVERSITY_LEVEL_ID);
 		model.addAttribute("idPrograma", id);
 
 		return "estadisticas/programas";
@@ -1649,7 +1649,7 @@ public class WebController {
 		// ------Llamado a las consultas en la base de datos para
 		// producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion",
-				produccionDAO.getCantidadProduccionesCentroPorTipo(id, "0"));
+				produccionDAO.getCantidadProduccionesCentroPorTipo(id, Util.PARAM_UNIVERSITY_LEVEL_ID));
 		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadProduccionesCentroPorTipo(id, "1"));
 		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesCentroPorTipo(id, "2"));
 		model.addAttribute("cantidadProduccionesBibliograficas",
@@ -1715,24 +1715,24 @@ public class WebController {
 		model.addAttribute("formacionPregrado", "fp");
 		model.addAttribute("docentes", "d");
 
-		model.addAttribute("idUniquindio", "0");
+		model.addAttribute(Util.PARAM_UNIVERSITY_LEVEL, Util.PARAM_UNIVERSITY_LEVEL_ID);
 		model.addAttribute("idCentro", id);
 
 		List<Investigador> investigadores_centro = utilidades
 				.agregarPertenenciaInves(investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id)));
 
 		List<Investigador> investigadores_centro_Adm = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, Util.PERTENENCIA_ADMINISTRATIVO);
 		List<Investigador> investigadores_centro_DP = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, Util.PERTENENCIA_DOCENTE_PLANTA);
 		List<Investigador> investigadores_centro_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_centro, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_centro, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		List<Investigador> investigadores_centro_DO = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		List<Investigador> investigadores_centro_IE = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_EXTERNO);
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, Util.PERTENENCIA_EXTERNO);
 		List<Investigador> investigadores_centro_EI = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_centro, utilidades.PERTENENCIA_ESTUDIANTE);
+				.seleccionarInvestigadoresPertenencia(investigadores_centro, Util.PERTENENCIA_ESTUDIANTE);
 
 		model.addAttribute("num_inves_Adm", investigadores_centro_Adm.size());
 		model.addAttribute("num_inves_DP", investigadores_centro_DP.size());
@@ -1741,7 +1741,7 @@ public class WebController {
 		model.addAttribute("num_inves_IE", investigadores_centro_IE.size());
 		model.addAttribute("num_inves_EI", investigadores_centro_EI.size());
 
-		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peAdm", Util.ADMIN_BELOGNING_PARAM_ID);
 		model.addAttribute("peDp", "dp");
 		model.addAttribute("peDc", "dc");
 		model.addAttribute("peDo", "do");
@@ -1759,7 +1759,7 @@ public class WebController {
 		// ------Llamado a las consultas en la base de datos para
 		// producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion",
-				produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "0"));
+				produccionDAO.getCantidadProduccionesGrupoPorTipo(id, Util.PARAM_UNIVERSITY_LEVEL_ID));
 		model.addAttribute("cantidadActividadesEvaluador", produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "1"));
 		model.addAttribute("cantidadApropiacionSocial", produccionDAO.getCantidadProduccionesGrupoPorTipo(id, "2"));
 		model.addAttribute("cantidadProduccionesBibliograficas",
@@ -1808,24 +1808,24 @@ public class WebController {
 		model.addAttribute("formacionPregrado", "fp");
 		model.addAttribute("docentes", "d");
 
-		model.addAttribute("idUniquindio", "0");
+		model.addAttribute(Util.PARAM_UNIVERSITY_LEVEL, Util.PARAM_UNIVERSITY_LEVEL_ID);
 		model.addAttribute("idGrupo", id);
 
 		List<Investigador> investigadores_grupo = utilidades
 				.agregarPertenenciaInves(investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id)));
 
 		List<Investigador> investigadores_grupo_Adm = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, Util.PERTENENCIA_ADMINISTRATIVO);
 		List<Investigador> investigadores_grupo_DP = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, Util.PERTENENCIA_DOCENTE_PLANTA);
 		List<Investigador> investigadores_grupo_DC = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		List<Investigador> investigadores_grupo_DO = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		List<Investigador> investigadores_grupo_IE = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_EXTERNO);
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, Util.PERTENENCIA_EXTERNO);
 		List<Investigador> investigadores_grupo_EI = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_grupo, utilidades.PERTENENCIA_ESTUDIANTE);
+				.seleccionarInvestigadoresPertenencia(investigadores_grupo, Util.PERTENENCIA_ESTUDIANTE);
 
 		model.addAttribute("num_inves_Adm", investigadores_grupo_Adm.size());
 		model.addAttribute("num_inves_DP", investigadores_grupo_DP.size());
@@ -1834,7 +1834,7 @@ public class WebController {
 		model.addAttribute("num_inves_IE", investigadores_grupo_IE.size());
 		model.addAttribute("num_inves_EI", investigadores_grupo_EI.size());
 
-		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peAdm", Util.ADMIN_BELOGNING_PARAM_ID);
 		model.addAttribute("peDp", "dp");
 		model.addAttribute("peDc", "dc");
 		model.addAttribute("peDo", "do");
@@ -1848,7 +1848,7 @@ public class WebController {
 		// ------Llamado a las consultas en la base de datos para
 		// producciones-----------------------------------------------------------------------
 		model.addAttribute("cantidadActividadesDeFormacion",
-				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "0"));
+				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, Util.PARAM_UNIVERSITY_LEVEL_ID));
 		model.addAttribute("cantidadActividadesEvaluador",
 				produccionDAO.getCantidadProduccionesInvestigadorPorTipo(id, "1"));
 		model.addAttribute("cantidadApropiacionSocial",
@@ -2352,176 +2352,176 @@ public class WebController {
 		// ---------------BASICAS-----------------------------
 
 		List<Investigador> lista_investigadores_Basicas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				investigadores_pertenencia_Basicas, Util.PERTENENCIA_ADMINISTRATIVO);
 		model.addAttribute("Num_inves_basicas_Admin", lista_investigadores_Basicas_Adm.size());
 
 		List<Investigador> lista_investigadores_Basicas_DP = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				investigadores_pertenencia_Basicas, Util.PERTENENCIA_DOCENTE_PLANTA);
 		model.addAttribute("Num_inves_basicas_dp", lista_investigadores_Basicas_DP.size());
 
 		List<Investigador> lista_investigadores_Basicas_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_pertenencia_Basicas, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		model.addAttribute("Num_inves_basicas_dc", lista_investigadores_Basicas_DC.size());
 
 		List<Investigador> lista_investigadores_Basicas_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_pertenencia_Basicas, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		model.addAttribute("Num_inves_basicas_do", lista_investigadores_Basicas_DO.size());
 
 		List<Investigador> lista_investigadores_Basicas_IE = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_EXTERNO);
+				investigadores_pertenencia_Basicas, Util.PERTENENCIA_EXTERNO);
 		model.addAttribute("Num_inves_basicas_ie", lista_investigadores_Basicas_IE.size());
 
 		List<Investigador> lista_investigadores_Basicas_EI = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Basicas, utilidades.PERTENENCIA_ESTUDIANTE);
+				investigadores_pertenencia_Basicas, Util.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_basicas_ei", lista_investigadores_Basicas_EI.size());
 
 		// --------------------EDUCACION----------------------
 
 		List<Investigador> lista_investigadores_Educacion_Adm = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				investigadores_pertenencia_Educacion, Util.PERTENENCIA_ADMINISTRATIVO);
 		model.addAttribute("Num_inves_educacion_Admin", lista_investigadores_Educacion_Adm.size());
 
 		List<Investigador> lista_investigadores_Educacion_DP = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				investigadores_pertenencia_Educacion, Util.PERTENENCIA_DOCENTE_PLANTA);
 		model.addAttribute("Num_inves_educacion_dp", lista_investigadores_Educacion_DP.size());
 
 		List<Investigador> lista_investigadores_Educacion_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_pertenencia_Educacion, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		model.addAttribute("Num_inves_educacion_dc", lista_investigadores_Educacion_DC.size());
 
 		List<Investigador> lista_investigadores_Educacion_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_pertenencia_Educacion, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		model.addAttribute("Num_inves_educacion_do", lista_investigadores_Educacion_DO.size());
 		List<Investigador> lista_investigadores_Educacion_IE = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_EXTERNO);
+				investigadores_pertenencia_Educacion, Util.PERTENENCIA_EXTERNO);
 		model.addAttribute("Num_inves_educacion_ie", lista_investigadores_Educacion_IE.size());
 
 		List<Investigador> lista_investigadores_Educacion_EI = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Educacion, utilidades.PERTENENCIA_ESTUDIANTE);
+				investigadores_pertenencia_Educacion, Util.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_educacion_ei", lista_investigadores_Educacion_EI.size());
 
 		// -----------------------SALUD----------------------------
 
 		List<Investigador> lista_investigadores_Salud_Adm = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				investigadores_pertenencia_Salud, Util.PERTENENCIA_ADMINISTRATIVO);
 		model.addAttribute("Num_inves_salud_Admin", lista_investigadores_Salud_Adm.size());
 
 		List<Investigador> lista_investigadores_Salud_DP = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				investigadores_pertenencia_Salud, Util.PERTENENCIA_DOCENTE_PLANTA);
 		model.addAttribute("Num_inves_salud_dp", lista_investigadores_Salud_DP.size());
 
 		List<Investigador> lista_investigadores_Salud_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_pertenencia_Salud, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		model.addAttribute("Num_inves_salud_dc", lista_investigadores_Salud_DC.size());
 
 		List<Investigador> lista_investigadores_Salud_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_pertenencia_Salud, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		model.addAttribute("Num_inves_salud_do", lista_investigadores_Salud_DO.size());
 		List<Investigador> lista_investigadores_Salud_IE = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Salud, utilidades.PERTENENCIA_EXTERNO);
+				.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Salud, Util.PERTENENCIA_EXTERNO);
 		model.addAttribute("Num_inves_salud_ie", lista_investigadores_Salud_IE.size());
 
 		List<Investigador> lista_investigadores_Salud_EI = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Salud, utilidades.PERTENENCIA_ESTUDIANTE);
+				investigadores_pertenencia_Salud, Util.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_salud_ei", lista_investigadores_Salud_EI.size());
 
 		// -----------------INGENIERIA-------------------------
 
 		List<Investigador> lista_investigadores_Ingenieria_Adm = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				investigadores_pertenencia_Ingenieria, Util.PERTENENCIA_ADMINISTRATIVO);
 		model.addAttribute("Num_inves_ingenieria_Admin", lista_investigadores_Ingenieria_Adm.size());
 
 		List<Investigador> lista_investigadores_Ingenieria_DP = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				investigadores_pertenencia_Ingenieria, Util.PERTENENCIA_DOCENTE_PLANTA);
 		model.addAttribute("Num_inves_ingenieria_dp", lista_investigadores_Ingenieria_DP.size());
 
 		List<Investigador> lista_investigadores_Ingenieria_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_pertenencia_Ingenieria, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		model.addAttribute("Num_inves_ingenieria_dc", lista_investigadores_Ingenieria_DC.size());
 
 		List<Investigador> lista_investigadores_Ingenieria_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_pertenencia_Ingenieria, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		model.addAttribute("Num_inves_ingenieria_do", lista_investigadores_Ingenieria_DO.size());
 		List<Investigador> lista_investigadores_Ingenieria_IE = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_EXTERNO);
+				investigadores_pertenencia_Ingenieria, Util.PERTENENCIA_EXTERNO);
 		model.addAttribute("Num_inves_ingenieria_ie", lista_investigadores_Ingenieria_IE.size());
 
 		List<Investigador> lista_investigadores_Ingenieria_EI = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Ingenieria, utilidades.PERTENENCIA_ESTUDIANTE);
+				investigadores_pertenencia_Ingenieria, Util.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_ingenieria_ei", lista_investigadores_Ingenieria_EI.size());
 
 		// -----------------------------HUMANAS---------------------------
 
 		List<Investigador> lista_investigadores_Humanas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				investigadores_pertenencia_Humanas, Util.PERTENENCIA_ADMINISTRATIVO);
 		model.addAttribute("Num_inves_humanas_Admin", lista_investigadores_Humanas_Adm.size());
 
 		List<Investigador> lista_investigadores_Humanas_DP = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				investigadores_pertenencia_Humanas, Util.PERTENENCIA_DOCENTE_PLANTA);
 		model.addAttribute("Num_inves_humanas_dp", lista_investigadores_Humanas_DP.size());
 
 		List<Investigador> lista_investigadores_Humanas_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_pertenencia_Humanas, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		model.addAttribute("Num_inves_humanas_dc", lista_investigadores_Humanas_DC.size());
 
 		List<Investigador> lista_investigadores_Humanas_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_pertenencia_Humanas, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		model.addAttribute("Num_inves_humanas_do", lista_investigadores_Humanas_DO.size());
 		List<Investigador> lista_investigadores_Humanas_IE = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_EXTERNO);
+				investigadores_pertenencia_Humanas, Util.PERTENENCIA_EXTERNO);
 		model.addAttribute("Num_inves_humanas_ie", lista_investigadores_Humanas_IE.size());
 
 		List<Investigador> lista_investigadores_Humanas_EI = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Humanas, utilidades.PERTENENCIA_ESTUDIANTE);
+				investigadores_pertenencia_Humanas, Util.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_humanas_ei", lista_investigadores_Humanas_EI.size());
 
 		// --------------------AGRO-------------------------------
 
 		List<Investigador> lista_investigadores_Agro_Adm = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				investigadores_pertenencia_Agro, Util.PERTENENCIA_ADMINISTRATIVO);
 		model.addAttribute("Num_inves_agro_Admin", lista_investigadores_Agro_Adm.size());
 
 		List<Investigador> lista_investigadores_Agro_DP = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				investigadores_pertenencia_Agro, Util.PERTENENCIA_DOCENTE_PLANTA);
 		model.addAttribute("Num_inves_agro_dp", lista_investigadores_Agro_DP.size());
 
 		List<Investigador> lista_investigadores_Agro_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_pertenencia_Agro, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		model.addAttribute("Num_inves_agro_dc", lista_investigadores_Agro_DC.size());
 
 		List<Investigador> lista_investigadores_Agro_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_pertenencia_Agro, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		model.addAttribute("Num_inves_agro_do", lista_investigadores_Agro_DO.size());
 		List<Investigador> lista_investigadores_Agro_IE = utilidades
-				.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Agro, utilidades.PERTENENCIA_EXTERNO);
+				.seleccionarInvestigadoresPertenencia(investigadores_pertenencia_Agro, Util.PERTENENCIA_EXTERNO);
 		model.addAttribute("Num_inves_agro_ie", lista_investigadores_Agro_IE.size());
 
 		List<Investigador> lista_investigadores_Agro_EI = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Agro, utilidades.PERTENENCIA_ESTUDIANTE);
+				investigadores_pertenencia_Agro, Util.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_agro_ei", lista_investigadores_Agro_EI.size());
 
 		// -------------------Economicas-------------------------------
 		List<Investigador> lista_investigadores_Economicas_Adm = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_ADMINISTRATIVO);
+				investigadores_pertenencia_Economicas, Util.PERTENENCIA_ADMINISTRATIVO);
 		model.addAttribute("Num_inves_economicas_Admin", lista_investigadores_Economicas_Adm.size());
 
 		List<Investigador> lista_investigadores_Economicas_DP = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_PLANTA);
+				investigadores_pertenencia_Economicas, Util.PERTENENCIA_DOCENTE_PLANTA);
 		model.addAttribute("Num_inves_economicas_dp", lista_investigadores_Economicas_DP.size());
 
 		List<Investigador> lista_investigadores_Economicas_DC = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_CATEDRATICO);
+				investigadores_pertenencia_Economicas, Util.PERTENENCIA_DOCENTE_CATEDRATICO);
 		model.addAttribute("Num_inves_economicas_dc", lista_investigadores_Economicas_DC.size());
 
 		List<Investigador> lista_investigadores_Economicas_DO = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_DOCENTE_OCASIONAL);
+				investigadores_pertenencia_Economicas, Util.PERTENENCIA_DOCENTE_OCASIONAL);
 		model.addAttribute("Num_inves_economicas_do", lista_investigadores_Economicas_DO.size());
 		List<Investigador> lista_investigadores_Economicas_IE = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_EXTERNO);
+				investigadores_pertenencia_Economicas, Util.PERTENENCIA_EXTERNO);
 		model.addAttribute("Num_inves_economicas_ie", lista_investigadores_Economicas_IE.size());
 
 		List<Investigador> lista_investigadores_Economicas_EI = utilidades.seleccionarInvestigadoresPertenencia(
-				investigadores_pertenencia_Economicas, utilidades.PERTENENCIA_ESTUDIANTE);
+				investigadores_pertenencia_Economicas, Util.PERTENENCIA_ESTUDIANTE);
 		model.addAttribute("Num_inves_economicas_ei", lista_investigadores_Economicas_EI.size());
 
 		// -------------------------------TOTAL-------------------------------------------
@@ -2558,7 +2558,7 @@ public class WebController {
 		model.addAttribute("total_IE", total_investigadores_IE);
 		model.addAttribute("total_EI", total_investigadores_EI);
 
-		model.addAttribute("peAdm", "adm");
+		model.addAttribute("peAdm", Util.ADMIN_BELOGNING_PARAM_ID);
 		model.addAttribute("peDp", "dp");
 		model.addAttribute("peDc", "dc");
 		model.addAttribute("peDo", "do");
@@ -2568,7 +2568,7 @@ public class WebController {
 		// ------Adición de atributos al modelo para referenciar a páginas
 		// especificas-----------------------------------------------------------------------
 
-		model.addAttribute("programaAcademico", "pa");
+		model.addAttribute("programaAcademico", Util.UNDERGRADUATE_PROGRAM_PARAM_ID);
 		model.addAttribute("programaDoctorado", "pd");
 		model.addAttribute("programaMagister", "pm");
 		model.addAttribute("programaEspecializacion", "pe");
@@ -2596,7 +2596,7 @@ public class WebController {
 		model.addAttribute("formacionPregrado", "fp");
 		model.addAttribute("docentes", "d");
 
-		model.addAttribute("idUniquindio", "0");
+		model.addAttribute(Util.PARAM_UNIVERSITY_LEVEL, Util.PARAM_UNIVERSITY_LEVEL_ID);
 		model.addAttribute("idFacultadCienciasBasicas", "1");
 		model.addAttribute("idFacultadEducacion", "2");
 		model.addAttribute("idFacultadCienciasDeLaSalud", "3");
