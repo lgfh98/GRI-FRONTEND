@@ -54,12 +54,12 @@ public class Facultad implements Serializable {
 	/** The centros. */
 	@OneToMany(mappedBy = "facultad", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
-	private List<Centro> centros = new ArrayList<>();
+	private List<Centro> centros = new ArrayList<Centro>();
 
 	/** The programas. */
 	@OneToMany(mappedBy = "facultad", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
-	private List<Programa> programas = new ArrayList<>();
+	private List<Programa> programas = new ArrayList<Programa>();
 
 	/**
 	 * Instantiates a new facultad.

@@ -34,7 +34,7 @@ public class InvestigadorDAO {
 	 * @return el investigador por el id
 	 */
 	public Investigador findOne(Long invId) {
-		return investigadorRepository.findOne(invId);
+		return investigadorRepository.findById(invId).orElse(null);
 	}
 
 	/**

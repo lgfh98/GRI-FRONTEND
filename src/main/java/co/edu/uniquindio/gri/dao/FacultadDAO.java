@@ -35,7 +35,7 @@ public class FacultadDAO {
 	 * @return la facultad especificada por el idFacultad
 	 */
 	public Facultad getFacultadById(Long facultadId) {
-		return facultadRepository.findOne(facultadId);
+		return facultadRepository.findById(facultadId).orElse(null);
 	}
 
 	/**

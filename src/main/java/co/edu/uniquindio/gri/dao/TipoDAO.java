@@ -34,6 +34,6 @@ public class TipoDAO {
 	 * @return el tipos de producción especificado por el id
 	 */
 	public Tipo getTipoById(Long tipoId){
-		return tipoRepository.findOne(tipoId);
+		return tipoRepository.findById(tipoId).orElse(null);
 	}
 }

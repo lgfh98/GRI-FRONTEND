@@ -37,7 +37,7 @@ public class ProduccionDAO {
 	 */
 	@SuppressWarnings("rawtypes")
 	public List getProducciones(String type, Long entityId, Long tipoId) {
-		Tipo tipo = tipoRepository.findOne(tipoId);
+		Tipo tipo = tipoRepository.findById(tipoId).orElse(null);
 		long idTipoProd = tipo.getTipoProduccion().getId();
 
 		if (type.equals("i")) {

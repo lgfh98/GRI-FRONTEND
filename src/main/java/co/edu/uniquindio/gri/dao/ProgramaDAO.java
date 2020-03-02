@@ -46,7 +46,7 @@ public class ProgramaDAO {
 	 * @return el programa especificado por el id
 	 */
 	public Programa getProgramaById(Long programaId) {
-		return programaRepository.findOne(programaId);
+		return programaRepository.findById(programaId).orElse(null);
 	}
 
 	/**
