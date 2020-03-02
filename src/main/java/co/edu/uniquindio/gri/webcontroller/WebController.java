@@ -116,6 +116,7 @@ public class WebController {
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
 		model.addAttribute("type", type);
 		model.addAttribute("id", id);
+		System.err.println("hola");
 
 		List<Investigador> investigadores = new ArrayList<Investigador>();
 		if (Long.parseLong(id) != 0) {
@@ -334,6 +335,10 @@ public class WebController {
 			@RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
 		model.addAttribute("type", type);
 		model.addAttribute("id", id);
+		
+
+		
+		model.addAttribute("generoInvestigadores", id);
 
 		List<Investigador> investigadores = new ArrayList<Investigador>();
 		if (Long.parseLong(id) != 0) {
@@ -457,12 +462,27 @@ public class WebController {
 				investigadores = investigadorDAO.getAllInvestigadoresInternos();
 			} else {
 				investigadores = investigadorDAO.findAll();
+				
+
 			}
 		}
 
 		List<Investigador> investigadores_pertenencia = utilidades.agregarPertenenciaInves(investigadores);
 
 		model.addAttribute("listaInvestigadores", investigadores_pertenencia);
+		
+		
+		Map<String, Integer> generoInvestigadores = new HashMap<>();
+		
+		int[] cantidades=utilidades.obtenerCantidadGenerosInvesgitadores(investigadores);
+		
+		generoInvestigadores.put("Masculino", cantidades[0]);
+		generoInvestigadores.put("Femenino", cantidades[1]);
+		generoInvestigadores.put("Indefinido",  cantidades[2]);
+		
+		model.addAttribute("dataGeneroInvestigadores", generoInvestigadores.values());
+		model.addAttribute("clavesGeneroInvestigadores", generoInvestigadores.keySet());
+		
 		return "investigadores";
 	}
 
