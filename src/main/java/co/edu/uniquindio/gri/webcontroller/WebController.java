@@ -472,7 +472,7 @@ public class WebController {
 		model.addAttribute("listaInvestigadores", investigadores_pertenencia);
 		
 		
-		Map<String, Integer> generoInvestigadores = new HashMap<>();
+		Map<String, Integer> generoInvestigadores = new HashMap<String, Integer>();
 		
 		int[] cantidades=utilidades.obtenerCantidadGenerosInvesgitadores(investigadores);
 		
@@ -824,7 +824,7 @@ public class WebController {
 
 		Connection conexion = jdbcTemplate.getDataSource().getConnection();
 
-		List<JasperPrint> jasperPrintList = new ArrayList<>();
+		List<JasperPrint> jasperPrintList = new ArrayList<JasperPrint>();
 
 		configurarReportes(jasperPrintList, type, id, conexion);
 
@@ -850,7 +850,7 @@ public class WebController {
 
 		Connection conexion = jdbcTemplate.getDataSource().getConnection();
 
-		List<JasperPrint> jasperPrintList = new ArrayList<>();
+		List<JasperPrint> jasperPrintList = new ArrayList<JasperPrint>();
 
 		configurarReportes(jasperPrintList, type, id, conexion);
 
@@ -1179,7 +1179,7 @@ public class WebController {
 		InputStream input = null;
 
 		while (true) {
-			Map<String, Object> parametros = new HashMap<>();
+			Map<String, Object> parametros = new HashMap<String, Object>();
 
 			if (universidad) {
 

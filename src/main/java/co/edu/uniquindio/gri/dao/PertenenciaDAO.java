@@ -20,7 +20,7 @@ public class PertenenciaDAO {
 	 */
 	public Pertenencia getPertenenciaByIdInves(Long investigador_id) {
 
-		return pertenenciaRepository.findOne(investigador_id);
+		return pertenenciaRepository.findById(investigador_id).orElse(null);
 
 	}
 

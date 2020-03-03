@@ -35,7 +35,7 @@ public class GrupoDAO {
 	 * @return el grupo de investigación por el id
 	 */
 	public Grupo findOne(Long grupoId) {
-		return grupoRepository.findOne(grupoId);
+		return grupoRepository.findById(grupoId).orElse(null);
 	}
 
 	/**
