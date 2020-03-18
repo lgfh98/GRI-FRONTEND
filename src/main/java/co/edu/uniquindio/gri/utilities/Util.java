@@ -43,6 +43,10 @@ public class Util {
 	
 	public static final String UNIVERSITY_PARAM_ID = "u";
 	public static final String FACULTY_PARAM_ID = "f";
+	public static final String CENTER_PARAM_ID = "c";
+	public static final String PROGRAM_PARAM_ID = "p";
+	public static final String GROUP_PARAM_ID = "g";
+	public static final String RESEARCHER_PARAM_ID = "i";
 	
 	public static final String UNDERGRADUATE_PROGRAM_PARAM_ID = "pa";
 	
@@ -51,7 +55,6 @@ public class Util {
 	public static final String PARAM_UNIVERSITY_LEVEL = "idUniquindio";
 	
 	public static final String ADMIN_BELOGNING_PARAM_ID = "adm";
-	
 	
 	
 	
