@@ -23,6 +23,9 @@ public class Util {
 	public static final String PERTENENCIA_ADMINISTRATIVO = "ADMINISTRATIVO";
 	public static final String PERTENENCIA_EXTERNO = "INVESTIGADOR EXTERNO";
 	public static final String PERTENENCIA_ESTUDIANTE = "ESTUDIANTE INVESTIGADOR";
+	public static final String GENERO_MASCULINO = "MASCULINO";
+	public static final String GENERO_FEMENINO = "FEMENINO";
+	public static final String GENERO_INDEFINIDO = "NO ESPECIFICADO";
 	
 	public static final String CANTIDAD_FACULTADES = "cantFacultades";
 	public static final String CANTIDAD_CENTROS = "cantCentros";
@@ -152,6 +155,36 @@ public class Util {
 
 		return investigadores_resultantes;
 
+	}
+
+	/**
+	 * retorna un arreglo con la cantidad de generos de la lista recibida
+	 * 
+	 * @param investigadores
+	 * @return tres numeros, masculino, femenino, indefinido
+	 */
+	public int[] obtenerCantidadGenerosInvesgitadores(List<Investigador> investigadores) {
+
+		int[] resutado = new int[] { 0, 0, 0 };
+
+		if (investigadores.size() == 0)
+			return resutado;
+
+		for (Investigador investigador : investigadores) {
+			if (investigador.getSexo().equals(GENERO_MASCULINO)) {
+
+				resutado[0] += 1;
+
+			} else if (investigador.getSexo().equals(GENERO_FEMENINO)) {
+				resutado[1] += 1;
+
+			} else if (investigador.getSexo().equals(GENERO_INDEFINIDO)) {
+				resutado[2] += 1;
+
+			}
+		}
+
+		return resutado;
 	}
 
 }

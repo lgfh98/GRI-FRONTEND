@@ -35,7 +35,8 @@ public class CentroDAO {
 	 * @return el centro especificado por el id
 	 */
 	public Centro getCentroById(Long centroId){
-		return centroRepository.findOne(centroId);
+		
+		return centroRepository.findById(centroId).orElse(null);
 	}
 	
 	/**

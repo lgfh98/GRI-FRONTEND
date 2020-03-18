@@ -53,7 +53,7 @@ public class Centro implements Serializable {
 	/** The grupo. */
 	@OneToMany(mappedBy = "centro", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
-	private List<Grupo> grupo = new ArrayList<>();
+	private List<Grupo> grupo = new ArrayList<Grupo>();
 
 	/**
 	 * Instantiates a new centro.

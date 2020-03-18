@@ -23,10 +23,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "INVESTIGADORES", schema = "gri")
 public class Investigador implements Serializable {
 
-
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
-	
+
 	/** The id. */
 	@Id
 	@Column(name = "ID")
@@ -47,9 +46,11 @@ public class Investigador implements Serializable {
 	/** The pertenencia. */
 	@Column(name = "PERTENENCIA", length = 50)
 	private String pertenencia;
+	@Column(name = "SEXO", length = 50)
+	private String sexo;
 
 	/** The idiomas. */
-	@OneToMany( mappedBy = "investigador", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "investigador", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Idiomas> idiomas = new ArrayList<Idiomas>();
 
 	/** The lineas investigacion. */
@@ -75,56 +76,47 @@ public class Investigador implements Serializable {
 	/**
 	 * Instantiates a new investigador.
 	 *
-	 * @param id the id
-	 * @param nombre the nombre
-	 * @param categoria the categoria
-	 * @param nivelAcademico the nivel academico
-	 * @param idiomas the idiomas
-	 * @param lineasInvestigacion the lineas investigacion
-	 * @param producciones the producciones
+	 * @param id                         the id
+	 * @param nombre                     the nombre
+	 * @param categoria                  the categoria
+	 * @param nivelAcademico             the nivel academico
+	 * @param idiomas                    the idiomas
+	 * @param lineasInvestigacion        the lineas investigacion
+	 * @param producciones               the producciones
 	 * @param produccionesBibliograficas the producciones bibliograficas
 	 */
-	public Investigador(long id, String nombre, String categoria, String nivelAcademico, List<Idiomas> idiomas,
-			List<LineasInvestigacion> lineasInvestigacion, List<Produccion> producciones,
+	public Investigador(long id, String nombre, String categoria, String sexo, String nivelAcademico,
+			List<Idiomas> idiomas, List<LineasInvestigacion> lineasInvestigacion, List<Produccion> producciones,
 			List<ProduccionB> produccionesBibliograficas) {
 		this.id = id;
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.nivelAcademico = nivelAcademico;
 		this.idiomas = idiomas;
+		this.sexo = sexo;
 		this.lineasInvestigacion = lineasInvestigacion;
 		this.produccionesBibliograficas = produccionesBibliograficas;
 
 	}
-	
-	
-
-	
-
-
 
 	/**
 	 * Instantiates a new investigador.
 	 *
-	 * @param id the id
-	 * @param nombre the nombre
-	 * @param categoria the categoria
+	 * @param id             the id
+	 * @param nombre         the nombre
+	 * @param categoria      the categoria
 	 * @param nivelAcademico the nivel academico
-	 * @param pertenencia the pertenencia
+	 * @param pertenencia    the pertenencia
 	 */
-	public Investigador(long id, String nombre, String categoria, String nivelAcademico, String pertenencia) {
+	public Investigador(long id, String nombre, String categoria, String nivelAcademico, String pertenencia,String sexo) {
 		this.id = id;
 		this.nombre = nombre;
 		this.categoria = categoria;
+		this.sexo = sexo;
 		this.nivelAcademico = nivelAcademico;
 		this.pertenencia = pertenencia;
+		this.sexo=sexo;
 	}
-
-
-
-
-
-
 
 	/**
 	 * Instantiates a new investigador.
@@ -175,6 +167,14 @@ public class Investigador implements Serializable {
 	 */
 	public String getCategoria() {
 		return categoria;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
 
 	/**
@@ -292,7 +292,7 @@ public class Investigador implements Serializable {
 	 */
 	public void setLineasInvestigacion(List<LineasInvestigacion> lineasInvestigacion) {
 		this.lineasInvestigacion = lineasInvestigacion;
-	}	
+	}
 
 	/**
 	 * Gets the grupos.
@@ -303,7 +303,6 @@ public class Investigador implements Serializable {
 		return grupos;
 	}
 
-
 	/**
 	 * Sets the grupos.
 	 *
@@ -312,7 +311,6 @@ public class Investigador implements Serializable {
 	public void setGrupos(List<GruposInves> grupos) {
 		this.grupos = grupos;
 	}
-
 
 	/**
 	 * Removes the lineas investigacion.
@@ -324,13 +322,9 @@ public class Investigador implements Serializable {
 		lineas.getInvestigadores().remove(this);
 	}
 
-
-
-
-
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -341,8 +335,9 @@ public class Investigador implements Serializable {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -358,7 +353,5 @@ public class Investigador implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

@@ -1071,7 +1071,7 @@ label {
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: repeat(8, 1fr);
+	grid-template-columns: repeat(9, 1fr);
 	grid-template-rows: repeat(9, 1fr);
 	
 }
@@ -1583,7 +1583,7 @@ estadisticas facultades
 	display: grid;
 	grid-column-gap: 10px;
 	grid-row-gap: 5px;
-	grid-template-columns: repeat(7, 1fr);
+	grid-template-columns: repeat(8, 1fr);
 	grid-template-rows: repeat(2, 1fr);
 	
 	

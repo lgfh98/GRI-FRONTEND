@@ -172,7 +172,7 @@ public class TipologiasController {
 			}
 
 			List<GruposInves> gruposInves = inv.getGrupos();
-			List<Grupo> grupos = new ArrayList<>();
+			List<Grupo> grupos = new ArrayList<Grupo>();
 			for (GruposInves grupoInves : gruposInves) {
 				grupos.add(grupoInves.getGrupo());
 			}
@@ -185,8 +185,8 @@ public class TipologiasController {
 
 		} else {
 			List<Investigador> integrantes = investigadorDAO.getIntegrantes(type, Long.parseLong(id));
-			Map<String, Integer> datosCategoria = new HashMap<>();
-			Map<String, Integer> datosFormacion = new HashMap<>();
+			Map<String, Integer> datosCategoria = new HashMap<String, Integer>();
+			Map<String, Integer> datosFormacion = new HashMap<String, Integer>();
 
 			for (Investigador investigador : integrantes) {
 
