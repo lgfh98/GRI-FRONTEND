@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see org.springframework.security.config.annotation.web.configuration.
 	 * WebSecurityConfigurerAdapter#configure
 	 * (org.springframework.security.config.annotation.web.builders.HttpSecurity) Se
@@ -29,15 +29,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.csrf()
-		.disable()
-		
-			.authorizeRequests()
-			.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
-			.antMatchers("/inventario", "/reporteinventario", "/pertenencia", "/reportepertenencia").access("hasRole('ROLE_ADMIN')")
+				.csrf()
+				.disable()
+
+				.authorizeRequests()
+				.antMatchers("/css/**", "/js/**", "/img/**", "/webjars/**").permitAll()
+				.antMatchers("/inventario", "/reporteinventario", "/pertenencia", "/reportepertenencia").access("hasRole('ROLE_ADMIN')")
 				.anyRequest().authenticated()
 				.and()
-			.formLogin()
+				.formLogin()
 				.loginPage("/login")
 				.permitAll()
 				.defaultSuccessUrl("/")
@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.usernameParameter("username")
 				.passwordParameter("password")
 				.and()
-			.logout()
+				.logout()
 				.permitAll()
 				.logoutSuccessUrl("/login?logout");
 	}

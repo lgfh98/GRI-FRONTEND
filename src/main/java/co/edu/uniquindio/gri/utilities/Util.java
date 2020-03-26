@@ -26,6 +26,43 @@ public class Util {
 	public static final String GENERO_MASCULINO = "MASCULINO";
 	public static final String GENERO_FEMENINO = "FEMENINO";
 	public static final String GENERO_INDEFINIDO = "NO ESPECIFICADO";
+	
+	public static final String CANTIDAD_FACULTADES = "cantFacultades";
+	public static final String CANTIDAD_CENTROS = "cantCentros";
+	public static final String CANTIDAD_PROGRAMAS = "cantProgramas";
+	public static final String CANTIDAD_GRUPOS = "cantGrupos";
+	public static final String CANTIDAD_INVESTIGADORES = "cantInves";
+	public static final String ESTATICA_ESTADISTICAS = "estadisticas";
+	
+	public static final int CANTIDAD_FACULTADES_ID = 0;
+	public static final int CANTIDAD_CENTROS_ID = 1;
+	public static final int CANTIDAD_PROGRAMAS_ID = 2;
+	public static final int CANTIDAD_GRUPOS_ID = 3;
+	public static final int CANTIDAD_INVESTIGADORES_ID = 4;
+	
+	public static final String PARAM_TYPE = "type";
+	public static final String PARAM_SUBTYPE = "subType";
+	public static final String PARAM_ID = "id";
+	
+	public static final String UNIVERSITY_PARAM_ID = "u";
+	public static final String FACULTY_PARAM_ID = "f";
+	public static final String CENTER_PARAM_ID = "c";
+	public static final String PROGRAM_PARAM_ID = "p";
+	public static final String GROUP_PARAM_ID = "g";
+	public static final String RESEARCHER_PARAM_ID = "i";
+	
+	public static final String UNDERGRADUATE_PROGRAM_PARAM_ID = "pa";
+	
+	public static final String PARAM_UNIVERSITY_LEVEL_ID = "0";
+	
+	public static final String PARAM_UNIVERSITY_LEVEL = "idUniquindio";
+	
+	public static final String ADMIN_BELOGNING_PARAM_ID = "adm";
+	
+	
+	
+	
+	
 
 	/**
 	 * constructor de la clase Util

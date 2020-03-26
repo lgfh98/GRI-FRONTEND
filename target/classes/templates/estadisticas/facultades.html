@@ -441,6 +441,8 @@
 								<button th:classappend="${colorTituloBoton}"># Docentes
 									Catedráticos</button>
 							</div>
+							
+							
 							<div>
 								<button th:classappend="${colorTituloBoton}">#
 									Investigadores Externos</button>
@@ -454,14 +456,10 @@
 									Estudiantes Investigadores</button>
 							</div>
 							<div>
-								<button th:classappend="${colorTituloBoton}">#
-									Indefinidos</button>
-							</div>
-							<div>
 								<button th:classappend="${colorTituloBoton}">Total</button>
 							</div>
 
-
+							
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(type='f',subType=${peDp},id=${idFacultad})}">
@@ -483,7 +481,7 @@
 										th:text="${num_inves_DC}"></button>
 								</a>
 							</div>
-
+							
 							<div>
 								<a class="link"
 									th:href="@{investigadoresP(type='f',subType=${peIe},id=${idFacultad})}">
@@ -503,13 +501,6 @@
 									th:href="@{investigadoresP(type='f',subType=${peEi},id=${idFacultad})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${num_inves_EI}"></button>
-								</a>
-							</div>
-							<div>
-								<a class="link"
-									th:href="@{investigadoresP(type='f',subType=${peInd},id=${idFacultad})}">
-									<button th:classappend="${colorTotalBoton}"
-										th:text="${num_inves_IND}"></button>
 								</a>
 							</div>
 							<div>

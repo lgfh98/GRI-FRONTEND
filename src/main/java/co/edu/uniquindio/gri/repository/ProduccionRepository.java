@@ -30,7 +30,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionB where investigador.id =:entityId and tipo.id =:tipoId ")
-	public List<ProduccionB> getProduccionB(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
+    List<ProduccionB> getProduccionB(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
 
 	/**
 	 * Obtiene la los trabajos dirigidos de un investigador.
@@ -39,7 +39,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de trabajos dirigidos del investigador.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.Produccion where investigador.id =:entityId and (tipo.id = 1 or tipo.id = 41 or tipo.id = 42 or tipo.id = 43)")
-	public List<Produccion> getTrabajosDirigidos(@Param("entityId") Long entityId);
+    List<Produccion> getTrabajosDirigidos(@Param("entityId") Long entityId);
 
 	/**
 	 * Obtiene la producción científica de un investigador.
@@ -49,7 +49,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones científicas del tipo tipoId.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.Produccion where investigador.id =:entityId and tipo.id =:tipoId")
-	public List<Produccion> getProduccion(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
+    List<Produccion> getProduccion(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
 
 	// Grupos
 	/**
@@ -60,7 +60,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionBGrupo where grupo.id =:entityId and tipo.id =:tipoId ")
-	public List<ProduccionBGrupo> getProduccionBGrupo(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
+    List<ProduccionBGrupo> getProduccionBGrupo(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
 
 	/**
 	 * Obtiene los trabajos dirigidos de un grupo de investigación.
@@ -69,7 +69,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionGrupo where grupo.id =:entityId and (tipo.id = 1 or tipo.id = 41 or tipo.id = 42 or tipo.id = 43)")
-	public List<ProduccionGrupo> getTrabajosDirigidosGrupo(@Param("entityId") Long entityId);
+    List<ProduccionGrupo> getTrabajosDirigidosGrupo(@Param("entityId") Long entityId);
 
 	/**
 	 * Obtiene la producción de un grupo de investigación.
@@ -79,7 +79,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionGrupo where grupo.id =:entityId and tipo.id =:tipoId")
-	public List<ProduccionGrupo> getProduccionGrupo(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
+    List<ProduccionGrupo> getProduccionGrupo(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
 
 	// Programas
 	/**
@@ -90,8 +90,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(pb.id, pb.identificador, pb.autores, pb.anio, pb.referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pb join pb.grupo g join g.programas p  where p.id =:entityId  and pb.tipo.id =:tipoId")
-	public List<ProduccionBGrupo> getProduccionBPrograma(@Param("entityId") Long entityId,
-			@Param("tipoId") Long tipoId);
+    List<ProduccionBGrupo> getProduccionBPrograma(@Param("entityId") Long entityId,
+                                                  @Param("tipoId") Long tipoId);
 
 	/**
 	 * Obtiene los trabajos dirigidos de un programa.
@@ -100,7 +100,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p where p.id =:entityId and (pr.tipo.id = 1 or pr.tipo.id = 41 or pr.tipo.id = 42 or pr.tipo.id = 43)")
-	public List<ProduccionGrupo> getTrabajosDirigidosPrograma(@Param("entityId") Long entityId);
+    List<ProduccionGrupo> getTrabajosDirigidosPrograma(@Param("entityId") Long entityId);
 
 	/**
 	 * Obtiene la producción de un programa.
@@ -110,7 +110,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p where p.id =:entityId and pr.tipo.id =:tipoId ")
-	public List<ProduccionGrupo> getProduccionPrograma(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
+    List<ProduccionGrupo> getProduccionPrograma(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
 
 	// Centros
 	/**
@@ -121,7 +121,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(pb.id, pb.identificador, pb.autores, pb.anio, pb.referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pb join pb.grupo g join g.centro c where c.id =:entityId and pb.tipo.id =:tipoId")
-	public List<ProduccionBGrupo> getProduccionBCentro(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
+    List<ProduccionBGrupo> getProduccionBCentro(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
 
 	/**
 	 * Obtiene los trabajos dirigidos de un centro.
@@ -130,7 +130,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.centro c where c.id =:entityId  and (pr.tipo.id = 1 or pr.tipo.id = 41 or pr.tipo.id = 42 or pr.tipo.id = 43)")
-	public List<ProduccionGrupo> getTrabajosDirigidosCentro(@Param("entityId") Long entityId);
+    List<ProduccionGrupo> getTrabajosDirigidosCentro(@Param("entityId") Long entityId);
 
 	/**
 	 * Obtiene la producción de un centro.
@@ -140,7 +140,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.centro c where c.id = :entityId and pr.tipo.id = :tipoId")
-	public List<ProduccionGrupo> getProduccionCentro(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
+    List<ProduccionGrupo> getProduccionCentro(@Param("entityId") Long entityId, @Param("tipoId") Long tipoId);
 
 	// Facultades
 	/**
@@ -152,8 +152,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(pb.id, pb.identificador, pb.autores, pb.anio, pb.referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pb join pb.grupo g join g.programas p join p.facultad f where f.id =:entityId  and pb.tipo.id =:tipoId ")
-	public List<ProduccionBGrupo> getProduccionBFacultadPrograma(@Param("entityId") Long entityId,
-			@Param("tipoId") Long tipoId);
+    List<ProduccionBGrupo> getProduccionBFacultadPrograma(@Param("entityId") Long entityId,
+                                                          @Param("tipoId") Long tipoId);
 
 	/**
 	 * Obtiene la producción bibliográfica de una facultad con respecto a sus
@@ -164,8 +164,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(pb.id, pb.identificador, pb.autores, pb.anio, pb.referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pb join pb.grupo g join g.centro c join c.facultad f where f.id =:entityId  and pb.tipo.id =:tipoId ")
-	public List<ProduccionBGrupo> getProduccionBFacultadCentro(@Param("entityId") Long entityId,
-			@Param("tipoId") Long tipoId);
+    List<ProduccionBGrupo> getProduccionBFacultadCentro(@Param("entityId") Long entityId,
+                                                        @Param("tipoId") Long tipoId);
 
 	/**
 	 * Obtiene los trabajos dirigidos de una facultad respecto a sus programas.
@@ -174,7 +174,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p join p.facultad f where f.id =:entityId  and (pr.tipo.id =  1 or pr.tipo.id = 41 or pr.tipo.id = 42 or pr.tipo.id = 43)")
-	public List<ProduccionGrupo> getTrabajosDirigidosFacultadPrograma(@Param("entityId") Long entityId);
+    List<ProduccionGrupo> getTrabajosDirigidosFacultadPrograma(@Param("entityId") Long entityId);
 
 	/**
 	 * Obtiene los trabajos dirigidos de una facultad respecto a sus centros.
@@ -183,7 +183,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p join p.facultad f where f.id =:entityId  and (pr.tipo.id =  1 or pr.tipo.id = 41 or pr.tipo.id = 42 or pr.tipo.id = 43)")
-	public List<ProduccionGrupo> getTrabajosDirigidosFacultadCentro(@Param("entityId") Long entityId);
+    List<ProduccionGrupo> getTrabajosDirigidosFacultadCentro(@Param("entityId") Long entityId);
 
 	/**
 	 * Obtiene la producción de una facultad respecto a sus programas.
@@ -193,8 +193,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.programas p join p.facultad f where f.id =:entityId  and pr.tipo.id =:tipoId ")
-	public List<ProduccionGrupo> getProduccionFacultadPrograma(@Param("entityId") Long entityId,
-			@Param("tipoId") Long tipoId);
+    List<ProduccionGrupo> getProduccionFacultadPrograma(@Param("entityId") Long entityId,
+                                                        @Param("tipoId") Long tipoId);
 
 	/**
 	 * Obtiene la producción de una facultad respecto a sus centros.
@@ -204,8 +204,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(pr.id, pr.autores, pr.anio, pr.referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr join pr.grupo g join g.centro c join c.facultad f where f.id =:entityId  and pr.tipo.id =:tipoId")
-	public List<ProduccionGrupo> getProduccionFacultadCentro(@Param("entityId") Long entityId,
-			@Param("tipoId") Long tipoId);
+    List<ProduccionGrupo> getProduccionFacultadCentro(@Param("entityId") Long entityId,
+                                                      @Param("tipoId") Long tipoId);
 
 	// General
 	/**
@@ -215,7 +215,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones bibliográficas del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionBGrupo(id, identificador, autores, anio, referencia)  from co.edu.uniquindio.gri.model.ProduccionBGrupo where tipo.id =:tipoId")
-	public List<ProduccionBGrupo> getProduccionBGeneral(@Param("tipoId") Long tipoId);
+    List<ProduccionBGrupo> getProduccionBGeneral(@Param("tipoId") Long tipoId);
 
 	/**
 	 * Obtiene los trabajos dirigidos general de toda la universidad.
@@ -223,7 +223,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de trabajos dirigidos.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(id, autores, anio, referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.id = 1 or tipo.id = 41 or tipo.id = 42 or tipo.id = 43")
-	public List<ProduccionGrupo> getTrabajosDirigidosGeneral();
+    List<ProduccionGrupo> getTrabajosDirigidosGeneral();
 
 	/**
 	 * Obtiene la producción general de toda la universidad.
@@ -232,7 +232,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return lista de producciones del tipo tipoId.
 	 */
 	@Query("SELECT NEW co.edu.uniquindio.gri.model.ProduccionGrupo(id, autores, anio, referencia)  from co.edu.uniquindio.gri.model.ProduccionGrupo where tipo.id = :tipoId")
-	public List<ProduccionGrupo> getProduccionGeneral(@Param("tipoId") Long tipoId);
+    List<ProduccionGrupo> getProduccionGeneral(@Param("tipoId") Long tipoId);
 
 	// Búsquedas
 
@@ -247,7 +247,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	@SuppressWarnings("rawtypes")
 	// Grupos
 	@Query(value = "SELECT bg.referencia, bg.autores, bg.anio, tp.nombre as tipo,  gr.nombre FROM gri.bibliograficasg bg  JOIN gri.tipos tp ON tp.id=bg.tipo_id JOIN gri.grupos gr ON bg.grupos_id= gr.id WHERE unaccent(bg.referencia) LIKE unaccent('%'||:cadena||'%') UNION SELECT pg.referencia, pg.autores, pg.anio, tp.nombre as tipo,  gr.nombre FROM gri.produccionesg pg  JOIN gri.tipos tp ON tp.id=pg.tipo_id JOIN gri.grupos gr ON pg.grupos_id= gr.id WHERE unaccent(pg.referencia) LIKE unaccent('%'||:cadena||'%')", nativeQuery = true)
-	public List getProduccionGBusqueda(@Param("cadena") String cadena);
+    List getProduccionGBusqueda(@Param("cadena") String cadena);
 
 	// Investigadores
 	/**
@@ -260,11 +260,11 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 */
 	@SuppressWarnings("rawtypes")
 	@Query(value = "SELECT bg.referencia, bg.autores, bg.anio, tp.nombre as tipo,  inv.nombre FROM gri.bibliograficas bg  JOIN gri.tipos tp ON tp.id=bg.tipo_id JOIN gri.investigadores inv ON bg.investigadores_id= inv.id WHERE unaccent(bg.referencia) LIKE unaccent('% '||:cadena||' %') UNION SELECT pg.referencia, pg.autores, pg.anio, tp.nombre as tipo,  inv.nombre FROM gri.producciones pg  JOIN gri.tipos tp ON tp.id=pg.tipo_id JOIN gri.investigadores inv ON pg.investigadores_id= inv.id WHERE unaccent(pg.referencia) LIKE unaccent('% '||:cadena||' %')", nativeQuery = true)
-	public List getProduccionBusqueda(@Param("cadena") String cadena);
+    List getProduccionBusqueda(@Param("cadena") String cadena);
 
 	@SuppressWarnings("rawtypes")
 	@Query(value = "SELECT b.id, b.referencia, b.autores, b.anio, t.nombre, t.tipoproduccion_id, b.inventario FROM gri.bibliograficasg b JOIN gri.tipos t ON t.id = b.tipo_id WHERE b.grupos_id =:id UNION ALL SELECT p.id, p.referencia, p.autores, p.anio, t.nombre, t.tipoproduccion_id, p.inventario FROM gri.produccionesg p JOIN gri.tipos t ON t.id = p.tipo_id WHERE p.grupos_id =:id", nativeQuery = true)
-	public List getAllProducciones(@Param("id") Long id);
+    List getAllProducciones(@Param("id") Long id);
 
 	/**
 	 * Actualiza el estado de una producción científica en función si se encuentra o
@@ -277,7 +277,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	@Transactional
 	@Modifying
 	@Query("UPDATE co.edu.uniquindio.gri.model.ProduccionGrupo p SET  p.estado=:estado WHERE p.id=:id")
-	public void updateProduccionGrupo(@Param("id") Long id, @Param("estado") int estado);
+    void updateProduccionGrupo(@Param("id") Long id, @Param("estado") int estado);
 
 	/**
 	 * Actualiza el estado de una producción científica en función si se encuentra o
@@ -290,7 +290,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	@Transactional
 	@Modifying
 	@Query("UPDATE co.edu.uniquindio.gri.model.ProduccionBGrupo p SET  p.estado=:estado WHERE p.id=:id")
-	public void updateProduccionBGrupo(@Param("id") Long id, @Param("estado") int estado);
+    void updateProduccionBGrupo(@Param("id") Long id, @Param("estado") int estado);
 
 	/**
 	 * Obtiene la cantidad de dirigidos de la universidad.
@@ -298,7 +298,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de trabajos dirigidos.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.id = 1 or tipo.id = 41 or tipo.id = 42 or tipo.id = 43")
-	public BigInteger getCantidadTrabajosDirigidos();
+    BigInteger getCantidadTrabajosDirigidos();
 
 	/**
 	 * Obtiene la cantidad de cursos cortos de la universidad.
@@ -306,7 +306,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de cursos cortos.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.id = 0")
-	public BigInteger getCantidadCursosCortaDuracion();
+    BigInteger getCantidadCursosCortaDuracion();
 
 	/**
 	 * Obtiene la cantidad de actividades de formación total de la universidad.
@@ -314,7 +314,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de actividades de formacion.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 0")
-	public BigInteger getCantidadActividadesFormacion();
+    BigInteger getCantidadActividadesFormacion();
 
 	/**
 	 * Obtiene la cantidad de actividades como evaluador total de la universidad.
@@ -322,7 +322,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de actividades como evaluador.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 1")
-	public BigInteger getCantidadActividadesEvaluador();
+    BigInteger getCantidadActividadesEvaluador();
 
 	/**
 	 * Obtiene la cantidad de actividades de apropiacion social total de la
@@ -331,7 +331,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de actividades de apropiacion social.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 2")
-	public BigInteger getCantidadApropiacionSocial();
+    BigInteger getCantidadApropiacionSocial();
 
 	/**
 	 * Obtiene la cantidad de producciones bibliograficas total de la universidad.
@@ -339,7 +339,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de producciones bibliograficas.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionBGrupo pr where tipo.tipoProduccion.id = 3")
-	public BigInteger getCantidadProduccionesBibliograficas();
+    BigInteger getCantidadProduccionesBibliograficas();
 
 	/**
 	 * Obtiene la cantidad de producciones tecnicas y teconologicas total de la
@@ -348,7 +348,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de producciones tecnicas y tecnologicas.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 4")
-	public BigInteger getCantidadTecnicasTecnologicas();
+    BigInteger getCantidadTecnicasTecnologicas();
 
 	/**
 	 * Obtiene la cantidad de producciones en arte total de la universidad.
@@ -356,7 +356,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de producciones en arte.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 6")
-	public BigInteger getCantidadProduccionesArte();
+    BigInteger getCantidadProduccionesArte();
 
 	/**
 	 * Obtiene la cantidad de producciones "Demas Trabajos" de la universidad.
@@ -364,7 +364,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de producciones "Demas Trabajos" de la universidad.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 5 and tipo.id = 32")
-	public BigInteger getCantidadProduccionesDemasTrabajos();
+    BigInteger getCantidadProduccionesDemasTrabajos();
 
 	/**
 	 * Obtiene la cantidad de producciones "Proyectos" de la universidad.
@@ -372,7 +372,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @return cantidad de producciones "Proyectos" de la universidad.
 	 */
 	@Query("SELECT COUNT (pr)  from co.edu.uniquindio.gri.model.ProduccionGrupo pr where tipo.tipoProduccion.id = 5 and tipo.id = 33")
-	public BigInteger getCantidadProduccionesProyectos();
+    BigInteger getCantidadProduccionesProyectos();
 
 	/**
 	 * Obtiene la cantidad de producciones total de la facultad por un tipo
@@ -383,8 +383,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pg1 ON g.id=pg1.grupos_id JOIN gri.programas p ON pg1.programas_id = p.id JOIN gri.facultades f ON p.facultades_id = f.id AND f.id=:facultadId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesFacultadPorTipo(@Param("facultadId") Long facultadId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesFacultadPorTipo(@Param("facultadId") Long facultadId,
+                                                      @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones bibliográficas total de la facultad por un tipo
@@ -395,8 +395,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.bibliograficasg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pg1 ON g.id=pg1.grupos_id JOIN gri.programas p ON pg1.programas_id = p.id JOIN gri.facultades f ON p.facultades_id = f.id AND f.id=:facultadId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesBFacultadPorTipo(@Param("facultadId") Long facultadId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesBFacultadPorTipo(@Param("facultadId") Long facultadId,
+                                                       @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total de la facultad por un sub tipo
@@ -407,8 +407,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id AND t.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pg1 ON g.id=pg1.grupos_id JOIN gri.programas p ON pg1.programas_id = p.id JOIN gri.facultades f ON p.facultades_id = f.id AND f.id=:facultadId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesFacultadPorSubTipo(@Param("facultadId") Long facultadId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesFacultadPorSubTipo(@Param("facultadId") Long facultadId,
+                                                         @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total del centro por un tipo
@@ -419,8 +419,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.centros c ON c.id=g.centros_id WHERE c.id=:centroId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesCentroPorTipo(@Param("centroId") Long centroId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesCentroPorTipo(@Param("centroId") Long centroId,
+                                                    @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones bibliográficas total del centro por un tipo
@@ -431,8 +431,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.bibliograficasg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.centros c ON c.id=g.centros_id WHERE c.id=:centroId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesBCentroPorTipo(@Param("centroId") Long centroId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesBCentroPorTipo(@Param("centroId") Long centroId,
+                                                     @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total del centro por un sub tipo
@@ -443,8 +443,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id AND t.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.centros c ON c.id=g.centros_id WHERE c.id=:centroId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesCentroPorSubTipo(@Param("centroId") Long centroId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesCentroPorSubTipo(@Param("centroId") Long centroId,
+                                                       @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total del programa por un tipo
@@ -455,8 +455,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pgr ON g.id=pgr.grupos_id WHERE pgr.programas_id =:programaId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesProgramaPorTipo(@Param("programaId") Long programaId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesProgramaPorTipo(@Param("programaId") Long programaId,
+                                                      @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones bibliográficas total del programa por un tipo
@@ -467,8 +467,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.bibliograficasg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pgr ON pgr.grupos_id = g.id WHERE pgr.programas_id =:programaId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesBProgramaPorTipo(@Param("programaId") Long programaId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesBProgramaPorTipo(@Param("programaId") Long programaId,
+                                                       @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total del programa por un sub tipo
@@ -479,8 +479,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id AND t.id=:prodId JOIN gri.grupos g ON pg.grupos_id=g.id JOIN gri.programas_grupos pgr ON pgr.grupos_id = g.id WHERE pgr.programas_id =:programaId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesProgramaPorSubTipo(@Param("programaId") Long programaId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesProgramaPorSubTipo(@Param("programaId") Long programaId,
+                                                         @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total del grupo por un tipo
@@ -491,8 +491,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId WHERE pg.grupos_id=:grupoId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesGrupoPorTipo(@Param("grupoId") Long grupoId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesGrupoPorTipo(@Param("grupoId") Long grupoId,
+                                                   @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones bibliográficas total del grupo por un tipo
@@ -503,8 +503,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.bibliograficasg pg JOIN gri.tipos t on pg.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId WHERE pg.grupos_id=:grupoId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesBGrupoPorTipo(@Param("grupoId") Long grupoId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesBGrupoPorTipo(@Param("grupoId") Long grupoId,
+                                                    @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total del grupo por un sub tipo
@@ -515,8 +515,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT pg.id) FROM gri.produccionesg pg JOIN gri.tipos t on pg.tipo_id = t.id AND t.id=:prodId WHERE pg.grupos_id =:grupoId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesGrupoPorSubTipo(@Param("grupoId") Long grupoId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesGrupoPorSubTipo(@Param("grupoId") Long grupoId,
+                                                      @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total del investigador por un tipo
@@ -527,8 +527,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT p.id) FROM gri.producciones p JOIN gri.tipos t on p.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId WHERE p.investigadores_id=:investigadorId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesInvestigadorPorTipo(@Param("investigadorId") Long investigadorId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesInvestigadorPorTipo(@Param("investigadorId") Long investigadorId,
+                                                          @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones bibliográficas total del investigador por un tipo
@@ -539,8 +539,8 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT b.id) FROM gri.bibliograficas b JOIN gri.tipos t on b.tipo_id = t.id JOIN gri.tipoproduccion tp ON t.tipoproduccion_id = tp.id AND tp.id=:prodId WHERE b.investigadores_id=:investigadorId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesBInvestigadorPorTipo(@Param("investigadorId") Long investigadorId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesBInvestigadorPorTipo(@Param("investigadorId") Long investigadorId,
+                                                           @Param("prodId") Long prodId);
 	
 	/**
 	 * Obtiene la cantidad de producciones total del investigador por un sub tipo
@@ -551,7 +551,7 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	 * @param prodId     el id del tipo de produccion
 	 */
 	@Query(value = "SELECT COUNT (DISTINCT p.id) FROM gri.producciones p JOIN gri.tipos t on p.tipo_id = t.id AND t.id=:prodId WHERE p.investigadores_id =:investigadorId", nativeQuery = true)
-	public BigInteger getCantidadProduccionesInvestigadorPorSubTipo(@Param("investigadorId") Long investigadorId,
-			@Param("prodId") Long prodId);
+    BigInteger getCantidadProduccionesInvestigadorPorSubTipo(@Param("investigadorId") Long investigadorId,
+                                                             @Param("prodId") Long prodId);
 
 }

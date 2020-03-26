@@ -16,24 +16,12 @@
 				<div class="region-hero">
 					<div class="contenedor-hero">
 						<div class="contenido-hero">
-
-							<div class="row">
-								<div class="col">
-									<div class="contenedor-header">
-										<i class="fas fa-chart-pie"></i> Investigadores por género
-									</div>
-									<div id="pie-generos" class="contenedor-body"
-										style="width: 200; height: 150"></div>
-								</div>
-							</div>
 							<h1 class="titulo-hero">Investigadores</h1>
 							Tabla/Reporte de los Investigadores activos en el sistema.
 						</div>
 					</div>
 				</div>
 				<div class="separador-1"></div>
-
-
 
 				<div id="table">
 					<table id="tabla_investigadores"
@@ -46,7 +34,6 @@
 								<th>CATEGORÍA COLCIENCIAS</th>
 								<th>NIVEL ACADÉMICO</th>
 								<th>PERTENENCIA</th>
-								<th>SEXO</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -56,7 +43,6 @@
 								<td th:text="${inv.categoria}"></td>
 								<td th:text="${inv.nivelAcademico}"></td>
 								<td th:text="${inv.pertenencia}"></td>
-								<td th:text="${inv.sexo}"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -66,57 +52,5 @@
 	</div>
 
 	<div th:replace="fragments/footer"></div>
-
-	<script th:inline="javascript">
-	$(function(){
-
-		var categorias = [[${dataGeneroInvestigadores}]];
-        var clavesCategoria = [[${clavesGeneroInvestigadores}]];
-        var listaCategorias = [];
-        
-        console.log(categorias);
-        console.log(clavesCategoria);
-
-        categorias.forEach(function(item, index){
-            listaCategorias.push({
-                name: clavesCategoria[index],
-                y: item
-            });
-        });
-
-        Highcharts.chart('pie-generos', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: 'Género de investigadores'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.y:.0f}</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: cant: {point.y:.0f} - ({point.percentage:.1f} %)'
-                    }
-                }
-            },
-            series: [{
-                name: "Investigadores",
-                colorByPoint: true,
-                data: listaCategorias
-            }]
-        });
-        
-	}); 
-
-        
-	</script>
 </body>
 </html>

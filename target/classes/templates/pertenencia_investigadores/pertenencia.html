@@ -31,17 +31,23 @@
 					<ul class="cards-list">
 						<li class="ci-7 cards-item" th:classappend="${tamanio}"
 							th:each="obj : ${lista}">
+
+
 							<div class="card">
+
+
+
+
 								<a class="card-container"
-									th:href="${id} ? @{reportepertenencia(id=${obj.id})} : @{pertenencia(id=${obj.id})}  ">
+									th:href="${param.id} ? @{reportepertenencia(id=${obj.id})} :  @{pertenencia(id=${obj.id})}">
 									<div class="card-title-container-s">
-			
 										<h3 class="card-title-s" th:text="${obj.nombre}"></h3>
 									</div>
 								</a>
 								<div class="card-bar"
 									th:classappend="${subtipo} == 'f' ? card-+${obj.id} : ${color}"></div>
 							</div>
+
 						</li>
 					</ul>
 				</div>

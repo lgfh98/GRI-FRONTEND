@@ -63,8 +63,6 @@ public class CompositeKey implements Serializable {
 		CompositeKey other = (CompositeKey) obj;
 		if (grupos != other.grupos)
 			return false;
-		if (investigadores != other.investigadores)
-			return false;
-		return true;
-	}
+        return investigadores == other.investigadores;
+    }
 }
