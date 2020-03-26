@@ -29,43 +29,38 @@
 						<i class="fas fa-chart-bar"></i> Reporte gráfico por año
 					</div>
 					<div id="barras-anio" class="contenedor-body"
-						style="width: 200; height: 150"></div>
-				</div>
+						 style="width: 200; height: 150"></div>
 
-
-				<div class="contenedor mb-3">
 					<div class="contenedor-header">
 						<i class="fas fa-table"></i> Reporte en tabla
 					</div>
 					<div class="contenedor-body">
 						<div id="table">
 							<table id="tabla_reconocimientos"
-								th:class="'table-' + ${facultadId} +' table-striped table-bordered table-hover table-responsive-lg'"
-								style="width: 100%">
+								   th:class="'table-' + ${facultadId} +' table-striped table-bordered table-hover table-responsive-lg'"
+								   style="width: 100%">
 								<thead>
-									<tr>
-										<th></th>
-										<th>INVESTIGADOR</th>
-										<th>AÑO</th>
-										<th>RECONOCIMIENTO</th>
-										<th>ENTIDAD</th>
-									</tr>
+								<tr>
+									<th></th>
+									<th>INVESTIGADOR</th>
+									<th>AÑO</th>
+									<th>RECONOCIMIENTO</th>
+									<th>ENTIDAD</th>
+								</tr>
 								</thead>
 								<tbody>
-									<tr th:each="reconocimiento : ${reconocimientos}">
-										<td th:text="${reconocimiento.id}"></td>
-										<td th:text="${reconocimiento.investigador.nombre}"></td>
-										<td th:text="${reconocimiento.anio}"></td>
-										<td th:text="${reconocimiento.reconocimiento}"></td>
-										<td th:text="${reconocimiento.entidad}"></td>
-									</tr>
+								<tr th:each="reconocimiento : ${reconocimientos}">
+									<td th:text="${reconocimiento.id}"></td>
+									<td th:text="${reconocimiento.investigador.nombre}"></td>
+									<td th:text="${reconocimiento.anio}"></td>
+									<td th:text="${reconocimiento.reconocimiento}"></td>
+									<td th:text="${reconocimiento.entidad}"></td>
+								</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
-
-
 
 
 			</div>
@@ -110,7 +105,7 @@
 
 				res.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
-				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]]
+				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]];
 				const element = document.querySelector('.' + [[${ color }+'-nav']]);
 				const style = getComputedStyle(element);
 				const color = style.backgroundColor;

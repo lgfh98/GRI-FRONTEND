@@ -553,7 +553,7 @@
 			$('#tabla_pertenencia > tbody  > tr').each(function () {
 				var elID = $(this).attr('id');
 				var e = document.getElementById("menuPertenencias" + elID);
-				var data_2 = e.options[e.selectedIndex].value
+				var data_2 = e.options[e.selectedIndex].value;
 				$.ajax({
 					type: "POST",
 					contentType: "application/json",

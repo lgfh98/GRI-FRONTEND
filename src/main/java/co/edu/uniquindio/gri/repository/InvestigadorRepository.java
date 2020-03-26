@@ -2,6 +2,7 @@ package co.edu.uniquindio.gri.repository;
 
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -14,13 +15,14 @@ import co.edu.uniquindio.gri.model.Investigador;
 @Repository
 public interface InvestigadorRepository extends JpaRepository<Investigador, Long> {
 
-	public static final  String MODELO_INVESTIGADOR="co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia,i.sexo)";
+	String MODELO_INVESTIGADOR="co.edu.uniquindio.gri.model.Investigador(i.id, i.nombre, i.categoria, i.nivelAcademico, i.pertenencia,i.sexo)";
 	
 	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.springframework.data.jpa.repository.JpaRepository#findAll()
 	 */
+	@NotNull
 	@Query("select distinct NEW " +MODELO_INVESTIGADOR+" FROM co.edu.uniquindio.gri.model.Investigador i join i.grupos g where g.estado = 'ACTUAL'")
 	List<Investigador> findAll();
 

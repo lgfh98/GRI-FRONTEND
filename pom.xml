@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>serverspring</groupId>
 	<artifactId>ServerSpring</artifactId>
@@ -15,22 +15,29 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<properties>
-<!-- 		<hibernate.version>4.2.21.Final</hibernate.version> -->
+		<!-- 		<hibernate.version>4.2.21.Final</hibernate.version> -->
 		<bootstrap.version>4.2.1</bootstrap.version>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.hibernate</groupId> -->
-<!-- 			<artifactId>hibernate-validator</artifactId> -->
-<!-- 			<version>4.2.0.Final</version> -->
-<!-- 		</dependency> -->
+		<!-- 		<dependency> -->
+		<!-- 			<groupId>org.hibernate</groupId> -->
+		<!-- 			<artifactId>hibernate-validator</artifactId> -->
+		<!-- 			<version>4.2.0.Final</version> -->
+		<!-- 		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.1.0.Final</version>
+			<version>1.0.0.GA</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -50,6 +57,7 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<!-- thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>

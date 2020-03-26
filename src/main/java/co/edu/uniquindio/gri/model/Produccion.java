@@ -239,10 +239,8 @@ public class Produccion implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Produccion other = (Produccion) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+        return id == other.id;
+    }
 	
 	
 
