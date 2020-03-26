@@ -116,6 +116,8 @@
 								$('c[r=A1] t', sheet).text('Grupos');
 							} else if (document.getElementById('tabla_lineas_wrapper')) {
 								$('c[r=A1] t', sheet).text('Lineas de Investigación');
+							}else if (document.getElementById('tabla_reconocimientos_wrapper')) {
+								$('c[r=A1] t', sheet).text('Reconocimientos');
 							}
 						},
 						// Nombre de archivo personalizado
@@ -146,6 +148,9 @@
 							}
 							else if (document.getElementById('tabla_lineas_wrapper')) {
 								return 'Lineas de Investigación';
+							}
+							else if (document.getElementById('tabla_reconocimientos_wrapper')) {
+								return 'Reconocimientos';
 							}
 						}
 
@@ -183,6 +188,9 @@
 							else if (document.getElementById('tabla_lineas_wrapper')) {
 								return 'Lineas de Investigación';
 							}
+							else if (document.getElementById('tabla_reconocimientos_wrapper')) {
+								return 'Reconocimientos';
+							}
 						},
 						// Encabezado del PDF
 						title: function () {
@@ -211,6 +219,8 @@
 								return 'Grupos';
 							} else if (document.getElementById('tabla_lineas_wrapper')) {
 								return 'Lineas de Investigación';
+							} else if (document.getElementById('tabla_reconocimientos_wrapper')) {
+								return 'Lineas de reconocimientos';
 							}
 						},
 						exportOptions: {
@@ -317,6 +327,28 @@
 		$('#tabla_lineas_filter input').keyup(function () {
 			// Busqueda con tildes
 			tabla_lineas
+				.search(
+					jQuery.fn.DataTable.ext.type.search.string(this.value)
+				)
+				.draw();
+		});
+
+		var tabla_reconocimientos = $('#tabla_reconocimientos').DataTable({
+			responsive: true,
+			rowId: 'id',
+			"order": [[1, "asc"]],
+			columns: [
+				{ data: "id", visible: false },
+				{ data: "nombre" },
+				{ data: "investigador" },
+				{ data: "reconocimiento" },
+				{ data: "entidad" }
+			]
+		});
+
+		$('#tabla_reconocimientos_filter input').keyup(function () {
+			// Busqueda con tildes
+			tabla_reconocimientos
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
 				)
@@ -521,7 +553,7 @@
 			$('#tabla_pertenencia > tbody  > tr').each(function () {
 				var elID = $(this).attr('id');
 				var e = document.getElementById("menuPertenencias" + elID);
-				var data_2 = e.options[e.selectedIndex].value
+				var data_2 = e.options[e.selectedIndex].value;
 				$.ajax({
 					type: "POST",
 					contentType: "application/json",

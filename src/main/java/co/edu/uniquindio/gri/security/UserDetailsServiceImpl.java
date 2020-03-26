@@ -46,7 +46,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     grantList.add(grantedAuthority);
     		
     //Finalmente se crea y se retorna el objeto con los detalles del usuario. Esto se incluirá en la sesión. 
-    UserDetails user = (UserDetails) new User(appUser.getUsername(), appUser.getPassword(), grantList);
+    UserDetails user = new User(appUser.getUsername(), appUser.getPassword(), grantList);
          return user;
     }
 }

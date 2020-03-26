@@ -293,10 +293,8 @@ public class ProduccionBGrupo implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		ProduccionBGrupo other = (ProduccionBGrupo) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+        return id == other.id;
+    }
 	
 	
 }

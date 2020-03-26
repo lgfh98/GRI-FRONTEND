@@ -260,8 +260,7 @@
 				{ data: "nombre" },
 				{ data: "categoria" },
 				{ data: "nivelAcademico" },
-				{ data: "pertenencia" },
-				{ data: "sexo"}
+				{ data: "pertenencia" }
 			]
 		});
 

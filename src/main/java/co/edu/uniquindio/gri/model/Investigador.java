@@ -349,9 +349,7 @@ public class Investigador implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Investigador other = (Investigador) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
+        return id == other.id;
+    }
 
 }

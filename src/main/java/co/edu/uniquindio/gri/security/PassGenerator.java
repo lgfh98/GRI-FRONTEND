@@ -17,7 +17,7 @@ public class PassGenerator {
 	 */
 	public static void main(String[] args) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
-		final String password = "12345";
+		final String password = "9738437";
 		System.out.println(bCryptPasswordEncoder.encode(password));
 	}
 
