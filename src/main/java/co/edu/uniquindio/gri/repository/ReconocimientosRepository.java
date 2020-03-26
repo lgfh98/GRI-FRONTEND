@@ -21,10 +21,10 @@ public interface ReconocimientosRepository extends JpaRepository<LineasInvestiga
 
 
 	String UNIVERSITY_SEARCH = "SELECT NEW co.edu.uniquindio.gri.model.RecononocimientosInvestigador(ri.id, ri.investigador, ri.anio, ri.reconocimiento, ri.entidad) FROM co.edu.uniquindio.gri.model.RecononocimientosInvestigador ri join ri.investigador";
-	String FACULTY_SEARCH = "SELECT DISTINCT ri.id, i, ri.anio, ri.reconocimiento, ri.entidad FROM gri.reconocimientos_inves ri INNER JOIN gri.investigadores i ON ri.investigadores_id = i.id JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id JOIN gri.grupos g ON gi.grupos_id = g.id JOIN gri.programas_grupos gr ON gr.grupos_id = g.id JOIN gri. programas p ON p.id = gr.programas_id WHERE gi.estado = 'ACTUAL' and p.facultades_id";
-	String CENTER_SEARCH = "SELECT DISTINCT ri.id, i, ri.anio, ri.reconocimiento, ri.entidad FROM gri.reconocimientos_inves ri INNER JOIN gri.investigadores i ON ri.investigadores_id = i.id JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id JOIN gri.grupos g ON g.id = gi.grupos_id WHERE gi.estado = 'ACTUAL' and g.centros_id";
-	String PROGRAM_SEARCH = "SELECT DISTINCT ri.id, i, ri.anio, ri.reconocimiento, ri.entidad FROM gri.reconocimientos_inves ri INNER JOIN gri.investigadores i ON ri.investigadores_id = i.id JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id JOIN gri.grupos g ON gi.grupos_id = g.id JOIN gri.programas_grupos gr ON gr.grupos_id = g.id WHERE gi.estado = 'ACTUAL' and gr.programas_id.id";
-	String GROUP_SEARCH = "SELECT DISTINCT ri.id, i, ri.anio, ri.reconocimiento, ri.entidad FROM gri.reconocimientos_inves ri INNER JOIN gri.investigadores i ON ri.investigadores_id = i.id JOIN gri.grupos_inves gi ON i.id = gi.investigadores_id WHERE gi.estado = 'ACTUAL' and gi.grupos_id";
+	String FACULTY_SEARCH = "SELECT NEW co.edu.uniquindio.gri.model.RecononocimientosInvestigador(ri.id, ri.investigador, ri.anio, ri.reconocimiento, ri.entidad) FROM co.edu.uniquindio.gri.model.RecononocimientosInvestigador ri join ri.investigador";
+	String CENTER_SEARCH = "SELECT NEW co.edu.uniquindio.gri.model.RecononocimientosInvestigador(ri.id, ri.investigador, ri.anio, ri.reconocimiento, ri.entidad) FROM co.edu.uniquindio.gri.model.RecononocimientosInvestigador ri join ri.investigador";
+	String PROGRAM_SEARCH = "SELECT NEW co.edu.uniquindio.gri.model.RecononocimientosInvestigador(ri.id, ri.investigador, ri.anio, ri.reconocimiento, ri.entidad) FROM co.edu.uniquindio.gri.model.RecononocimientosInvestigador ri join ri.investigador";
+	String GROUP_SEARCH = "SELECT NEW co.edu.uniquindio.gri.model.RecononocimientosInvestigador(ri.id, ri.investigador, ri.anio, ri.reconocimiento, ri.entidad) FROM co.edu.uniquindio.gri.model.RecononocimientosInvestigador ri join ri.investigador";
 	String RESEARCHER_SEARCH = "SELECT NEW co.edu.uniquindio.gri.model.RecononocimientosInvestigador(ri.id, ri.investigador, ri.anio, ri.reconocimiento, ri.entidad) FROM co.edu.uniquindio.gri.model.RecononocimientosInvestigador ri join ri.investigador i WHERE i.id";
 
 
@@ -42,7 +42,7 @@ public interface ReconocimientosRepository extends JpaRepository<LineasInvestiga
 	 * @param id el id de la facultad
 	 * @return los reconocimientos de investigación de una facultad
 	 */
-	@Query(FACULTY_SEARCH +" = :id")
+	@Query(FACULTY_SEARCH)
 	List<RecononocimientosInvestigador> getReconocimientosFacultad(@Param("id") Long id);
 
 	/**
@@ -51,7 +51,7 @@ public interface ReconocimientosRepository extends JpaRepository<LineasInvestiga
 	 * @param id el id del centro
 	 * @return los reconocimientos de investigación de un centro
 	 */
-	@Query(CENTER_SEARCH +" = :id")
+	@Query(CENTER_SEARCH)
 	List<RecononocimientosInvestigador> getReconocimientosCentros(@Param("id") Long id);
 
 	/**
@@ -60,7 +60,7 @@ public interface ReconocimientosRepository extends JpaRepository<LineasInvestiga
 	 * @param id el id del programa
 	 * @return los reconocimientos de investigación de un programa
 	 */
-	@Query(PROGRAM_SEARCH +" = :id")
+	@Query(PROGRAM_SEARCH)
 	List<RecononocimientosInvestigador> getReconocimientosProgramas(@Param("id") Long id);
 
 	/**
@@ -69,7 +69,7 @@ public interface ReconocimientosRepository extends JpaRepository<LineasInvestiga
 	 * @param id el id del grupo
 	 * @return los reconocimientos de investigación de un grupo
 	 */
-	@Query(FACULTY_SEARCH +" = :id")
+	@Query(FACULTY_SEARCH)
 	List<RecononocimientosInvestigador> getReconocimientosGrupos(@Param("id") Long id);
 
 	/**
