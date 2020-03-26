@@ -806,7 +806,7 @@ public class WebController {
         model.addAttribute("tipo", "Reporte");
         model.addAttribute("color", "card-" + id);
         if (Long.parseLong(id) != 0) {
-            if (type.equals(Util.FACULTY_PARAM_ID) || type.equals(Util.UNIVERSITY_PARAM_ID)) {
+            if (type.equals(Util.RESEARCHER_PARAM_ID) || type.equals(Util.GROUP_PARAM_ID) || type.equals(Util.CENTER_PARAM_ID) || type.equals(Util.PROGRAM_PARAM_ID) || type.equals(Util.FACULTY_PARAM_ID) || type.equals(Util.UNIVERSITY_PARAM_ID)) {
                 model.addAttribute("reconocimientos", reconocimientosDAO.getReconocimientos(Long.parseLong(id), type));
             } else {
                 model.addAttribute("reconocimientos", reconocimientosDAO.findAll());

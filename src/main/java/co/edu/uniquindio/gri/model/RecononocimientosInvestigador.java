@@ -1,3 +1,4 @@
+
 package co.edu.uniquindio.gri.model;
 
 import java.io.Serializable;
