@@ -71,8 +71,10 @@
 
 	<script th:inline="javascript">
 
-		var url = "/FrontendGRI_war/rest/service/reconocimientos/" + [[${ param.type }]] + "/" + [[${ param.id }]] + "/" + [[${ param.prod }]];
+		var url = "/ServerSpring/rest/service/reconocimientos/" + [[${ param.type }]] + "/" + [[${ param.id }]];
 
+		console.log(url)
+		
 		$.ajax({
 			type: "GET",
 			contentType: "application/json",
@@ -84,12 +86,8 @@
 				var res = [];
 				reconocimientos.forEach(function (item) {
 
-					var anio;
-					if (item.anio === 'N/D') {
-						anio = 0;
-					} else {
-						var anio = parseInt(item.anio);
-					}
+					var anio = parseInt(item.anio);
+					
 					if (res.some(e => e.name === anio)) {
 						const i = res.findIndex(obj => obj.name === anio);
 						var cant = res[i].y;
@@ -118,7 +116,7 @@
 					title: {
 						text: titulo
 					}, subtitle: {
-						text: 'Nota: los reconocimientos en el año 0 indican reconocimientos sin año especificado'
+						text: 'Nota: las publicaciones en el año 0 indican publicaciones sin año especificado'
 					},
 					xAxis: {
 						type: 'category',
