@@ -271,6 +271,11 @@
 									Estudiantes Investigadores</button>
 							</div>
 							<div>
+								<button th:classappend="${colorTituloBoton}">#
+									Indefinidos</button>
+							</div>
+
+							<div>
 								<button th:classappend="${colorTituloBoton}">Total</button>
 							</div>
 
@@ -316,6 +321,13 @@
 									th:href="@{investigadoresP(type=${tipo},subType=${peEi},id=${idGrupo})}">
 									<button th:classappend="${colorTotalBoton}"
 										th:text="${num_inves_EI}"></button>
+								</a>
+							</div>
+							<div>
+								<a class="link"
+									th:href="@{investigadoresP(type=${tipo},subType=${peInd},id=${idGrupo})}">
+									<button th:classappend="${colorTotalBoton}"
+										th:text="${num_inves_IND}"></button>
 								</a>
 							</div>
 							<div>

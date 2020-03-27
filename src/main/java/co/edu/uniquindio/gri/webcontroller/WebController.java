@@ -804,7 +804,7 @@ public class WebController {
         model.addAttribute(Util.PARAM_ID, id);
         model.addAttribute("nombre", "Reconocimientos");
         model.addAttribute("tipo", "Reporte");
-        model.addAttribute("color", "card-" + id);
+       
         if (Long.parseLong(id) != 0) {
             if (type.equals(Util.RESEARCHER_PARAM_ID) || type.equals(Util.GROUP_PARAM_ID) || type.equals(Util.CENTER_PARAM_ID) || type.equals(Util.PROGRAM_PARAM_ID) || type.equals(Util.FACULTY_PARAM_ID) || type.equals(Util.UNIVERSITY_PARAM_ID)) {
                 model.addAttribute("reconocimientos", reconocimientosDAO.getReconocimientos(Long.parseLong(id), type));
@@ -814,6 +814,31 @@ public class WebController {
         } else {
             model.addAttribute("reconocimientos", reconocimientosDAO.findAll());
         }
+        
+        long facultadId = 0;
+        long longId = Long.parseLong(id);
+        switch(type) {
+        	
+        	case "g" :
+        		facultadId = grupoDAO.findOne(longId).getProgramas().get(0).getFacultad().getId();
+        		System.err.println("-------------------- " +facultadId);
+        		break;
+        	case "p" :
+        		facultadId = programaDAO.getProgramaById(longId).getFacultad().getId();
+        		break;
+        	case "c" :
+        		facultadId = centroDAO.getCentroById(longId).getFacultad().getId();
+        		break;
+        	case "f":
+        		facultadId =longId;
+        		break;
+        		
+        }
+        
+       
+        model.addAttribute("facultadId",facultadId);
+        model.addAttribute("color", "card-" + facultadId);
+        
         return "reconocimientos";
     }
 
