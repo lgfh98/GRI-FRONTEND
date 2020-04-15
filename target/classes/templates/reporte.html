@@ -111,7 +111,7 @@
 
 				res.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
-				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]]
+				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]];
 				const element = document.querySelector('.' + [[${ color }+'-nav']]);
 				const style = getComputedStyle(element);
 				const color = style.backgroundColor;
