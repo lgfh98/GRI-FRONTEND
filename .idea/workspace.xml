@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="FrontendGRI:war" />
+      <artifact name="FrontendGRI:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ffd2c66e-7dbf-4c89-8257-79eefe7cdde1" name="Default Changelist" comment="Merge branch 'jefferson' into juan">
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/gri/repository/ReconocimientosRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/co/edu/uniquindio/gri/repository/ReconocimientosRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/StartWebApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/config/WebConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/controller/CentroController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/controller/FacultadController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/controller/GrupoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/controller/InvestigadorController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/controller/PertenenciaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/controller/ProduccionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/controller/ProgramaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/controller/TipoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/CentroDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/FacultadDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/GrupoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/InvestigadorDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/LineasInvestigacionDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/PertenenciaDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/ProduccionDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/ProgramaDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/TipoDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/dao/UserDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Centro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/CompositeKey.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Facultad.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Grupo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/GruposInves.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Idiomas.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Investigador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/LineasInvestigacion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Pertenencia.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Produccion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/ProduccionB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/ProduccionBGrupo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/ProduccionGrupo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Programa.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Rol.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/Tipo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/TipoProduccion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/model/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/CentroRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/FacultadRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/GrupoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/InvestigadorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/LineasInvestigacionRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/PertenenciaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/ProduccionRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/ProgramaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/TipoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/repository/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/security/PassGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/security/UserDetailsServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/security/WebSecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/utilities/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/webcontroller/ReporteController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/webcontroller/TipologiasController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/co/edu/uniquindio/gri/webcontroller/WebController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/footer-carta-pagina.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/header-carta-pagina.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/IMG/portada.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/c_1.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/c_2.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/c_3.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/c_4.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/c_5.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/c_6.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/c_7.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/c_8.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_1.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_2.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_3.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_4.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_5.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_6.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_7.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_8.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/f_9.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/g_1.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/g_2.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/g_3.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/g_4.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/g_5.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/g_6.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/g_7.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/i_1.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/i_2.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/i_3.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/p_1.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/p_2.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/p_3.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/p_4.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/p_5.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/p_6.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/p_7.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/p_8.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_1.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_10.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_11.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_2.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_3.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_4.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_5.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_6.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_7.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_8.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reportes/u_0_9.jasper" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/logo-big.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/gri.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/busqueda.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/centros.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/estadisticas/centros.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/estadisticas/facultades.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/estadisticas/grupos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/estadisticas/investigadores.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/estadisticas/programas.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/estadisticas/uniquindio.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/facultades.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/footer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/nav.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/secondarynav.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/fragments/toolReport.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/general.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos/apropiacion.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos/arte.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos/bibliografica.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos/evaluador.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos/formacion.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos/info.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos/masinfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/grupos/tecnica.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/inventario/inventario.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/inventario/reporteinventario.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores/apropiacion.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores/arte.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores/bibliografica.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores/evaluador.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores/formacion.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores/info.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores/masinfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/investigadores/tecnica.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/lineas.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/pertenencia_investigadores/pertenencia.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/pertenencia_investigadores/reportepertenencia.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/programas.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/reporte.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/serverspring/ServerSpring/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/serverspring/ServerSpring/pom.xml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="CLEAR_OUTPUT_DIRECTORY" value="false" />
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+    <option name="PARALLEL_COMPILATION" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gri@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gri@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gri@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="gri: database" type="162271b6:PgImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gri@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="gri: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="gri@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="gri: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="gri: schema" type="983ebcf7:PgImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Juan Alvarez &lt;pyrosea98@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="outputLevel" value="ERROR" />
+        <option name="printErrorStackTraces" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="1Z5fMG1y0TgrhtNBT2CG2QpMK78" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="database.data.extractors.current.id" value="Comma-separated (CSV)_id" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="co.edu.uniquindio.gri.repository" />
+      <recent name="co.edu.uniquindio.gri.dao" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/templates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.StartWebApplication">
+    <configuration name="PassGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="co.edu.uniquindio.gri.security.PassGenerator" />
+      <module name="FrontendGRI" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="co.edu.uniquindio.gri.security.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StartWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="FrontendGRI" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="co.edu.uniquindio.gri.StartWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 9.0.31" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.31" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="FrontendGRI:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/FrontendGRI_war" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_FrontendGRI_3" />
+      </server-settings>
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <predefined_log_file id="Tomcat Manager" />
+      <predefined_log_file id="Tomcat Host Manager" />
+      <predefined_log_file id="Tomcat Localhost Access" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="46063" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="FrontendGRI:war" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.PassGenerator" />
+      <item itemvalue="Spring Boot.StartWebApplication" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.31" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.PassGenerator" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ffd2c66e-7dbf-4c89-8257-79eefe7cdde1" name="Default Changelist" comment="" />
+      <created>1584133825070</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584133825070</updated>
+      <workItem from="1584133826313" duration="1560000" />
+      <workItem from="1584135401652" duration="357000" />
+      <workItem from="1584372277426" duration="1005000" />
+      <workItem from="1584395139684" duration="609000" />
+      <workItem from="1584396850757" duration="2300000" />
+      <workItem from="1584402415205" duration="12346000" />
+      <workItem from="1584418497829" duration="9091000" />
+      <workItem from="1584477005095" duration="616000" />
+      <workItem from="1584477881354" duration="4601000" />
+      <workItem from="1584552307263" duration="1885000" />
+      <workItem from="1584562640771" duration="3560000" />
+      <workItem from="1584566230828" duration="2569000" />
+      <workItem from="1585188858007" duration="630000" />
+      <workItem from="1585189814832" duration="1983000" />
+      <workItem from="1585191847109" duration="1458000" />
+      <workItem from="1585232055160" duration="9000" />
+      <workItem from="1585238979751" duration="826000" />
+      <workItem from="1585239842549" duration="823000" />
+      <workItem from="1586985213432" duration="199000" />
+      <workItem from="1586985427020" duration="960000" />
+      <workItem from="1586986731347" duration="1005000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge branch 'jefferson' into juan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'jefferson' into juan" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="555" y="215" width="800" height="684" key="#Assign_Data_Sources" timestamp="1584567257875">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="215" width="800" height="684" key="#Assign_Data_Sources/0.27.1920.1053@0.27.1920.1053" timestamp="1584567257875" />
+    <state x="743" y="361" width="424" height="391" key="#BuildArtifactsBeforeRunChooser" timestamp="1584134311255">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="743" y="361" width="424" height="391" key="#BuildArtifactsBeforeRunChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1584134311255" />
+    <state x="555" y="215" width="800" height="684" key="#Plugins" timestamp="1586986550871">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="215" width="800" height="684" key="#Plugins/0.27.1920.1053@0.27.1920.1053" timestamp="1586986550871" />
+    <state x="555" y="215" width="800" height="684" key="#Project_Structure" timestamp="1584133916505">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="215" width="800" height="684" key="#Project_Structure/0.27.1920.1053@0.27.1920.1053" timestamp="1584133916505" />
+    <state x="555" y="215" width="800" height="684" key="#SQL_Dialects" timestamp="1584412685071">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="555" y="215" width="800" height="684" key="#SQL_Dialects/0.27.1920.1053@0.27.1920.1053" timestamp="1584412685071" />
+    <state x="592" y="193" width="725" height="727" key="#StartWebApplication" timestamp="1585191794981">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="592" y="193" width="725" height="727" key="#StartWebApplication/0.27.1920.1053@0.27.1920.1053" timestamp="1585191794981" />
+    <state x="418" y="211" width="946" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1585240359319">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="418" y="211" width="946" height="684" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1585240359319" />
+    <state x="768" y="240" width="374" height="633" key="#com.intellij.ide.util.MemberChooser" timestamp="1584417345897">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="768" y="240" width="374" height="633" key="#com.intellij.ide.util.MemberChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1584417345897" />
+    <state x="808" y="445" width="293" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1584562692461">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="808" y="445" width="293" height="223" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584562692461" />
+    <state x="486" y="214" width="800" height="684" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1585192141766">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="486" y="214" width="800" height="684" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.27.1920.1053@0.27.1920.1053" timestamp="1585192141766" />
+    <state x="643" y="283" width="624" height="548" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1584477862884">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="643" y="283" width="624" height="548" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584477862884" />
+    <state x="680" y="402" width="549" height="310" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1584562907980">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="680" y="402" width="549" height="310" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.27.1920.1053@0.27.1920.1053" timestamp="1584562907980" />
+    <state x="564" y="141" width="781" height="831" key="CommitChangelistDialog2" timestamp="1584567194229">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="564" y="141" width="781" height="831" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1584567194229" />
+    <state x="643" y="361" width="624" height="391" key="DUMP_DIALOG_DIMENSION_KEY" timestamp="1584402701948">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="643" y="361" width="624" height="391" key="DUMP_DIALOG_DIMENSION_KEY/0.27.1920.1053@0.27.1920.1053" timestamp="1584402701948" />
+    <state x="591" y="267" width="718" height="587" key="FileChooserDialogImpl" timestamp="1584568292173">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="591" y="267" width="718" height="587" key="FileChooserDialogImpl/0.27.1920.1053@0.27.1920.1053" timestamp="1584568292173" />
+    <state width="1878" height="277" key="GridCell.Tab.0.bottom" timestamp="1586987737960">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.0.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1586987737960" />
+    <state width="1878" height="277" key="GridCell.Tab.0.center" timestamp="1586987737960">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.0.center/0.27.1920.1053@0.27.1920.1053" timestamp="1586987737960" />
+    <state width="1878" height="277" key="GridCell.Tab.0.left" timestamp="1586987737960">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.0.left/0.27.1920.1053@0.27.1920.1053" timestamp="1586987737960" />
+    <state width="1878" height="277" key="GridCell.Tab.0.right" timestamp="1586987737960">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.0.right/0.27.1920.1053@0.27.1920.1053" timestamp="1586987737960" />
+    <state width="1878" height="277" key="GridCell.Tab.1.bottom" timestamp="1585193305903">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.1.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1585193305903" />
+    <state width="1878" height="277" key="GridCell.Tab.1.center" timestamp="1585193305902">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.1.center/0.27.1920.1053@0.27.1920.1053" timestamp="1585193305902" />
+    <state width="1878" height="277" key="GridCell.Tab.1.left" timestamp="1585193305902">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.1.left/0.27.1920.1053@0.27.1920.1053" timestamp="1585193305902" />
+    <state width="1878" height="277" key="GridCell.Tab.1.right" timestamp="1585193305903">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.1.right/0.27.1920.1053@0.27.1920.1053" timestamp="1585193305903" />
+    <state width="1878" height="277" key="GridCell.Tab.2.bottom" timestamp="1585193305903">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.2.bottom/0.27.1920.1053@0.27.1920.1053" timestamp="1585193305903" />
+    <state width="1878" height="277" key="GridCell.Tab.2.center" timestamp="1585193305903">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.2.center/0.27.1920.1053@0.27.1920.1053" timestamp="1585193305903" />
+    <state width="1878" height="277" key="GridCell.Tab.2.left" timestamp="1585193305903">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.2.left/0.27.1920.1053@0.27.1920.1053" timestamp="1585193305903" />
+    <state width="1878" height="277" key="GridCell.Tab.2.right" timestamp="1585193305903">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="1878" height="277" key="GridCell.Tab.2.right/0.27.1920.1053@0.27.1920.1053" timestamp="1585193305903" />
+    <state width="224" height="477" key="HiddenNamespacesPopup" timestamp="1584402641545">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state width="224" height="477" key="HiddenNamespacesPopup/0.27.1920.1053@0.27.1920.1053" timestamp="1584402641545" />
+    <state x="464" y="188" width="992" height="737" key="SettingsEditor" timestamp="1586986874977">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="464" y="188" width="992" height="737" key="SettingsEditor/0.27.1920.1053@0.27.1920.1053" timestamp="1586986874977" />
+    <state x="693" y="361" width="524" height="391" key="com.intellij.database.dbimport.ImportUtil.MyDialog" timestamp="1584428433124">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="693" y="361" width="524" height="391" key="com.intellij.database.dbimport.ImportUtil.MyDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584428433124" />
+    <state x="717" y="310" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone" timestamp="1584567445433">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="717" y="310" width="476" height="493" key="com.intellij.database.run.ParametersPanel.Standalone/0.27.1920.1053@0.27.1920.1053" timestamp="1584567445433" />
+    <state x="725" y="255" width="460" height="604" key="com.intellij.database.run.actions.ShowCsvFormatsAction$ForExport" timestamp="1584427935866">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="725" y="255" width="460" height="604" key="com.intellij.database.run.actions.ShowCsvFormatsAction$ForExport/0.27.1920.1053@0.27.1920.1053" timestamp="1584427935866" />
+    <state x="672" y="185" width="566" height="744" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1584489249431">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="672" y="185" width="566" height="744" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584489249431" />
+    <state x="824" y="319" width="262" height="475" key="com.intellij.database.view.ui.DbObjectDialog" timestamp="1584402713360">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="824" y="319" width="262" height="475" key="com.intellij.database.view.ui.DbObjectDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1584402713360" />
+    <state x="639" y="381" key="com.intellij.ide.util.TipDialog" timestamp="1585239843731">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="639" y="381" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1585239843731" />
+    <state x="752" y="473" width="415" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584567071807">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="752" y="473" width="415" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.27.1920.1053@0.27.1920.1053" timestamp="1584567071807" />
+    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1585239800564">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="623" y="259" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1585239800564" />
+  </component>
+</project>
