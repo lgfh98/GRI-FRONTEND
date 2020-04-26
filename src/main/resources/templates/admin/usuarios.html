@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/header :: header('Usuarios')">
+<meta charset="utf-8" />
+</head>
+	<body id="page-top" class="sidebar-toggled">
+	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
+
+	<div id="wrapper">
+
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero" th:text="${titulo}"></h1>
+							Usuarios Actuales del GRI
+						</div>
+					</div>
+				</div>
+				
+
+
+				<div class="separador-1"></div>
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Lista de Usuarios
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_usuarios"
+								th:class="'table-' + ${id} + ' table-striped table-bordered table-hover table-responsive-lg'"
+								style="width: 100%">
+								<thead>
+									<tr>
+										
+										
+										<th>USERNAME</th>
+										<th>PASSWORD</th>
+										<th>ROL</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr th:each="usuario : ${usuarios}">
+										
+										<td th:text="${usuario.username}"></td>
+										<td th:text="${usuario.password}"></td>
+										<td th:text="${usuario.rol.role}"></td>
+										
+									
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<div th:replace="fragments/footer"></div>
+
+
+	<script type="text/javascript" th:inline="javascript">
+		var data = [[${ usuarios }]];
+		console.log(data);
+		console.log(data.length);
+		$.extend($.fn.dataTable.defaults, {
+			
+			language: {
+				processing: "Procesamiento en curso...",
+				search: "Buscar: ",
+				lengthMenu: "Mostrando _MENU_ elementos",
+				info: "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+				infoEmpty: "Mostrando 0 a 0 de 0 elementos",
+				infoFiltered: "(filtrado de _MAX_ elementos en total)",
+				infoPostFix: "",
+				loadingRecords: "Cargando resultados...",
+				zeroRecords: "No hay información para mostrar",
+				emptyTable: "No hay información para mostrar",
+				paginate: {
+					first: "Primera",
+					previous: "Anterior",
+					next: "Siguiente",
+					last: "última"
+				}
+			}
+		});
+
+
+
+
+	</script>
+		
+		
+		
+
+
+	</body>
+</html>
