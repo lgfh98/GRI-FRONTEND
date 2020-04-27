@@ -1,5 +1,7 @@
 package co.edu.uniquindio.gri.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,5 +27,13 @@ public class UserDAO {
 	 */
 	public User findOne(String username) {
 		return userRepository.findOne(username);
+	}
+	
+	/**
+	 * Obtiene todos los usuarios
+	 * @return la lista con todos los usuarios
+	 */
+	public List<User> getAllUsers(){
+		return userRepository.findAll();
 	}
 }

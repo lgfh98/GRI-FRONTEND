@@ -37,6 +37,9 @@ public class WebController {
 
     @Autowired
     GrupoDAO grupoDAO;
+    
+    @Autowired
+    UserDAO userDAO;
 
     @Autowired
     InvestigadorDAO investigadorDAO;
@@ -1013,6 +1016,19 @@ public class WebController {
         model.addAttribute("tamanio", "2");
 
         return "admin";
+
+    }
+    
+    @GetMapping("/usuarios")
+    public String getAdministrar(Model model) {
+
+       model.addAttribute("titulo", "USUARIOS");
+       model.addAttribute("id", 0);
+       
+      
+       model.addAttribute("usuarios", userDAO.getAllUsers());
+              
+        return "admin/usuarios";
 
     }
 
