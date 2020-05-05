@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="gri@localhost">
+  <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.17">
+    <root id="1">
+      <ServerVersion>10.9</ServerVersion>
+      <StartupTime>1584552250</StartupTime>
+    </root>
+    <database id="2" parent="1" name="gri">
+      <ObjectId>28366</ObjectId>
+      <Owner>gri</Owner>
+      <IntrospectionStateNumber>131830</IntrospectionStateNumber>
+      <Current>1</Current>
+    </database>
+    <database id="3" parent="1" name="postgres">
+      <ObjectId>13178</ObjectId>
+      <Comment>default administrative connection database</Comment>
+      <Owner>postgres</Owner>
+    </database>
+    <role id="4" parent="1" name="gri">
+      <ObjectId>20913</ObjectId>
+      <SuperRole>1</SuperRole>
+      <CreateRole>1</CreateRole>
+      <CreateDb>1</CreateDb>
+      <CanLogin>1</CanLogin>
+      <ValidUntil>infinity</ValidUntil>
+      <Replication>1</Replication>
+    </role>
+    <role id="5" parent="1" name="pg_monitor">
+      <ObjectId>3373</ObjectId>
+    </role>
+    <role id="6" parent="1" name="pg_read_all_settings">
+      <ObjectId>3374</ObjectId>
+    </role>
+    <role id="7" parent="1" name="pg_read_all_stats">
+      <ObjectId>3375</ObjectId>
+    </role>
+    <role id="8" parent="1" name="pg_signal_backend">
+      <ObjectId>4200</ObjectId>
+    </role>
+    <role id="9" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
+    </role>
+    <role id="10" parent="1" name="postgres">
+      <ObjectId>10</ObjectId>
+      <SuperRole>1</SuperRole>
+      <CreateRole>1</CreateRole>
+      <CreateDb>1</CreateDb>
+      <CanLogin>1</CanLogin>
+      <Replication>1</Replication>
+      <BypassRls>1</BypassRls>
+    </role>
+    <role id="11" parent="1" name="sonar">
+      <ObjectId>21971</ObjectId>
+      <SuperRole>1</SuperRole>
+      <CanLogin>1</CanLogin>
+    </role>
+    <schema id="12" parent="2" name="gri">
+      <ObjectId>28367</ObjectId>
+      <StateNumber>131696</StateNumber>
+      <Owner>gri</Owner>
+      <IntrospectionStateNumber>131831</IntrospectionStateNumber>
+    </schema>
+    <schema id="13" parent="2" name="information_schema">
+      <ObjectId>12888</ObjectId>
+      <StateNumber>353</StateNumber>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="14" parent="2" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+      <Comment>system catalog schema</Comment>
+      <StateNumber>350</StateNumber>
+      <Owner>postgres</Owner>
+    </schema>
+    <schema id="15" parent="2" name="public">
+      <ObjectId>2200</ObjectId>
+      <Comment>standard public schema</Comment>
+      <StateNumber>351</StateNumber>
+      <Owner>postgres</Owner>
+      <IntrospectionStateNumber>131829</IntrospectionStateNumber>
+      <Current>1</Current>
+    </schema>
+    <access-method id="16" parent="2" name="btree">
+      <ObjectId>403</ObjectId>
+      <Comment>b-tree index access method</Comment>
+      <StateNumber>1</StateNumber>
+      <Handler>pg_catalog.bthandler</Handler>
+      <HandlerId>330</HandlerId>
+      <Type>index</Type>
+    </access-method>
+    <access-method id="17" parent="2" name="hash">
+      <ObjectId>405</ObjectId>
+      <Comment>hash index access method</Comment>
+      <StateNumber>1</StateNumber>
+      <Handler>pg_catalog.hashhandler</Handler>
+      <HandlerId>331</HandlerId>
+      <Type>index</Type>
+    </access-method>
+    <access-method id="18" parent="2" name="gist">
+      <ObjectId>783</ObjectId>
+      <Comment>GiST index access method</Comment>
+      <StateNumber>1</StateNumber>
+      <Handler>pg_catalog.gisthandler</Handler>
+      <HandlerId>332</HandlerId>
+      <Type>index</Type>
+    </access-method>
+    <access-method id="19" parent="2" name="gin">
+      <ObjectId>2742</ObjectId>
+      <Comment>GIN index access method</Comment>
+      <StateNumber>1</StateNumber>
+      <Handler>pg_catalog.ginhandler</Handler>
+      <HandlerId>333</HandlerId>
+      <Type>index</Type>
+    </access-method>
+    <access-method id="20" parent="2" name="spgist">
+      <ObjectId>4000</ObjectId>
+      <Comment>SP-GiST index access method</Comment>
+      <StateNumber>1</StateNumber>
+      <Handler>pg_catalog.spghandler</Handler>
+      <HandlerId>334</HandlerId>
+      <Type>index</Type>
+    </access-method>
+    <access-method id="21" parent="2" name="brin">
+      <ObjectId>3580</ObjectId>
+      <Comment>block range index (BRIN) access method</Comment>
+      <StateNumber>1</StateNumber>
+      <Handler>pg_catalog.brinhandler</Handler>
+      <HandlerId>335</HandlerId>
+      <Type>index</Type>
+    </access-method>
+    <extension id="22" parent="2" name="plpgsql">
+      <ObjectId>13164</ObjectId>
+      <Comment>PL/pgSQL procedural language</Comment>
+      <StateNumber>505</StateNumber>
+      <Version>1.0</Version>
+      <SchemaName>pg_catalog</SchemaName>
+      <SchemaId>11</SchemaId>
+    </extension>
+    <sequence id="23" parent="12" name="hibernate_sequence">
+      <ObjectId>28404</ObjectId>
+      <StateNumber>131712</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>bigint</DataType>
+    </sequence>
+    <table id="24" parent="12" name="bibliograficas">
+      <ObjectId>28368</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131791</StateNumber>
+    </table>
+    <table id="25" parent="12" name="bibliograficasg">
+      <ObjectId>28374</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131794</StateNumber>
+    </table>
+    <table id="26" parent="12" name="centros">
+      <ObjectId>28380</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131795</StateNumber>
+    </table>
+    <table id="27" parent="12" name="facultades">
+      <ObjectId>28386</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131789</StateNumber>
+    </table>
+    <table id="28" parent="12" name="grupos">
+      <ObjectId>28392</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131802</StateNumber>
+    </table>
+    <table id="29" parent="12" name="grupos_inves">
+      <ObjectId>28398</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131796</StateNumber>
+    </table>
+    <table id="30" parent="12" name="grupos_lineas">
+      <ObjectId>28401</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131802</StateNumber>
+    </table>
+    <table id="31" parent="12" name="idiomas">
+      <ObjectId>28406</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131801</StateNumber>
+    </table>
+    <table id="32" parent="12" name="invest_lineas">
+      <ObjectId>28412</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131798</StateNumber>
+    </table>
+    <table id="33" parent="12" name="investigadores">
+      <ObjectId>28415</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131801</StateNumber>
+    </table>
+    <table id="34" parent="12" name="lineasinvestigacion">
+      <ObjectId>28421</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131798</StateNumber>
+    </table>
+    <table id="35" parent="12" name="pertenencia_inves">
+      <ObjectId>28424</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131723</StateNumber>
+    </table>
+    <table id="36" parent="12" name="producciones">
+      <ObjectId>28427</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131785</StateNumber>
+    </table>
+    <table id="37" parent="12" name="produccionesg">
+      <ObjectId>28433</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131800</StateNumber>
+    </table>
+    <table id="38" parent="12" name="programas">
+      <ObjectId>28439</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131792</StateNumber>
+    </table>
+    <table id="39" parent="12" name="programas_grupos">
+      <ObjectId>28445</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131799</StateNumber>
+    </table>
+    <table id="40" parent="12" name="reconocimientos_inves">
+      <ObjectId>28448</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131825</StateNumber>
+    </table>
+    <table id="41" parent="12" name="tipoproduccion">
+      <ObjectId>28454</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131790</StateNumber>
+    </table>
+    <table id="42" parent="12" name="tipos">
+      <ObjectId>28457</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131790</StateNumber>
+    </table>
+    <table id="43" parent="12" name="user_role">
+      <ObjectId>28460</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131787</StateNumber>
+    </table>
+    <table id="44" parent="12" name="users">
+      <ObjectId>28463</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>131787</StateNumber>
+    </table>
+    <column id="45" parent="24" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131697</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="46" parent="24" name="anio">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <StateNumber>131697</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="47" parent="24" name="autores">
+      <Position>3</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131697</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="48" parent="24" name="identificador">
+      <Position>4</Position>
+      <DataType>varchar(400)|0s</DataType>
+      <StateNumber>131697</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="49" parent="24" name="referencia">
+      <Position>5</Position>
+      <DataType>varchar(4000)|0s</DataType>
+      <StateNumber>131697</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="50" parent="24" name="repetido">
+      <Position>6</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <StateNumber>131697</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="51" parent="24" name="investigadores_id">
+      <Position>7</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131697</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="52" parent="24" name="tipo_id">
+      <Position>8</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131697</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="53" parent="24" name="bibliograficas_pkey">
+      <ObjectId>28475</ObjectId>
+      <StateNumber>131762</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="54" parent="24" name="bibliograficas_pkey">
+      <ObjectId>28476</ObjectId>
+      <StateNumber>131762</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>bibliograficas_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="55" parent="24" name="fkf3btc57t6barjbihf9mwsg2y7">
+      <ObjectId>28566</ObjectId>
+      <StateNumber>131791</StateNumber>
+      <ColNames>investigadores_id</ColNames>
+      <RefTableId>28415</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>investigadores</RefTableName>
+      <RefKeyName>investigadores_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="56" parent="24" name="fk3486ieehukuhxw68f8irr8ok7">
+      <ObjectId>28516</ObjectId>
+      <StateNumber>131781</StateNumber>
+      <ColNames>tipo_id</ColNames>
+      <RefTableId>28457</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>tipos</RefTableName>
+      <RefKeyName>tipos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="57" parent="25" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131699</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="58" parent="25" name="anio">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <StateNumber>131699</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="59" parent="25" name="autores">
+      <Position>3</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131699</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="60" parent="25" name="identificador">
+      <Position>4</Position>
+      <DataType>varchar(400)|0s</DataType>
+      <StateNumber>131699</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="61" parent="25" name="inventario">
+      <Position>5</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>131699</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="62" parent="25" name="referencia">
+      <Position>6</Position>
+      <DataType>varchar(4000)|0s</DataType>
+      <StateNumber>131699</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="63" parent="25" name="repetido">
+      <Position>7</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <StateNumber>131699</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="64" parent="25" name="grupos_id">
+      <Position>8</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131699</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="65" parent="25" name="tipo_id">
+      <Position>9</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131699</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="66" parent="25" name="bibliograficasg_pkey">
+      <ObjectId>28477</ObjectId>
+      <StateNumber>131763</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="67" parent="25" name="bibliograficasg_pkey">
+      <ObjectId>28478</ObjectId>
+      <StateNumber>131763</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>bibliograficasg_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="68" parent="25" name="fklnewju1p5c7ohwl1kwiarr0pw">
+      <ObjectId>28581</ObjectId>
+      <StateNumber>131794</StateNumber>
+      <ColNames>grupos_id</ColNames>
+      <RefTableId>28392</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>grupos</RefTableName>
+      <RefKeyName>grupos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="69" parent="25" name="fka19i15lwrlr6pykipsrv9a642">
+      <ObjectId>28551</ObjectId>
+      <StateNumber>131788</StateNumber>
+      <ColNames>tipo_id</ColNames>
+      <RefTableId>28457</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>tipos</RefTableName>
+      <RefKeyName>tipos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="70" parent="26" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131701</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="71" parent="26" name="contacto">
+      <Position>2</Position>
+      <DataType>varchar(450)|0s</DataType>
+      <StateNumber>131701</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="72" parent="26" name="informaciongeneral">
+      <Position>3</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131701</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="73" parent="26" name="nombre">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131701</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="74" parent="26" name="facultades_id">
+      <Position>5</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131701</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="75" parent="26" name="centros_pkey">
+      <ObjectId>28479</ObjectId>
+      <StateNumber>131764</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="76" parent="26" name="centros_pkey">
+      <ObjectId>28480</ObjectId>
+      <StateNumber>131764</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>centros_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="77" parent="26" name="fk4k74tjm8695cxbimllalqw4k7">
+      <ObjectId>28526</ObjectId>
+      <StateNumber>131783</StateNumber>
+      <ColNames>facultades_id</ColNames>
+      <RefTableId>28386</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>facultades</RefTableName>
+      <RefKeyName>facultades_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="78" parent="27" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131703</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="79" parent="27" name="contacto">
+      <Position>2</Position>
+      <DataType>varchar(450)|0s</DataType>
+      <StateNumber>131703</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="80" parent="27" name="mision">
+      <Position>3</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131703</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="81" parent="27" name="nombre">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131703</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="82" parent="27" name="vision">
+      <Position>5</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131703</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="83" parent="27" name="facultades_pkey">
+      <ObjectId>28481</ObjectId>
+      <StateNumber>131765</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="84" parent="27" name="facultades_pkey">
+      <ObjectId>28482</ObjectId>
+      <StateNumber>131765</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>facultades_pkey</UnderlyingIndexName>
+    </key>
+    <column id="85" parent="28" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131705</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="86" parent="28" name="aniofundacion">
+      <Position>2</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <StateNumber>131705</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="87" parent="28" name="areaconocimiento">
+      <Position>3</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <StateNumber>131705</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="88" parent="28" name="categoria">
+      <Position>4</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <StateNumber>131705</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="89" parent="28" name="contacto">
+      <Position>5</Position>
+      <DataType>varchar(450)|0s</DataType>
+      <StateNumber>131705</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="90" parent="28" name="informaciongeneral">
+      <Position>6</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131705</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="91" parent="28" name="lider">
+      <Position>7</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <StateNumber>131705</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="92" parent="28" name="nombre">
+      <Position>8</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <StateNumber>131705</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="93" parent="28" name="centros_id">
+      <Position>9</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131705</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="94" parent="28" name="grupos_pkey">
+      <ObjectId>28485</ObjectId>
+      <StateNumber>131767</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="95" parent="28" name="grupos_pkey">
+      <ObjectId>28486</ObjectId>
+      <StateNumber>131767</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>grupos_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="96" parent="28" name="fko3lg6a0ni9udtlnoofdj9mks">
+      <ObjectId>28586</ObjectId>
+      <StateNumber>131795</StateNumber>
+      <ColNames>centros_id</ColNames>
+      <RefTableId>28380</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>centros</RefTableName>
+      <RefKeyName>centros_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="97" parent="29" name="estado">
+      <Position>1</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <StateNumber>131707</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="98" parent="29" name="grupos_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131707</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="99" parent="29" name="investigadores_id">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131707</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="100" parent="29" name="grupos_inves_pkey">
+      <ObjectId>28483</ObjectId>
+      <StateNumber>131766</StateNumber>
+      <ColNames>grupos_id
+investigadores_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="101" parent="29" name="grupos_inves_pkey">
+      <ObjectId>28484</ObjectId>
+      <StateNumber>131766</StateNumber>
+      <ColNames>grupos_id
+investigadores_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>grupos_inves_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="102" parent="29" name="fkqr4oqot29o6lj3ndk0yayrqmu">
+      <ObjectId>28591</ObjectId>
+      <StateNumber>131796</StateNumber>
+      <ColNames>grupos_id</ColNames>
+      <RefTableId>28392</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>grupos</RefTableName>
+      <RefKeyName>grupos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="103" parent="29" name="fk4cet7iyud79akpwxliy27l3dk">
+      <ObjectId>28521</ObjectId>
+      <StateNumber>131782</StateNumber>
+      <ColNames>investigadores_id</ColNames>
+      <RefTableId>28415</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>investigadores</RefTableName>
+      <RefKeyName>investigadores_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="104" parent="30" name="grupos_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131709</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="105" parent="30" name="lineasinvestigacion_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131709</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="106" parent="30" name="fktrt5c5jw3md6vn54lxav4crmj">
+      <ObjectId>28621</ObjectId>
+      <StateNumber>131802</StateNumber>
+      <ColNames>grupos_id</ColNames>
+      <RefTableId>28392</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>grupos</RefTableName>
+      <RefKeyName>grupos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="107" parent="30" name="fkh5fgd8blo5nnnfponcbbju4q6">
+      <ObjectId>28576</ObjectId>
+      <StateNumber>131793</StateNumber>
+      <ColNames>lineasinvestigacion_id</ColNames>
+      <RefTableId>28421</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>lineasinvestigacion</RefTableName>
+      <RefKeyName>lineasinvestigacion_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="108" parent="31" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131714</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="109" parent="31" name="entiende">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131714</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="110" parent="31" name="escribe">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131714</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="111" parent="31" name="habla">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131714</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="112" parent="31" name="idioma">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131714</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="113" parent="31" name="lee">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131714</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="114" parent="31" name="investigadores_id">
+      <Position>7</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131714</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="115" parent="31" name="idiomas_pkey">
+      <ObjectId>28487</ObjectId>
+      <StateNumber>131768</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="116" parent="31" name="idiomas_pkey">
+      <ObjectId>28488</ObjectId>
+      <StateNumber>131768</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>idiomas_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="117" parent="31" name="fktoxym3d73x6xqy90gah6vmg8r">
+      <ObjectId>28616</ObjectId>
+      <StateNumber>131801</StateNumber>
+      <ColNames>investigadores_id</ColNames>
+      <RefTableId>28415</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>investigadores</RefTableName>
+      <RefKeyName>investigadores_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="118" parent="32" name="investigadores_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131716</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="119" parent="32" name="lineasinvestigacion_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131716</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="120" parent="32" name="fk880lqtvdae7jxj7t1fhrslja6">
+      <ObjectId>28541</ObjectId>
+      <StateNumber>131786</StateNumber>
+      <ColNames>investigadores_id</ColNames>
+      <RefTableId>28415</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>investigadores</RefTableName>
+      <RefKeyName>investigadores_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="121" parent="32" name="fkrsr76u21idncxrm7dy5g6pd9v">
+      <ObjectId>28601</ObjectId>
+      <StateNumber>131798</StateNumber>
+      <ColNames>lineasinvestigacion_id</ColNames>
+      <RefTableId>28421</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>lineasinvestigacion</RefTableName>
+      <RefKeyName>lineasinvestigacion_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="122" parent="33" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131718</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="123" parent="33" name="categoria">
+      <Position>2</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <StateNumber>131718</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="124" parent="33" name="nivelacademico">
+      <Position>3</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <StateNumber>131718</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="125" parent="33" name="nombre">
+      <Position>4</Position>
+      <DataType>varchar(200)|0s</DataType>
+      <StateNumber>131718</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="126" parent="33" name="pertenencia">
+      <Position>5</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <StateNumber>131718</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="127" parent="33" name="sexo">
+      <Position>6</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <StateNumber>131718</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="128" parent="33" name="investigadores_pkey">
+      <ObjectId>28489</ObjectId>
+      <StateNumber>131769</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="129" parent="33" name="investigadores_pkey">
+      <ObjectId>28490</ObjectId>
+      <StateNumber>131769</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>investigadores_pkey</UnderlyingIndexName>
+    </key>
+    <column id="130" parent="34" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131720</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="131" parent="34" name="nombre">
+      <Position>2</Position>
+      <DataType>varchar(400)|0s</DataType>
+      <StateNumber>131720</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="132" parent="34" name="lineasinvestigacion_pkey">
+      <ObjectId>28491</ObjectId>
+      <StateNumber>131770</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="133" parent="34" name="lineasinvestigacion_pkey">
+      <ObjectId>28492</ObjectId>
+      <StateNumber>131770</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>lineasinvestigacion_pkey</UnderlyingIndexName>
+    </key>
+    <column id="134" parent="35" name="investigadores_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131722</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="135" parent="35" name="pertenencia">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <StateNumber>131722</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="136" parent="35" name="pertenencia_inves_pkey">
+      <ObjectId>28493</ObjectId>
+      <StateNumber>131771</StateNumber>
+      <ColNames>investigadores_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="137" parent="35" name="pertenencia_inves_pkey">
+      <ObjectId>28494</ObjectId>
+      <StateNumber>131771</StateNumber>
+      <ColNames>investigadores_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>pertenencia_inves_pkey</UnderlyingIndexName>
+    </key>
+    <column id="138" parent="36" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131724</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="139" parent="36" name="anio">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <StateNumber>131724</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="140" parent="36" name="autores">
+      <Position>3</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131724</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="141" parent="36" name="referencia">
+      <Position>4</Position>
+      <DataType>varchar(4000)|0s</DataType>
+      <StateNumber>131724</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="142" parent="36" name="repetido">
+      <Position>5</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <StateNumber>131724</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="143" parent="36" name="investigadores_id">
+      <Position>6</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131724</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="144" parent="36" name="tipo_id">
+      <Position>7</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131724</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="145" parent="36" name="producciones_pkey">
+      <ObjectId>28495</ObjectId>
+      <StateNumber>131772</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="146" parent="36" name="producciones_pkey">
+      <ObjectId>28496</ObjectId>
+      <StateNumber>131772</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>producciones_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="147" parent="36" name="fk78xcihmegp3hoea8l77vtf4yh">
+      <ObjectId>28536</ObjectId>
+      <StateNumber>131785</StateNumber>
+      <ColNames>investigadores_id</ColNames>
+      <RefTableId>28415</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>investigadores</RefTableName>
+      <RefKeyName>investigadores_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="148" parent="36" name="fk2be81ywnymhk9333xjwfq6qa3">
+      <ObjectId>28511</ObjectId>
+      <StateNumber>131780</StateNumber>
+      <ColNames>tipo_id</ColNames>
+      <RefTableId>28457</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>tipos</RefTableName>
+      <RefKeyName>tipos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="149" parent="37" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131726</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="150" parent="37" name="anio">
+      <Position>2</Position>
+      <DataType>varchar(10)|0s</DataType>
+      <StateNumber>131726</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="151" parent="37" name="autores">
+      <Position>3</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131726</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="152" parent="37" name="inventario">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>131726</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="153" parent="37" name="referencia">
+      <Position>5</Position>
+      <DataType>varchar(4000)|0s</DataType>
+      <StateNumber>131726</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="154" parent="37" name="repetido">
+      <Position>6</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <StateNumber>131726</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="155" parent="37" name="grupos_id">
+      <Position>7</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131726</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="156" parent="37" name="tipo_id">
+      <Position>8</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131726</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="157" parent="37" name="produccionesg_pkey">
+      <ObjectId>28497</ObjectId>
+      <StateNumber>131773</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="158" parent="37" name="produccionesg_pkey">
+      <ObjectId>28498</ObjectId>
+      <StateNumber>131773</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>produccionesg_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="159" parent="37" name="fksu2k7mbjk2uus1mif78n6mvcc">
+      <ObjectId>28611</ObjectId>
+      <StateNumber>131800</StateNumber>
+      <ColNames>grupos_id</ColNames>
+      <RefTableId>28392</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>grupos</RefTableName>
+      <RefKeyName>grupos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="160" parent="37" name="fk5ku2mhlgds37yp70gl5dc78u7">
+      <ObjectId>28531</ObjectId>
+      <StateNumber>131784</StateNumber>
+      <ColNames>tipo_id</ColNames>
+      <RefTableId>28457</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>tipos</RefTableName>
+      <RefKeyName>tipos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="161" parent="38" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131728</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="162" parent="38" name="contacto">
+      <Position>2</Position>
+      <DataType>varchar(450)|0s</DataType>
+      <StateNumber>131728</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="163" parent="38" name="informaciongeneral">
+      <Position>3</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131728</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="164" parent="38" name="mision">
+      <Position>4</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131728</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="165" parent="38" name="nombre">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131728</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="166" parent="38" name="vision">
+      <Position>6</Position>
+      <DataType>varchar(2000)|0s</DataType>
+      <StateNumber>131728</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="167" parent="38" name="facultades_id">
+      <Position>7</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131728</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="168" parent="38" name="programas_pkey">
+      <ObjectId>28499</ObjectId>
+      <StateNumber>131774</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="169" parent="38" name="programas_pkey">
+      <ObjectId>28500</ObjectId>
+      <StateNumber>131774</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>programas_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="170" parent="38" name="fka2m08gvk5jojjcdt94q4ocyr8">
+      <ObjectId>28556</ObjectId>
+      <StateNumber>131789</StateNumber>
+      <ColNames>facultades_id</ColNames>
+      <RefTableId>28386</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>facultades</RefTableName>
+      <RefKeyName>facultades_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="171" parent="39" name="grupos_id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131730</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="172" parent="39" name="programas_id">
+      <Position>2</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131730</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <foreign-key id="173" parent="39" name="fksta3a7mfyx3t9gfdexxpesq4v">
+      <ObjectId>28606</ObjectId>
+      <StateNumber>131799</StateNumber>
+      <ColNames>grupos_id</ColNames>
+      <RefTableId>28392</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>grupos</RefTableName>
+      <RefKeyName>grupos_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="174" parent="39" name="fkfyjl0kn6t37ikyeew6gqalrfv">
+      <ObjectId>28571</ObjectId>
+      <StateNumber>131792</StateNumber>
+      <ColNames>programas_id</ColNames>
+      <RefTableId>28439</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>programas</RefTableName>
+      <RefKeyName>programas_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="175" parent="40" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131732</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="176" parent="40" name="anio">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>131825</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="177" parent="40" name="entidad">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131732</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="178" parent="40" name="reconocimiento">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>131732</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="179" parent="40" name="investigadores_id">
+      <Position>5</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131732</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="180" parent="40" name="reconocimientos_inves_pkey">
+      <ObjectId>28501</ObjectId>
+      <StateNumber>131825</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="181" parent="40" name="reconocimientos_inves_pkey">
+      <ObjectId>28502</ObjectId>
+      <StateNumber>131775</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>reconocimientos_inves_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="182" parent="40" name="fkqsj9g63va1trhyryk8t61yaam">
+      <ObjectId>28596</ObjectId>
+      <StateNumber>131797</StateNumber>
+      <ColNames>investigadores_id</ColNames>
+      <RefTableId>28415</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>investigadores</RefTableName>
+      <RefKeyName>investigadores_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="183" parent="41" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131734</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="184" parent="41" name="nombre">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <StateNumber>131734</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="185" parent="41" name="tipoproduccion_pkey">
+      <ObjectId>28503</ObjectId>
+      <StateNumber>131776</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="186" parent="41" name="tipoproduccion_pkey">
+      <ObjectId>28504</ObjectId>
+      <StateNumber>131776</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>tipoproduccion_pkey</UnderlyingIndexName>
+    </key>
+    <column id="187" parent="42" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131736</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="188" parent="42" name="nombre">
+      <Position>2</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <StateNumber>131736</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="189" parent="42" name="tipoproduccion_id">
+      <Position>3</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131736</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="190" parent="42" name="tipos_pkey">
+      <ObjectId>28505</ObjectId>
+      <StateNumber>131777</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="191" parent="42" name="tipos_pkey">
+      <ObjectId>28506</ObjectId>
+      <StateNumber>131777</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>tipos_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="192" parent="42" name="fkadxgihb4ytoihnv0wxvfwrljt">
+      <ObjectId>28561</ObjectId>
+      <StateNumber>131790</StateNumber>
+      <ColNames>tipoproduccion_id</ColNames>
+      <RefTableId>28454</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>tipoproduccion</RefTableName>
+      <RefKeyName>tipoproduccion_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <column id="193" parent="43" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131738</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="194" parent="43" name="role">
+      <Position>2</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <StateNumber>131738</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="195" parent="43" name="user_role_pkey">
+      <ObjectId>28507</ObjectId>
+      <StateNumber>131778</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="196" parent="43" name="user_role_pkey">
+      <ObjectId>28508</ObjectId>
+      <StateNumber>131778</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>user_role_pkey</UnderlyingIndexName>
+    </key>
+    <column id="197" parent="44" name="id">
+      <Position>1</Position>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>131740</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <column id="198" parent="44" name="password">
+      <Position>2</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <StateNumber>131740</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="199" parent="44" name="username">
+      <Position>3</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <StateNumber>131740</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="200" parent="44" name="user_role_id">
+      <Position>4</Position>
+      <DataType>bigint|0s</DataType>
+      <StateNumber>131740</StateNumber>
+      <TypeId>20</TypeId>
+    </column>
+    <index id="201" parent="44" name="users_pkey">
+      <ObjectId>28509</ObjectId>
+      <StateNumber>131779</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="202" parent="44" name="users_pkey">
+      <ObjectId>28510</ObjectId>
+      <StateNumber>131779</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="203" parent="44" name="fk_blvmyr4rgpt5rvfms3obvsus7">
+      <ObjectId>28546</ObjectId>
+      <StateNumber>131787</StateNumber>
+      <ColNames>user_role_id</ColNames>
+      <RefTableId>28460</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>user_role</RefTableName>
+      <RefKeyName>user_role_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
