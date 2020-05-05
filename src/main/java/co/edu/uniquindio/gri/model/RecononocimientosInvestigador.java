@@ -1,3 +1,4 @@
+
 package co.edu.uniquindio.gri.model;
 
 import java.io.Serializable;
@@ -24,7 +25,7 @@ public class RecononocimientosInvestigador implements Serializable {
     private long id;
 
     @Column(name = "ANIO", length = 10)
-    private int anio;
+    private long anio;
 
     @Column(name = "RECONOCIMIENTO")
     private String reconocimiento;
@@ -36,7 +37,7 @@ public class RecononocimientosInvestigador implements Serializable {
     @JoinColumn(name = "INVESTIGADORES_ID")
     private Investigador investigador;
 
-    public RecononocimientosInvestigador(long id, Investigador investigador, int anio, String reconocimiento, String entidad) {
+    public RecononocimientosInvestigador(long id, Investigador investigador, long anio, String reconocimiento, String entidad) {
 
         this.id = id;
         this.anio = anio;
@@ -58,11 +59,11 @@ public class RecononocimientosInvestigador implements Serializable {
         this.id = id;
     }
 
-    public int getAnio() {
+    public long getAnio() {
         return anio;
     }
 
-    public void setAnio(int anio) {
+    public void setAnio(long anio) {
         this.anio = anio;
     }
 

@@ -36,11 +36,8 @@
 
 							<div class="card">
 
-
-
-
 								<a class="card-container"
-									th:href="${param.id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}">
+									th:href="${id} ? @{reporteinventario(id=${obj.id})} :  @{inventario(id=${obj.id})}">
 									<div class="card-title-container-s">
 										<h3 class="card-title-s" th:text="${obj.nombre}"></h3>
 									</div>

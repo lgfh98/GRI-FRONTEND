@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/header :: header('Reporte')">
+<head th:replace="fragments/header :: header('Reconocimientos')">
 <meta charset="utf-8" />
 </head>
 
@@ -71,7 +71,7 @@
 
 	<script th:inline="javascript">
 
-		var url = "/ServerSpring/rest/service/reconocimientos/" + [[${ param.type }]] + "/" + [[${ param.id }]];
+		var url = "/gri/rest/service/reconocimientos/" + [[${ param.type }]] + "/" + [[${ param.id }]];
 
 		console.log(url)
 		

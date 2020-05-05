@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/header :: header('Reconocimientos')">
+<meta charset="utf-8" />
+</head>
+
+<body id="page-top" class="sidebar-toggled">
+
+	<nav th:replace="fragments/nav :: nav(${color}+'-nav')"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
+	<div id="wrapper">
+		<div id="content-wrapper">
+			<div class="container-fluid">
+
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero" th:text="${nombre}"></h1>
+							<span id="subtitulo" th:text="${tipo}"></span>
+						</div>
+					</div>
+				</div>
+
+				<div class="separador-1"></div>
+
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-chart-bar"></i> Reporte gráfico por año
+					</div>
+					<div id="barras-anio" class="contenedor-body"
+						 style="width: 200; height: 150"></div>
+
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Reporte en tabla
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_reconocimientos"
+								   th:class="'table-' + ${facultadId} +' table-striped table-bordered table-hover table-responsive-lg'"
+								   style="width: 100%">
+								<thead>
+								<tr>
+									<th></th>
+									<th>INVESTIGADOR</th>
+									<th>AÑO</th>
+									<th>RECONOCIMIENTO</th>
+									<th>ENTIDAD</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr th:each="reconocimiento : ${reconocimientos}">
+									<td th:text="${reconocimiento.id}"></td>
+									<td th:text="${reconocimiento.investigador.nombre}"></td>
+									<td th:text="${reconocimiento.anio}"></td>
+									<td th:text="${reconocimiento.reconocimiento}"></td>
+									<td th:text="${reconocimiento.entidad}"></td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments/footer"></div>
+
+	<script th:inline="javascript">
+
+		var url = "/gri/rest/service/reconocimientos/" + [[${ param.type }]] + "/" + [[${ param.id }]];
+
+		console.log(url)
+		
+		$.ajax({
+			type: "GET",
+			contentType: "application/json",
+			url: url,
+			dataType: 'json',
+			cache: false,
+			success: function (reconocimientos) {
+
+				var res = [];
+				reconocimientos.forEach(function (item) {
+
+					var anio = parseInt(item.anio);
+					
+					if (res.some(e => e.name === anio)) {
+						const i = res.findIndex(obj => obj.name === anio);
+						var cant = res[i].y;
+						res[i].y = cant + 1;
+					} else {
+						res.push({
+
+							name: anio,
+							y: 1
+						});
+					}
+				});
+
+				res.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
+
+				var titulo = [[${ nombre }]] + " - " + [[${ tipo }]];
+				const element = document.querySelector('.' + [[${ color }+'-nav']]);
+				const style = getComputedStyle(element);
+				const color = style.backgroundColor;
+
+
+				Highcharts.chart('barras-anio', {
+					chart: {
+						type: 'column'
+					},
+					title: {
+						text: titulo
+					}, subtitle: {
+						text: 'Nota: las publicaciones en el año 0 indican publicaciones sin año especificado'
+					},
+					xAxis: {
+						type: 'category',
+						labels: {
+							rotation: -45,
+							style: {
+								fontSize: '13px',
+								fontFamily: 'Helvetica Neue, sans-serif'
+							}
+						},
+						title: {
+							text: 'Año'
+						}
+					},
+					yAxis: {
+						min: 0,
+						title: {
+							text: 'Cantidad'
+						}
+					},
+					legend: {
+						enabled: false
+					},
+					tooltip: {
+						pointFormat: 'Reconocimientos: <b>{point.y:.0f}</b>'
+					}, plotOptions: {
+						column: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								format: '<b>{point.y:.0f}</b>'
+							}
+						}
+					},
+					series: [{
+						data: res,
+						color: color
+					}]
+				});
+			}
+		});
+
+	</script>
+</body>
+
+</html>
