@@ -116,43 +116,43 @@ public class WebController {
                         case "adm":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_ADMINISTRATIVO);
                             break;
                         case "dp":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_PLANTA);
                             break;
                         case "dc":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_CATEDRATICO);
                             break;
                         case "do":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_OCASIONAL);
                             break;
                         case "ie":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_EXTERNO);
                             break;
                         case "ei":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_ESTUDIANTE);
                             break;
                         case "ind":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosFacultad(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_INDEFINIDO);
                             break;
                         default:
@@ -167,43 +167,43 @@ public class WebController {
                         case "adm":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_ADMINISTRATIVO);
                             break;
                         case "dp":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_PLANTA);
                             break;
                         case "dc":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_CATEDRATICO);
                             break;
                         case "do":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_OCASIONAL);
                             break;
                         case "ie":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_EXTERNO);
                             break;
                         case "ei":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_ESTUDIANTE);
                             break;
                         case "ind":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosGrupo(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_INDEFINIDO);
                             break;
                         default:
@@ -217,43 +217,43 @@ public class WebController {
                         case "adm":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_ADMINISTRATIVO);
                             break;
                         case "dp":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_PLANTA);
                             break;
                         case "dc":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_CATEDRATICO);
                             break;
                         case "do":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_OCASIONAL);
                             break;
                         case "ie":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_EXTERNO);
                             break;
                         case "ei":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_ESTUDIANTE);
                             break;
                         case "ind":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosCentro(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_INDEFINIDO);
                             break;
                         default:
@@ -267,43 +267,43 @@ public class WebController {
                         case "adm":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_ADMINISTRATIVO);
                             break;
                         case "dp":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_PLANTA);
                             break;
                         case "dc":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_CATEDRATICO);
                             break;
                         case "do":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_DOCENTE_OCASIONAL);
                             break;
                         case "ie":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_EXTERNO);
                             break;
                         case "ei":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_ESTUDIANTE);
                             break;
                         case "ind":
                             investigadores = investigadorDAO.getAllInvestigadoresInternosPrograma(Long.parseLong(id));
                             investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                            utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                            investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                                     Util.PERTENENCIA_INDEFINIDO);
                             break;
                         default:
@@ -318,43 +318,43 @@ public class WebController {
                 case "adm":
                     investigadores = investigadorDAO.getAllInvestigadoresInternos();
                     investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                    utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                    investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                             Util.PERTENENCIA_ADMINISTRATIVO);
                     break;
                 case "dp":
                     investigadores = investigadorDAO.getAllInvestigadoresInternos();
                     investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                    utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                    investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                             Util.PERTENENCIA_DOCENTE_PLANTA);
                     break;
                 case "dc":
                     investigadores = investigadorDAO.getAllInvestigadoresInternos();
                     investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                    utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                    investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                             Util.PERTENENCIA_DOCENTE_CATEDRATICO);
                     break;
                 case "do":
                     investigadores = investigadorDAO.getAllInvestigadoresInternos();
                     investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                    utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                    investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                             Util.PERTENENCIA_DOCENTE_OCASIONAL);
                     break;
                 case "ie":
                     investigadores = investigadorDAO.getAllInvestigadoresInternos();
                     investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                    utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                    investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                             Util.PERTENENCIA_EXTERNO);
                     break;
                 case "ei":
                     investigadores = investigadorDAO.getAllInvestigadoresInternos();
                     investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                    utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                    investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                             Util.PERTENENCIA_ESTUDIANTE);
                     break;
                 case "ind":
                     investigadores = investigadorDAO.getAllInvestigadoresInternos();
                     investigadores = utilidades.agregarPertenenciaInves(investigadores);
-                    utilidades.seleccionarInvestigadoresPertenencia(investigadores,
+                    investigadores = utilidades.seleccionarInvestigadoresPertenencia(investigadores,
                             Util.PERTENENCIA_INDEFINIDO);
                     break;
                 default:
@@ -365,6 +365,17 @@ public class WebController {
         }
 
         model.addAttribute("listaInvestigadores", investigadores);
+        
+        Map<String, Integer> generoInvestigadores = new HashMap<>();
+
+        int[] cantidades = utilidades.obtenerCantidadGenerosInvesgitadores(investigadores);
+
+        generoInvestigadores.put("Masculino", cantidades[0]);
+        generoInvestigadores.put("Femenino", cantidades[1]);
+        generoInvestigadores.put("Indefinido", cantidades[2]);
+
+        model.addAttribute("dataGeneroInvestigadores", generoInvestigadores.values());
+        model.addAttribute("clavesGeneroInvestigadores", generoInvestigadores.keySet());
 
         return "investigadores";
     }
