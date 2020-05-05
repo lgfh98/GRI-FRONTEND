@@ -99,7 +99,15 @@ public class WebController {
 		return "login";
 
 	}
-
+	
+    @GetMapping("/investigadoresP")
+    public String getInvestigadoresPertenencia(
+            @RequestParam(name = "type", required = false, defaultValue = "u") String type,
+            @RequestParam(name = "subType", required = false, defaultValue = "pa") String subType,
+            @RequestParam(name = "id", required = false, defaultValue = "0") String id, Model model) {
+        model.addAttribute("type", type);
+        model.addAttribute("id", id);
+        
         List<Investigador> investigadores = new ArrayList<>();
         if (Long.parseLong(id) != 0) {
             switch (type) {
@@ -369,9 +377,6 @@ public class WebController {
 
         model.addAttribute("dataGeneroInvestigadores", generoInvestigadores.values());
         model.addAttribute("clavesGeneroInvestigadores", generoInvestigadores.keySet());
-
-        return "investigadores";
-    }
 
 		return "investigadores";
 	}
