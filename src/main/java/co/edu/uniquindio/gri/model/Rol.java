@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * Class Rol.
@@ -34,6 +37,7 @@ public class Rol implements Serializable{
 	
 	/** The users. */
 	@OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private List<User> users = new ArrayList<User>();	
 
 	/**
