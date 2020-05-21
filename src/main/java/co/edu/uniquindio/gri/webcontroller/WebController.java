@@ -2,6 +2,8 @@ package co.edu.uniquindio.gri.webcontroller;
 
 import co.edu.uniquindio.gri.dao.*;
 import co.edu.uniquindio.gri.model.*;
+import co.edu.uniquindio.gri.service.api.UserServiceApi;
+import co.edu.uniquindio.gri.service.impl.UserServiceImpl;
 import co.edu.uniquindio.gri.utilities.Util;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -19,6 +21,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +45,8 @@ public class WebController {
 
 	@Autowired
 	UserDAO userDAO;
+	@Autowired
+	UserServiceApi userServiceApi;
 
 	@Autowired
 	InvestigadorDAO investigadorDAO;
@@ -1045,16 +1051,48 @@ public class WebController {
 	}
 
 	@GetMapping("/usuarios")
-	public String getAdministrar(Model model) {
+	public String getAllUsuarios(Model model) {
 
 		model.addAttribute("titulo", "USUARIOS");
 		model.addAttribute("id", 0);
 
-		model.addAttribute("usuarios", userDAO.getAllUsers());
+		model.addAttribute("usuarios", userServiceApi.getAll());
 
-		return "admin/usuarios";
+		return "admin/users/usuarios";
 
 	}
+	
+	@GetMapping("usuarios/save/{id}")
+	public String showsaveUsuario (@PathVariable("id") long id, Model model ) {
+		
+		if( id != 0 ) {
+			model.addAttribute("usuario", userServiceApi.get(id));
+			model.addAttribute("titulo", "EDITAR USUARIO");
+		}else {
+			model.addAttribute("usuario", new User());
+			model.addAttribute("titulo", "CREAR USUARIO");
+		}
+		
+		model.addAttribute("id", 0);
+		return "admin/users/save";
+	}
+	
+	@PostMapping("usuarios/save")
+	public String saveUsuario(User user, Model model) {
+		userServiceApi.save(user);
+		
+		return "redirect:/usuarios";
+		
+	}
+	
+	@GetMapping("usuarios/delete/{id}")
+	public String deleteUsuario(@PathVariable("id") Long id, Model model) {
+		userServiceApi.delete(id);
+		
+		return "redirect:/usuarios";
+	}
+	
+	
 
 	/**
 	 * permite obtener el reporte estadistico solicitado en formato pdf
