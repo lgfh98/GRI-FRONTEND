@@ -9,7 +9,6 @@
 	<nav th:replace="fragments/secondarynav"></nav>
 
 	<div id="wrapper">
-
 		<div id="content-wrapper">
 			<div class="container-fluid">
 				<div class="region-hero">
@@ -24,6 +23,8 @@
 
 
 				<div class="separador-1"></div>
+					
+					<a href="usuarios/save/0" class="btn btn-primary">Crear Usuario</a>
 
 				<div class="contenedor mb-3">
 					<div class="contenedor-header">
@@ -39,8 +40,9 @@
 										
 										
 										<th>USERNAME</th>
-										<th>PASSWORD</th>
 										<th>ROL</th>
+										<th></th>
+										<th></th>
 										
 									</tr>
 								</thead>
@@ -49,10 +51,9 @@
 									<tr th:each="usuario : ${usuarios}">
 										
 										<td th:text="${usuario.username}"></td>
-										<td th:text="${usuario.password}"></td>
 										<td th:text="${usuario.rol.role}"></td>
-										
-									
+										<td><a th:href="'usuarios/save/'+${usuario.id}" class="btn btn-primary">Editar</a></td>
+										<td><a th:href="'usuarios/delete/'+${usuario.id}" class="btn btn-warning">Eliminar</a></td>
 									</tr>
 								</tbody>
 							</table>
