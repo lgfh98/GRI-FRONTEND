@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -93,7 +94,8 @@ public class Grupo implements Serializable {
 	@OneToMany(mappedBy = "grupos", cascade = CascadeType.MERGE)
 	@JsonIgnore
 	private List<GruposInves> investigadores = new ArrayList<GruposInves>();
-
+	
+	
 	/**
 	 * Instantiates a new grupo.
 	 *
