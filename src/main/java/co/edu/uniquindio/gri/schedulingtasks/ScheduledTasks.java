@@ -2,20 +2,20 @@ package co.edu.uniquindio.gri.schedulingtasks;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.uniquindio.gri.exception.IntegridadDeDatosDeIncioDeCasoInvalidaException;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.LiderGrupo;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
@@ -34,6 +34,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -69,15 +70,19 @@ public class ScheduledTasks {
 	private CloseableHttpClient httpClient;
 	private URIBuilder builder;
 
-	// Tasa de trabajo por producciones bibliográficas que no están en custodia,
-	// se iterará un 1% aleatorio de las producciones bibliográficas que no están en
-	// custodia hasta el 11/06/2020 (es decir 1% de 4706 redondeado 47)
-	private static final int CASOSPRODUCCIONESBIBLIGRAFICASPORITERACION = (int) (4706 * 0.01);
+	/*
+	 * Tasa de trabajo por producciones bibliográficas que no están en custodia, se
+	 * iterará un 1% aleatorio de las producciones bibliográficas que no están en
+	 * custodia hasta el 11/06/2020 (es decir 1% de 4706 redondeado 47)
+	 */
+	private static final int CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION = 2;
 
-	// Tasa de trabajo por producciones que no están en custodia,
-	// se iterará un 1% aleatorio de las producciones que no están en
-	// custodia hasta el 11/06/2020 (es decir 1% de 15609 redondeado 156)
-	private static final int CASOSPRODUCCIONESPORITERACION = (int) (15609 * 0.01);
+	/*
+	 * Tasa de trabajo por producciones que no están en custodia, se iterará un 1%
+	 * aleatorio de las producciones que no están en custodia hasta el 11/06/2020
+	 * (es decir 1% de 15609 redondeado 156)
+	 */
+	private static final int CASOSPRODUCCIONESPORITERACION = 2;
 
 	@Autowired
 	private LiderGrupoRepository lideresInvestigadores;
@@ -85,125 +90,185 @@ public class ScheduledTasks {
 	@Autowired
 	private ProduccionRepository produccionesDisponibles;
 
+	@PersistenceContext
+	private EntityManager em;
+
 	/**
-	 * Tarea encargada de generar los casos bpm de revisión y subida de evidencias
-	 * en el servidor bonita de la Universidad del Quindío en los cuales están
-	 * involucrados todos los individuos los cuales el GRI reporta que tienen
-	 * producciones que aún no están en custodia
-	 * 
-	 * @throws IOException        en caso de generarse un error relacionado a la
-	 *                            conexión
-	 * @throws URISyntaxException en caso de generarse un error de en la sintaxis el
-	 *                            identificador unico de recursos (URI)
+	 * Tarea encargada de generar los casos bpm de revisión y subida de producciones
+	 * de investigación en el servidor bonita de la Universidad del Quindío en los
+	 * cuales están involucrados todos los lideres de grupos para los cuales el GRI
+	 * reporta que tienen producciones que aún no están en custodia
 	 */
 	@Transactional
-	@Scheduled(fixedRate = 60000)
+	@Scheduled(fixedDelay = 60000)
 	public void generarCasosDeSubidaYRevisionDeProduccionesDeInvestigacion() {
-//
-//		iniciarClienteHttp();
-//		String idDelProcesoBonita;
-//		try {
-//			iniciarSesionEnBonita();
-//			idDelProcesoBonita = obtenerIdDelProceso();
-//		} catch (URISyntaxException | IOException e) {
-//			log.error(e.getMessage());
-//			return;
-//		}
-//
-//		System.out.println(produccionesDisponibles.getProduccionesBSinCustodia().size());
-//		System.out.println(produccionesDisponibles.getProduccionesSinCustodia().size());
-//
-//		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionesDisponibles
-//				.getProduccionesBSinCustodia();
-//		List<ProduccionGrupo> produccionSinCustodia = produccionesDisponibles.getProduccionesSinCustodia();
-//		int cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
-//		int cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
-//		for (int i = 0; i < CASOSPRODUCCIONESBIBLIGRAFICASPORITERACION; i++) {
-//			int posProduccionBibliograficaAleatoria = (int) (Math.random()
-//					* cantidadDeProduccionesBibliograficasSinCustodia);
-//			generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(
-//					produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
-//					idDelProcesoBonita);
-//		}
-//		for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
-//			int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
-//			generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(null,
-//					produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
-//		}
 
-//		cerrarClienteHttp();
+		// Carga de producciones que no están en custodia
+		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionesDisponibles
+				.getProduccionesBSinCustodia();
+		List<ProduccionGrupo> produccionSinCustodia = produccionesDisponibles.getProduccionesSinCustodia();
+		int cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
+		int cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
+
+		log.info("Cantidad de producciones que no están en custodia: "
+				+ produccionesDisponibles.getProduccionesSinCustodia().size());
+		log.info("Cantidad de producciones bibliográficas que no están en custodia: "
+				+ produccionesDisponibles.getProduccionesBSinCustodia().size());
+
+		String idDelProcesoBonita = null;
+
+		/*
+		 * Inicio de la conexión al servidor bonita, esto siempre y cuando existan
+		 * producciones que no estén en custodia sobre las cuales se pueda apoyar el
+		 * proceso
+		 */
+		if (cantidadDeProduccionesBibliograficasSinCustodia + cantidadDeProduccionesSinCustodia > 0) {
+			iniciarClienteHttp();
+
+			try {
+				iniciarSesionEnBonita();
+				idDelProcesoBonita = obtenerIdDelProceso();
+			} catch (URISyntaxException | IOException e) {
+				log.error(e.getMessage());
+				return;
+			}
+		} else {
+			log.info(
+					"Toda la productividad de investigación se encuentra en custodia, no se generarán casos para subida y revisón de producciones");
+			return;
+		}
+
+		if (cantidadDeProduccionesBibliograficasSinCustodia > 0) {
+			for (int i = 0; i < CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION; i++) {
+				// Selección de una producción bibliográfica aleatoria para la generación de un
+				// caso
+				int posProduccionBibliograficaAleatoria = (int) (Math.random()
+						* cantidadDeProduccionesBibliograficasSinCustodia);
+				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(
+						produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
+						idDelProcesoBonita);
+			}
+		}
+		if (cantidadDeProduccionesSinCustodia > 0) {
+			for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
+				// Selección de una producción aleatoria para la generación de un caso
+				int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
+				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(null,
+						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
+			}
+		}
+
+		try {
+			cerrarClienteHttp();
+		} catch (IOException e) {
+			log.error(e.getMessage());
+		}
 	}
 
 	public void generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(ProduccionBGrupo produccionBGrupo,
 			ProduccionGrupo produccionGrupo, String idDelProcesoBonita) {
 
-		// Extraer datos de la produccion
-		//String nombreDeProduccion = null, nombreGrupo = null, nombreDeLiderDeGrupo = null,
-		//		correoDelLiderDelGrupo = null, diDelLiderDelGrupo = null, tipoDeProduccion = null, idDeProduccion = null;
+		// Extracción datos de la produccion en estruturas JSONObject y JSONArray
 
-		Map<String, String> parametros = new HashMap<String, String>();
-		parametros.put("idDelProcesoBonita", idDelProcesoBonita);
-		
+		JSONArray parametros = new JSONArray();
+		Grupo grupoDeInvestigacion = null;
+
 		if (produccionBGrupo != null) {
 
-			parametros.put("idDeProduccion", produccionBGrupo.getId()+"");
-			parametros.put("nombreDeProduccion", produccionBGrupo.getReferencia());
-			parametros.put("tipoDeProduccion", "BIBLIOGRAFICA");
-			
-			Grupo grupoDeInvestigacion = produccionBGrupo.getGrupo();
-			parametros.put("nombreGrupo", grupoDeInvestigacion.getNombre());
-			parametros.put("nombreDeLiderDeGrupo", grupoDeInvestigacion.getLider());
-
-			LiderGrupo liderGrupo = lideresInvestigadores.getLiderDeUnGrupo(grupoDeInvestigacion.getId());
-			parametros.put("correoDelLiderDelGrupo", liderGrupo.getEmail());
-			parametros.put("diDelLiderDelGrupo", liderGrupo.getDi());
+			parametros
+					.put((new JSONObject()).put("name", "idDeProduccion").put("value", produccionBGrupo.getId() + ""));
+			parametros.put((new JSONObject()).put("name", "nombreDeProduccion").put("value",
+					produccionBGrupo.getReferencia()));
+			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "BIBLIOGRAFICA"));
+			grupoDeInvestigacion = produccionBGrupo.getGrupo();
 
 		} else if (produccionGrupo != null) {
 
-			parametros.put("idDeProduccion", produccionGrupo.getId()+"");
-			parametros.put("nombreDeProduccion", produccionGrupo.getReferencia());
-			parametros.put("tipoDeProduccion", "GENERAL");
-			
-			Grupo grupoDeInvestigacion = produccionGrupo.getGrupo();
-			parametros.put("nombreGrupo", grupoDeInvestigacion.getNombre());
-			parametros.put("nombreDeLiderDeGrupo", grupoDeInvestigacion.getLider());
+			parametros.put((new JSONObject()).put("name", "idDeProduccion").put("value", produccionGrupo.getId() + ""));
 
-			LiderGrupo liderGrupo = lideresInvestigadores.getLiderDeUnGrupo(grupoDeInvestigacion.getId());
-			parametros.put("correoDelLiderDelGrupo", liderGrupo.getEmail());
-			parametros.put("diDelLiderDelGrupo", liderGrupo.getDi());
+			parametros.put(
+					(new JSONObject()).put("name", "nombreDeProduccion").put("value", produccionGrupo.getReferencia()));
 
+			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "GENERICA"));
+
+			grupoDeInvestigacion = produccionGrupo.getGrupo();
+
+		} else {
+			return;
 		}
 
-		try {
-			Iterator<String> it = parametros.keySet().iterator();
-			while(it.hasNext()){
-			  String key = it.next();
-			  if(parametros.get(key) == null) {
-				  throw new IntegridadDeDatosDeIncioDeCasoInvalidaException();
-			  }
-			}		
-			
-			System.out.println("Iniciando caso, parametros: " + parametros.toString());
+		parametros.put((new JSONObject()).put("name", "nombreGrupo").put("value", grupoDeInvestigacion.getNombre()));
+		parametros.put(
+				(new JSONObject()).put("name", "nombreDeLiderDeGrupo").put("value", grupoDeInvestigacion.getLider()));
 
-		} catch (IntegridadDeDatosDeIncioDeCasoInvalidaException e) {
+		LiderGrupo liderGrupo = lideresInvestigadores.getLiderDeUnGrupo(grupoDeInvestigacion.getId());
+
+		if (liderGrupo == null) {
+			log.warn("No se encontró un lider de grupo para el grupo " + grupoDeInvestigacion.getNombre()
+					+ " verifique si este grupo cuenta con un lider registrado en la tabla lideresgrupos");
+			return;
+		}
+
+		parametros.put((new JSONObject()).put("name", "correoDelLiderDelGrupo").put("value", liderGrupo.getEmail()));
+		parametros.put((new JSONObject()).put("name", "diDelLiderDelGrupo").put("value", liderGrupo.getDi()));
+
+		try {
+			// Creación del caso
+			iniciarCaso(idDelProcesoBonita, parametros);
+
+			// Actualización del estado de la producción en cuestión, esta cambia su estado
+			// a 2, es decir "en proceso de recolección"
+			
+			if (produccionBGrupo != null) {
+				produccionesDisponibles.updateProduccionBGrupo(produccionBGrupo.getId(), 2);
+				em.refresh(produccionBGrupo);
+			} else {
+				produccionesDisponibles.updateProduccionGrupo(produccionGrupo.getId(), 2);
+				em.refresh(produccionGrupo);
+			}
+			
+		} catch (URISyntaxException | IOException e) {
 			log.error(e.getMessage());
 		}
 
 	}
 
-	public void iniciarCaso(String idDelProcesoBonita, int idDeProduccion, String tipoDeProduccion,
-			String nombreDeProduccion, String nombreGrupo, String nombreDeLiderDeGrupo, String correoDelLiderDelGrupo,
-			String diDelLiderDelGrupo) throws URISyntaxException, ClientProtocolException, IOException {
+	/**
+	 * Método que inicia un caso específico en el servidor bonita asociado a los
+	 * parámetros enviados
+	 * 
+	 * @param idDelProcesoBonita id del proceso a inciar
+	 * @param parametros         arreglo JSON con los parámetros a enviar, estos se
+	 *                           inyectarán como variables en el caso iniciado
+	 * @throws URISyntaxException      en caso de generarse un error de en la
+	 *                                 sintaxis el identificador unico de recursos
+	 *                                 (URI)
+	 * @throws ClientProtocolException En caso de generarse algun error en la
+	 *                                 ejecución de la solicitud
+	 * @throws IOException             en caso de generarse un error relacionado a
+	 *                                 la conexión
+	 */
 
-		log.info("Iniciando caso \"" + nombreDelProcesoBonita + "\" con id: " + idDelProcesoBonita);
+	public void iniciarCaso(String idDelProcesoBonita, JSONArray parametros)
+			throws URISyntaxException, ClientProtocolException, IOException {
+
 		builder = new URIBuilder(servidorBonitaInicioCaso);
-		System.out.println((new JSONObject()).put("processDefinitionId", idDelProcesoBonita).toString());
 		HttpPost iniciacionDeCaso = new HttpPost(builder.build());
-		StringEntity se = new StringEntity(
-				(new JSONObject()).put("processDefinitionId", idDelProcesoBonita).toString());
+
+		// Creación del objeto JSON para el envío de los parámetros
+		JSONObject modeloDeEnvio = new JSONObject();
+		modeloDeEnvio.put("processDefinitionId", idDelProcesoBonita);
+		modeloDeEnvio.put("variables", parametros);
+
+		log.info("Iniciando caso \"" + nombreDelProcesoBonita + "\" con id: " + idDelProcesoBonita + " con parametros: "
+				+ modeloDeEnvio.toString());
+
+		// Creación de la entidad HTTP con el objeto JSON previo
+		StringEntity se = new StringEntity(modeloDeEnvio.toString());
 		iniciacionDeCaso.addHeader("content-type", "application/json");
 		iniciacionDeCaso.setEntity(se);
 
+		// Se ejecuta la petición POST
 		try (CloseableHttpResponse response = httpClient.execute(iniciacionDeCaso)) {
 			log.info("Respuesta obtenida bajo " + response.getProtocolVersion() + ", Status: "
 					+ response.getStatusLine().getStatusCode() + " " + response.getStatusLine().getReasonPhrase());
@@ -243,7 +308,7 @@ public class ScheduledTasks {
 
 			log.info("Respuesta obtenida bajo " + response.getProtocolVersion() + ", Status: "
 					+ response.getStatusLine().getStatusCode() + " " + response.getStatusLine().getReasonPhrase()
-					+ " cookies asiganadas correctamente: " + headersString);
+					+ " cookies asiganadas: " + headersString);
 
 		}
 	}
