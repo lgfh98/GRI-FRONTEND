@@ -226,7 +226,8 @@ public class ScheduledTasks {
 
 			// Actualización del estado de la producción en cuestión, esta cambia su estado
 			// a 2, es decir "en proceso de recolección", se hace uso del entity manager para
-			// realizar la actualización inmediatamente ya que dejar ese objeto 
+			// realizar la actualización inmediatamente ya que dejar ese objeto sin actualizar
+			// sincrónicamente puede generar que un caso se repita en la misma iteración.
 			
 			if (produccionBGrupo != null) {
 				produccionDAO.actualizarEstadoDeProduccion(produccionBGrupo.getId(), "BIBLIOGRAFICA", 2);
