@@ -16,12 +16,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import co.edu.uniquindio.gri.dao.InvestigadorDAO;
+import co.edu.uniquindio.gri.dao.ProduccionDAO;
 import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.LiderGrupo;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
-import co.edu.uniquindio.gri.repository.LiderGrupoRepository;
-import co.edu.uniquindio.gri.repository.ProduccionRepository;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -85,10 +85,10 @@ public class ScheduledTasks {
 	private static final int CASOSPRODUCCIONESPORITERACION = 2;
 
 	@Autowired
-	private LiderGrupoRepository lideresInvestigadores;
+	private InvestigadorDAO investigadorDAO;
 
 	@Autowired
-	private ProduccionRepository produccionesDisponibles;
+	private ProduccionDAO produccionDAO;
 
 	@PersistenceContext
 	private EntityManager em;
@@ -100,20 +100,26 @@ public class ScheduledTasks {
 	 * reporta que tienen producciones que aún no están en custodia
 	 */
 	@Transactional
-	@Scheduled(fixedDelay = 60000)
+	@Scheduled(fixedDelay = 3000)
 	public void generarCasosDeSubidaYRevisionDeProduccionesDeInvestigacion() {
+			
+		//Carga de producciones que no están en custodia
+		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionDAO.getProduccionesBSinCustodia();
+		List<ProduccionGrupo> produccionSinCustodia = produccionDAO.getProduccionesSinCustodia();
+		int cantidadDeProduccionesBibliograficasSinCustodia = 0;
+		int cantidadDeProduccionesSinCustodia = 0;
 
-		// Carga de producciones que no están en custodia
-		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionesDisponibles
-				.getProduccionesBSinCustodia();
-		List<ProduccionGrupo> produccionSinCustodia = produccionesDisponibles.getProduccionesSinCustodia();
-		int cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
-		int cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
+		if (produccionBibliograficaSinCustodia != null) {
+			cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
+		}
+		if (produccionSinCustodia != null) {
+			cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
+		}
 
 		log.info("Cantidad de producciones que no están en custodia: "
-				+ produccionesDisponibles.getProduccionesSinCustodia().size());
+				+ produccionDAO.getProduccionesSinCustodia().size());
 		log.info("Cantidad de producciones bibliográficas que no están en custodia: "
-				+ produccionesDisponibles.getProduccionesBSinCustodia().size());
+				+ produccionDAO.getProduccionesBSinCustodia().size());
 
 		String idDelProcesoBonita = null;
 
@@ -129,6 +135,8 @@ public class ScheduledTasks {
 				iniciarSesionEnBonita();
 				idDelProcesoBonita = obtenerIdDelProceso();
 			} catch (URISyntaxException | IOException e) {
+				// Manejo de excepción en caso de que no se encuentre el servidor bonita de la
+				// Universidad del Quindío
 				log.error(e.getMessage());
 				return;
 			}
@@ -201,7 +209,7 @@ public class ScheduledTasks {
 		parametros.put(
 				(new JSONObject()).put("name", "nombreDeLiderDeGrupo").put("value", grupoDeInvestigacion.getLider()));
 
-		LiderGrupo liderGrupo = lideresInvestigadores.getLiderDeUnGrupo(grupoDeInvestigacion.getId());
+		LiderGrupo liderGrupo = investigadorDAO.getLiderDeUnGrupo(grupoDeInvestigacion.getId());
 
 		if (liderGrupo == null) {
 			log.warn("No se encontró un lider de grupo para el grupo " + grupoDeInvestigacion.getNombre()
@@ -217,13 +225,14 @@ public class ScheduledTasks {
 			iniciarCaso(idDelProcesoBonita, parametros);
 
 			// Actualización del estado de la producción en cuestión, esta cambia su estado
-			// a 2, es decir "en proceso de recolección"
+			// a 2, es decir "en proceso de recolección", se hace uso del entity manager para
+			// realizar la actualización inmediatamente ya que dejar ese objeto 
 			
 			if (produccionBGrupo != null) {
-				produccionesDisponibles.updateProduccionBGrupo(produccionBGrupo.getId(), 2);
+				produccionDAO.actualizarEstadoDeProduccion(produccionBGrupo.getId(), "BIBLIOGRAFICA", 2);
 				em.refresh(produccionBGrupo);
 			} else {
-				produccionesDisponibles.updateProduccionGrupo(produccionGrupo.getId(), 2);
+				produccionDAO.actualizarEstadoDeProduccion(produccionGrupo.getId(), "GENERICA", 2);
 				em.refresh(produccionGrupo);
 			}
 			
@@ -263,8 +272,8 @@ public class ScheduledTasks {
 		log.info("Iniciando caso \"" + nombreDelProcesoBonita + "\" con id: " + idDelProcesoBonita + " con parametros: "
 				+ modeloDeEnvio.toString());
 
-		// Creación de la entidad HTTP con el objeto JSON previo
-		StringEntity se = new StringEntity(modeloDeEnvio.toString());
+		// Creación de la entidad HTTP bajo la codificación UTF-8 con el objeto JSON previo
+		StringEntity se = new StringEntity(modeloDeEnvio.toString(),"UTF-8");
 		iniciacionDeCaso.addHeader("content-type", "application/json");
 		iniciacionDeCaso.setEntity(se);
 
