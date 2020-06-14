@@ -86,8 +86,8 @@ public class ProduccionController {
 	 * @return true, si la actualización se realizó satisfactoriamente.
 	 */
 	@PutMapping("/producciones/actualizar/{prodId}")
-	public JSONObject actualizarInfoProduccion(@PathVariable("prodId") Long prodId, @RequestParam("estado") int estado,
+	public String actualizarInfoProduccion(@PathVariable("prodId") Long prodId, @RequestParam("estado") int estado,
 			@RequestParam("tipo") String tipo) {
-		return (new JSONObject()).put("actualizado", produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, estado));
+		return produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, estado) + "";
 	}
 }
