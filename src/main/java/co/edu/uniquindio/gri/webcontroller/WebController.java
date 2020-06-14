@@ -88,7 +88,6 @@ public class WebController {
 
 	@GetMapping("/login")
 	public String getLogin(Model model) {
-
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		if (principal instanceof UserDetails) {

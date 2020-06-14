@@ -55,10 +55,10 @@ public class ProduccionDAO {
 	 * @return
 	 */
 	public boolean actualizarEstadoDeProduccion(long id, String tipo, int estado) {
-		if (tipo.equals("BIBLIOGRAFICA")) {
+		if (tipo.equals("bibliografica")) {
 			produccionRepository.updateProduccionBGrupo(id, estado);
 			return true;
-		} else if (tipo.equals("GENERICA")) {
+		} else if (tipo.equals("generica")) {
 			produccionRepository.updateProduccionGrupo(id, estado);
 			return true;
 		} else {
@@ -194,7 +194,9 @@ public class ProduccionDAO {
 	 *                1 en caso contrario.
 	 * @param prodId, el identificador de la producción en base de datos.
 	 * @return true, si la actualización se realizó satisfactoriamente.
+	 * @deprecated use {@link #actualizarEstadoDeProduccion()} instead. 
 	 */
+	@Deprecated
 	public boolean actualizarProducciones(String tipo, int estado, Long prodId) {
 		if (tipo.equals("3")) {
 			if (estado == 0) {

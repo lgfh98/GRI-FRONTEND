@@ -102,75 +102,75 @@ public class ScheduledTasks {
 	@Transactional
 	@Scheduled(fixedDelay = 3000)
 	public void generarCasosDeSubidaYRevisionDeProduccionesDeInvestigacion() {
-			
-		//Carga de producciones que no están en custodia
-		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionDAO.getProduccionesBSinCustodia();
-		List<ProduccionGrupo> produccionSinCustodia = produccionDAO.getProduccionesSinCustodia();
-		int cantidadDeProduccionesBibliograficasSinCustodia = 0;
-		int cantidadDeProduccionesSinCustodia = 0;
 
-		if (produccionBibliograficaSinCustodia != null) {
-			cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
-		}
-		if (produccionSinCustodia != null) {
-			cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
-		}
-
-		log.info("Cantidad de producciones que no están en custodia: "
-				+ produccionDAO.getProduccionesSinCustodia().size());
-		log.info("Cantidad de producciones bibliográficas que no están en custodia: "
-				+ produccionDAO.getProduccionesBSinCustodia().size());
-
-		String idDelProcesoBonita = null;
-
-		/*
-		 * Inicio de la conexión al servidor bonita, esto siempre y cuando existan
-		 * producciones que no estén en custodia sobre las cuales se pueda apoyar el
-		 * proceso
-		 */
-		if (cantidadDeProduccionesBibliograficasSinCustodia + cantidadDeProduccionesSinCustodia > 0) {
-			iniciarClienteHttp();
-
-			try {
-				iniciarSesionEnBonita();
-				idDelProcesoBonita = obtenerIdDelProceso();
-			} catch (URISyntaxException | IOException e) {
-				// Manejo de excepción en caso de que no se encuentre el servidor bonita de la
-				// Universidad del Quindío
-				log.error(e.getMessage());
-				return;
-			}
-		} else {
-			log.info(
-					"Toda la productividad de investigación se encuentra en custodia, no se generarán casos para subida y revisón de producciones");
-			return;
-		}
-
-		if (cantidadDeProduccionesBibliograficasSinCustodia > 0) {
-			for (int i = 0; i < CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION; i++) {
-				// Selección de una producción bibliográfica aleatoria para la generación de un
-				// caso
-				int posProduccionBibliograficaAleatoria = (int) (Math.random()
-						* cantidadDeProduccionesBibliograficasSinCustodia);
-				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(
-						produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
-						idDelProcesoBonita);
-			}
-		}
-		if (cantidadDeProduccionesSinCustodia > 0) {
-			for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
-				// Selección de una producción aleatoria para la generación de un caso
-				int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
-				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(null,
-						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
-			}
-		}
-
-		try {
-			cerrarClienteHttp();
-		} catch (IOException e) {
-			log.error(e.getMessage());
-		}
+		// Carga de producciones que no están en custodia
+//		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionDAO.getProduccionesBSinCustodia();
+//		List<ProduccionGrupo> produccionSinCustodia = produccionDAO.getProduccionesSinCustodia();
+//		int cantidadDeProduccionesBibliograficasSinCustodia = 0;
+//		int cantidadDeProduccionesSinCustodia = 0;
+//
+//		if (produccionBibliograficaSinCustodia != null) {
+//			cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
+//		}
+//		if (produccionSinCustodia != null) {
+//			cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
+//		}
+//
+//		log.info("Cantidad de producciones que no están en custodia: "
+//				+ produccionDAO.getProduccionesSinCustodia().size());
+//		log.info("Cantidad de producciones bibliográficas que no están en custodia: "
+//				+ produccionDAO.getProduccionesBSinCustodia().size());
+//
+//		String idDelProcesoBonita = null;
+//
+//		/*
+//		 * Inicio de la conexión al servidor bonita, esto siempre y cuando existan
+//		 * producciones que no estén en custodia sobre las cuales se pueda apoyar el
+//		 * proceso
+//		 */
+//		if (cantidadDeProduccionesBibliograficasSinCustodia + cantidadDeProduccionesSinCustodia > 0) {
+//			iniciarClienteHttp();
+//
+//			try {
+//				iniciarSesionEnBonita();
+//				idDelProcesoBonita = obtenerIdDelProceso();
+//			} catch (URISyntaxException | IOException e) {
+//				// Manejo de excepción en caso de que no se encuentre el servidor bonita de la
+//				// Universidad del Quindío
+//				log.error(e.getMessage());
+//				return;
+//			}
+//		} else {
+//			log.info(
+//					"Toda la productividad de investigación se encuentra en custodia, no se generarán casos para subida y revisón de producciones");
+//			return;
+//		}
+//
+//		if (cantidadDeProduccionesBibliograficasSinCustodia > 0) {
+//			for (int i = 0; i < CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION; i++) {
+//				// Selección de una producción bibliográfica aleatoria para la generación de un
+//				// caso
+//				int posProduccionBibliograficaAleatoria = (int) (Math.random()
+//						* cantidadDeProduccionesBibliograficasSinCustodia);
+//				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(
+//						produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
+//						idDelProcesoBonita);
+//			}
+//		}
+//		if (cantidadDeProduccionesSinCustodia > 0) {
+//			for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
+//				// Selección de una producción aleatoria para la generación de un caso
+//				int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
+//				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(null,
+//						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
+//			}
+//		}
+//
+//		try {
+//			cerrarClienteHttp();
+//		} catch (IOException e) {
+//			log.error(e.getMessage());
+//		}
 	}
 
 	public void generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(ProduccionBGrupo produccionBGrupo,
@@ -187,7 +187,7 @@ public class ScheduledTasks {
 					.put((new JSONObject()).put("name", "idDeProduccion").put("value", produccionBGrupo.getId() + ""));
 			parametros.put((new JSONObject()).put("name", "nombreDeProduccion").put("value",
 					produccionBGrupo.getReferencia()));
-			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "BIBLIOGRAFICA"));
+			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "bibliografica"));
 			grupoDeInvestigacion = produccionBGrupo.getGrupo();
 
 		} else if (produccionGrupo != null) {
@@ -197,7 +197,7 @@ public class ScheduledTasks {
 			parametros.put(
 					(new JSONObject()).put("name", "nombreDeProduccion").put("value", produccionGrupo.getReferencia()));
 
-			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "GENERICA"));
+			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "generica"));
 
 			grupoDeInvestigacion = produccionGrupo.getGrupo();
 
@@ -225,18 +225,20 @@ public class ScheduledTasks {
 			iniciarCaso(idDelProcesoBonita, parametros);
 
 			// Actualización del estado de la producción en cuestión, esta cambia su estado
-			// a 2, es decir "en proceso de recolección", se hace uso del entity manager para
-			// realizar la actualización inmediatamente ya que dejar ese objeto sin actualizar
+			// a 2, es decir "en proceso de recolección", se hace uso del entity manager
+			// para
+			// realizar la actualización inmediatamente ya que dejar ese objeto sin
+			// actualizar
 			// sincrónicamente puede generar que un caso se repita en la misma iteración.
-			
+
 			if (produccionBGrupo != null) {
-				produccionDAO.actualizarEstadoDeProduccion(produccionBGrupo.getId(), "BIBLIOGRAFICA", 2);
+				produccionDAO.actualizarEstadoDeProduccion(produccionBGrupo.getId(), "bibliografica", 2);
 				em.refresh(produccionBGrupo);
 			} else {
-				produccionDAO.actualizarEstadoDeProduccion(produccionGrupo.getId(), "GENERICA", 2);
+				produccionDAO.actualizarEstadoDeProduccion(produccionGrupo.getId(), "generica", 2);
 				em.refresh(produccionGrupo);
 			}
-			
+
 		} catch (URISyntaxException | IOException e) {
 			log.error(e.getMessage());
 		}
@@ -273,8 +275,9 @@ public class ScheduledTasks {
 		log.info("Iniciando caso \"" + nombreDelProcesoBonita + "\" con id: " + idDelProcesoBonita + " con parametros: "
 				+ modeloDeEnvio.toString());
 
-		// Creación de la entidad HTTP bajo la codificación UTF-8 con el objeto JSON previo
-		StringEntity se = new StringEntity(modeloDeEnvio.toString(),"UTF-8");
+		// Creación de la entidad HTTP bajo la codificación UTF-8 con el objeto JSON
+		// previo
+		StringEntity se = new StringEntity(modeloDeEnvio.toString(), "UTF-8");
 		iniciacionDeCaso.addHeader("content-type", "application/json");
 		iniciacionDeCaso.setEntity(se);
 
