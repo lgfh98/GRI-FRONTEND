@@ -1,5 +1,6 @@
 package co.edu.uniquindio.gri.controller;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,15 +18,36 @@ public class CasoRevisionProduccionController {
 	@Autowired
 	CasoRevisionProduccionDAO casoRevisionProduccionDAO;
 
-	@PostMapping("/casos/revisonproduccion")
-	public void crearCaso(@RequestParam("id") long id, @RequestParam("idproduccion") long idProduccion,
+	/**
+	 * Servicio REST que se encarga de crear un caso de revisión y subida de
+	 * producciones en la base de datos del GRI con su estado por defecto que es "EN
+	 * CURSO"
+	 * 
+	 * @param id
+	 * @param idProduccion
+	 * @param tipoProduccion
+	 * @return
+	 */
+	@PostMapping("/casos/revisionproduccion")
+	public String crearCaso(@RequestParam("id") long id, @RequestParam("idproduccion") long idProduccion,
 			@RequestParam("tipo") String tipoProduccion) {
-		casoRevisionProduccionDAO.registrarNuevoCaso(id ,idProduccion, tipoProduccion);
+		return casoRevisionProduccionDAO.archivarNuevoCaso(id, idProduccion, tipoProduccion) + "";
 	}
 
-	@PutMapping("/casos/revisonproduccion/{id}")
-	public void actualizarCaso(@PathVariable("id") long id, @RequestParam("idproduccion") long idProduccion,
+	/**
+	 * Servicio REST que se encarga de actualizar un caso de revisión y subida de
+	 * producciones en la base de datos del GRI
+	 * 
+	 * @param id
+	 * @param idProduccion
+	 * @param tipoProduccion
+	 * @param estado
+	 * @return
+	 */
+
+	@PutMapping("/casos/revisionproduccion/{id}")
+	public String actualizarCaso(@PathVariable("id") long id, @RequestParam("idproduccion") long idProduccion,
 			@RequestParam("tipo") String tipoProduccion, @RequestParam("estado") String estado) {
-		casoRevisionProduccionDAO.registrarNuevoCaso(id, idProduccion, tipoProduccion, estado);
+		return casoRevisionProduccionDAO.archivarNuevoCaso(id, idProduccion, tipoProduccion, estado) + "";
 	}
 }

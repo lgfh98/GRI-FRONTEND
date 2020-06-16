@@ -104,75 +104,75 @@ public class ScheduledTasks {
 	@Scheduled(fixedDelay = 86400000, initialDelay = 0)
 	public void generarCasosDeSubidaYRevisionDeProduccionesDeInvestigacion() {
 		
-//		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionDAO.getProduccionesBSinCustodia();
-//		List<ProduccionGrupo> produccionSinCustodia = produccionDAO.getProduccionesSinCustodia();
-//		int cantidadDeProduccionesBibliograficasSinCustodia = 0;
-//		int cantidadDeProduccionesSinCustodia = 0;
-//
-//		if (produccionBibliograficaSinCustodia != null) {
-//			cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
-//		}
-//		if (produccionSinCustodia != null) {
-//			cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
-//		}
-//
-//		log.info("Cantidad de producciones que no están en custodia: "
-//				+ produccionDAO.getProduccionesSinCustodia().size());
-//		log.info("Cantidad de producciones bibliográficas que no están en custodia: "
-//				+ produccionDAO.getProduccionesBSinCustodia().size());
-//
-//		String idDelProcesoBonita = null;
-//
-//		/*
-//		 * Inicio de la conexión al servidor bonita, esto siempre y cuando existan
-//		 * producciones que no estén en custodia sobre las cuales se pueda apoyar el
-//		 * proceso
-//		 */
-//		BonitaConnectorAPI bonita;
-//		if (cantidadDeProduccionesBibliograficasSinCustodia + cantidadDeProduccionesSinCustodia > 0) {
-//			bonita = new BonitaConnectorAPI(servidor);
-//			bonita.iniciarClienteHttp();
-//
-//			try {
-//				bonita.iniciarSesionEnBonita(usuario, password);;
-//				idDelProcesoBonita = bonita.obtenerIdDelProceso(nombreDelProcesoBonita);
-//			} catch (URISyntaxException | IOException e) {
-//				// Manejo de excepción en caso de que no se encuentre el servidor bonita de la
-//				// Universidad del Quindío
-//				log.error(e.getMessage());
-//				return;
-//			}
-//		} else {
-//			log.info(
-//					"Toda la productividad de investigación se encuentra en custodia, no se generarán casos para subida y revisón de producciones");
-//			return;
-//		}
-//
-//		if (cantidadDeProduccionesBibliograficasSinCustodia > 0) {
-//			for (int i = 0; i < CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION; i++) {
-//				// Selección de una producción bibliográfica aleatoria para la generación de un
-//				// caso
-//				int posProduccionBibliograficaAleatoria = (int) (Math.random()
-//						* cantidadDeProduccionesBibliograficasSinCustodia);
-//				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita,
-//						produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
-//						idDelProcesoBonita);
-//			}
-//		}
-//		if (cantidadDeProduccionesSinCustodia > 0) {
-//			for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
-//				// Selección de una producción aleatoria para la generación de un caso
-//				int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
-//				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita, null,
-//						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
-//			}
-//		}
-//
-//		try {
-//			bonita.cerrarClienteHttp();
-//		} catch (IOException e) {
-//			log.error(e.getMessage());
-//		}
+		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionDAO.getProduccionesBSinCustodia();
+		List<ProduccionGrupo> produccionSinCustodia = produccionDAO.getProduccionesSinCustodia();
+		int cantidadDeProduccionesBibliograficasSinCustodia = 0;
+		int cantidadDeProduccionesSinCustodia = 0;
+
+		if (produccionBibliograficaSinCustodia != null) {
+			cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
+		}
+		if (produccionSinCustodia != null) {
+			cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
+		}
+
+		log.info("Cantidad de producciones que no están en custodia: "
+				+ produccionDAO.getProduccionesSinCustodia().size());
+		log.info("Cantidad de producciones bibliográficas que no están en custodia: "
+				+ produccionDAO.getProduccionesBSinCustodia().size());
+
+		String idDelProcesoBonita = null;
+
+		/*
+		 * Inicio de la conexión al servidor bonita, esto siempre y cuando existan
+		 * producciones que no estén en custodia sobre las cuales se pueda apoyar el
+		 * proceso
+		 */
+		BonitaConnectorAPI bonita;
+		if (cantidadDeProduccionesBibliograficasSinCustodia + cantidadDeProduccionesSinCustodia > 0) {
+			bonita = new BonitaConnectorAPI(servidor);
+			bonita.iniciarClienteHttp();
+
+			try {
+				bonita.iniciarSesionEnBonita(usuario, password);;
+				idDelProcesoBonita = bonita.obtenerIdDelProceso(nombreDelProcesoBonita);
+			} catch (URISyntaxException | IOException e) {
+				// Manejo de excepción en caso de que no se encuentre el servidor bonita de la
+				// Universidad del Quindío
+				log.error(e.getMessage());
+				return;
+			}
+		} else {
+			log.info(
+					"Toda la productividad de investigación se encuentra en custodia, no se generarán casos para subida y revisón de producciones");
+			return;
+		}
+
+		if (cantidadDeProduccionesBibliograficasSinCustodia > 0) {
+			for (int i = 0; i < CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION; i++) {
+				// Selección de una producción bibliográfica aleatoria para la generación de un
+				// caso
+				int posProduccionBibliograficaAleatoria = (int) (Math.random()
+						* cantidadDeProduccionesBibliograficasSinCustodia);
+				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita,
+						produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
+						idDelProcesoBonita);
+			}
+		}
+		if (cantidadDeProduccionesSinCustodia > 0) {
+			for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
+				// Selección de una producción aleatoria para la generación de un caso
+				int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
+				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita, null,
+						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
+			}
+		}
+
+		try {
+			bonita.cerrarClienteHttp();
+		} catch (IOException e) {
+			log.error(e.getMessage());
+		}
 	}
 
 	public void generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(BonitaConnectorAPI bonita, ProduccionBGrupo produccionBGrupo,
