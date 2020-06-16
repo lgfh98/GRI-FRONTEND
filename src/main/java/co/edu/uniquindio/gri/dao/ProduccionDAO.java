@@ -27,6 +27,46 @@ public class ProduccionDAO {
 	TipoRepository tipoRepository;
 
 	/**
+	 * Método que obtiene las producciones que no están en custodia
+	 * 
+	 * @return
+	 */
+	public List<ProduccionGrupo> getProduccionesSinCustodia() {
+		return produccionRepository.getProduccionesSinCustodia();
+	}
+
+	/**
+	 * Método que obtiene las producciones bbilbiográficas que no están en custodia
+	 * 
+	 * @return
+	 */
+	public List<ProduccionBGrupo> getProduccionesBSinCustodia() {
+		return produccionRepository.getProduccionesBSinCustodia();
+	}
+
+	/**
+	 * Método que actualiza el estado de una producción al estado dado por
+	 * parámetros (no alterna estados)
+	 * 
+	 * @param id     ID de la producción
+	 * @param tipo   tipo de producción
+	 * @param estado estado de la producción, 0 - no en custodia, 1 en custodia, 2-
+	 *               en proceso de recolección
+	 * @return
+	 */
+	public boolean actualizarEstadoDeProduccion(long id, String tipo, int estado) {
+		if (tipo.equals("bibliografica")) {
+			produccionRepository.updateProduccionBGrupo(id, estado);
+			return true;
+		} else if (tipo.equals("generica")) {
+			produccionRepository.updateProduccionGrupo(id, estado);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * Obtiene las producciones de una entidad específica.
 	 *
 	 * @param type     el tipo de la entidad (f: Facultad, p: Programa, c: Centro,
@@ -148,12 +188,15 @@ public class ProduccionDAO {
 	 * Actualiza el estado de una producción científica en función si se encuentra o
 	 * no en custodia física de la Vicerrectoría de Investigaciones.
 	 *
-	 * @param tipo,   identifica si la producción es o no bibliográfica
+	 * @param tipo,   identifica si la producción es o no bibliográfica,
+	 *                bibligráfica es 3
 	 * @param estado, el estado de la producción. 0 si no se encuentra en custodia.
 	 *                1 en caso contrario.
 	 * @param prodId, el identificador de la producción en base de datos.
 	 * @return true, si la actualización se realizó satisfactoriamente.
+	 * @deprecated use {@link #actualizarEstadoDeProduccion()} instead. 
 	 */
+	@Deprecated
 	public boolean actualizarProducciones(String tipo, int estado, Long prodId) {
 		if (tipo.equals("3")) {
 			if (estado == 0) {
@@ -266,142 +309,154 @@ public class ProduccionDAO {
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param idFacultad id de la facultad
-	 * @param tipoId tipo de producción
+	 * @param tipoId     tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesFacultadPorTipo(String facultadId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesFacultadPorTipo(Long.parseLong(facultadId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesFacultadPorTipo(Long.parseLong(facultadId),
+				Long.parseLong(tipoId));
 	}
 
 	/**
-	 * Obtiene la cantidad de producciones bibliográficas total de la facultad por un tipo
-	 * especifico de producción.
+	 * Obtiene la cantidad de producciones bibliográficas total de la facultad por
+	 * un tipo especifico de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param idFacultad id de la facultad
-	 * @param tipoId tipo de producción
+	 * @param tipoId     tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesBFacultadPorTipo(String facultadId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesBFacultadPorTipo(Long.parseLong(facultadId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesBFacultadPorTipo(Long.parseLong(facultadId),
+				Long.parseLong(tipoId));
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de producciones total de la facultad por un sub tipo
 	 * especifico de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param idFacultad id de la facultad
-	 * @param tipoId tipo de producción
+	 * @param tipoId     tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesFacultadPorSubTipo(String facultadId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesFacultadPorSubTipo(Long.parseLong(facultadId), Long.parseLong(tipoId));
-	}
-	
-	/**
-	 * Obtiene la cantidad de producciones total del centro por un tipo
-	 * especifico de producción.
-	 * 
-	 * @return cantidad de actividades de formacion.
-	 * @param centroId id del centro
-	 * @param tipoId tipo de producción
-	 */
-	public BigInteger getCantidadProduccionesCentroPorTipo(String centroId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesCentroPorTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesFacultadPorSubTipo(Long.parseLong(facultadId),
+				Long.parseLong(tipoId));
 	}
 
 	/**
-	 * Obtiene la cantidad de producciones bibliográficas total del centro por un tipo
-	 * especifico de producción.
+	 * Obtiene la cantidad de producciones total del centro por un tipo especifico
+	 * de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param centroId id del centro
-	 * @param tipoId tipo de producción
+	 * @param tipoId   tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesCentroPorTipo(String centroId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesCentroPorTipo(Long.parseLong(centroId),
+				Long.parseLong(tipoId));
+	}
+
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total del centro por un
+	 * tipo especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param centroId id del centro
+	 * @param tipoId   tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesBCentroPorTipo(String centroId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesBCentroPorTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesBCentroPorTipo(Long.parseLong(centroId),
+				Long.parseLong(tipoId));
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de producciones total del centro por un sub tipo
 	 * especifico de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param centroId id del centro
-	 * @param tipoId tipo de producción
+	 * @param tipoId   tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesCentroPorSubTipo(String centroId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesCentroPorSubTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
-	}
-	
-	/**
-	 * Obtiene la cantidad de producciones total del programa por un tipo
-	 * especifico de producción.
-	 * 
-	 * @return cantidad de actividades de formacion.
-	 * @param programaId id del programa
-	 * @param tipoId tipo de producción
-	 */
-	public BigInteger getCantidadProduccionesProgramaPorTipo(String centroId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesProgramaPorTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesCentroPorSubTipo(Long.parseLong(centroId),
+				Long.parseLong(tipoId));
 	}
 
 	/**
-	 * Obtiene la cantidad de producciones bibliográficas total del centro por un tipo
-	 * especifico de producción.
+	 * Obtiene la cantidad de producciones total del programa por un tipo especifico
+	 * de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param programaId id del programa
-	 * @param tipoId tipo de producción
+	 * @param tipoId     tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesProgramaPorTipo(String centroId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesProgramaPorTipo(Long.parseLong(centroId),
+				Long.parseLong(tipoId));
+	}
+
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total del centro por un
+	 * tipo especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param programaId id del programa
+	 * @param tipoId     tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesBProgramaPorTipo(String centroId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesBProgramaPorTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesBProgramaPorTipo(Long.parseLong(centroId),
+				Long.parseLong(tipoId));
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de producciones total del programa por un sub tipo
 	 * especifico de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param programaId id del programa
-	 * @param tipoId tipo de producción
+	 * @param tipoId     tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesProgramaPorSubTipo(String centroId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesProgramaPorSubTipo(Long.parseLong(centroId), Long.parseLong(tipoId));
-	}
-	
-	/**
-	 * Obtiene la cantidad de producciones total del grupo por un tipo
-	 * especifico de producción.
-	 * 
-	 * @return cantidad de actividades de formacion.
-	 * @param grupoId id del grupo
-	 * @param tipoId tipo de producción
-	 */
-	public BigInteger getCantidadProduccionesGrupoPorTipo(String grupoId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesGrupoPorTipo(Long.parseLong(grupoId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesProgramaPorSubTipo(Long.parseLong(centroId),
+				Long.parseLong(tipoId));
 	}
 
 	/**
-	 * Obtiene la cantidad de producciones bibliográficas total del grupo por un tipo
-	 * especifico de producción.
+	 * Obtiene la cantidad de producciones total del grupo por un tipo especifico de
+	 * producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param grupoId id del grupo
-	 * @param tipoId tipo de producción
+	 * @param tipoId  tipo de producción
+	 */
+	public BigInteger getCantidadProduccionesGrupoPorTipo(String grupoId, String tipoId) {
+		return produccionRepository.getCantidadProduccionesGrupoPorTipo(Long.parseLong(grupoId),
+				Long.parseLong(tipoId));
+	}
+
+	/**
+	 * Obtiene la cantidad de producciones bibliográficas total del grupo por un
+	 * tipo especifico de producción.
+	 * 
+	 * @return cantidad de actividades de formacion.
+	 * @param grupoId id del grupo
+	 * @param tipoId  tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesBGrupoPorTipo(String grupoId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesBGrupoPorTipo(Long.parseLong(grupoId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesBGrupoPorTipo(Long.parseLong(grupoId),
+				Long.parseLong(tipoId));
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de producciones total del grupo por un sub tipo
 	 * especifico de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param grupoId id del grupo
-	 * @param tipoId tipo de producción
+	 * @param tipoId  tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesGrupoPorSubTipo(String grupoId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesGrupoPorSubTipo(Long.parseLong(grupoId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesGrupoPorSubTipo(Long.parseLong(grupoId),
+				Long.parseLong(tipoId));
 	}
 
 	/**
@@ -410,34 +465,37 @@ public class ProduccionDAO {
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param investigadorId id del investigador
-	 * @param tipoId tipo de producción
+	 * @param tipoId         tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesInvestigadorPorTipo(String investigadorId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesInvestigadorPorTipo(Long.parseLong(investigadorId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesInvestigadorPorTipo(Long.parseLong(investigadorId),
+				Long.parseLong(tipoId));
 	}
 
 	/**
-	 * Obtiene la cantidad de producciones bibliográficas total del investigador por un tipo
-	 * especifico de producción.
+	 * Obtiene la cantidad de producciones bibliográficas total del investigador por
+	 * un tipo especifico de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param investigadorId id del investigador
-	 * @param tipoId tipo de producción
+	 * @param tipoId         tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesBInvestigadorPorTipo(String investigadorId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesBInvestigadorPorTipo(Long.parseLong(investigadorId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesBInvestigadorPorTipo(Long.parseLong(investigadorId),
+				Long.parseLong(tipoId));
 	}
-	
+
 	/**
 	 * Obtiene la cantidad de producciones total del investigador por un sub tipo
 	 * especifico de producción.
 	 * 
 	 * @return cantidad de actividades de formacion.
 	 * @param investigadorId id del investigador
-	 * @param tipoId tipo de producción
+	 * @param tipoId         tipo de producción
 	 */
 	public BigInteger getCantidadProduccionesInvestigadorPorSubTipo(String investigadorId, String tipoId) {
-		return produccionRepository.getCantidadProduccionesInvestigadorPorSubTipo(Long.parseLong(investigadorId), Long.parseLong(tipoId));
+		return produccionRepository.getCantidadProduccionesInvestigadorPorSubTipo(Long.parseLong(investigadorId),
+				Long.parseLong(tipoId));
 	}
 
 }
