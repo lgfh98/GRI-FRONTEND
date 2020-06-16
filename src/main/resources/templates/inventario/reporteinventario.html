@@ -39,7 +39,7 @@
 								<thead>
 									<tr>
 										<th></th>
-										<th></th>
+										<th>EN INVENTARIO</th>
 										<th>REFERENCIA</th>
 										<th>AUTORES</th>
 										<th>AÑO</th>
@@ -49,7 +49,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="produccion : ${producciones}">
+									<tr th:class="en-proceso" th:each="produccion : ${producciones}">
 										<td></td>
 										<td th:text="${produccion[0]}"></td>
 										<td th:text="${produccion[1]}"></td>
