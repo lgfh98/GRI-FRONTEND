@@ -116,7 +116,7 @@
 								$('c[r=A1] t', sheet).text('Grupos');
 							} else if (document.getElementById('tabla_lineas_wrapper')) {
 								$('c[r=A1] t', sheet).text('Lineas de Investigación');
-							}else if (document.getElementById('tabla_reconocimientos_wrapper')) {
+							} else if (document.getElementById('tabla_reconocimientos_wrapper')) {
 								$('c[r=A1] t', sheet).text('Reconocimientos');
 							}
 						},
@@ -271,7 +271,7 @@
 				{ data: "categoria" },
 				{ data: "nivelAcademico" },
 				{ data: "pertenencia" },
-				{ data: "sexo"}
+				{ data: "sexo" }
 			]
 		});
 
@@ -510,15 +510,15 @@
 		});
 
 		// .---------------------------PERTENENCIA------------------------------------ 
-		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({ 
-			responsive: true, 
-			dom: 'Bfrti', 
-			scrollY: "50vh", 
-			scrollCollapse: true, 
-			paging: false, 
-			rowId: 'id', 
-			columns: [ 
-				{ data: "id", visible: false }, 
+		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({
+			responsive: true,
+			dom: 'Bfrti',
+			scrollY: "50vh",
+			scrollCollapse: true,
+			paging: false,
+			rowId: 'id',
+			columns: [
+				{ data: "id", visible: false },
 				{ data: "pertenencia" },
 				{ data: "nombre" },
 				{ data: "categoria" },
@@ -527,29 +527,29 @@
 				{
 					text: 'Guardar Cambios',
 					className: 'saveButton'
-								} 
-			], 
-			language: { 
-				processing: "Procesamiento en curso...", 
-				search: "Buscar: ", 
-				lengthMenu: "Mostrando _MENU_ elementos", 
-				info: "Mostrando _START_ a _END_ de _TOTAL_ elementos", 
-				infoEmpty: "Mostrando 0 a 0 de 0 elementos", 
-				infoFiltered: "(filtrado de _MAX_ elementos en total)", 
-				infoPostFix: "", 
-				loadingRecords: "Cargando resultados...", 
-				zeroRecords: "No hay información para mostrar", 
-				emptyTable: "No hay información para mostrar", 
-				paginate: { 
-					first: "Primera", 
-					previous: "Anterior", 
-					next: "Siguiente", 
-					last: "última" 
-				} 
-			} 
-		}); 
- 
-		$('.saveButton').on('click', function () { 
+				}
+			],
+			language: {
+				processing: "Procesamiento en curso...",
+				search: "Buscar: ",
+				lengthMenu: "Mostrando _MENU_ elementos",
+				info: "Mostrando _START_ a _END_ de _TOTAL_ elementos",
+				infoEmpty: "Mostrando 0 a 0 de 0 elementos",
+				infoFiltered: "(filtrado de _MAX_ elementos en total)",
+				infoPostFix: "",
+				loadingRecords: "Cargando resultados...",
+				zeroRecords: "No hay información para mostrar",
+				emptyTable: "No hay información para mostrar",
+				paginate: {
+					first: "Primera",
+					previous: "Anterior",
+					next: "Siguiente",
+					last: "última"
+				}
+			}
+		});
+
+		$('.saveButton').on('click', function () {
 			$('#tabla_pertenencia > tbody  > tr').each(function () {
 				var elID = $(this).attr('id');
 				var e = document.getElementById("menuPertenencias" + elID);
@@ -581,8 +581,8 @@
 
 		// ---------------------------------FIN
 		// PERTENENCIA-----------------------------
-		
-		
+
+
 		// Definición tabla Inventario
 		var table = $('#tabla_inventario')
 			.DataTable(
@@ -694,6 +694,13 @@
 				var tipo = data[6];
 				var estado = data[7];
 
+				if (tipo == 15 || tipo == 16 || tipo == 17 || tipo == 18 || tipo == 19 || tipo == 20 || tipo == 21 || tipo == 22 || tipo == 23 || tipo == 39 || tipo == 40) {
+					tipo = 'bibliografica';
+				} else {
+					tipo = 'generica';
+				}
+				console.log(estado + " data: " + data[7]);
+
 				var rowCheckBox = $(this)[0];
 
 				if (estado == 0) {
@@ -718,11 +725,12 @@
 							}
 						},
 					}).then((value) => {
+						estado = 1;
 						if (value) {
 							$.ajax({
-								type: "POST",
+								type: "PUT",
 								contentType: "application/json",
-								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/gri/rest/service/producciones/actualizar/' + prodId + '?estado=' + estado + '&tipo=' + tipo,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
@@ -732,6 +740,8 @@
 											7, false);
 										$('#tabla_inventario tr#' + prodId).addClass(
 											'en-inventario');
+										$('#tabla_inventario tr#' + prodId).removeClass(
+											'en-proceso');
 									}
 								}
 							});
@@ -739,7 +749,7 @@
 							rowCheckBox.checked = false;
 						}
 					});
-				} else {
+				} else if (estado == 1) {
 					swal({
 						text: "¿Desea remover del inventario?",
 						icon: "warning",
@@ -761,11 +771,12 @@
 							}
 						},
 					}).then((value) => {
+						estado = 0;
 						if (value) {
 							$.ajax({
-								type: "POST",
+								type: "PUT",
 								contentType: "application/json",
-								url: '/gri/rest/service/producciones/' + tipo + '/' + estado + '/' + prodId,
+								url: '/gri/rest/service/producciones/actualizar/' + prodId + '?estado=' + estado + '&tipo=' + tipo,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
@@ -775,12 +786,59 @@
 											7, false);
 										$('#tabla_inventario tr#' + prodId)
 											.removeClass('en-inventario');
-
+										$('#tabla_inventario tr#' + prodId).removeClass(
+											'en-proceso');
 									}
 								}
 							});
 						} else {
 							rowCheckBox.checked = true;
+						}
+					});
+				} else if (estado == 2) {
+					swal({
+						text: "Ya existe un caso para la recolección de esta producción, al usted cambiar el estado de esta producción el caso se eliminará. ¿Desea continuar?",
+						icon: "warning",
+						dangerMode: true,
+						buttons: {
+							cancel: {
+								text: "Cancelar",
+								value: null,
+								visible: true,
+								className: "",
+								closeModal: true,
+							},
+							confirm: {
+								text: "Aceptar",
+								value: true,
+								visible: true,
+								className: "",
+								closeModal: true
+							}
+						},
+					}).then((value) => {
+						estado = 1;
+						if (value) {
+							$.ajax({
+								type: "PUT",
+								contentType: "application/json",
+								url: '/gri/rest/service/producciones/actualizar/' + prodId + '?estado=' + estado + '&tipo=' + tipo,
+								dataType: 'json',
+								cache: false,
+								success: function (res) {
+									if (res) {
+										$('#tabla_inventario').dataTable().fnUpdate(0,
+											$('#tabla_inventario tr#' + prodId),
+											7, false);
+										$('#tabla_inventario tr#' + prodId)
+											.addClass('en-inventario');
+										$('#tabla_inventario tr#' + prodId).removeClass(
+											'en-proceso');
+									}
+								}
+							});
+						} else {
+							rowCheckBox.checked = false;
 						}
 					});
 				}
