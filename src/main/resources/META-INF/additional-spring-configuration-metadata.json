@@ -5,11 +5,6 @@
     "description": "A description for 'bonita.nombre.proceso'"
   },
   {
-    "name": "bonita.servidor.login",
-    "type": "java.lang.String",
-    "description": "A description for 'bonita.servidor.login'"
-  },
-  {
     "name": "bonita.usuario",
     "type": "java.lang.String",
     "description": "A description for 'bonita.usuario'"
@@ -20,13 +15,8 @@
     "description": "A description for 'bonita.password'"
   },
   {
-    "name": "bonita.servidor.consulta.idproceso",
+    "name": "bonita.servidor.base",
     "type": "java.lang.String",
-    "description": "A description for 'bonita.servidor.consulta.idproceso'"
-  },
-  {
-    "name": "bonita.servidor.iniciocaso",
-    "type": "java.lang.String",
-    "description": "A description for 'bonita.servidor.iniciocaso'"
+    "description": "A description for 'bonita.servidor.base'"
   }
 ]}
