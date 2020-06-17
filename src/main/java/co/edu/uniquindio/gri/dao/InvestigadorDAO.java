@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.model.Investigador;
+import co.edu.uniquindio.gri.model.LiderGrupo;
 import co.edu.uniquindio.gri.repository.InvestigadorRepository;
+import co.edu.uniquindio.gri.repository.LiderGrupoRepository;
 
 /**
  * Clase InvestigadorDAO.
@@ -17,7 +19,18 @@ public class InvestigadorDAO {
 	/** Repository para investigadores. */
 	@Autowired
 	InvestigadorRepository investigadorRepository;
+	
+	@Autowired 
+	LiderGrupoRepository liderGrupoRepository;
 
+	public LiderGrupo getLiderDeUnGrupo(long id){
+		return liderGrupoRepository.getLiderDeUnGrupo(id);
+	}
+	
+	public LiderGrupo getLiderGrupoById(int id) {
+		return liderGrupoRepository.getOne(id);
+	}
+	
 	/**
 	 * Obtiene todos los investigadores.
 	 *

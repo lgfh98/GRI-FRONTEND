@@ -21,6 +21,24 @@ import co.edu.uniquindio.gri.model.ProduccionGrupo;
 @Repository
 public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 
+	//Bonita
+	
+	/**
+	 * Obtiene todas las producciones que no están en custodia.
+	 *
+	 * @return lista de producciones que no están en custodia
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.ProduccionBGrupo p where repetido <> 'ES REPETIDO' and p.estado = 0")
+    List<ProduccionBGrupo> getProduccionesBSinCustodia();
+	
+	/**
+	 * Obtiene todas las producciones bibliográficas que no están en custodia.
+	 *
+	 * @return lista de producciones que no están en custodia
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.ProduccionGrupo p where repetido <> 'ES REPETIDO' and p.estado = 0")
+    List<ProduccionGrupo> getProduccionesSinCustodia();
+	
 	// Investigadores
 	/**
 	 * Obtiene la producción bibliográfica de un investigador.

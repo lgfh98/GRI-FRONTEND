@@ -6,7 +6,7 @@
 	<artifactId>ServerSpring</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ServerSpring</name>
+	<name>gri</name>
 	<url>http://maven.apache.org</url>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -104,6 +104,17 @@
 			<groupId>gri.uniquindio.fonts</groupId>
 			<artifactId>gri-uniquindio-fonts</artifactId>
 			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.10</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+		    <groupId>org.json</groupId>
+		    <artifactId>json</artifactId>
+		    <version>20200518</version>
 		</dependency>
 	</dependencies>
 
