@@ -49,7 +49,6 @@ public class CasoRevisionProduccionController {
 	public String actualizarCaso(@PathVariable("id") long id, @RequestParam("idproduccion") long idProduccion,
 			@RequestParam("tipo") String tipoProduccion, @RequestParam("estado") String estado) {
 		return casoRevisionProduccionDAO.archivarNuevoCaso(id, idProduccion, tipoProduccion, estado) + "";
-	}
-	
+	}	
 	
 }

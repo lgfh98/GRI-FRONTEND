@@ -136,6 +136,7 @@ public class ScheduledTasks {
 			try {
 				bonita.iniciarSesionEnBonita(usuario, password);;
 				idDelProcesoBonita = bonita.obtenerIdDelProceso(nombreDelProcesoBonita);
+				bonita.eliminarCaso("81004");
 			} catch (URISyntaxException | IOException e) {
 				// Manejo de excepción en caso de que no se encuentre el servidor bonita de la
 				// Universidad del Quindío
@@ -148,31 +149,31 @@ public class ScheduledTasks {
 			return;
 		}
 
-		if (cantidadDeProduccionesBibliograficasSinCustodia > 0) {
-			for (int i = 0; i < CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION; i++) {
-				// Selección de una producción bibliográfica aleatoria para la generación de un
-				// caso
-				int posProduccionBibliograficaAleatoria = (int) (Math.random()
-						* cantidadDeProduccionesBibliograficasSinCustodia);
-				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita,
-						produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
-						idDelProcesoBonita);
-			}
-		}
-		if (cantidadDeProduccionesSinCustodia > 0) {
-			for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
-				// Selección de una producción aleatoria para la generación de un caso
-				int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
-				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita, null,
-						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
-			}
-		}
-
-		try {
-			bonita.cerrarClienteHttp();
-		} catch (IOException e) {
-			log.error(e.getMessage());
-		}
+//		if (cantidadDeProduccionesBibliograficasSinCustodia > 0) {
+//			for (int i = 0; i < CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION; i++) {
+//				// Selección de una producción bibliográfica aleatoria para la generación de un
+//				// caso
+//				int posProduccionBibliograficaAleatoria = (int) (Math.random()
+//						* cantidadDeProduccionesBibliograficasSinCustodia);
+//				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita,
+//						produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
+//						idDelProcesoBonita);
+//			}
+//		}
+//		if (cantidadDeProduccionesSinCustodia > 0) {
+//			for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
+//				// Selección de una producción aleatoria para la generación de un caso
+//				int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
+//				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita, null,
+//						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
+//			}
+//		}
+//
+//		try {
+//			bonita.cerrarClienteHttp();
+//		} catch (IOException e) {
+//			log.error(e.getMessage());
+//		}
 	}
 
 	public void generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(BonitaConnectorAPI bonita, ProduccionBGrupo produccionBGrupo,
