@@ -389,12 +389,11 @@ button.printButton::before {
 
 .table tr:nth-child(even) {
 	cursor: pointer;
-	background-color: #A6DEA2;
+	background-color: #ffffff;
 }
 
 .table tr:hover {
-	background-color: white;
-	color: #009640;
+	text-decoration-line: underline;
 }
 
 .table th:hover {
@@ -414,12 +413,11 @@ button.printButton::before {
 
 .table-0 tr:nth-child(even) {
 	cursor: pointer;
-	background-color: #A6DEA2;
+	background-color: #ffffff;
 }
 
 .table-0 tr:hover {
-	background-color: white;
-	color: #009640;
+	text-decoration-line: underline;
 }
 
 .table-0 th:hover {
@@ -471,12 +469,11 @@ button.printButton::before {
 
 .table-2 tr:nth-child(even) {
 	cursor: pointer;
-	background-color: #ffe7ad;
+	background-color: #ffffff;
 }
 
 .table-2 tr:hover {
-	background-color: white;
-	color: #DC911B;
+	text-decoration-line: underline;
 }
 
 .table-2 th:hover {
@@ -496,12 +493,11 @@ button.printButton::before {
 
 .table-3 tr:nth-child(even) {
 	cursor: pointer;
-	background-color: #d5d5ea;
+	background-color: #ffffff;
 }
 
 .table-3 tr:hover {
-	background-color: white;
-	color: #1169B0;
+	text-decoration-line: underline;
 }
 
 .table-3 th:hover {
@@ -521,12 +517,11 @@ button.printButton::before {
 
 .table-4 tr:nth-child(even) {
 	cursor: pointer;
-	background-color: #e0e2f8;
+	background-color: #ffffff;
 }
 
 .table-4 tr:hover {
-	background-color: white;
-	color: #009DE0;
+	text-decoration-line: underline;
 }
 
 .table-4 th:hover {
@@ -546,12 +541,11 @@ button.printButton::before {
 
 .table-5 tr:nth-child(even) {
 	cursor: pointer;
-	background-color: #ff8080;
+	background-color: #ffffff;
 }
 
 .table-5 tr:hover {
-	background-color: white;
-	color: #C20B19;
+	text-decoration-line: underline;
 }
 
 .table-5 th:hover {
@@ -571,12 +565,11 @@ button.printButton::before {
 
 .table-6 tr:nth-child(even) {
 	cursor: pointer;
-	background-color: #dffab7;
+	background-color: #ffffff;
 }
 
 .table-6 tr:hover {
-	background-color: white;
-	color: #8FB435;
+	text-decoration-line: underline;
 }
 
 .table-6 th:hover {
@@ -596,12 +589,11 @@ button.printButton::before {
 
 .table-7 tr:nth-child(even) {
 	cursor: pointer;
-	background-color: #d7cbe8;
+	background-color: #ffffff;
 }
 
 .table-7 tr:hover {
-	background-color: white;
-	color: #8E1C7D;
+	text-decoration-line: underline;
 }
 
 .table-7 th:hover {
