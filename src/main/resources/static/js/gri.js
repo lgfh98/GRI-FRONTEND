@@ -658,6 +658,8 @@
 						dataIndex) {
 						if (data[7] == 1) {
 							$(row).addClass('en-inventario');
+						} else if (data[7] == 2) {
+							$(row).addClass('en-proceso');
 						}
 					},
 					"columnDefs": [
