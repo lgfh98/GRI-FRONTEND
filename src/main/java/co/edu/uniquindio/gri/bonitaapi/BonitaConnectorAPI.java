@@ -7,6 +7,7 @@ import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
@@ -38,6 +39,7 @@ public class BonitaConnectorAPI {
 	private String usuario;
 	private String password;
 	private String servidorBonitaInicioCaso;
+	private String servidorBonitaEliminacionCaso;
 
 	/**
 	 * Constructor vacío
@@ -46,8 +48,8 @@ public class BonitaConnectorAPI {
 	}
 
 	/**
-	 * Método constructor de una instancia de la API Bonita, se encarga de mapear las
-	 * direcciones de utilidad (otras APIs) basado en el servidor ingresado.
+	 * Método constructor de una instancia de la API Bonita, se encarga de mapear
+	 * las direcciones de utilidad (otras APIs) basado en el servidor ingresado.
 	 * 
 	 * @param servidorBonita dirección del servidor bonita
 	 */
@@ -56,6 +58,7 @@ public class BonitaConnectorAPI {
 		this.servidorBonitaLogin = servidorBonita + "loginservice";
 		this.servidorBonitaInicioCaso = servidorBonita + "api/bpm/case";
 		this.servidorBonitaConsultaIdProceso = servidorBonita + "api/bpm/process";
+		this.servidorBonitaEliminacionCaso = servidorBonita + "api/bpm/case";
 	}
 
 	/**
@@ -181,6 +184,40 @@ public class BonitaConnectorAPI {
 				return null;
 			}
 		}
+	}
+
+	/**
+	 * 
+	 * Método que elimina un caso de bonita con el id dado por parámetro
+	 * 
+	 * @param idDeCaso
+	 * @return true si se borró satisfactoriamente
+	 * @throws URISyntaxException
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+
+	public boolean eliminarCaso(String idDeCaso) throws URISyntaxException, ClientProtocolException, IOException {
+
+		log.info("Accediendo a " + servidorBonitaEliminacionCaso);
+		log.info("Eliminado caso con id: " + idDeCaso);
+
+		builder = new URIBuilder(servidorBonitaEliminacionCaso + "/" + idDeCaso);
+		HttpDelete solicitudIdDelProceso = new HttpDelete(builder.build());
+
+		try (CloseableHttpResponse response = httpClient.execute(solicitudIdDelProceso)) {
+
+			HttpEntity entity = response.getEntity();
+			if (entity != null) {
+				log.info("Respuesta obtenida de proceso de eliminación bajo " + response.getProtocolVersion()
+						+ ", Status: " + response.getStatusLine().getStatusCode());
+				return true;
+			} else {
+				return false;
+			}
+
+		}
+
 	}
 
 	/**
