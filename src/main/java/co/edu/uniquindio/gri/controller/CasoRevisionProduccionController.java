@@ -50,4 +50,6 @@ public class CasoRevisionProduccionController {
 			@RequestParam("tipo") String tipoProduccion, @RequestParam("estado") String estado) {
 		return casoRevisionProduccionDAO.archivarNuevoCaso(id, idProduccion, tipoProduccion, estado) + "";
 	}
+	
+	
 }

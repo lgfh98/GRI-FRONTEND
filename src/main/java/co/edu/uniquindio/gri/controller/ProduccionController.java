@@ -90,4 +90,6 @@ public class ProduccionController {
 			@RequestParam("tipo") String tipo) {
 		return produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, estado) + "";
 	}
+	
+	
 }

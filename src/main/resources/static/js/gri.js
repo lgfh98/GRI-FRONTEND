@@ -735,7 +735,7 @@
 								cache: false,
 								success: function (res) {
 									if (res) {
-										$('#tabla_inventario').dataTable().fnUpdate(1,
+										$('#tabla_inventario').dataTable().fnUpdate(estado,
 											$('#tabla_inventario tr#' + prodId),
 											7, false);
 										$('#tabla_inventario tr#' + prodId).addClass(
@@ -781,7 +781,7 @@
 								cache: false,
 								success: function (res) {
 									if (res) {
-										$('#tabla_inventario').dataTable().fnUpdate(0,
+										$('#tabla_inventario').dataTable().fnUpdate(estado,
 											$('#tabla_inventario tr#' + prodId),
 											7, false);
 										$('#tabla_inventario tr#' + prodId)
@@ -827,7 +827,7 @@
 								cache: false,
 								success: function (res) {
 									if (res) {
-										$('#tabla_inventario').dataTable().fnUpdate(0,
+										$('#tabla_inventario').dataTable().fnUpdate(estado,
 											$('#tabla_inventario tr#' + prodId),
 											7, false);
 										$('#tabla_inventario tr#' + prodId)
