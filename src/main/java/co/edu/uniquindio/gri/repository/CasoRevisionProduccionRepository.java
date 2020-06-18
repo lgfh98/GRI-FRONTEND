@@ -40,5 +40,5 @@ public interface CasoRevisionProduccionRepository extends JpaRepository<CasoRevi
 	 * @return
 	 */
 	@Query(value = "FROM co.edu.uniquindio.gri.model.CasoRevisionProduccion c where c.idProduccion = :idProduccion and c.tipoProduccion = :tipoProduccion ")
-	CasoRevisionProduccion getCasoPorProduccion(@Param("idProduccion") long idProduccion, @Param("tipoProduccion") String tipoProduccion);
+	CasoRevisionProduccion getCasoPorProduccion(@Param("idProduccion") Long idProduccion, @Param("tipoProduccion") String tipoProduccion);
 }

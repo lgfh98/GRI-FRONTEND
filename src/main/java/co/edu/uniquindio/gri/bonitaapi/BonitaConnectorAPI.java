@@ -42,23 +42,51 @@ public class BonitaConnectorAPI {
 	private String servidorBonitaEliminacionCaso;
 
 	/**
-	 * Constructor vacío
-	 */
-	public BonitaConnectorAPI() {
-	}
-
-	/**
 	 * Método constructor de una instancia de la API Bonita, se encarga de mapear
-	 * las direcciones de utilidad (otras APIs) basado en el servidor ingresado.
+	 * las direcciones de utilidad (otras APIs de bonita) basado en el servidor
+	 * ingresado, y también inicia un nuevo cliente HTTP.
 	 * 
 	 * @param servidorBonita dirección del servidor bonita
 	 */
 	public BonitaConnectorAPI(String servidorBonita) {
+		iniciarClienteHttp();
 		this.servidorBonita = servidorBonita;
 		this.servidorBonitaLogin = servidorBonita + "loginservice";
 		this.servidorBonitaInicioCaso = servidorBonita + "api/bpm/case";
 		this.servidorBonitaConsultaIdProceso = servidorBonita + "api/bpm/process";
 		this.servidorBonitaEliminacionCaso = servidorBonita + "api/bpm/case";
+	}
+
+	/**
+	 * Método constructor de una instancia de la API Bonita, se encarga de mapear
+	 * las direcciones de utilidad (otras APIs) basado en el servidor ingresado, se
+	 * encarga también iniciar un nuevo cliente HTTP y de iniciar sesión en bonita
+	 * con el usuario y password dados por parámetro.
+	 * 
+	 * @param servidorBonita la dirección del servidor bonita
+	 * @param usuario        el usuario bonita
+	 * @param password       la contraseña del usuario en bonita
+	 * @throws URISyntaxException      en caso de generarse un error de en la
+	 *                                 sintaxis del identificador unico de recursos
+	 *                                 (URI)
+	 * @throws ClientProtocolException En caso de generarse algun error en la
+	 *                                 ejecución de la solicitud
+	 * @throws IOException             en caso de generarse un error relacionado a
+	 *                                 la conexión
+	 */
+	public BonitaConnectorAPI(String servidorBonita, String usuario, String password)
+			throws ClientProtocolException, URISyntaxException, IOException {
+		iniciarClienteHttp();
+
+		// Incialización de APIs Bonita
+		this.servidorBonita = servidorBonita;
+		this.servidorBonitaLogin = servidorBonita + "loginservice";
+		this.servidorBonitaInicioCaso = servidorBonita + "api/bpm/case";
+		this.servidorBonitaConsultaIdProceso = servidorBonita + "api/bpm/process";
+		this.servidorBonitaEliminacionCaso = servidorBonita + "api/bpm/case";
+
+		iniciarSesionEnBonita(usuario, password);
+
 	}
 
 	/**
@@ -190,11 +218,15 @@ public class BonitaConnectorAPI {
 	 * 
 	 * Método que elimina un caso de bonita con el id dado por parámetro
 	 * 
-	 * @param idDeCaso
+	 * @param id el id del caso
 	 * @return true si se borró satisfactoriamente
-	 * @throws URISyntaxException
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @throws URISyntaxException      en caso de generarse un error de en la
+	 *                                 sintaxis del identificador unico de recursos
+	 *                                 (URI)
+	 * @throws ClientProtocolException En caso de generarse algun error en la
+	 *                                 ejecución de la solicitud
+	 * @throws IOException             en caso de generarse un error relacionado a
+	 *                                 la conexión
 	 */
 
 	public boolean eliminarCaso(long id) throws URISyntaxException, ClientProtocolException, IOException {

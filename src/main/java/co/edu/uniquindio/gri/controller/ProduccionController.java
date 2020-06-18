@@ -130,37 +130,67 @@ public class ProduccionController {
 		}
 		
 		if (estadoAnterior == Util.SIN_CUSTODIA) {
+			
 			if (nuevoEstado == Util.EN_CUSTODIA) {
+				
 				log.info("Tomando en custodia la producción con id: " + prodId);
 				return produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado) + "";
+				
 			} else if (nuevoEstado == Util.EN_PROCESO) {
-				return generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo);
+				
+				GestorDeCasosBonita g = new GestorDeCasosBonita();
+				return g.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo) + "";
+				
+			}else {
+				//Crear excepcion
+				return "Nuevo estado inválido";
 			}
+			
 		} else if (estadoAnterior == Util.EN_CUSTODIA) {
+			
 			if (nuevoEstado == Util.SIN_CUSTODIA) {
+				
 				log.info("Eliminando del inventario de custodia la producción con id: " + prodId);
 				return produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado) + "";
+				
 			} else if (nuevoEstado == Util.EN_PROCESO) {
-				return generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo);
+				
+				GestorDeCasosBonita g = new GestorDeCasosBonita();
+				return g.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo) + "";
+				
+			}else {
+				return "Nuevo estado inválido";
 			}
+			
 		} else if (estadoAnterior == Util.EN_PROCESO) {
+			
 			if (nuevoEstado == Util.SIN_CUSTODIA) {
+				
+				CasoRevisionProduccion c = casoRevisionProduccionDAO.getCasoPorProduccion(prodId, tipo);
+				log.info("Finalizando caso con el id " + c.getId() + " para la produccion " + prodId + " / " + tipo + " y dejando la producción sin custodia" );
+				GestorDeCasosBonita g = new GestorDeCasosBonita();
+				boolean estadoDeTransaccionEnBonita = g.eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId);
+				boolean estadoDeTransaccionEliminarCasoEnGRI = casoRevisionProduccionDAO.eliminarCaso(c.getId());
+				boolean estadoDeTransaccionActualizarEstadoDeProduccion = produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado);
+				return (estadoDeTransaccionEnBonita && estadoDeTransaccionEliminarCasoEnGRI && estadoDeTransaccionActualizarEstadoDeProduccion) + "";
 				
 			} else if (nuevoEstado == Util.EN_CUSTODIA) {
 				CasoRevisionProduccion c = casoRevisionProduccionDAO.getCasoPorProduccion(prodId, tipo); 
-				casoRevisionProduccionDAO.archivarCaso(c.getId(), prodId, tipo);
+				GestorDeCasosBonita g = new GestorDeCasosBonita();
+				boolean estadoDeTransaccionEnBonita = g.eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId);
+				boolean estadoDeTransaccionFinalizarCasoEnGRI = casoRevisionProduccionDAO.archivarCaso(c.getId(), prodId, tipo, "FINALIZADO");
+				boolean estadoDeTransaccionActualizarEstadoDeProduccion = produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado);
+				log.info("Finalizando caso con el id " + c.getId() + " para la produccion " + prodId + " / " + tipo + " y dejando la producción en custodia");
+				return (estadoDeTransaccionEnBonita && estadoDeTransaccionFinalizarCasoEnGRI && estadoDeTransaccionActualizarEstadoDeProduccion) + "";
+			}else {
+				return "Nuevo estado inválido";
 			}
+		}else {
+			return "Estado anterior inválido";
 		}
 
 	}
 
-	public String generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(Long prodId, ProduccionBGrupo produccionBGrupo, ProduccionGrupo produccionGrupo) throws ClientProtocolException, URISyntaxException, IOException {
-		log.info("Generando nuevo caso para la producción con id: " + prodId);
-		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor);
-		b.iniciarClienteHttp();
-		b.iniciarSesionEnBonita(usuario, password);
-		GestorDeCasosBonita g = new GestorDeCasosBonita();
-		return g.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(b, produccionBGrupo, produccionGrupo, b.obtenerIdDelProceso(nombreDelProcesoBonita), nombreDelProcesoBonita);
-	}
+	
 	
 }

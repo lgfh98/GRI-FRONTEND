@@ -14,6 +14,11 @@ public class CasoRevisionProduccionDAO {
 	@Autowired
 	CasoRevisionProduccionRepository casoRevisionProduccionRepository;
 	
+	public boolean eliminarCaso(Long id) {
+		casoRevisionProduccionRepository.deleteById(id);
+		return true;
+	}
+	
 	/**
 	 * Método del repositorio encargado de obtener todos los casos que estén en un estado específico
 	 * @param estado el estado deseado a filtrar
@@ -32,13 +37,9 @@ public class CasoRevisionProduccionDAO {
 	 * @param tipoProduccion tipo de la produccion
 	 * @param estado         estado del caso ("EN CURSO" o "FINALIZADO")
 	 */
-	public boolean archivarNuevoCaso(long id, long idProduccion, String tipoProduccion, String estado) {
-		try {
-			casoRevisionProduccionRepository.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, estado));
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
+	public boolean archivarCaso(long id, Long idProduccion, String tipoProduccion, String estado) {
+		casoRevisionProduccionRepository.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, estado));
+		return true;
 	}
 
 	/**
@@ -50,7 +51,7 @@ public class CasoRevisionProduccionDAO {
 	 * @param idProduccion   id de la produccion
 	 * @param tipoProduccion tipo de la produccion
 	 */
-	public boolean archivarCaso(long id, long idProduccion, String tipoProduccion) {
+	public boolean archivarCaso(long id, Long idProduccion, String tipoProduccion) {
 		try {
 			casoRevisionProduccionRepository
 					.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, "EN CURSO"));

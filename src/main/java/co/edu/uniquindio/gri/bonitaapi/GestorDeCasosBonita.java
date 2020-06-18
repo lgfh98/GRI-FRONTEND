@@ -3,11 +3,13 @@ package co.edu.uniquindio.gri.bonitaapi;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import org.apache.http.client.ClientProtocolException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import co.edu.uniquindio.gri.dao.InvestigadorDAO;
 import co.edu.uniquindio.gri.model.Grupo;
@@ -16,14 +18,24 @@ import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
 
 public class GestorDeCasosBonita {
-	
+
 	@Autowired
 	private InvestigadorDAO investigadorDAO;
-	
+
+	@Value("${bonita.nombre.proceso}")
+	private String nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion;
+	@Value("${bonita.usuario}")
+	private String usuario;
+	@Value("${bonita.password}")
+	private String password;
+	@Value("${bonita.servidor.base}")
+	private String servidor;
+
 	private static final Logger log = LoggerFactory.getLogger(GestorDeCasosBonita.class);
 
-	public String generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(BonitaConnectorAPI bonita, ProduccionBGrupo produccionBGrupo,
-			ProduccionGrupo produccionGrupo, String idDelProcesoBonita, String nombreDelProcesoBonita) {
+	public boolean generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(BonitaConnectorAPI bonita,
+			ProduccionBGrupo produccionBGrupo, ProduccionGrupo produccionGrupo, String idDelProcesoBonita,
+			String nombreDelProcesoBonita) {
 
 		// Extracción datos de la produccion en estruturas JSONObject y JSONArray
 
@@ -51,7 +63,7 @@ public class GestorDeCasosBonita {
 			grupoDeInvestigacion = produccionGrupo.getGrupo();
 
 		} else {
-			return "Producción ingresada invalida";
+			return false;
 		}
 
 		parametros.put((new JSONObject()).put("name", "nombreGrupo").put("value", grupoDeInvestigacion.getNombre()));
@@ -61,10 +73,9 @@ public class GestorDeCasosBonita {
 		LiderGrupo liderGrupo = investigadorDAO.getLiderDeUnGrupo(grupoDeInvestigacion.getId());
 
 		if (liderGrupo == null) {
-			String ans = "No se encontró un lider de grupo para el grupo " + grupoDeInvestigacion.getNombre()
-			+ " verifique si este grupo cuenta con un lider registrado en la tabla lideresgrupos";
-			log.warn(ans);
-			return ans;
+			log.warn("No se encontró un lider de grupo para el grupo " + grupoDeInvestigacion.getNombre()
+			+ " verifique si este grupo cuenta con un lider registrado en la tabla lideresgrupos");
+			return false;
 		}
 
 		parametros.put((new JSONObject()).put("name", "correoDelLiderDelGrupo").put("value", liderGrupo.getEmail()));
@@ -73,13 +84,38 @@ public class GestorDeCasosBonita {
 		try {
 			// Creación del caso
 			bonita.iniciarCasoConVariables(nombreDelProcesoBonita, idDelProcesoBonita, parametros);
-			return "Generación de caso exitosa " + idDelProcesoBonita;
+			log.info("Generación de caso exitosa " + idDelProcesoBonita);
+			return true;
 		} catch (URISyntaxException | IOException e) {
-			String ans = e.getMessage();
-			log.error(ans);
-			return ans;
+			log.error(e.getMessage());
+			return false;
 		}
 
 	}
-	
+
+	public boolean eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(BonitaConnectorAPI bonita, long id)
+			throws ClientProtocolException, URISyntaxException, IOException {
+		return bonita.eliminarCaso(id);
+	}
+
+	public boolean generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(Long prodId,
+			ProduccionBGrupo produccionBGrupo, ProduccionGrupo produccionGrupo)
+			throws ClientProtocolException, URISyntaxException, IOException {
+		log.info("Generando nuevo caso para la producción con id: " + prodId);
+		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor);
+		b.iniciarSesionEnBonita(usuario, password);
+		boolean respuesta = generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(b, produccionBGrupo, produccionGrupo, b.obtenerIdDelProceso(nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion), nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion);
+		b.cerrarClienteHttp();
+		return respuesta;
+	}
+
+	public boolean eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(long id) throws ClientProtocolException, URISyntaxException, IOException {
+		log.info("Dando de baja el caso  " + id + " del proceso \""+ nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion + "\"");
+		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor);
+		b.iniciarSesionEnBonita(usuario, password);
+		boolean respuesta = eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(b, id);
+		b.cerrarClienteHttp();
+		return respuesta;
+	}
+
 }

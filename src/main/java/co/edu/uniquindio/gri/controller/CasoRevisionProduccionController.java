@@ -54,22 +54,22 @@ public class CasoRevisionProduccionController {
 		return casoRevisionProduccionDAO.archivarCaso(id, idProduccion, tipoProduccion) + "";
 	}
 
-	/**
-	 * Servicio REST que se encarga de actualizar un caso de revisión y subida de
-	 * producciones en la base de datos del GRI
-	 * 
-	 * @param id
-	 * @param idProduccion
-	 * @param tipoProduccion
-	 * @param estado
-	 * @return
-	 */
-
-	@PutMapping("/casos/revisionproduccion/{id}")
-	public String actualizarCaso(@PathVariable("id") long id, @RequestParam("idproduccion") long idProduccion,
-			@RequestParam("tipo") String tipoProduccion, @RequestParam("estado") String estado) {
-		return casoRevisionProduccionDAO.archivarNuevoCaso(id, idProduccion, tipoProduccion, estado) + "";
-	}
+//	/**
+//	 * Servicio REST que se encarga de actualizar un caso de revisión y subida de
+//	 * producciones en la base de datos del GRI
+//	 * 
+//	 * @param id
+//	 * @param idProduccion
+//	 * @param tipoProduccion
+//	 * @param estado
+//	 * @return
+//	 */
+//
+//	@PutMapping("/casos/revisionproduccion/{id}")
+//	public String actualizarCaso(@PathVariable("id") long id, @RequestParam("idproduccion") long idProduccion,
+//			@RequestParam("tipo") String tipoProduccion, @RequestParam("estado") String estado) {
+//		return casoRevisionProduccionDAO.archivarNuevoCaso(id, idProduccion, tipoProduccion, estado) + "";
+//	}
 	
 //	@DeleteMapping("/casos/revisionproduccion")
 //	public String eliminarCasoDeUnaProduccion(@RequestParam("idproduccion") long idProduccion, @RequestParam("tipo") String tipoProduccion) {

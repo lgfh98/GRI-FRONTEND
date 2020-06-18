@@ -99,7 +99,6 @@ public class ScheduledTasks {
 		BonitaConnectorAPI bonita;
 		if (cantidadDeProduccionesBibliograficasSinCustodia + cantidadDeProduccionesSinCustodia > 0) {
 			bonita = new BonitaConnectorAPI(servidor);
-			bonita.iniciarClienteHttp();
 
 			try {
 				bonita.iniciarSesionEnBonita(usuario, password);;

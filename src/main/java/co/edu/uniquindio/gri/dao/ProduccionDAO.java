@@ -3,13 +3,18 @@ package co.edu.uniquindio.gri.dao;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import co.edu.uniquindio.gri.controller.ProduccionController;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
 import co.edu.uniquindio.gri.model.Tipo;
 import co.edu.uniquindio.gri.repository.ProduccionRepository;
 import co.edu.uniquindio.gri.repository.TipoRepository;
+import co.edu.uniquindio.gri.utilities.Util;
 
 /**
  * Class ProduccionDAO.
@@ -24,6 +29,8 @@ public class ProduccionDAO {
 	/** Repository para tipos. */
 	@Autowired
 	TipoRepository tipoRepository;
+	
+	private static final Logger log = LoggerFactory.getLogger(ProduccionDAO.class);
 
 	/**
 	 * Método que obtiene las producciones que no están en custodia
@@ -54,6 +61,9 @@ public class ProduccionDAO {
 	 * @return
 	 */
 	public boolean actualizarEstadoDeProduccion(long id, String tipo, int estado) {
+		
+		log.info("Actualizando estado de la producción " + id + " de tipo " + tipo + " a " + estado);
+		
 		if (tipo.equals("bibliografica")) {
 			produccionRepository.updateProduccionBGrupo(id, estado);
 			return true;
