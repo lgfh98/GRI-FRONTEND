@@ -4,7 +4,6 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
@@ -64,6 +63,26 @@ public class ProduccionDAO {
 		} else {
 			return false;
 		}
+	}
+	
+	/**
+	 * Obtiene una producción bibliográficas con un id dado por parámetro.
+	 * 
+	 * @param id	 
+	 * @return la producción bibliográfica
+	 */
+	public ProduccionBGrupo getProduccionB(long id){
+		return produccionRepository.getProduccionB(id);
+	}
+	
+	/**
+	 * Obtiene todas las producciones.
+	 * 
+	 * @param id		 
+	 * @return la producción genérica
+	 */
+	public ProduccionGrupo getProduccion(long id){
+		return produccionRepository.getProduccion(id);
 	}
 
 	/**

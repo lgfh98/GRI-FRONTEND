@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import co.edu.uniquindio.gri.model.CasoRevisionProduccion;
-import co.edu.uniquindio.gri.model.LiderGrupo;
 
 /**
  * 
@@ -34,4 +33,12 @@ public interface CasoRevisionProduccionRepository extends JpaRepository<CasoRevi
 	 */
 	@Query(value = "FROM co.edu.uniquindio.gri.model.CasoRevisionProduccion c where c.tipoProduccion = :tipoProduccion")
 	List<CasoRevisionProduccion> getCasosPorTipoDeProduccion(@Param("tipoProduccion") String tipoProduccion);
+	
+	/**
+	 * Consulta que retorna el Caso de revisión asociado a un id de producción específica
+	 * @param idProduccion
+	 * @return
+	 */
+	@Query(value = "FROM co.edu.uniquindio.gri.model.CasoRevisionProduccion c where c.idProduccion = :idProduccion and c.tipoProduccion = :tipoProduccion ")
+	CasoRevisionProduccion getCasoPorProduccion(@Param("idProduccion") long idProduccion, @Param("tipoProduccion") String tipoProduccion);
 }

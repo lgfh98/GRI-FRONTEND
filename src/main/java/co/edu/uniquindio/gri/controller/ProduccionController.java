@@ -1,8 +1,14 @@
 package co.edu.uniquindio.gri.controller;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
+import org.apache.http.client.ClientProtocolException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.edu.uniquindio.gri.utilities.Util;
+import co.edu.uniquindio.gri.bonitaapi.BonitaConnectorAPI;
+import co.edu.uniquindio.gri.bonitaapi.GestorDeCasosBonita;
+import co.edu.uniquindio.gri.dao.CasoRevisionProduccionDAO;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
+import co.edu.uniquindio.gri.model.CasoRevisionProduccion;
+import co.edu.uniquindio.gri.model.ProduccionBGrupo;
+import co.edu.uniquindio.gri.model.ProduccionGrupo;
 
 /**
  * Clase ProduccionController.
@@ -21,8 +34,23 @@ import co.edu.uniquindio.gri.dao.ProduccionDAO;
 public class ProduccionController {
 
 	/** DAO para producciones. */
+
+	@Value("${bonita.nombre.proceso}")
+	private String nombreDelProcesoBonita;
+	@Value("${bonita.usuario}")
+	private String usuario;
+	@Value("${bonita.password}")
+	private String password;
+	@Value("${bonita.servidor.base}")
+	private String servidor;
+
 	@Autowired
 	ProduccionDAO produccionDAO;
+	
+	@Autowired
+	CasoRevisionProduccionDAO casoRevisionProduccionDAO;
+
+	private static final Logger log = LoggerFactory.getLogger(ProduccionController.class);
 
 	/**
 	 * Obtiene las producciones de una entidad específica.
@@ -82,12 +110,57 @@ public class ProduccionController {
 	 *                1 en caso contrario.
 	 * @param prodId, el identificador de la producción en base de datos.
 	 * @return true, si la actualización se realizó satisfactoriamente.
+	 * @throws IOException 
+	 * @throws URISyntaxException 
+	 * @throws ClientProtocolException 
 	 */
-	@PutMapping("/producciones/actualizar/{prodId}")
-	public String actualizarInfoProduccion(@PathVariable("prodId") Long prodId, @RequestParam("estado") int estado,
-			@RequestParam("tipo") String tipo) {
-		return produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, estado) + "";
+	@PutMapping("/producciones/actualizarestado/{prodId}")
+	public String actualizarEstadoProduccion(@PathVariable("prodId") Long prodId,
+			@RequestParam("estado") int nuevoEstado, @RequestParam("tipo") String tipo) throws ClientProtocolException, URISyntaxException, IOException {
+		
+		ProduccionGrupo produccionGrupo = null;
+		ProduccionBGrupo produccionBGrupo = null;
+		int estadoAnterior = 0;
+		if (tipo.equals("generica")) {
+			produccionGrupo = produccionDAO.getProduccion(prodId);
+			estadoAnterior = produccionGrupo.getEstado();
+		} else if (tipo.equals("bibliografica")) {
+			produccionBGrupo = produccionDAO.getProduccionB(prodId);
+			estadoAnterior = produccionBGrupo.getEstado();
+		}
+		
+		if (estadoAnterior == Util.SIN_CUSTODIA) {
+			if (nuevoEstado == Util.EN_CUSTODIA) {
+				log.info("Tomando en custodia la producción con id: " + prodId);
+				return produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado) + "";
+			} else if (nuevoEstado == Util.EN_PROCESO) {
+				return generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo);
+			}
+		} else if (estadoAnterior == Util.EN_CUSTODIA) {
+			if (nuevoEstado == Util.SIN_CUSTODIA) {
+				log.info("Eliminando del inventario de custodia la producción con id: " + prodId);
+				return produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado) + "";
+			} else if (nuevoEstado == Util.EN_PROCESO) {
+				return generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo);
+			}
+		} else if (estadoAnterior == Util.EN_PROCESO) {
+			if (nuevoEstado == Util.SIN_CUSTODIA) {
+				
+			} else if (nuevoEstado == Util.EN_CUSTODIA) {
+				CasoRevisionProduccion c = casoRevisionProduccionDAO.getCasoPorProduccion(prodId, tipo); 
+				casoRevisionProduccionDAO.archivarCaso(c.getId(), prodId, tipo);
+			}
+		}
+
 	}
-	
+
+	public String generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(Long prodId, ProduccionBGrupo produccionBGrupo, ProduccionGrupo produccionGrupo) throws ClientProtocolException, URISyntaxException, IOException {
+		log.info("Generando nuevo caso para la producción con id: " + prodId);
+		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor);
+		b.iniciarClienteHttp();
+		b.iniciarSesionEnBonita(usuario, password);
+		GestorDeCasosBonita g = new GestorDeCasosBonita();
+		return g.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(b, produccionBGrupo, produccionGrupo, b.obtenerIdDelProceso(nombreDelProcesoBonita), nombreDelProcesoBonita);
+	}
 	
 }

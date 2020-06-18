@@ -197,12 +197,12 @@ public class BonitaConnectorAPI {
 	 * @throws IOException
 	 */
 
-	public boolean eliminarCaso(String idDeCaso) throws URISyntaxException, ClientProtocolException, IOException {
+	public boolean eliminarCaso(long id) throws URISyntaxException, ClientProtocolException, IOException {
 
 		log.info("Accediendo a " + servidorBonitaEliminacionCaso);
-		log.info("Eliminado caso con id: " + idDeCaso);
+		log.info("Eliminado caso con id: " + id);
 
-		builder = new URIBuilder(servidorBonitaEliminacionCaso + "/" + idDeCaso);
+		builder = new URIBuilder(servidorBonitaEliminacionCaso + "/" + id);
 		HttpDelete solicitudIdDelProceso = new HttpDelete(builder.build());
 
 		try (CloseableHttpResponse response = httpClient.execute(solicitudIdDelProceso)) {

@@ -58,6 +58,10 @@ public class Util {
 	public static final String PARAM_UNIVERSITY_LEVEL = "idUniquindio";
 
 	public static final String ADMIN_BELOGNING_PARAM_ID = "adm";
+	
+	public static final int EN_CUSTODIA = 1;
+	public static final int SIN_CUSTODIA = 0;
+	public static final int EN_PROCESO = 2;
 
 	/**
 	 * constructor de la clase Util

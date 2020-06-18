@@ -50,7 +50,7 @@ public class CasoRevisionProduccionDAO {
 	 * @param idProduccion   id de la produccion
 	 * @param tipoProduccion tipo de la produccion
 	 */
-	public boolean archivarNuevoCaso(long id, long idProduccion, String tipoProduccion) {
+	public boolean archivarCaso(long id, long idProduccion, String tipoProduccion) {
 		try {
 			casoRevisionProduccionRepository
 					.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, "EN CURSO"));
@@ -70,6 +70,19 @@ public class CasoRevisionProduccionDAO {
 	 */
 	public List<CasoRevisionProduccion> getCasosPorTipoDeProduccion(String tipoDeProduccion) {
 		return casoRevisionProduccionRepository.getCasosPorTipoDeProduccion(tipoDeProduccion);
+	}
+	
+	/**
+	 * Método del repositorio encargado de obtener un caso dado un id
+	 * @param id
+	 * @return
+	 */
+	public CasoRevisionProduccion getCaso(long id) {
+		return casoRevisionProduccionRepository.getOne(id);
+	}
+	
+	public CasoRevisionProduccion getCasoPorProduccion(long id, String tipoDeProduccion) {
+		return casoRevisionProduccionRepository.getCasoPorProduccion(id,tipoDeProduccion);
 	}
 
 }

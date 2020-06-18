@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniquindio.gri.dao.UserDAO;
 import co.edu.uniquindio.gri.model.User;
-import co.edu.uniquindio.gri.service.api.UserServiceApi;
 
 @RestController
 @RequestMapping("/rest/service")
