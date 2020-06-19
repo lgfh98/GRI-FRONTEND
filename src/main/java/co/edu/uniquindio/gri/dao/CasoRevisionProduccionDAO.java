@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.model.CasoRevisionProduccion;
+import co.edu.uniquindio.gri.model.RecononocimientosInvestigador;
 import co.edu.uniquindio.gri.repository.CasoRevisionProduccionRepository;
+import co.edu.uniquindio.gri.utilities.Util;
 
 @Service
 public class CasoRevisionProduccionDAO {
@@ -70,6 +72,19 @@ public class CasoRevisionProduccionDAO {
 	 */
 	public List<CasoRevisionProduccion> getCasosPorTipoDeProduccion(String tipoDeProduccion) {
 		return casoRevisionProduccionRepository.getCasosPorTipoDeProduccion(tipoDeProduccion);
+	}
+
+	/**
+	 * Método del repositorio que retorna los casos de recolecciones de las
+	 * producciones de una entidad
+	 * 
+	 * @param type     el tipo de la entidad (f: Facultad, p: Programa, c: Centro,
+	 *                 g: Grupo de Investigación i: Investigador)
+	 * @param entityId el id de la entidad
+	 * @return lista de producciones
+	 */
+	public List<CasoRevisionProduccion> getRecolecciones() {
+            return casoRevisionProduccionRepository.getRecolecciones();
 	}
 
 }

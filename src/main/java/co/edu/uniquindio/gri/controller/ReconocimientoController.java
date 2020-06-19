@@ -24,7 +24,6 @@ public class ReconocimientoController {
 	 * @param type     el tipo de la entidad (f: Facultad, p: Programa, c: Centro,
 	 *                 g: Grupo de Investigación i: Investigador)
 	 * @param entityId el id de la entidad
-	 * @param tipoId   el tipo de la producción a obtener
 	 * @return lista de producciones
 	 */
 

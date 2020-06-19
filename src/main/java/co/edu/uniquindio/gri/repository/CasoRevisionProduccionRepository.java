@@ -17,6 +17,8 @@ import co.edu.uniquindio.gri.model.LiderGrupo;
  */
 
 public interface CasoRevisionProduccionRepository extends JpaRepository<CasoRevisionProduccion, Long> {
+	
+
 	/**
 	 * Consulta que devuelve los todoas los casos con un estado dado por parámetro
 	 * 
@@ -34,4 +36,10 @@ public interface CasoRevisionProduccionRepository extends JpaRepository<CasoRevi
 	 */
 	@Query(value = "FROM co.edu.uniquindio.gri.model.CasoRevisionProduccion c where c.tipoProduccion = :tipoProduccion")
 	List<CasoRevisionProduccion> getCasosPorTipoDeProduccion(@Param("tipoProduccion") String tipoProduccion);
+
+	/**
+	 * 
+	 */
+	@Query(value = "FROM co.edu.uniquindio.gri.model.CasoRevisionProduccion c")
+	List<CasoRevisionProduccion> getRecolecciones();
 }

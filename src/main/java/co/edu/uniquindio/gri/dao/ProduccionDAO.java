@@ -65,6 +65,24 @@ public class ProduccionDAO {
 			return false;
 		}
 	}
+	
+	/**
+	 * Encuentra una produccion bibliografica por su id
+	 * @param search_id el id de la produccion
+	 * @return la produccion bibliografica con dicho id
+	 */
+	public ProduccionBGrupo findBibliograficasById(Long search_id) {
+		return produccionRepository.findBibliograficasById(search_id);
+	}
+	
+	/**
+	 * Encuentra una produccion generica por su id
+	 * @param search_id el id de la produccion
+	 * @return la produccion generica con dicho id
+	 */
+	public ProduccionGrupo findGenericasById(Long search_id) {
+		return produccionRepository.findGenericasById(search_id);
+	}
 
 	/**
 	 * Obtiene las producciones de una entidad específica.

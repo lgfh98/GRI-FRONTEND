@@ -7,14 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.dao.PertenenciaDAO;
+import co.edu.uniquindio.gri.dao.ProduccionDAO;
+import co.edu.uniquindio.gri.model.CasoRevisionProduccion;
 import co.edu.uniquindio.gri.model.Investigador;
 import co.edu.uniquindio.gri.model.Pertenencia;
+import co.edu.uniquindio.gri.model.ProduccionBGrupo;
+import co.edu.uniquindio.gri.model.ProduccionGrupo;
 
 @Service
 public class Util {
 
 	@Autowired
 	PertenenciaDAO pertenenciaDAO;
+
+	@Autowired
+	ProduccionDAO produccionDAO;
 
 	public static final String PERTENENCIA_INDEFINIDO = "INDEFINIDO";
 	public static final String PERTENENCIA_DOCENTE_PLANTA = "DOCENTE PLANTA";
@@ -68,6 +75,7 @@ public class Util {
 
 	/**
 	 * valida si un objeto es nulo, sino es nulo retorna el texto
+	 * 
 	 * @param text
 	 * @return
 	 */
@@ -195,6 +203,117 @@ public class Util {
 		}
 
 		return resutado;
+	}
+
+	/**
+	 * Método que retorna los casos de revisión segun las listas de producciones
+	 * ingresadas
+	 * 
+	 * @param casos         los casos de produccion
+	 * @param produccionesb las producciones
+	 * @return lista de casos filtrados por las producciones
+	 */
+	public List<CasoRevisionProduccion> obtenerCasosPorListas(List<CasoRevisionProduccion> casos,
+			List<ProduccionBGrupo> produccionesb, List<ProduccionGrupo> producciones) {
+		ArrayList<Long> ids = new ArrayList<Long>();
+		List<CasoRevisionProduccion> casos_resultante = casos;
+		for (ProduccionGrupo produccion : producciones) {
+			ids.add(produccion.getId());
+		}
+
+		for (ProduccionBGrupo produccion : produccionesb) {
+			ids.add(produccion.getId());
+		}
+
+		for (CasoRevisionProduccion caso : casos) {
+			if (!(ids.contains(caso.getIdProduccion()))) {
+				casos_resultante.remove(caso);
+			}
+		}
+		return casos_resultante;
+	}
+
+	/**
+	 * Método que retorna los nombres de casos de revisión segun las listas de
+	 * producciones ingresadas
+	 * 
+	 * @param casos         los casos de produccion
+	 * @param produccionesb las producciones bibliograficas
+	 * @param producciones  las producciones genericas
+	 * @return lista de casos filtrados por las producciones
+	 */
+	public List<CasoRevisionProduccion> obtenerNombresNumerosCasosPorListas(List<CasoRevisionProduccion> casos,
+			List<ProduccionBGrupo> produccionesb, List<ProduccionGrupo> producciones, List<Integer> indices,
+			List<String> nombres) {
+		
+		int index = 0;
+		ArrayList<Long> idsp = new ArrayList<Long>();
+		ArrayList<Long> idspb = new ArrayList<Long>();
+		ArrayList<CasoRevisionProduccion> casos_resultante =  new ArrayList<CasoRevisionProduccion>();
+		
+		for (ProduccionGrupo produccion : producciones) {
+			idsp.add(produccion.getId());
+		}
+
+		for (ProduccionBGrupo produccion : produccionesb) {
+			idspb.add(produccion.getId());
+		}
+
+		for (CasoRevisionProduccion caso : casos) {
+			if (idsp.contains(caso.getIdProduccion())) {
+				casos_resultante.add(caso);
+				indices.add(index);
+				nombres.add(produccionDAO.findGenericasById(caso.getId()).getReferencia());
+				index++;
+			} else if (idspb.contains(caso.getIdProduccion())) {
+				casos_resultante.add(caso);
+				indices.add(index);
+				nombres.add(produccionDAO.findBibliograficasById(caso.getId()).getReferencia());
+				index++;
+			}
+		}
+		return casos_resultante;
+	}
+	
+	/**
+	 * Obtiene las producciones bibliograficas a partir de codigo
+	 * @param type el tipo a buscar (grupo, facultad, etc.)
+	 * @param entityId el id de la entidad especificada en el tipo
+	 * @return lista de producciones bibliograficas
+	 */
+	public List<ProduccionBGrupo> obtenerBibliograficas(String type, Long entityId){
+		List<ProduccionBGrupo> produccionesb = produccionDAO.getProducciones(type, entityId, (long) 39);
+		produccionesb.addAll(produccionDAO.getProducciones(type, entityId, (long) 40));
+		
+		for (int i = 15; i <= 23; i++) {
+			produccionesb.addAll(produccionDAO.getProducciones(type, entityId, (long) i));
+		}
+		
+		return produccionesb;
+	}
+	
+	/**
+	 * Obtiene las producciones genericas a partir de codigo
+	 * @param type el tipo a buscar (grupo, facultad, etc.)
+	 * @param entityId el id de la entidad especificada en el tipo
+	 * @return lista de producciones genericas
+	 */
+	public List<ProduccionGrupo> obtenerGenericas(String type, Long entityId){
+		List<ProduccionGrupo> producciones = produccionDAO.getProducciones(type, entityId, (long) 0);
+		
+		for (int i = 1; i <= 14; i++) {
+			producciones.addAll(produccionDAO.getProducciones(type, entityId, (long) i));
+		}
+		
+		for (int i = 24; i <= 38; i++) {
+			producciones.addAll(produccionDAO.getProducciones(type, entityId, (long) i));
+		}
+		
+		for (int i = 41; i <= 53; i++) {
+			producciones.addAll(produccionDAO.getProducciones(type, entityId, (long) i));
+		}
+		
+		return producciones;
 	}
 
 }
