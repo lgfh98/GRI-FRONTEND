@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import co.edu.uniquindio.gri.dao.InvestigadorDAO;
 import co.edu.uniquindio.gri.model.Grupo;
@@ -17,10 +18,8 @@ import co.edu.uniquindio.gri.model.LiderGrupo;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
 
+@Component
 public class GestorDeCasosBonita {
-
-	@Autowired
-	private InvestigadorDAO investigadorDAO;
 
 	@Value("${bonita.nombre.proceso}")
 	private String nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion;
@@ -30,6 +29,14 @@ public class GestorDeCasosBonita {
 	private String password;
 	@Value("${bonita.servidor.base}")
 	private String servidor;
+	
+	@Autowired
+	private InvestigadorDAO investigadorDAO;
+	
+	public GestorDeCasosBonita() {
+		
+	}
+	
 
 	private static final Logger log = LoggerFactory.getLogger(GestorDeCasosBonita.class);
 
@@ -102,8 +109,8 @@ public class GestorDeCasosBonita {
 			ProduccionBGrupo produccionBGrupo, ProduccionGrupo produccionGrupo)
 			throws ClientProtocolException, URISyntaxException, IOException {
 		log.info("Generando nuevo caso para la producción con id: " + prodId);
-		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor);
-		b.iniciarSesionEnBonita(usuario, password);
+		log.info("Servidor usuario pass" + servidor + " " + usuario + " " + password);
+		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor, usuario, password);
 		boolean respuesta = generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(b, produccionBGrupo, produccionGrupo, b.obtenerIdDelProceso(nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion), nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion);
 		b.cerrarClienteHttp();
 		return respuesta;
@@ -111,8 +118,7 @@ public class GestorDeCasosBonita {
 
 	public boolean eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(long id) throws ClientProtocolException, URISyntaxException, IOException {
 		log.info("Dando de baja el caso  " + id + " del proceso \""+ nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion + "\"");
-		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor);
-		b.iniciarSesionEnBonita(usuario, password);
+		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor, usuario, password);
 		boolean respuesta = eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(b, id);
 		b.cerrarClienteHttp();
 		return respuesta;

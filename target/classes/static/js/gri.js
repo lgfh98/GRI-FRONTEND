@@ -701,8 +701,8 @@
 				var tipo = data[6];
 				var estado = data[7];
 
-				
-				if (tipo == 15 || tipo == 16 || tipo == 17 || tipo == 18 || tipo == 19 || tipo == 20 || tipo == 21 || tipo == 22 || tipo == 23 || tipo == 39 || tipo == 40) {
+				console.log(tipo);
+				if (tipo == 3) {
 					tipo = 'bibliografica';
 				} else {
 					tipo = 'generica';

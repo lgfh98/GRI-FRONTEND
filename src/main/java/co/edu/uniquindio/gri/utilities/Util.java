@@ -62,6 +62,9 @@ public class Util {
 	public static final int EN_CUSTODIA = 1;
 	public static final int SIN_CUSTODIA = 0;
 	public static final int EN_PROCESO = 2;
+	
+	public static final String BONITA_CASO_FINALIZADO = "FINALIZADO";
+	public static final String BONITA_CASO_EN_CURSO = "EN CURSO";
 
 	/**
 	 * constructor de la clase Util

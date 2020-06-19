@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.model.CasoRevisionProduccion;
 import co.edu.uniquindio.gri.repository.CasoRevisionProduccionRepository;
+import co.edu.uniquindio.gri.utilities.Util;
 
 @Service
 public class CasoRevisionProduccionDAO {
@@ -54,7 +55,7 @@ public class CasoRevisionProduccionDAO {
 	public boolean archivarCaso(long id, Long idProduccion, String tipoProduccion) {
 		try {
 			casoRevisionProduccionRepository
-					.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, "EN CURSO"));
+					.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, Util.BONITA_CASO_EN_CURSO));
 			return true;
 		} catch (Exception e) {
 			return false;

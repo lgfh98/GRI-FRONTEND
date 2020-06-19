@@ -8,13 +8,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import co.edu.uniquindio.gri.controller.ProduccionController;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
 import co.edu.uniquindio.gri.model.Tipo;
 import co.edu.uniquindio.gri.repository.ProduccionRepository;
 import co.edu.uniquindio.gri.repository.TipoRepository;
-import co.edu.uniquindio.gri.utilities.Util;
 
 /**
  * Class ProduccionDAO.

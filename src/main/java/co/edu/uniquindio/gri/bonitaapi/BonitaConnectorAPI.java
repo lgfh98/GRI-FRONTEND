@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import co.edu.uniquindio.gri.schedulingtasks.ScheduledTasks;
 
@@ -28,6 +29,7 @@ import co.edu.uniquindio.gri.schedulingtasks.ScheduledTasks;
  * @author Jhon Sebastian Montes R
  *
  */
+
 public class BonitaConnectorAPI {
 
 	private CloseableHttpClient httpClient;
@@ -84,7 +86,8 @@ public class BonitaConnectorAPI {
 		this.servidorBonitaInicioCaso = servidorBonita + "api/bpm/case";
 		this.servidorBonitaConsultaIdProceso = servidorBonita + "api/bpm/process";
 		this.servidorBonitaEliminacionCaso = servidorBonita + "api/bpm/case";
-
+		
+		// Inicio de sesión en Bonita
 		iniciarSesionEnBonita(usuario, password);
 
 	}

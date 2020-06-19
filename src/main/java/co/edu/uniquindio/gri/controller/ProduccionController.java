@@ -8,7 +8,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniquindio.gri.utilities.Util;
-import co.edu.uniquindio.gri.bonitaapi.BonitaConnectorAPI;
 import co.edu.uniquindio.gri.bonitaapi.GestorDeCasosBonita;
 import co.edu.uniquindio.gri.dao.CasoRevisionProduccionDAO;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
@@ -35,20 +34,14 @@ public class ProduccionController {
 
 	/** DAO para producciones. */
 
-	@Value("${bonita.nombre.proceso}")
-	private String nombreDelProcesoBonita;
-	@Value("${bonita.usuario}")
-	private String usuario;
-	@Value("${bonita.password}")
-	private String password;
-	@Value("${bonita.servidor.base}")
-	private String servidor;
-
 	@Autowired
 	ProduccionDAO produccionDAO;
 	
 	@Autowired
 	CasoRevisionProduccionDAO casoRevisionProduccionDAO;
+	
+	@Autowired
+	GestorDeCasosBonita gestorDeCasosBonita;
 
 	private static final Logger log = LoggerFactory.getLogger(ProduccionController.class);
 
@@ -122,7 +115,9 @@ public class ProduccionController {
 		ProduccionBGrupo produccionBGrupo = null;
 		int estadoAnterior = 0;
 		if (tipo.equals("generica")) {
+			
 			produccionGrupo = produccionDAO.getProduccion(prodId);
+			log.info("DATA : " + prodId + " / "+ tipo + " / " + produccionGrupo  ); 
 			estadoAnterior = produccionGrupo.getEstado();
 		} else if (tipo.equals("bibliografica")) {
 			produccionBGrupo = produccionDAO.getProduccionB(prodId);
@@ -138,8 +133,7 @@ public class ProduccionController {
 				
 			} else if (nuevoEstado == Util.EN_PROCESO) {
 				
-				GestorDeCasosBonita g = new GestorDeCasosBonita();
-				return g.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo) + "";
+				return gestorDeCasosBonita.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo) + "";
 				
 			}else {
 				//Crear excepcion
@@ -154,9 +148,7 @@ public class ProduccionController {
 				return produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado) + "";
 				
 			} else if (nuevoEstado == Util.EN_PROCESO) {
-				
-				GestorDeCasosBonita g = new GestorDeCasosBonita();
-				return g.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo) + "";
+				return gestorDeCasosBonita.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId, produccionBGrupo, produccionGrupo) + "";
 				
 			}else {
 				return "Nuevo estado inválido";
@@ -168,16 +160,14 @@ public class ProduccionController {
 				
 				CasoRevisionProduccion c = casoRevisionProduccionDAO.getCasoPorProduccion(prodId, tipo);
 				log.info("Finalizando caso con el id " + c.getId() + " para la produccion " + prodId + " / " + tipo + " y dejando la producción sin custodia" );
-				GestorDeCasosBonita g = new GestorDeCasosBonita();
-				boolean estadoDeTransaccionEnBonita = g.eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId);
+				boolean estadoDeTransaccionEnBonita = gestorDeCasosBonita.eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId);
 				boolean estadoDeTransaccionEliminarCasoEnGRI = casoRevisionProduccionDAO.eliminarCaso(c.getId());
 				boolean estadoDeTransaccionActualizarEstadoDeProduccion = produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado);
 				return (estadoDeTransaccionEnBonita && estadoDeTransaccionEliminarCasoEnGRI && estadoDeTransaccionActualizarEstadoDeProduccion) + "";
 				
 			} else if (nuevoEstado == Util.EN_CUSTODIA) {
 				CasoRevisionProduccion c = casoRevisionProduccionDAO.getCasoPorProduccion(prodId, tipo); 
-				GestorDeCasosBonita g = new GestorDeCasosBonita();
-				boolean estadoDeTransaccionEnBonita = g.eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId);
+				boolean estadoDeTransaccionEnBonita = gestorDeCasosBonita.eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(prodId);
 				boolean estadoDeTransaccionFinalizarCasoEnGRI = casoRevisionProduccionDAO.archivarCaso(c.getId(), prodId, tipo, "FINALIZADO");
 				boolean estadoDeTransaccionActualizarEstadoDeProduccion = produccionDAO.actualizarEstadoDeProduccion(prodId, tipo, nuevoEstado);
 				log.info("Finalizando caso con el id " + c.getId() + " para la produccion " + prodId + " / " + tipo + " y dejando la producción en custodia");
