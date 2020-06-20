@@ -19,9 +19,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
-import co.edu.uniquindio.gri.schedulingtasks.ScheduledTasks;
 
 /**
  * API que brinda un pool de métodos para comunicación con Bonita
@@ -34,7 +31,7 @@ public class BonitaConnectorAPI {
 
 	private CloseableHttpClient httpClient;
 	private URIBuilder builder;
-	private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
+	private static final Logger log = LoggerFactory.getLogger(BonitaConnectorAPI.class);
 	private String servidorBonita;
 	private String servidorBonitaLogin;
 	private String servidorBonitaConsultaIdProceso;
@@ -86,7 +83,7 @@ public class BonitaConnectorAPI {
 		this.servidorBonitaInicioCaso = servidorBonita + "api/bpm/case";
 		this.servidorBonitaConsultaIdProceso = servidorBonita + "api/bpm/process";
 		this.servidorBonitaEliminacionCaso = servidorBonita + "api/bpm/case";
-		
+
 		// Inicio de sesión en Bonita
 		iniciarSesionEnBonita(usuario, password);
 
@@ -162,7 +159,7 @@ public class BonitaConnectorAPI {
 		modeloDeEnvio.put("processDefinitionId", idDelProcesoBonita);
 		modeloDeEnvio.put("variables", parametros);
 
-		log.info("Iniciando caso \"" + nombreDelProcesoBonita + "\" con id: " + idDelProcesoBonita + " con parametros: "
+		log.info("Iniciando caso \"" + nombreDelProcesoBonita + "\" de id: " + idDelProcesoBonita + " con parametros: "
 				+ modeloDeEnvio.toString());
 
 		// Creación de la entidad HTTP bajo la codificación UTF-8 con el objeto JSON
@@ -205,11 +202,18 @@ public class BonitaConnectorAPI {
 			HttpEntity entity = response.getEntity();
 
 			if (entity != null) {
-				JSONObject respuestaJSON = new JSONObject(EntityUtils.toString(entity).replaceAll("[\\[\\]]", ""));
-				String id = respuestaJSON.get("id").toString();
+				JSONArray listadoDeProcesos = new JSONArray(EntityUtils.toString(entity));
+				int posMayor = 0;
+				for (int i = 0; i < listadoDeProcesos.length(); i++) {
+					if (Double.parseDouble((String)((JSONObject) listadoDeProcesos.get(i)).get("version")) >  Double.parseDouble((String)((JSONObject) listadoDeProcesos.get(posMayor)).get("version"))) {
+						posMayor = i;
+					}
+				}
+				JSONObject ultimaVersionDelProceso = (JSONObject)(listadoDeProcesos.get(posMayor));
+				String id = ultimaVersionDelProceso.get("id").toString();
 				log.info("Respuesta obtenida bajo " + response.getProtocolVersion() + ", Status: "
 						+ response.getStatusLine().getStatusCode() + " " + response.getStatusLine().getReasonPhrase()
-						+ ", el id del proceso: \"" + nombreDelProcesoBonita + "\" corresponde a:" + id);
+						+ ", el id del proceso: \"" + nombreDelProcesoBonita + "\" en su última versión " + ultimaVersionDelProceso.get("version") + " corresponde a: " + id);
 				return id;
 			} else {
 				return null;

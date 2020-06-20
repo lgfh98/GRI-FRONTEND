@@ -709,6 +709,7 @@
 				}
 
 				var nuevoEstado = $(this)[0].value;
+				var combo = $(this)[0]
 				var antiguoEstilo;
 				var nuevoEstilo;
 				
@@ -750,6 +751,7 @@
 						text: texto,
 						icon: "warning",
 						dangerMode: true,
+						className: "",
 						buttons: {
 							cancel: {
 								text: "Cancelar",
@@ -787,9 +789,26 @@
 										}
 									}
 								}
-							});
+							}).fail(function(){
+								swal({
+									text: "No fue posible hacer la actualización del estado de esta producción, por favor consulte al soporte técnico",
+									icon: "error",
+									dangerMode: true,
+									className: "",
+									buttons: {
+										confirm: {
+											text: "Aceptar",
+											value: true,
+											visible: true,
+											className: "",
+											closeModal: true
+										}
+									},
+								})
+								combo.value = estado;
+						    });
 						} else {
-							nuevoEstado = estado;
+							combo.value = estado;
 						}
 					});
 			});

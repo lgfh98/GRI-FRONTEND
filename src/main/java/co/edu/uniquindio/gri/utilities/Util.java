@@ -59,12 +59,15 @@ public class Util {
 
 	public static final String ADMIN_BELOGNING_PARAM_ID = "adm";
 	
-	public static final int EN_CUSTODIA = 1;
-	public static final int SIN_CUSTODIA = 0;
-	public static final int EN_PROCESO = 2;
+	public static final int PRODUCCION_EN_CUSTODIA = 1;
+	public static final int PRODUCCION_SIN_CUSTODIA = 0;
+	public static final int PRODUCCION_EN_PROCESO = 2;
 	
 	public static final String BONITA_CASO_FINALIZADO = "FINALIZADO";
 	public static final String BONITA_CASO_EN_CURSO = "EN CURSO";
+	
+	public static final String PRODUCCION_BIBLIOGRAFICA = "bibliografica";
+	public static final String PRODUCCION_GENERICA = "generica";
 
 	/**
 	 * constructor de la clase Util

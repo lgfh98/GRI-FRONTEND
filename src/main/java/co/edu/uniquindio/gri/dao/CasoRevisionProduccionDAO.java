@@ -15,9 +15,24 @@ public class CasoRevisionProduccionDAO {
 	@Autowired
 	CasoRevisionProduccionRepository casoRevisionProduccionRepository;
 	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public boolean eliminarCaso(Long id) {
 		casoRevisionProduccionRepository.deleteById(id);
 		return true;
+	}
+	
+	public boolean eliminarCaso(Long idProduccion, String tipoProduccion) {
+		for (CasoRevisionProduccion caso : casoRevisionProduccionRepository.findAll()) {
+			if(caso.getIdProduccion() == idProduccion && tipoProduccion.equals(caso.getTipoProduccion())) {
+				casoRevisionProduccionRepository.delete(caso);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/**

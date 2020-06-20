@@ -13,6 +13,7 @@ import co.edu.uniquindio.gri.model.ProduccionGrupo;
 import co.edu.uniquindio.gri.model.Tipo;
 import co.edu.uniquindio.gri.repository.ProduccionRepository;
 import co.edu.uniquindio.gri.repository.TipoRepository;
+import co.edu.uniquindio.gri.utilities.Util;
 
 /**
  * Class ProduccionDAO.
@@ -62,10 +63,10 @@ public class ProduccionDAO {
 		
 		log.info("Actualizando estado de la producción " + id + " de tipo " + tipo + " a " + estado);
 		
-		if (tipo.equals("bibliografica")) {
+		if (tipo.equals(Util.PRODUCCION_BIBLIOGRAFICA)) {
 			produccionRepository.updateProduccionBGrupo(id, estado);
 			return true;
-		} else if (tipo.equals("generica")) {
+		} else if (tipo.equals(Util.PRODUCCION_GENERICA)) {
 			produccionRepository.updateProduccionGrupo(id, estado);
 			return true;
 		} else {

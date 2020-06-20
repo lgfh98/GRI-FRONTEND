@@ -17,6 +17,7 @@ import co.edu.uniquindio.gri.model.Grupo;
 import co.edu.uniquindio.gri.model.LiderGrupo;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
+import co.edu.uniquindio.gri.utilities.Util;
 
 @Component
 public class GestorDeCasosBonita {
@@ -55,7 +56,7 @@ public class GestorDeCasosBonita {
 					.put((new JSONObject()).put("name", "idDeProduccion").put("value", produccionBGrupo.getId() + ""));
 			parametros.put((new JSONObject()).put("name", "nombreDeProduccion").put("value",
 					produccionBGrupo.getReferencia()));
-			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "bibliografica"));
+			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", Util.PRODUCCION_BIBLIOGRAFICA));
 			grupoDeInvestigacion = produccionBGrupo.getGrupo();
 
 		} else if (produccionGrupo != null) {
@@ -65,7 +66,7 @@ public class GestorDeCasosBonita {
 			parametros.put(
 					(new JSONObject()).put("name", "nombreDeProduccion").put("value", produccionGrupo.getReferencia()));
 
-			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "generica"));
+			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", Util.PRODUCCION_GENERICA));
 
 			grupoDeInvestigacion = produccionGrupo.getGrupo();
 
@@ -109,7 +110,6 @@ public class GestorDeCasosBonita {
 			ProduccionBGrupo produccionBGrupo, ProduccionGrupo produccionGrupo)
 			throws ClientProtocolException, URISyntaxException, IOException {
 		log.info("Generando nuevo caso para la producción con id: " + prodId);
-		log.info("Servidor usuario pass" + servidor + " " + usuario + " " + password);
 		BonitaConnectorAPI b = new BonitaConnectorAPI(servidor, usuario, password);
 		boolean respuesta = generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(b, produccionBGrupo, produccionGrupo, b.obtenerIdDelProceso(nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion), nombreDelProcesoDeSubidaYRevisionDeProduccionesDeInvestigacion);
 		b.cerrarClienteHttp();
