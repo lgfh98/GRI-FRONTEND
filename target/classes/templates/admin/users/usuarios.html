@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head
-	th:replace="fragments/header :: header('Usuarios')">
+<head th:replace="fragments/header :: header('Usuarios')">
 <meta charset="utf-8" />
+
 </head>
-	<body id="page-top" class="sidebar-toggled">
+
+<body id="page-top" class="sidebar-toggled">
 	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
 	<nav th:replace="fragments/secondarynav"></nav>
 
@@ -19,13 +20,13 @@
 						</div>
 					</div>
 				</div>
-				
+
 
 
 				<div class="separador-1"></div>
-					
-					<a href="usuarios/save/0" class="btn btn-primary">Crear Usuario</a>
 
+				<a class="btn btn-primary" id="btnCrearUsuario">Crear Usuario</a> <br />
+				<br />
 				<div class="contenedor mb-3">
 					<div class="contenedor-header">
 						<i class="fas fa-table"></i> Lista de Usuarios
@@ -37,23 +38,27 @@
 								style="width: 100%">
 								<thead>
 									<tr>
-										
-										
-										<th>USERNAME</th>
-										<th>ROL</th>
-										<th></th>
-										<th></th>
-										
+
+
+										<th class="centrarItemsTabla">NOMBRE DE USUARIO</th>
+										<th class="centrarItemsTabla">ROL</th>
+										<th class="centrarItemsTabla">ACCIONES</th>
+
+
 									</tr>
 								</thead>
 								<tbody>
 
 									<tr th:each="usuario : ${usuarios}">
-										
-										<td th:text="${usuario.username}"></td>
-										<td th:text="${usuario.rol.role}"></td>
-										<td><a th:href="'usuarios/save/'+${usuario.id}" class="btn btn-primary">Editar</a></td>
-										<td><a th:href="'usuarios/delete/'+${usuario.id}" class="btn btn-warning">Eliminar</a></td>
+
+										<td class="centrarItemsTabla" th:text="${usuario.username}"></td>
+										<td class="centrarItemsTabla" th:text="${usuario.rol.role}"></td>
+										<td class="centrarItemsTabla">
+											<a class="btn btn-warning" th:onclick="editarUsuario([[${usuario.username}]],[[${usuario.rol.role}]],[[${usuario.password}]],[[${usuario.id}]]);" >Editar</a>
+											<a th:href="'usuarios/delete/'+${usuario.id}"
+											class="btn btn-danger">Eliminar</a>
+										</td>
+
 									</tr>
 								</tbody>
 							</table>
@@ -63,12 +68,16 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<div th:replace="fragments/footer"></div>
+	<div th:include="admin/users/save.html"></div>
 
 
-	<script type="text/javascript" th:inline="javascript">
+
+</body>
+
+<script type="text/javascript" th:inline="javascript">
 		var data = [[${ usuarios }]];
 		console.log(data);
 		console.log(data.length);
@@ -94,14 +103,70 @@
 			}
 		});
 
+		let modalUsuario = document.getElementById("agregarUsuariosModal");
+		
+		let span = document.getElementsByClassName("closeModalUsuario")[0];
+		let body = document.getElementsByTagName("body")[0];
+	
+		$(document).ready(function() {
+			
+			$('#btnCrearUsuario').on('click', function(e) {
+				
+				modalUsuario.style.display = "block";
 
+				body.style.position = "static";
+				body.style.height = "100%";
+				body.style.overflow = "hidden";
+				
+				$('#idTitleCrearUsuario').text('Crear Usuario');
+				
+				
+			});
+			
+			$('.closeModalUsuario').on('click', function(e) {
+			
+			
+				modalUsuario.style.display = "none";
+
+				body.style.position = "inherit";
+				body.style.height = "auto";
+				body.style.overflow = "visible";
+			})
+			
+			window.onclick = function(event) {
+				if (event.target == modalUsuario) {
+					modalUsuario.style.display = "none";
+
+					body.style.position = "inherit";
+					body.style.height = "auto";
+					body.style.overflow = "visible";
+				}
+			}
+			
+			
+		});
+		
+		function editarUsuario(username, rol, password, id){
+			
+			$('#usernameUsuario').val(username);
+			$('#passwordUsuario1').val(password);
+		
+			document.getElementById("rol.role").value = '1';
+			alert($("#rol.role").val())
+			$('#campoid').val(id);
+			
+			
+			modalUsuario.style.display = "block";
+
+			body.style.position = "static";
+			body.style.height = "100%";
+			body.style.overflow = "hidden";
+			
+			$('#idTitleCrearUsuario').text('Editar Usuario');
+			
+			
+		}
 
 
 	</script>
-		
-		
-		
-
-
-	</body>
 </html>

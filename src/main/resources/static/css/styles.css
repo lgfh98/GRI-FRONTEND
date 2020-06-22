@@ -2235,6 +2235,12 @@ user agent stylesheet user agent stylesheet menu {
 	height: 100%;
 }
 
+.centrarItemsTabla {
+	
+	text-align: center;
+	
+}
+
 /**
 Responsive--------------------------------------------
 */

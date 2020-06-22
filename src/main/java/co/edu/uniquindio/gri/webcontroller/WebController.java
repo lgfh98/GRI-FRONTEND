@@ -1061,24 +1061,32 @@ public class WebController {
 
 	}
 	
-	@GetMapping("usuarios/save/{id}")
-	public String showsaveUsuario (@PathVariable("id") long id, Model model ) {
-		
-		if( id != 0 ) {
-			model.addAttribute("usuario", userServiceApi.get(id));
-			model.addAttribute("titulo", "EDITAR USUARIO");
-		}else {
-			model.addAttribute("usuario", new User());
-			model.addAttribute("titulo", "CREAR USUARIO");
-		}
-		
-		model.addAttribute("id", 0);
-		return "admin/users/save";
-	}
+//	@GetMapping("usuarios/save/{id}")
+//	public String showsaveUsuario (@PathVariable("id") long id, Model model ) {
+//		
+//		if( id != 0 ) {
+//			model.addAttribute("usuario", userServiceApi.get(id));
+//			model.addAttribute("titulo", "EDITAR USUARIO");
+//		}else {
+//			model.addAttribute("usuario", new User());
+//			model.addAttribute("titulo", "CREAR USUARIO");
+//		}
+//		
+//		model.addAttribute("id", 0);
+//		return "admin/users/save";
+//	}
 	
 	@PostMapping("usuarios/save")
-	public String saveUsuario(User user, Model model) {
-		userServiceApi.save(user);
+	public String saveUsuario(User user) {
+		
+		
+		
+		System.out.print(user.toString());
+		
+		//System.out.print(user.getId());
+		
+		
+		//userServiceApi.save(user);
 		
 		return "redirect:/usuarios";
 		
