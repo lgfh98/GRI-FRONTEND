@@ -225,19 +225,23 @@ public class Util {
 	 */
 	public List<CasoRevisionProduccion> obtenerCasosPorListas(List<CasoRevisionProduccion> casos,
 			List<ProduccionBGrupo> produccionesb, List<ProduccionGrupo> producciones) {
-		ArrayList<Long> ids = new ArrayList<Long>();
-		List<CasoRevisionProduccion> casos_resultante = casos;
+		ArrayList<Long> idsp = new ArrayList<Long>();
+		ArrayList<Long> idspb = new ArrayList<Long>();
+		ArrayList<CasoRevisionProduccion> casos_resultante = new ArrayList<CasoRevisionProduccion>();
+		
 		for (ProduccionGrupo produccion : producciones) {
-			ids.add(produccion.getId());
+			idsp.add(produccion.getId());
 		}
 
 		for (ProduccionBGrupo produccion : produccionesb) {
-			ids.add(produccion.getId());
+			idspb.add(produccion.getId());
 		}
 
 		for (CasoRevisionProduccion caso : casos) {
-			if (!(ids.contains(caso.getIdProduccion()))) {
-				casos_resultante.remove(caso);
+			if (idsp.contains(caso.getIdProduccion())) {
+				casos_resultante.add(caso);
+			} else if (idspb.contains(caso.getIdProduccion())) {
+				casos_resultante.add(caso);
 			}
 		}
 		return casos_resultante;
