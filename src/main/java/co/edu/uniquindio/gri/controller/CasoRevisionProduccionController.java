@@ -4,6 +4,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.uniquindio.gri.dao.CasoRevisionProduccionDAO;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
+import co.edu.uniquindio.gri.model.CasoRevisionProduccion;
+import co.edu.uniquindio.gri.model.ProduccionBGrupo;
+import co.edu.uniquindio.gri.model.ProduccionGrupo;
 import co.edu.uniquindio.gri.utilities.Util;
 
 @RestController
@@ -33,6 +39,9 @@ public class CasoRevisionProduccionController {
 
 	@Autowired
 	ProduccionDAO produccionDAO;
+	
+	@Autowired
+	Util utilidades = new Util();
 
 	/**
 	 * Servicio REST para uso exclusivo externo por parte del servidor bonita,se
@@ -72,6 +81,7 @@ public class CasoRevisionProduccionController {
 	 */
 
 	@PutMapping("/casos/revisionproduccion/{id}")
+
 	public String finalizarCaso(@PathVariable("id") long id, @RequestParam("idproduccion") long idProduccion,
 			@RequestParam("tipo") String tipoProduccion) {
 		log.info(
@@ -81,6 +91,26 @@ public class CasoRevisionProduccionController {
 		boolean estadoDeTransaccionFinalizarCaso = casoRevisionProduccionDAO.archivarCaso(id, idProduccion,
 				tipoProduccion, Util.BONITA_CASO_FINALIZADO);
 		return (estadoDeTransaccionFinalizarCaso && estadoDeTransaccionActualizarEstadoDeProduccion) + "";
+	}
+	/**
+	 * Obtiene las recolecciones de una entidad específica.
+	 *
+	 * @param type     el tipo de la entidad (f: Facultad, p: Programa, c: Centro,
+	 *                 g: Grupo de Investigación i: Investigador)
+	 * @param entityId el id de la entidad
+	 * @param tipoId   el tipo de la producción a obtener
+	 * @return lista de recolecciones
+	 */
+
+	@GetMapping("/recolecciones/{type}/{id}")
+	public List<CasoRevisionProduccion> getProducciones(@PathVariable("type") String type,
+			@PathVariable("id") Long entityId) {
+
+		List <ProduccionBGrupo> produccionesb = utilidades.obtenerBibliograficas(type, entityId);
+		List <ProduccionGrupo> producciones = utilidades.obtenerGenericas(type, entityId);
+		List<CasoRevisionProduccion> casos = casoRevisionProduccionDAO.getRecolecciones();
+		
+		return utilidades.obtenerCasosPorListas(casos, produccionesb, producciones);
 	}
 
 }

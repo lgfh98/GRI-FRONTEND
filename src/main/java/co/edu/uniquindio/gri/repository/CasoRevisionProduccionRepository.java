@@ -19,7 +19,6 @@ import co.edu.uniquindio.gri.model.CasoRevisionProduccion;
 
 public interface CasoRevisionProduccionRepository extends JpaRepository<CasoRevisionProduccion, Long> {
 
-
 	/**
 	 * Consulta que devuelve los todoas los casos con un estado dado por parámetro
 	 * 
@@ -40,8 +39,8 @@ public interface CasoRevisionProduccionRepository extends JpaRepository<CasoRevi
 	List<CasoRevisionProduccion> getCasosPorTipoDeProduccion(@Param("tipoProduccion") String tipoProduccion);
 
 	/**
-	 * Consulta que retorna el Caso de revisión asociado a un id de producción
-	 * específica
+	 * <<<<<<< HEAD Consulta que retorna el Caso de revisión asociado a un id de
+	 * producción específica
 	 * 
 	 * @param idProduccion
 	 * @return
@@ -49,4 +48,8 @@ public interface CasoRevisionProduccionRepository extends JpaRepository<CasoRevi
 	@Query(value = "FROM co.edu.uniquindio.gri.model.CasoRevisionProduccion c where c.idProduccion = :idProduccion and c.tipoProduccion = :tipoProduccion ")
 	CasoRevisionProduccion getCasoPorProduccion(@Param("idProduccion") Long idProduccion,
 			@Param("tipoProduccion") String tipoProduccion);
+
+	@Query(value = "FROM co.edu.uniquindio.gri.model.CasoRevisionProduccion c")
+	List<CasoRevisionProduccion> getRecolecciones();
+
 }

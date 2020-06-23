@@ -28,7 +28,7 @@ public class ProduccionDAO {
 	/** Repository para tipos. */
 	@Autowired
 	TipoRepository tipoRepository;
-	
+
 	private static final Logger log = LoggerFactory.getLogger(ProduccionDAO.class);
 
 	/**
@@ -60,9 +60,9 @@ public class ProduccionDAO {
 	 * @return
 	 */
 	public boolean actualizarEstadoDeProduccion(long id, String tipo, int estado) {
-		
+
 		log.info("Actualizando estado de la producción " + id + " de tipo " + tipo + " a " + estado);
-		
+
 		if (tipo.equals(Util.PRODUCCION_BIBLIOGRAFICA)) {
 			produccionRepository.updateProduccionBGrupo(id, estado);
 			return true;
@@ -73,25 +73,45 @@ public class ProduccionDAO {
 			return false;
 		}
 	}
-	
+
 	/**
-	 * Obtiene una producción bibliográficas con un id dado por parámetro.
+	 * <<<<<<< HEAD Obtiene una producción bibliográficas con un id dado por
+	 * parámetro.
 	 * 
-	 * @param id	 
+	 * @param id
 	 * @return la producción bibliográfica
 	 */
-	public ProduccionBGrupo getProduccionB(long id){
+	public ProduccionBGrupo getProduccionB(long id) {
 		return produccionRepository.getProduccionB(id);
 	}
-	
+
 	/**
 	 * Obtiene todas las producciones.
 	 * 
-	 * @param id		 
+	 * @param id
 	 * @return la producción genérica
 	 */
-	public ProduccionGrupo getProduccion(long id){
+	public ProduccionGrupo getProduccion(long id) {
 		return produccionRepository.getProduccion(id);
+	}
+
+	/**
+	 * Encuentra una produccion bibliografica por su id
+	 * 
+	 * @param search_id el id de la produccion
+	 * @return la produccion bibliografica con dicho id
+	 */
+	public ProduccionBGrupo findBibliograficasById(Long search_id) {
+		return produccionRepository.findBibliograficasById(search_id);
+	}
+
+	/**
+	 * Encuentra una produccion generica por su id
+	 * @param search_id el id de la produccion
+	 * @return la produccion generica con dicho id
+	 */
+	public ProduccionGrupo findGenericasById(Long search_id) {
+		return produccionRepository.findGenericasById(search_id);
 	}
 
 	/**
@@ -222,7 +242,7 @@ public class ProduccionDAO {
 	 *                1 en caso contrario.
 	 * @param prodId, el identificador de la producción en base de datos.
 	 * @return true, si la actualización se realizó satisfactoriamente.
-	 * @deprecated use {@link #actualizarEstadoDeProduccion()} instead. 
+	 * @deprecated use {@link #actualizarEstadoDeProduccion()} instead.
 	 */
 	@Deprecated
 	public boolean actualizarProducciones(String tipo, int estado, Long prodId) {

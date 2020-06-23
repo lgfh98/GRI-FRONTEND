@@ -74,6 +74,9 @@ public class WebController {
 
 	@Autowired
 	ReconocimientosDAO reconocimientosDAO;
+	
+	@Autowired
+	CasoRevisionProduccionDAO casosRevisionProduccionDAO;
 
 	@Autowired
 	Util utilidades = new Util();
@@ -869,6 +872,54 @@ public class WebController {
 		model.addAttribute("color", "card-" + facultadId);
 
 		return "reconocimientos";
+	}
+	
+	@GetMapping("/recolecciones")
+	public String getRecoleccion(
+			@RequestParam(name = Util.PARAM_TYPE, required = false, defaultValue = Util.UNIVERSITY_PARAM_ID) String type,
+			@RequestParam(name = Util.PARAM_ID, required = false, defaultValue = Util.PARAM_UNIVERSITY_LEVEL_ID) String id,
+			Model model) {
+		model.addAttribute(Util.PARAM_TYPE, type);
+		model.addAttribute(Util.PARAM_ID, id);
+		model.addAttribute("nombre", "Recolecciones");
+		model.addAttribute("tipo", "Reporte");
+
+		ArrayList<String> nombres = new ArrayList<String>();
+		ArrayList<Integer> indices = new ArrayList<Integer>();
+		List <ProduccionBGrupo> produccionesb = utilidades.obtenerBibliograficas(type, Long.parseLong(id));
+		List <ProduccionGrupo> producciones = utilidades.obtenerGenericas(type, Long.parseLong(id));
+		List<CasoRevisionProduccion> casos = casosRevisionProduccionDAO.getRecolecciones();
+		
+		List<CasoRevisionProduccion> casosResult = utilidades.obtenerNombresNumerosCasosPorListas(casos, produccionesb, producciones, indices, nombres);
+		
+		model.addAttribute("nombres", nombres);
+		model.addAttribute("indices", indices);
+		model.addAttribute("recolecciones", casosResult);
+		
+
+		long facultadId = 0;
+		long longId = Long.parseLong(id);
+		switch (type) {
+
+		case "g":
+			facultadId = grupoDAO.findOne(longId).getProgramas().get(0).getFacultad().getId();
+			break;
+		case "p":
+			facultadId = programaDAO.getProgramaById(longId).getFacultad().getId();
+			break;
+		case "c":
+			facultadId = centroDAO.getCentroById(longId).getFacultad().getId();
+			break;
+		case "f":
+			facultadId = longId;
+			break;
+
+		}
+
+		model.addAttribute("facultadId", facultadId);
+		model.addAttribute("color", "card-" + facultadId);
+
+		return "recolecciones";
 	}
 
 	@GetMapping("/general")

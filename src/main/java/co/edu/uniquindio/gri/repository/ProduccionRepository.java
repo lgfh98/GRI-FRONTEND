@@ -59,6 +59,24 @@ public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 	@Query("FROM co.edu.uniquindio.gri.model.ProduccionGrupo p where repetido <> 'ES REPETIDO' and p.estado = 0")
     List<ProduccionGrupo> getProduccionesSinCustodia();
 	
+	//Busqueda generica
+
+	/**
+	 * Encuentra una produccion bibliografica por su id
+	 * @param search_id el id de la produccion
+	 * @return la produccion bibliografica con dicho id
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.ProduccionBGrupo where id=:search_id")
+	ProduccionBGrupo findBibliograficasById(@Param("search_id") Long search_id);
+	
+	/**
+	 * Encuentra una produccion generica por su id
+	 * @param search_id el id de la produccion
+	 * @return la produccion generica con dicho id
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.ProduccionGrupo where id=:search_id")
+	ProduccionGrupo findGenericasById(@Param("search_id") Long search_id);
+	
 	// Investigadores
 	/**
 	 * Obtiene la producción bibliográfica de un investigador.
