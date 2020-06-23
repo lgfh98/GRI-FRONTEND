@@ -17,6 +17,26 @@ public class CasoRevisionProduccionDAO {
 	CasoRevisionProduccionRepository casoRevisionProduccionRepository;
 	
 	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public boolean eliminarCaso(Long id) {
+		casoRevisionProduccionRepository.deleteById(id);
+		return true;
+	}
+	
+	public boolean eliminarCaso(Long idProduccion, String tipoProduccion) {
+		for (CasoRevisionProduccion caso : casoRevisionProduccionRepository.findAll()) {
+			if(caso.getIdProduccion() == idProduccion && tipoProduccion.equals(caso.getTipoProduccion())) {
+				casoRevisionProduccionRepository.delete(caso);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
 	 * Método del repositorio encargado de obtener todos los casos que estén en un estado específico
 	 * @param estado el estado deseado a filtrar
 	 * @return una lista de casos con un estado específico
@@ -34,13 +54,9 @@ public class CasoRevisionProduccionDAO {
 	 * @param tipoProduccion tipo de la produccion
 	 * @param estado         estado del caso ("EN CURSO" o "FINALIZADO")
 	 */
-	public boolean archivarNuevoCaso(long id, long idProduccion, String tipoProduccion, String estado) {
-		try {
-			casoRevisionProduccionRepository.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, estado));
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
+	public boolean archivarCaso(long id, Long idProduccion, String tipoProduccion, String estado) {
+		casoRevisionProduccionRepository.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, estado));
+		return true;
 	}
 
 	/**
@@ -52,10 +68,10 @@ public class CasoRevisionProduccionDAO {
 	 * @param idProduccion   id de la produccion
 	 * @param tipoProduccion tipo de la produccion
 	 */
-	public boolean archivarNuevoCaso(long id, long idProduccion, String tipoProduccion) {
+	public boolean archivarCaso(long id, Long idProduccion, String tipoProduccion) {
 		try {
 			casoRevisionProduccionRepository
-					.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, "EN CURSO"));
+					.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, Util.BONITA_CASO_EN_CURSO));
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -72,6 +88,19 @@ public class CasoRevisionProduccionDAO {
 	 */
 	public List<CasoRevisionProduccion> getCasosPorTipoDeProduccion(String tipoDeProduccion) {
 		return casoRevisionProduccionRepository.getCasosPorTipoDeProduccion(tipoDeProduccion);
+	}
+	
+	/**
+	 * Método del repositorio encargado de obtener un caso dado un id
+	 * @param id
+	 * @return
+	 */
+	public CasoRevisionProduccion getCaso(long id) {
+		return casoRevisionProduccionRepository.getOne(id);
+	}
+	
+	public CasoRevisionProduccion getCasoPorProduccion(long id, String tipoDeProduccion) {
+		return casoRevisionProduccionRepository.getCasoPorProduccion(id,tipoDeProduccion);
 	}
 
 	/**

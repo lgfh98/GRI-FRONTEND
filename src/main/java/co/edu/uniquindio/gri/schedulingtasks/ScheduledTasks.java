@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,28 +14,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.uniquindio.gri.bonitaapi.BonitaConnectorAPI;
-import co.edu.uniquindio.gri.dao.CasoRevisionProduccionDAO;
-import co.edu.uniquindio.gri.dao.InvestigadorDAO;
+import co.edu.uniquindio.gri.bonitaapi.GestorDeCasosBonita;
 import co.edu.uniquindio.gri.dao.ProduccionDAO;
-import co.edu.uniquindio.gri.model.CasoRevisionProduccion;
-import co.edu.uniquindio.gri.model.Grupo;
-import co.edu.uniquindio.gri.model.LiderGrupo;
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
-
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  * Clase encargada de gestionar la generación de casos BPM de subida y revisón
@@ -64,6 +43,9 @@ public class ScheduledTasks {
 	@Value("${bonita.servidor.base}")
 	private String servidor;
 
+	@Autowired
+	private ProduccionDAO produccionDAO;
+
 	/*
 	 * Tasa de trabajo por producciones bibliográficas que no están en custodia, se
 	 * iterará un 1% aleatorio de las producciones bibliográficas que no están en
@@ -80,20 +62,6 @@ public class ScheduledTasks {
 
 	private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
 
-	@Autowired
-	private InvestigadorDAO investigadorDAO;
-
-	@Autowired
-	private ProduccionDAO produccionDAO;
-	
-	@Autowired
-	private CasoRevisionProduccionDAO casoRevisionProduccionDAO;
-
-	@PersistenceContext
-	private EntityManager em;
-
-	
-
 	/**
 	 * Tarea encargada de generar los casos bpm de revisión y subida de producciones
 	 * de investigación en el servidor bonita de la Universidad del Quindío en los
@@ -104,68 +72,68 @@ public class ScheduledTasks {
 	@Scheduled(fixedDelay = 86400000, initialDelay = 0)
 	public void generarCasosDeSubidaYRevisionDeProduccionesDeInvestigacion() {
 		
-		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionDAO.getProduccionesBSinCustodia();
-		List<ProduccionGrupo> produccionSinCustodia = produccionDAO.getProduccionesSinCustodia();
-		int cantidadDeProduccionesBibliograficasSinCustodia = 0;
-		int cantidadDeProduccionesSinCustodia = 0;
-
-		if (produccionBibliograficaSinCustodia != null) {
-			cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
-		}
-		if (produccionSinCustodia != null) {
-			cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
-		}
-
-		log.info("Cantidad de producciones que no están en custodia: "
-				+ produccionDAO.getProduccionesSinCustodia().size());
-		log.info("Cantidad de producciones bibliográficas que no están en custodia: "
-				+ produccionDAO.getProduccionesBSinCustodia().size());
-
-		String idDelProcesoBonita = null;
-
-		/*
-		 * Inicio de la conexión al servidor bonita, esto siempre y cuando existan
-		 * producciones que no estén en custodia sobre las cuales se pueda apoyar el
-		 * proceso
-		 */
-		BonitaConnectorAPI bonita;
-		if (cantidadDeProduccionesBibliograficasSinCustodia + cantidadDeProduccionesSinCustodia > 0) {
-			bonita = new BonitaConnectorAPI(servidor);
-			bonita.iniciarClienteHttp();
-
-			try {
-				bonita.iniciarSesionEnBonita(usuario, password);;
-				idDelProcesoBonita = bonita.obtenerIdDelProceso(nombreDelProcesoBonita);
-				bonita.eliminarCaso("81004");
-			} catch (URISyntaxException | IOException e) {
-				// Manejo de excepción en caso de que no se encuentre el servidor bonita de la
-				// Universidad del Quindío
-				log.error(e.getMessage());
-				return;
-			}
-		} else {
-			log.info(
-					"Toda la productividad de investigación se encuentra en custodia, no se generarán casos para subida y revisón de producciones");
-			return;
-		}
-
+//		List<ProduccionBGrupo> produccionBibliograficaSinCustodia = produccionDAO.getProduccionesBSinCustodia();
+//		List<ProduccionGrupo> produccionSinCustodia = produccionDAO.getProduccionesSinCustodia();
+//		int cantidadDeProduccionesBibliograficasSinCustodia = 0;
+//		int cantidadDeProduccionesSinCustodia = 0;
+//
+//		if (produccionBibliograficaSinCustodia != null) {
+//			cantidadDeProduccionesBibliograficasSinCustodia = produccionBibliograficaSinCustodia.size();
+//		}
+//		if (produccionSinCustodia != null) {
+//			cantidadDeProduccionesSinCustodia = produccionSinCustodia.size();
+//		}
+//
+//		log.info("Cantidad de producciones que no están en custodia: "
+//				+ produccionDAO.getProduccionesSinCustodia().size());
+//		log.info("Cantidad de producciones bibliográficas que no están en custodia: "
+//				+ produccionDAO.getProduccionesBSinCustodia().size());
+//
+//		String idDelProcesoBonita = null;
+//
+//		/*
+//		 * Inicio de la conexión al servidor bonita, esto siempre y cuando existan
+//		 * producciones que no estén en custodia sobre las cuales se pueda apoyar el
+//		 * proceso
+//		 */
+//		BonitaConnectorAPI bonita;
+//		if (cantidadDeProduccionesBibliograficasSinCustodia + cantidadDeProduccionesSinCustodia > 0) {
+//			bonita = new BonitaConnectorAPI(servidor);
+//
+//			try {
+//				bonita.iniciarSesionEnBonita(usuario, password);;
+//				idDelProcesoBonita = bonita.obtenerIdDelProceso(nombreDelProcesoBonita);
+//			} catch (URISyntaxException | IOException e) {
+//				// Manejo de excepción en caso de que no se encuentre el servidor bonita de la
+//				// Universidad del Quindío
+//				log.error(e.getMessage());
+//				return;
+//			}
+//		} else {
+//			log.info(
+//					"Toda la productividad de investigación se encuentra en custodia, no se generarán casos para subida y revisón de producciones");
+//			return;
+//		}
+//		
+//		GestorDeCasosBonita g = new GestorDeCasosBonita();
+//
 //		if (cantidadDeProduccionesBibliograficasSinCustodia > 0) {
 //			for (int i = 0; i < CASOSPRODUCCIONESBIBLIOGRAFICASPORITERACION; i++) {
 //				// Selección de una producción bibliográfica aleatoria para la generación de un
 //				// caso
 //				int posProduccionBibliograficaAleatoria = (int) (Math.random()
 //						* cantidadDeProduccionesBibliograficasSinCustodia);
-//				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita,
+//				g.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita,
 //						produccionBibliograficaSinCustodia.get(posProduccionBibliograficaAleatoria), null,
-//						idDelProcesoBonita);
+//						idDelProcesoBonita, nombreDelProcesoBonita);
 //			}
 //		}
 //		if (cantidadDeProduccionesSinCustodia > 0) {
 //			for (int i = 0; i < CASOSPRODUCCIONESPORITERACION; i++) {
 //				// Selección de una producción aleatoria para la generación de un caso
 //				int posProduccionAleatoria = (int) (Math.random() * cantidadDeProduccionesSinCustodia);
-//				generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita, null,
-//						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita);
+//				g.generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(bonita, null,
+//						produccionSinCustodia.get(posProduccionAleatoria), idDelProcesoBonita, nombreDelProcesoBonita);
 //			}
 //		}
 //
@@ -176,60 +144,6 @@ public class ScheduledTasks {
 //		}
 	}
 
-	public void generarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(BonitaConnectorAPI bonita, ProduccionBGrupo produccionBGrupo,
-			ProduccionGrupo produccionGrupo, String idDelProcesoBonita) {
-
-		// Extracción datos de la produccion en estruturas JSONObject y JSONArray
-
-		JSONArray parametros = new JSONArray();
-		Grupo grupoDeInvestigacion = null;
-
-		if (produccionBGrupo != null) {
-
-			parametros
-					.put((new JSONObject()).put("name", "idDeProduccion").put("value", produccionBGrupo.getId() + ""));
-			parametros.put((new JSONObject()).put("name", "nombreDeProduccion").put("value",
-					produccionBGrupo.getReferencia()));
-			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "bibliografica"));
-			grupoDeInvestigacion = produccionBGrupo.getGrupo();
-
-		} else if (produccionGrupo != null) {
-
-			parametros.put((new JSONObject()).put("name", "idDeProduccion").put("value", produccionGrupo.getId() + ""));
-
-			parametros.put(
-					(new JSONObject()).put("name", "nombreDeProduccion").put("value", produccionGrupo.getReferencia()));
-
-			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", "generica"));
-
-			grupoDeInvestigacion = produccionGrupo.getGrupo();
-
-		} else {
-			return;
-		}
-
-		parametros.put((new JSONObject()).put("name", "nombreGrupo").put("value", grupoDeInvestigacion.getNombre()));
-		parametros.put(
-				(new JSONObject()).put("name", "nombreDeLiderDeGrupo").put("value", grupoDeInvestigacion.getLider()));
-
-		LiderGrupo liderGrupo = investigadorDAO.getLiderDeUnGrupo(grupoDeInvestigacion.getId());
-
-		if (liderGrupo == null) {
-			log.warn("No se encontró un lider de grupo para el grupo " + grupoDeInvestigacion.getNombre()
-					+ " verifique si este grupo cuenta con un lider registrado en la tabla lideresgrupos");
-			return;
-		}
-
-		parametros.put((new JSONObject()).put("name", "correoDelLiderDelGrupo").put("value", liderGrupo.getEmail()));
-		parametros.put((new JSONObject()).put("name", "diDelLiderDelGrupo").put("value", liderGrupo.getDi()));
-
-		try {
-			// Creación del caso
-			bonita.iniciarCasoConVariables(nombreDelProcesoBonita, idDelProcesoBonita, parametros);
-		} catch (URISyntaxException | IOException e) {
-			log.error(e.getMessage());
-		}
-
-	}
+	
 
 }

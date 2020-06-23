@@ -21,7 +21,27 @@ import co.edu.uniquindio.gri.model.ProduccionGrupo;
 @Repository
 public interface ProduccionRepository extends JpaRepository<Produccion, Long> {
 
-	//Bonita
+	//Para Bonita
+	
+	
+	/**
+	 * Obtiene una producción bibliográficas con un id dado por parámetro.
+	 * 
+	 * @param id	 
+	 * @return la producción bibliográfica
+	 */
+
+	@Query("FROM co.edu.uniquindio.gri.model.ProduccionBGrupo p where p.id = :id")
+    ProduccionBGrupo getProduccionB(@Param("id") Long id);
+	
+	/**
+	 * Obtiene todas las producciones.
+	 * 
+	 * @param id		 
+	 * @return la producción genérica
+	 */
+	@Query("FROM co.edu.uniquindio.gri.model.ProduccionGrupo p where p.id = :id")
+    ProduccionGrupo getProduccion(@Param("id") Long id);
 	
 	/**
 	 * Obtiene todas las producciones que no están en custodia.

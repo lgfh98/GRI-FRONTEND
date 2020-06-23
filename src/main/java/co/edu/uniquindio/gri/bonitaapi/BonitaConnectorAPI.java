@@ -20,19 +20,18 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import co.edu.uniquindio.gri.schedulingtasks.ScheduledTasks;
-
 /**
  * API que brinda un pool de métodos para comunicación con Bonita
  * 
  * @author Jhon Sebastian Montes R
  *
  */
+
 public class BonitaConnectorAPI {
 
 	private CloseableHttpClient httpClient;
 	private URIBuilder builder;
-	private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
+	private static final Logger log = LoggerFactory.getLogger(BonitaConnectorAPI.class);
 	private String servidorBonita;
 	private String servidorBonitaLogin;
 	private String servidorBonitaConsultaIdProceso;
@@ -42,23 +41,52 @@ public class BonitaConnectorAPI {
 	private String servidorBonitaEliminacionCaso;
 
 	/**
-	 * Constructor vacío
-	 */
-	public BonitaConnectorAPI() {
-	}
-
-	/**
 	 * Método constructor de una instancia de la API Bonita, se encarga de mapear
-	 * las direcciones de utilidad (otras APIs) basado en el servidor ingresado.
+	 * las direcciones de utilidad (otras APIs de bonita) basado en el servidor
+	 * ingresado, y también inicia un nuevo cliente HTTP.
 	 * 
 	 * @param servidorBonita dirección del servidor bonita
 	 */
 	public BonitaConnectorAPI(String servidorBonita) {
+		iniciarClienteHttp();
 		this.servidorBonita = servidorBonita;
 		this.servidorBonitaLogin = servidorBonita + "loginservice";
 		this.servidorBonitaInicioCaso = servidorBonita + "api/bpm/case";
 		this.servidorBonitaConsultaIdProceso = servidorBonita + "api/bpm/process";
 		this.servidorBonitaEliminacionCaso = servidorBonita + "api/bpm/case";
+	}
+
+	/**
+	 * Método constructor de una instancia de la API Bonita, se encarga de mapear
+	 * las direcciones de utilidad (otras APIs) basado en el servidor ingresado, se
+	 * encarga también iniciar un nuevo cliente HTTP y de iniciar sesión en bonita
+	 * con el usuario y password dados por parámetro.
+	 * 
+	 * @param servidorBonita la dirección del servidor bonita
+	 * @param usuario        el usuario bonita
+	 * @param password       la contraseña del usuario en bonita
+	 * @throws URISyntaxException      en caso de generarse un error de en la
+	 *                                 sintaxis del identificador unico de recursos
+	 *                                 (URI)
+	 * @throws ClientProtocolException En caso de generarse algun error en la
+	 *                                 ejecución de la solicitud
+	 * @throws IOException             en caso de generarse un error relacionado a
+	 *                                 la conexión
+	 */
+	public BonitaConnectorAPI(String servidorBonita, String usuario, String password)
+			throws ClientProtocolException, URISyntaxException, IOException {
+		iniciarClienteHttp();
+
+		// Incialización de APIs Bonita
+		this.servidorBonita = servidorBonita;
+		this.servidorBonitaLogin = servidorBonita + "loginservice";
+		this.servidorBonitaInicioCaso = servidorBonita + "api/bpm/case";
+		this.servidorBonitaConsultaIdProceso = servidorBonita + "api/bpm/process";
+		this.servidorBonitaEliminacionCaso = servidorBonita + "api/bpm/case";
+
+		// Inicio de sesión en Bonita
+		iniciarSesionEnBonita(usuario, password);
+
 	}
 
 	/**
@@ -131,7 +159,7 @@ public class BonitaConnectorAPI {
 		modeloDeEnvio.put("processDefinitionId", idDelProcesoBonita);
 		modeloDeEnvio.put("variables", parametros);
 
-		log.info("Iniciando caso \"" + nombreDelProcesoBonita + "\" con id: " + idDelProcesoBonita + " con parametros: "
+		log.info("Iniciando caso \"" + nombreDelProcesoBonita + "\" de id: " + idDelProcesoBonita + " con parametros: "
 				+ modeloDeEnvio.toString());
 
 		// Creación de la entidad HTTP bajo la codificación UTF-8 con el objeto JSON
@@ -174,11 +202,18 @@ public class BonitaConnectorAPI {
 			HttpEntity entity = response.getEntity();
 
 			if (entity != null) {
-				JSONObject respuestaJSON = new JSONObject(EntityUtils.toString(entity).replaceAll("[\\[\\]]", ""));
-				String id = respuestaJSON.get("id").toString();
+				JSONArray listadoDeProcesos = new JSONArray(EntityUtils.toString(entity));
+				int posMayor = 0;
+				for (int i = 0; i < listadoDeProcesos.length(); i++) {
+					if (Double.parseDouble((String)((JSONObject) listadoDeProcesos.get(i)).get("version")) >  Double.parseDouble((String)((JSONObject) listadoDeProcesos.get(posMayor)).get("version"))) {
+						posMayor = i;
+					}
+				}
+				JSONObject ultimaVersionDelProceso = (JSONObject)(listadoDeProcesos.get(posMayor));
+				String id = ultimaVersionDelProceso.get("id").toString();
 				log.info("Respuesta obtenida bajo " + response.getProtocolVersion() + ", Status: "
 						+ response.getStatusLine().getStatusCode() + " " + response.getStatusLine().getReasonPhrase()
-						+ ", el id del proceso: \"" + nombreDelProcesoBonita + "\" corresponde a:" + id);
+						+ ", el id del proceso: \"" + nombreDelProcesoBonita + "\" en su última versión " + ultimaVersionDelProceso.get("version") + " corresponde a: " + id);
 				return id;
 			} else {
 				return null;
@@ -190,19 +225,23 @@ public class BonitaConnectorAPI {
 	 * 
 	 * Método que elimina un caso de bonita con el id dado por parámetro
 	 * 
-	 * @param idDeCaso
+	 * @param id el id del caso
 	 * @return true si se borró satisfactoriamente
-	 * @throws URISyntaxException
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @throws URISyntaxException      en caso de generarse un error de en la
+	 *                                 sintaxis del identificador unico de recursos
+	 *                                 (URI)
+	 * @throws ClientProtocolException En caso de generarse algun error en la
+	 *                                 ejecución de la solicitud
+	 * @throws IOException             en caso de generarse un error relacionado a
+	 *                                 la conexión
 	 */
 
-	public boolean eliminarCaso(String idDeCaso) throws URISyntaxException, ClientProtocolException, IOException {
+	public boolean eliminarCaso(long id) throws URISyntaxException, ClientProtocolException, IOException {
 
 		log.info("Accediendo a " + servidorBonitaEliminacionCaso);
-		log.info("Eliminado caso con id: " + idDeCaso);
+		log.info("Eliminado caso con id: " + id);
 
-		builder = new URIBuilder(servidorBonitaEliminacionCaso + "/" + idDeCaso);
+		builder = new URIBuilder(servidorBonitaEliminacionCaso + "/" + id);
 		HttpDelete solicitudIdDelProceso = new HttpDelete(builder.build());
 
 		try (CloseableHttpResponse response = httpClient.execute(solicitudIdDelProceso)) {

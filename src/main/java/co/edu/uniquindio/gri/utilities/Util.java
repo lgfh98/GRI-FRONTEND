@@ -65,6 +65,16 @@ public class Util {
 	public static final String PARAM_UNIVERSITY_LEVEL = "idUniquindio";
 
 	public static final String ADMIN_BELOGNING_PARAM_ID = "adm";
+	
+	public static final int PRODUCCION_EN_CUSTODIA = 1;
+	public static final int PRODUCCION_SIN_CUSTODIA = 0;
+	public static final int PRODUCCION_EN_PROCESO = 2;
+	
+	public static final String BONITA_CASO_FINALIZADO = "FINALIZADO";
+	public static final String BONITA_CASO_EN_CURSO = "EN CURSO";
+	
+	public static final String PRODUCCION_BIBLIOGRAFICA = "bibliografica";
+	public static final String PRODUCCION_GENERICA = "generica";
 
 	/**
 	 * constructor de la clase Util
@@ -249,7 +259,7 @@ public class Util {
 		int index = 0;
 		ArrayList<Long> idsp = new ArrayList<Long>();
 		ArrayList<Long> idspb = new ArrayList<Long>();
-		ArrayList<CasoRevisionProduccion> casos_resultante =  new ArrayList<CasoRevisionProduccion>();
+		ArrayList<CasoRevisionProduccion> casos_resultante = new ArrayList<CasoRevisionProduccion>();
 		
 		for (ProduccionGrupo produccion : producciones) {
 			idsp.add(produccion.getId());
@@ -263,12 +273,12 @@ public class Util {
 			if (idsp.contains(caso.getIdProduccion())) {
 				casos_resultante.add(caso);
 				indices.add(index);
-				nombres.add(produccionDAO.findGenericasById(caso.getId()).getReferencia());
+				nombres.add(produccionDAO.findGenericasById(caso.getIdProduccion()).getReferencia());
 				index++;
 			} else if (idspb.contains(caso.getIdProduccion())) {
 				casos_resultante.add(caso);
 				indices.add(index);
-				nombres.add(produccionDAO.findBibliograficasById(caso.getId()).getReferencia());
+				nombres.add(produccionDAO.findBibliograficasById(caso.getIdProduccion()).getReferencia());
 				index++;
 			}
 		}
