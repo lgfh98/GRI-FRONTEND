@@ -274,6 +274,7 @@ public class Util {
 		}
 
 		for (CasoRevisionProduccion caso : casos) {
+			caso.setTipoProduccion(caso.getTipoProduccion().toUpperCase());
 			if (idsp.contains(caso.getIdProduccion())) {
 				casos_resultante.add(caso);
 				indices.add(index);

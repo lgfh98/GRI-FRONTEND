@@ -51,7 +51,7 @@
 										<td th:text="${recolecciones.get(i).id}"></td>
 										<td th:text="${nombres.get(i)}"></td>
 										<td th:text="${recolecciones.get(i).estado}"></td>
-										<td th:text="${recolecciones.get(i).tipoProduccion}"></td>
+										<td th:text="${recolecciones.get(i).tipoProduccion}" text-transform: uppercase></td>
 									</tr>
 								</tbody>
 							</table>
@@ -117,7 +117,7 @@
 					title: {
 						text: titulo
 					}, subtitle: {
-						text: 'Los casos que se muestran son casos de recolección de producciones, los casos finalizados corresponden a producciones que se encuentran en custodia gracias un proceso de recolección formal'
+						text: 'Los casos que se muestran son casos de recolección de producciones, los casos finalizados corresponden a producciones que se encuentran en custodia gracias un proceso de recolección formal.'
 					},
 					xAxis: {
 						categories: ['Casos']
