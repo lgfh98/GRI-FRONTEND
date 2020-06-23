@@ -103,9 +103,9 @@
 				var g = color2.split(',')[1];
 				var b = color2.split(',')[2];
 
-				r = +r + +((255-color2.split(',')[0])/2);
-				g = +g + +((255-color2.split(',')[1])/2);
-				b = +b + +((255-color2.split(',')[2])/2);
+				r = +r + +((255 - color2.split(',')[0]) / 2);
+				g = +g + +((255 - color2.split(',')[1]) / 2);
+				b = +b + +((255 - color2.split(',')[2]) / 2);
 
 				color2 = 'rgb(' + r + ', ' + g + ', ' + b + ')'
 
@@ -117,10 +117,10 @@
 					title: {
 						text: titulo
 					}, subtitle: {
-						text: 'Las produccioens mostradas corresponden a las que llevan un proceso de recolección y no a todas las recolecciones'
+						text: 'Los casos que se muestran son casos de recolección de producciones, los casos finalizados corresponden a producciones que se encuentran en custodia gracias un proceso de recolección formal'
 					},
 					xAxis: {
-						categories: ['Producciones']
+						categories: ['Casos']
 					},
 					yAxis: {
 						min: 0,
@@ -132,7 +132,10 @@
 						enabled: true
 					},
 					tooltip: {
-						pointFormat: 'Recolecciones: <b>{point.y:.0f}</b>'
+						formatter: function () {
+							var variance = this.series.name;
+							return '<b>'+variance+': '+this.point.y+'</b>';
+						}
 					}, plotOptions: {
 						series: {
 							stacking: 'normal'
