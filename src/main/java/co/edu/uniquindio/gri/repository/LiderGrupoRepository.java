@@ -10,7 +10,7 @@ import co.edu.uniquindio.gri.model.LiderGrupo;
 public interface LiderGrupoRepository extends JpaRepository<LiderGrupo, Integer>{
 
 	/**
-	 * Consulta que genera 
+	 * Consulta que trae un lider de un grupo
 	 * @param grupoId
 	 * @return
 	 */

@@ -259,7 +259,7 @@ public class Util {
 		int index = 0;
 		ArrayList<Long> idsp = new ArrayList<Long>();
 		ArrayList<Long> idspb = new ArrayList<Long>();
-		ArrayList<CasoRevisionProduccion> casos_resultante =  new ArrayList<CasoRevisionProduccion>();
+		ArrayList<CasoRevisionProduccion> casos_resultante = new ArrayList<CasoRevisionProduccion>();
 		
 		for (ProduccionGrupo produccion : producciones) {
 			idsp.add(produccion.getId());
@@ -273,12 +273,12 @@ public class Util {
 			if (idsp.contains(caso.getIdProduccion())) {
 				casos_resultante.add(caso);
 				indices.add(index);
-				nombres.add(produccionDAO.findGenericasById(caso.getId()).getReferencia());
+				nombres.add(produccionDAO.findGenericasById(caso.getIdProduccion()).getReferencia());
 				index++;
 			} else if (idspb.contains(caso.getIdProduccion())) {
 				casos_resultante.add(caso);
 				indices.add(index);
-				nombres.add(produccionDAO.findBibliograficasById(caso.getId()).getReferencia());
+				nombres.add(produccionDAO.findBibliograficasById(caso.getIdProduccion()).getReferencia());
 				index++;
 			}
 		}
