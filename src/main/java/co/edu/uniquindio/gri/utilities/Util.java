@@ -130,7 +130,7 @@ public class Util {
 	}
 
 	/**
-	 * permite agregarle la pertenencia a los investigadors
+	 * permite agregarle la pertenencia a los investigadores
 	 * 
 	 * @param investigadores
 	 * @return

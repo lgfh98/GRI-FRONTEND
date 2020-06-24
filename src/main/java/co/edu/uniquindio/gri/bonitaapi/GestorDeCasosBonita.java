@@ -77,7 +77,7 @@ public class GestorDeCasosBonita {
 		parametros.put((new JSONObject()).put("name", "nombreGrupo").put("value", grupoDeInvestigacion.getNombre()));
 		parametros.put(
 				(new JSONObject()).put("name", "nombreDeLiderDeGrupo").put("value", grupoDeInvestigacion.getLider()));
-
+		
 		LiderGrupo liderGrupo = investigadorDAO.getLiderDeUnGrupo(grupoDeInvestigacion.getId());
 
 		if (liderGrupo == null) {
