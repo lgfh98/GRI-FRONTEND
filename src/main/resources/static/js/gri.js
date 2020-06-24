@@ -379,7 +379,7 @@
 				{ data: "id" },
 				{ data: "nombre" },
 				{ data: "estado" },
-				{ data: "ripoproduccion" }
+				{ data: "tipoproduccion" }
 			]
 		});
 
