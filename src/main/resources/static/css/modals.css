@@ -18,7 +18,7 @@
 	padding: 1em;
 	border-radius: 10px;
 	border: 1px solid lightgray;
-	border-top: 10px solid #007f36;
+	border-top: 10px solid #308113;
 	width: 40%;
 }
 
@@ -36,8 +36,8 @@
 
 .btnModalGuardar {
 	
-	background-color: #007f36;
-	border-color: #007f36;
+	background-color: #308113;
+	border-color: #308113;
 	
 }
 .btnModalGuardar:hover {

@@ -49,14 +49,15 @@
 								</thead>
 								<tbody>
 
-									<tr th:each="usuario : ${usuarios}">
+									<tr th:each="usuario : ${usuarios}" th:id="'trUsuario'+${usuario.id}">
 
 										<td class="centrarItemsTabla" th:text="${usuario.username}"></td>
-										<td class="centrarItemsTabla" th:text="${usuario.rol.role}"></td>
-										<td class="centrarItemsTabla">
-											<a class="btn btn-warning" th:onclick="editarUsuario([[${usuario.username}]],[[${usuario.rol.role}]],[[${usuario.password}]],[[${usuario.id}]]);" >Editar</a>
-											<a th:href="'usuarios/delete/'+${usuario.id}"
-											class="btn btn-danger">Eliminar</a>
+										<td class="centrarItemsTabla roleUsuario"
+											th:text="${usuario.rol.role}"></td>
+										<td class="centrarItemsTabla"><a class="btn btn-warning"
+											th:onclick="editarUsuario([[${usuario.username}]],[[${usuario.rol.role}]],[[${usuario.password}]],[[${usuario.id}]]);">Editar</a>
+											<a class="btn btn-danger btnEliminar"
+											th:onclick="eliminarUsuario([[${usuario.id}]])">Eliminar</a>
 										</td>
 
 									</tr>
@@ -79,8 +80,6 @@
 
 <script type="text/javascript" th:inline="javascript">
 		var data = [[${ usuarios }]];
-		console.log(data);
-		console.log(data.length);
 		$.extend($.fn.dataTable.defaults, {
 			
 			language: {
@@ -107,8 +106,19 @@
 		
 		let span = document.getElementsByClassName("closeModalUsuario")[0];
 		let body = document.getElementsByTagName("body")[0];
-	
+	    //	Documento listo
 		$(document).ready(function() {
+			
+			let usuarios = $(".roleUsuario");
+
+			for(let i = 0; i<usuarios.length; i++){
+				
+				if(usuarios[i].innerHTML=="ROLE_ADMIN"){
+					usuarios[i].innerHTML="ADMINISTRADOR";
+				}else{
+					usuarios[i].innerHTML="USUARIO";
+				}
+			}
 			
 			$('#btnCrearUsuario').on('click', function(e) {
 				
@@ -119,9 +129,11 @@
 				body.style.overflow = "hidden";
 				
 				$('#idTitleCrearUsuario').text('Crear Usuario');
-				
+				limpiarCampos();
 				
 			});
+			
+			
 			
 			$('.closeModalUsuario').on('click', function(e) {
 			
@@ -143,6 +155,11 @@
 				}
 			}
 			
+			function limpiarCampos (){
+				
+				$('.inputUsuarios').val("");
+				
+			}
 			
 		});
 		
@@ -151,10 +168,12 @@
 			$('#usernameUsuario').val(username);
 			$('#passwordUsuario1').val(password);
 		
-			document.getElementById("rol.role").value = '1';
-			alert($("#rol.role").val())
-			$('#campoid').val(id);
-			
+			if(rol=="ROLE_ADMIN"){
+				document.getElementById("rol.role").value = '1';
+			}else {
+				document.getElementById("rol.role").value = '2';
+			}
+	
 			
 			modalUsuario.style.display = "block";
 
@@ -163,6 +182,55 @@
 			body.style.overflow = "hidden";
 			
 			$('#idTitleCrearUsuario').text('Editar Usuario');
+			
+			
+		}
+		
+		function eliminarUsuario(idUsuario){
+		
+
+				Swal.fire({
+					  title: '¿Esta seguro de eliminar al usuario seleccionado?',
+					  text: "¡No podrás revertir esto!",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: '¡Si, eliminar!',
+					  cancelButtonText: 'Cancelar'
+					}).then((result) => {
+					  if (result.value) {
+					    
+						  $.ajax(
+									{
+									  url : `usuarios/delete/${idUsuario}`,
+									  type: "GET"
+									})
+									  .done(function(data) {
+										  Swal.fire(
+											      '¡Eliminado!',
+											      'El usuario ha sido eliminado.',
+											      'success'
+											    );
+										$("#trUsuario"+idUsuario).remove();
+										  	
+									  })
+									  .fail(function(data) {
+										  Swal.fire({
+											  icon: 'error',
+											  title: 'Oops...',
+											  text: '¡Algo salió mal!'
+											})
+									  })
+									 
+						  
+					  }
+					});
+				
+				
+			
+			
+			
 			
 			
 		}

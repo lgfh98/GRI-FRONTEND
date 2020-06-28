@@ -1094,6 +1094,7 @@ public class WebController {
 	
 	@GetMapping("usuarios/delete/{id}")
 	public String deleteUsuario(@PathVariable("id") Long id, Model model) {
+		
 		userServiceApi.delete(id);
 		
 		return "redirect:/usuarios";
