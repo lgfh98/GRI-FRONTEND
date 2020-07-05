@@ -5,22 +5,30 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import co.edu.uniquindio.gri.CrudRepository.ProgramaCrudRepository;
 import co.edu.uniquindio.gri.model.Programa;
 import co.edu.uniquindio.gri.repository.ProgramaRepository;
+import co.edu.uniquindio.gri.service.api.ProgramaServiceApi;
+import co.edu.uniquindio.gri.utilities.GenericServiceImpl;
 
 /**
  * Clase ProgramaDAO.
  */
 @Service
-public class ProgramaDAO {
+public class ProgramaDAO extends GenericServiceImpl<Programa, Long> implements ProgramaServiceApi{
 
 	/** Repository para programas. */
 	@Autowired
 	ProgramaRepository programaRepository;
-
+	
+	@Autowired
+	ProgramaCrudRepository programaCrudRepository;
+	
+	
 	/**
 	 * Obtiene todos los programas.
 	 *
@@ -170,6 +178,11 @@ public class ProgramaDAO {
 	 */
 	public List<BigInteger> getResumenGeneralPrograma(Long programaId){
 		return programaRepository.getResumenGeneralPrograma(programaId);
+	}
+
+	@Override
+	public CrudRepository<Programa, Long> getCrudRepository() {
+		return programaCrudRepository;
 	}
 
 }

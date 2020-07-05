@@ -4,20 +4,29 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import co.edu.uniquindio.gri.CrudRepository.CentroCrudRepository;
 import co.edu.uniquindio.gri.model.Centro;
 import co.edu.uniquindio.gri.repository.CentroRepository;
+import co.edu.uniquindio.gri.service.api.CentroServiceApi;
+import co.edu.uniquindio.gri.utilities.GenericServiceImpl;
 
 /**
  * Clase CentroDAO.
  */
 @Service
-public class CentroDAO {
+public class CentroDAO extends GenericServiceImpl<Centro, Long> implements CentroServiceApi{
 
 	/** Repository para centros. */
 	@Autowired
 	CentroRepository centroRepository;
+	
+	@Autowired
+	CentroCrudRepository centroCrudRepository;
+	
+	
 	
 	/**
 	 * Obtiene todos los centros de investigación.
@@ -75,5 +84,10 @@ public class CentroDAO {
 	 */
 	public Object getAllCentrosFacultad(Long facultadId) {
 		return centroRepository.getAllCentrosFacultad(facultadId);
+	}
+
+	@Override
+	public CrudRepository<Centro, Long> getCrudRepository() {
+		return centroCrudRepository;
 	}
 }

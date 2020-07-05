@@ -4,21 +4,32 @@ import java.math.BigInteger;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import com.itextpdf.text.pdf.PdfStructTreeController.returnType;
+
+import co.edu.uniquindio.gri.CrudRepository.FacultadCrudRepository;
 import co.edu.uniquindio.gri.model.Facultad;
+import co.edu.uniquindio.gri.model.User;
 import co.edu.uniquindio.gri.repository.FacultadRepository;
+import co.edu.uniquindio.gri.service.api.FacultadServiceApi;
+import co.edu.uniquindio.gri.service.api.UserServiceApi;
+import co.edu.uniquindio.gri.utilities.GenericServiceImpl;
 
 /**
  * Clase FacultadDAO.
  */
 @Service
-public class FacultadDAO {
+public class FacultadDAO extends GenericServiceImpl<Facultad, Long> implements FacultadServiceApi{
 
 	/** Repository para facultades. */
 	@Autowired
 	FacultadRepository facultadRepository;
 
+	@Autowired
+	FacultadCrudRepository facultadCrudRepository;
+	
 	/**
 	 * Obtiene todas las facultades.
 	 *
@@ -27,6 +38,8 @@ public class FacultadDAO {
 	public List<Facultad> getAllFacultades() {
 		return facultadRepository.findAll();
 	}
+	
+
 
 	/**
 	 * Obtiene una facultad especificada por id
@@ -92,6 +105,13 @@ public class FacultadDAO {
 	 */
 	public List<BigInteger> getCantidadCategorias(Long idFacultad) {
 		return facultadRepository.getCantidadCategorias(idFacultad);
+	}
+
+
+
+	@Override
+	public CrudRepository<Facultad, Long> getCrudRepository() {
+		return facultadCrudRepository;
 	}
 
 }

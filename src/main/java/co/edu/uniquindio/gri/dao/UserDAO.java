@@ -3,21 +3,28 @@ package co.edu.uniquindio.gri.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import co.edu.uniquindio.gri.CrudRepository.UserCrudRepository;
 import co.edu.uniquindio.gri.model.User;
 import co.edu.uniquindio.gri.repository.UserRepository;
+import co.edu.uniquindio.gri.service.api.UserServiceApi;
+import co.edu.uniquindio.gri.utilities.GenericServiceImpl;
 
 /**
  * Class UserDAO.
  */
 @Service
-public class UserDAO {
+public class UserDAO extends GenericServiceImpl<User, Long> implements UserServiceApi{
 
 	/** Repository para user. */
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	UserCrudRepository userCrudRepository; 
+
 	
 	/**
 	 * Encuentra y retorna un usuario.
@@ -35,5 +42,10 @@ public class UserDAO {
 	 */
 	public List<User> getAllUsers(){
 		return userRepository.findAll();
+	}
+
+	@Override
+	public CrudRepository<User, Long> getCrudRepository() {
+		 return userCrudRepository;
 	}
 }

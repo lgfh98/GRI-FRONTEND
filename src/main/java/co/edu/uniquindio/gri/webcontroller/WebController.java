@@ -3,7 +3,6 @@ package co.edu.uniquindio.gri.webcontroller;
 import co.edu.uniquindio.gri.dao.*;
 import co.edu.uniquindio.gri.model.*;
 import co.edu.uniquindio.gri.service.api.UserServiceApi;
-import co.edu.uniquindio.gri.service.impl.UserServiceImpl;
 import co.edu.uniquindio.gri.utilities.Util;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -45,8 +44,6 @@ public class WebController {
 
 	@Autowired
 	UserDAO userDAO;
-	@Autowired
-	UserServiceApi userServiceApi;
 
 	@Autowired
 	InvestigadorDAO investigadorDAO;
@@ -1055,27 +1052,12 @@ public class WebController {
 		model.addAttribute("titulo", "USUARIOS");
 		model.addAttribute("id", 0);
 
-		model.addAttribute("usuarios", userServiceApi.getAll());
+		model.addAttribute("usuarios", userDAO.getAll());
 
 		return "admin/users/usuarios";
 
 	}
-	
-//	@GetMapping("usuarios/save/{id}")
-//	public String showsaveUsuario (@PathVariable("id") long id, Model model ) {
-//		
-//		if( id != 0 ) {
-//			model.addAttribute("usuario", userServiceApi.get(id));
-//			model.addAttribute("titulo", "EDITAR USUARIO");
-//		}else {
-//			model.addAttribute("usuario", new User());
-//			model.addAttribute("titulo", "CREAR USUARIO");
-//		}
-//		
-//		model.addAttribute("id", 0);
-//		return "admin/users/save";
-//	}
-	
+
 	@PostMapping("usuarios/save")
 	public String saveUsuario(User user) {
 		
@@ -1095,7 +1077,7 @@ public class WebController {
 	@GetMapping("usuarios/delete/{id}")
 	public String deleteUsuario(@PathVariable("id") Long id, Model model) {
 		
-		userServiceApi.delete(id);
+		userDAO.delete(id);
 		
 		return "redirect:/usuarios";
 	}
