@@ -76,7 +76,7 @@
 										<span class="icono fas fa-users-cog"></span>
 									</div>
 									<div class="card-title-container">
-										<h3 class="card-title">Usuarios</h3>
+										<h3 class="card-title">Administración de Usuarios</h3>
 									</div>
 
 								</a>
@@ -90,13 +90,46 @@
 							sec:authorize="hasRole('ROLE_ADMIN')">
 
 							<div class="card">
-								<a class="card-container" href="inicio" rel="keep-params">
+								<a class="card-container" href="Admfacultades" rel="keep-params">
 
 									<div class="card-icon card-icon-1">
-										<span class="icono fas fa-hammer"></span>
+										<span class="icono fas fa-university"></span>
 									</div>
 									<div class="card-title-container">
-										<h3 class="card-title">Boton Adicional 2</h3>
+										<h3 class="card-title">Administración de Facultades</h3>
+									</div>
+
+								</a>
+							</div>
+						</li>
+						
+						<li class="ci-2 cards-item" th:classappend="${tamanio}"
+							sec:authorize="hasRole('ROLE_ADMIN')">
+
+							<div class="card">
+								<a class="card-container" href="Admcentros" rel="keep-params">
+
+									<div class="card-icon card-icon-1">
+										<span class="icono fas fa-microscope"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Administración de Centros</h3>
+									</div>
+
+								</a>
+							</div>
+						</li>
+						<li class="ci-2 cards-item" th:classappend="${tamanio}"
+							sec:authorize="hasRole('ROLE_ADMIN')">
+
+							<div class="card">
+								<a class="card-container" href="Admprogramas" rel="keep-params">
+
+									<div class="card-icon card-icon-1">
+										<span class="icono fas fa-user-graduate"></span>
+									</div>
+									<div class="card-title-container">
+										<h3 class="card-title">Administración de Programas</h3>
 									</div>
 
 								</a>

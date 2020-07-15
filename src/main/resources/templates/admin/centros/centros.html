@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Centros')">
+<meta charset="utf-8" />
+
+</head>
+
+<body id="page-top" class="sidebar-toggled">
+	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
+
+	<div id="wrapper">
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero">CENTROS</h1>
+							Administración de Centros
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="separador-1"></div>
+
+				<a class="btn btn-primary" id="btnCrearCentro">Crear Centro</a> <br />
+				<br />
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Lista de Centros
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_Centros"
+								th:class="'table-' + ${id} + ' table-striped table-bordered table-hover table-responsive-lg'"
+								style="width: 100%">
+								<thead>
+									<tr>
+
+
+										<th class="centrarItemsTabla">NOMBRE DE CENTRO</th>
+										<th class="centrarItemsTabla">ROL</th>
+										<th class="centrarItemsTabla">ACCIONES</th>
+
+
+									</tr>
+								</thead>
+								<tbody>
+
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<div th:replace="fragments/footer"></div>
+
+
+</body>
+</html>

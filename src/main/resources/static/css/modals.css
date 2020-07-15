@@ -46,4 +46,7 @@
 	border-color: #008F3C;
 	
 }
+.requerido {
+    border: 1px solid red !important;
+}
 

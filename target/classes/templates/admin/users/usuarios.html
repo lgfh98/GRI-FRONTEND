@@ -70,7 +70,7 @@
 		</div>
 	</div>
 
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 	<div th:replace="fragments/footer"></div>
 	<div th:include="admin/users/save.html"></div>
 
@@ -161,6 +161,54 @@
 				
 			}
 			
+			
+			// al hacer click en el boton del modal guardar
+		$('#BtnGuardarUsuario').click(function(){
+		
+			let variables = $('.requaired');
+
+			var contador = variables.length;
+			for (var i = 0; i < variables.length; i++) {
+				if($(variables[i]).val()=='' || $(variables[i]).val()==undefined){
+					$(variables[i]).addClass('requerido');
+					contador = contador-1;
+				}else{
+					$(variables[i]).removeClass('requerido');
+				}
+			}
+			if(contador!=variables.length){
+				
+				  Swal.fire({
+				        title: '¡Error!',
+				        text: "Existen campos obligatorios que no se han registrado",
+				        icon: 'error',
+				        confirmButtonText: 'Aceptar',
+				        allowOutsideClick: () => false
+				    })
+				    return false;
+			}
+			
+			
+			let pass=$('#passwordUsuario1').val();
+			let pass2=$('#passwordUsuario2').val();
+			
+			if(!(pass===pass2)){
+				
+				  Swal.fire({
+				        title: '¡Error!',
+				        text: "La contraseña de confirmación no coincide",
+				        icon: 'error',
+				        confirmButtonText: 'Aceptar',
+				        allowOutsideClick: () => false
+				    })
+				    return false;
+			}
+			
+			$('#campoid').val("-1");
+				
+			});
+
+			
 		});
 		
 		function editarUsuario(username, rol, password, id){
@@ -186,6 +234,7 @@
 			
 		}
 		
+		// funcion al precionar el boton de eliminar usuarios
 		function eliminarUsuario(idUsuario){
 		
 
@@ -226,13 +275,7 @@
 						  
 					  }
 					});
-				
-				
-			
-			
-			
-			
-			
+
 		}
 
 

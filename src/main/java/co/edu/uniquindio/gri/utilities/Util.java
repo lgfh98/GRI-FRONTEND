@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.dao.PertenenciaDAO;
@@ -196,5 +197,19 @@ public class Util {
 
 		return resutado;
 	}
+	
+	/**
+	 * Metodo que permite codificar contraseña
+	 * @param unCode
+	 * @return
+	 */
+	public String encodePassword(String unCode) {
+		
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		return  bCryptPasswordEncoder.encode(unCode);
+	
+	}
+	
+
 
 }
