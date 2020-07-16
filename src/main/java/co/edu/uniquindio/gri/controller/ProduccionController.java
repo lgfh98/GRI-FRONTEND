@@ -174,7 +174,7 @@ public class ProduccionController {
 				
 			} else {
 				
-				log.info("No existen procesos previos finalziados y registrados en GRI para la recolección de la producción " + prodId
+				log.info("No existen procesos previos finalizados y registrados en GRI para la recolección de la producción " + prodId
 						+ " de tipo " + tipo);
 				
 			}
