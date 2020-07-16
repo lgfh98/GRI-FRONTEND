@@ -92,7 +92,7 @@ public class GestorDeCasosBonita {
 		try {
 			// Creación del caso
 			bonita.iniciarCasoConVariables(nombreDelProcesoBonita, idDelProcesoBonita, parametros);
-			log.info("Generación de caso exitosa " + idDelProcesoBonita);
+			log.info("Generación de caso exitosa");
 			return true;
 		} catch (URISyntaxException | IOException e) {
 			log.error(e.getMessage());
