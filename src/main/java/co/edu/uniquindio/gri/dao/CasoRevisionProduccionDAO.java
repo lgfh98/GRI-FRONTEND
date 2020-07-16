@@ -93,7 +93,6 @@ public class CasoRevisionProduccionDAO {
 				gestorDeCasosBonita.eliminarCasoDeSubidaYRevisionDeProduccionesDeInvestigacion(c.getId());
 				casoRevisionProduccionDAO.eliminarCaso(c.getId());
 			}
-			
 			//Registro de nuevo caso
 			casoRevisionProduccionRepository
 					.save(new CasoRevisionProduccion(id, idProduccion, tipoProduccion, Util.BONITA_CASO_EN_CURSO));
