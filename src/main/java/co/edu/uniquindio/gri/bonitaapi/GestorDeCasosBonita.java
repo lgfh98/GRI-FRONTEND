@@ -57,7 +57,12 @@ public class GestorDeCasosBonita {
 			parametros.put((new JSONObject()).put("name", "nombreDeProduccion").put("value",
 					produccionBGrupo.getReferencia()));
 			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", Util.PRODUCCION_BIBLIOGRAFICA));
+			
+			parametros.put((new JSONObject()).put("name", "subTipoDeProduccion").put("value", produccionBGrupo.getTipo().getNombre()));
+			
 			grupoDeInvestigacion = produccionBGrupo.getGrupo();
+			
+			
 
 		} else if (produccionGrupo != null) {
 
@@ -67,6 +72,8 @@ public class GestorDeCasosBonita {
 					(new JSONObject()).put("name", "nombreDeProduccion").put("value", produccionGrupo.getReferencia()));
 
 			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", Util.PRODUCCION_GENERICA));
+			
+			parametros.put((new JSONObject()).put("name", "subTipoDeProduccion").put("value", produccionGrupo.getTipo().getNombre()));
 
 			grupoDeInvestigacion = produccionGrupo.getGrupo();
 
