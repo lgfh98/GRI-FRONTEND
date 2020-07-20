@@ -44,6 +44,11 @@ public class UserDAO extends GenericServiceImpl<User, Long> implements UserServi
 		return userRepository.findAll();
 	}
 
+	public User findLastRegisterUser() {
+		
+		return userRepository.findLastRegister();
+	}
+	
 	@Override
 	public CrudRepository<User, Long> getCrudRepository() {
 		 return userCrudRepository;

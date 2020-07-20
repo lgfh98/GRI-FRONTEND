@@ -78,7 +78,7 @@
 
 </body>
 
-<script type="text/javascript" th:inline="javascript">
+<script  th:inline="javascript">
 		var data = [[${ usuarios }]];
 		$.extend($.fn.dataTable.defaults, {
 			
@@ -130,6 +130,8 @@
 				
 				$('#idTitleCrearUsuario').text('Crear Usuario');
 				limpiarCampos();
+				$('#campoid').val("-1");
+				
 				
 			});
 			
@@ -155,11 +157,7 @@
 				}
 			}
 			
-			function limpiarCampos (){
-				
-				$('.inputUsuarios').val("");
-				
-			}
+			
 			
 			
 			// al hacer click en el boton del modal guardar
@@ -204,18 +202,81 @@
 				    return false;
 			}
 			
-			$('#campoid').val("-1");
+			
 				
 			});
 
+
+			$('#guardarUsuariosModal').on('submit', function (e) {
+				e.preventDefault();
+				let data = $(this).serialize();
+				console.log(data)
+				$.ajax({
+					type: "POST",
+					url: "usuarios/save",
+					data: data,
+					beforeSend: function(){
+						Swal.fire({
+			            title: 'Cargando...',
+			            allowOutsideClick: () => !Swal.isLoading(),
+			            onBeforeOpen: () => {
+			              Swal.showLoading();
+			            }
+			          });
+					},
+					success: function (response) {
+						Swal.close();
+						if(response.codigoRespuesta===200){
+
+							Swal.fire({
+							icon: 'success',
+							title: response.mensajeRespuesta,
+							showConfirmButton: false,
+							timer: 1500
+						});
+
+						}else {
+							Swal.fire({
+						        title: '!Información¡',
+						        text: response.mensajeRespuesta,
+						        icon: 'info',
+						        confirmButtonText: 'Aceptar',
+						        allowOutsideClick: () => false
+						    })
+						}
+
+					},error: function(){
+						Swal.close();
+						Swal.fire({
+						        title: '¡Error!',
+						        text: 'Error de conexión ',
+						        icon: 'error',
+						        confirmButtonText: 'Aceptar',
+						        allowOutsideClick: () => false
+						    })
+					}
+				});
+
+
+			});
 			
 		});
 		
+		function limpiarCampos (){
+			
+			
+			$('.inputUsuarios').val("");
+			
+			
+		}
+		
 		function editarUsuario(username, rol, password, id){
 			
+
+			limpiarCampos();
 			$('#usernameUsuario').val(username);
-			$('#passwordUsuario1').val(password);
-		
+			$('#campoid').val(id);
+
 			if(rol=="ROLE_ADMIN"){
 				document.getElementById("rol.role").value = '1';
 			}else {

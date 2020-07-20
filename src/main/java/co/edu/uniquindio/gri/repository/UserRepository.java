@@ -25,4 +25,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	User findOne(@Param("username") String username);
 	
 	
+	@Query(value = "select * from gri.users us where us.id=(select max(id) from gri.users)", nativeQuery = true)
+	User findLastRegister();
+	
+	
 }

@@ -3,6 +3,8 @@ package co.edu.uniquindio.gri.webcontroller;
 import co.edu.uniquindio.gri.dao.*;
 import co.edu.uniquindio.gri.model.*;
 import co.edu.uniquindio.gri.service.api.UserServiceApi;
+import co.edu.uniquindio.gri.utilities.GRIConstantes;
+import co.edu.uniquindio.gri.utilities.Respuesta;
 import co.edu.uniquindio.gri.utilities.Util;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -1059,30 +1062,58 @@ public class WebController {
 	}
 
 	@PostMapping("usuarios/save")
-	public String saveUsuario(User user) {
+	public @ResponseBody Respuesta saveUsuario(User user) {
+
+		Respuesta respuesta = new Respuesta();
 
 		if (user != null) {
 
 			User consulta = userDAO.findOne(user.getUsername());
 
-			if (consulta == null) {
-				if (user.getId() == -1) {
-					
+			User ultimo = userDAO.findLastRegisterUser();
+
+			if (user.getId() == -1) {
+				if (consulta == null) {
+
 					User peticion = new User();
 					peticion.setRol(user.getRol());
 					peticion.setUsername(user.getUsername());
 					peticion.setPassword(utilidades.encodePassword(user.getPassword()));
-
-					System.out.print(peticion.toString());
+					peticion.setId(ultimo.getId() + 1);
 
 					userDAO.save(peticion);
+					respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_EXITOSO);
+					respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_CREAR_USUARIO_CORRECTO);
+
+				}else {
+					
+					respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_ERROR);
+					respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_CREAR_USUARIO_ERROR_YA_EXISTE);
+
+					
+				}
+			}else {
+				
+				if(consulta==null) {
+					
+					respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_ERROR);
+					respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_MODIFICAR_USUARIO_ERROR_NO_EXISTE);
+
+				}else {
+					
+					consulta.setRol(user.getRol());
+					consulta.setUsername(user.getUsername());
+					consulta.setPassword(utilidades.encodePassword(user.getPassword()));
+					userDAO.save(consulta);
+					respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_EXITOSO);
+					respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_MODIFICAR_USUARIO_CORRECTO);
 
 				}
+				
 			}
 		}
 
-		return "redirect:/usuarios";
-
+		return respuesta;
 	}
 
 	@GetMapping("usuarios/delete/{id}")

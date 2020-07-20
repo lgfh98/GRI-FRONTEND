@@ -9,7 +9,7 @@
 	<div class="modal-contentCruds">
 		<span class="closeModalUsuario"><i class="fas fa-times"></i></span> <br />
 		<h2 id="idTitleCrearUsuario"></h2>
-		<form th:action="@{usuarios/save}" th:object="${user}" method="POST" id="guardarUsuariosModal">
+		<form  th:object="${user}" method="post" id="guardarUsuariosModal">
 			
 			<input name="id" id="campoid" type="hidden">
 			
@@ -36,7 +36,7 @@
 			<div class="form-group">
 				<label for="exampleInputPassword1">Rol del Usuario: <b
 					style="color: red">*</b></label> <select class="custom-select requaired"
-					id="rol.role" name="rol.role" >
+					id="rol.role" name="rol.id" >
 					<option value="">Seleccione...</option>
 					<option value="1">Administrador</option>
 					<option value="2">Usuario</option>
