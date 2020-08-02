@@ -107,7 +107,9 @@ public class FacultadDAO extends GenericServiceImpl<Facultad, Long> implements F
 		return facultadRepository.getCantidadCategorias(idFacultad);
 	}
 
-
+	public Facultad findLastRegister() {
+		return facultadRepository.findLastRegister();
+	}
 
 	@Override
 	public CrudRepository<Facultad, Long> getCrudRepository() {

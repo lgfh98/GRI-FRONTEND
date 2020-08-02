@@ -43,7 +43,11 @@ public class UserDAO extends GenericServiceImpl<User, Long> implements UserServi
 	public List<User> getAllUsers(){
 		return userRepository.findAll();
 	}
-
+	
+	/**
+	 * Metodo que permite obtener el ultimo usuario registrado
+	 * @return
+	 */
 	public User findLastRegisterUser() {
 		
 		return userRepository.findLastRegister();

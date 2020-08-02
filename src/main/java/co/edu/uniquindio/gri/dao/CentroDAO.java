@@ -85,7 +85,15 @@ public class CentroDAO extends GenericServiceImpl<Centro, Long> implements Centr
 	public Object getAllCentrosFacultad(Long facultadId) {
 		return centroRepository.getAllCentrosFacultad(facultadId);
 	}
-
+	
+	/**
+	 * metodo que permite obtener el ultimo centro registrado
+	 * @return
+	 */
+	public Centro findLastRegister() {
+		return centroRepository.findLastRegister();
+	}
+	
 	@Override
 	public CrudRepository<Centro, Long> getCrudRepository() {
 		return centroCrudRepository;

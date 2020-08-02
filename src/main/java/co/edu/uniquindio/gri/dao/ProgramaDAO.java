@@ -179,6 +179,10 @@ public class ProgramaDAO extends GenericServiceImpl<Programa, Long> implements P
 	public List<BigInteger> getResumenGeneralPrograma(Long programaId){
 		return programaRepository.getResumenGeneralPrograma(programaId);
 	}
+	
+	public Programa findLastRegister() {
+		return programaRepository.findLastRegister();
+	}
 
 	@Override
 	public CrudRepository<Programa, Long> getCrudRepository() {
