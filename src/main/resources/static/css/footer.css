@@ -1,0 +1,40 @@
+.section-link {
+	background-color: #fff;
+	border: 2px solid #333;
+	border-radius: 50%;
+	color: #333;
+	display: inline-block;
+	font-size: 1.2em;
+	height: 40px;
+	text-align: center;
+	width: 40px;
+	padding: 9px;
+	transition: all 0.25s ease-in-out;
+	float: left;
+}
+
+.linksCentrados{
+	
+	display: -webkit-inline-box;
+	
+} 
+
+.textCentrado {
+	text-align: center;
+}
+
+footer .footer a {
+    color: #308113;
+    text-decoration: none;
+}
+
+footer .footer a:visited {
+    color: #308113;
+}
+
+@media screen and (max-width: 768px) {
+	footer .footer .footer-contenido {
+		text-align: center;
+		padding: 0.5em;
+	}
+}

@@ -25,7 +25,7 @@
 
 				<div class="separador-1"></div>
 
-				<a class="btn btn-primary" id="btnCrearCentro">Crear Centro</a> <br />
+				<a class="btn btn-primary" id="btnCrearCentro">Agregar Centro</a> <br />
 				<br />
 				<div class="contenedor mb-3">
 					<div class="contenedor-header">
@@ -40,8 +40,10 @@
 									<tr>
 
 
-										<th class="centrarItemsTabla">NOMBRE DE CENTRO</th>
-										<th class="centrarItemsTabla">ROL</th>
+										<th class="centrarItemsTabla">NOMBRE</th>
+										<th class="centrarItemsTabla">INFORMACIÓN GENERAL</th>
+										<th class="centrarItemsTabla">CONTACTO</th>
+										<th class="centrarItemsTabla">FACULTAD</th>
 										<th class="centrarItemsTabla">ACCIONES</th>
 
 
@@ -49,7 +51,18 @@
 								</thead>
 								<tbody>
 
-									
+									<tr th:each="centro : ${centros}" th:if="${centro.id}>0" th:id="'trCentro'+${centro.id}">
+
+										<td class="centrarItemsTabla" th:text="${centro.nombre}"></td>
+										<td class="centrarItemsTabla" th:text="${centro.informaciongeneral}"></td>
+										<td class="centrarItemsTabla" th:text="${centro.contacto}"></td>
+										<td class="centrarItemsTabla" th:text="${centro.facultad.nombre}"></td>
+										<td class="centrarItemsTabla">
+											<a class="btn btn-warning"th:onclick="">Editar</a>
+											<a class="btn btn-danger btnEliminar" th:onclick="">Eliminar</a>
+										</td>
+
+									</tr>
 								</tbody>
 							</table>
 						</div>
