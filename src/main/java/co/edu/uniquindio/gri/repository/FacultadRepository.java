@@ -61,5 +61,10 @@ public interface FacultadRepository extends JpaRepository<Facultad, Long> {
 
 	@Query(value = "select * from gri.facultades us where us.id=(select max(id) from gri.facultades)", nativeQuery = true)
 	Facultad findLastRegister();
+	
+	@Query("FROM co.edu.uniquindio.gri.model.Facultad WHERE id = :id")
+	Facultad findOne(@Param("id") long id);
+	
+	
 
 }

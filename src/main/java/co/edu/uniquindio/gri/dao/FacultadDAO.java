@@ -39,6 +39,16 @@ public class FacultadDAO extends GenericServiceImpl<Facultad, Long> implements F
 		return facultadRepository.findAll();
 	}
 	
+	/**
+	 * Encuentra y retorna una facultad por nombre.
+	 *
+	 * @param nombre, nombre de la facultad
+	 * @return facultad encontrada
+	 */
+	public Facultad findOne(long id) {
+		return facultadRepository.findOne(id);
+	}
+	
 
 
 	/**
