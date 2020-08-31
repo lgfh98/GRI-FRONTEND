@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import co.edu.uniquindio.gri.model.Facultad;
+import co.edu.uniquindio.gri.model.User;
 
 /**
  * Interface FacultadRepository.
@@ -57,4 +58,8 @@ public interface FacultadRepository extends JpaRepository<Facultad, Long> {
 
 	@Query(value = "SELECT count(*) FROM gri.facultades WHERE id<>:facultadId", nativeQuery = true)
 	List<BigInteger> getCantidadCategorias(@Param("facultadId") Long facultadId);
+
+	@Query(value = "select * from gri.facultades us where us.id=(select max(id) from gri.facultades)", nativeQuery = true)
+	Facultad findLastRegister();
+
 }

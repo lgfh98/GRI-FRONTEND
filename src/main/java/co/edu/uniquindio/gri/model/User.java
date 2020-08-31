@@ -11,20 +11,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import co.edu.uniquindio.gri.utilities.Respuesta;
+
 /**
  * The Class User.
  */
 @Entity(name = "USERS")
 @Table(name = "USERS", schema = "gri")
-public class User  implements Serializable{
+public class User implements Serializable{
 	
 	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	/** The id. */
 	@Id
 	@Column(name = "ID", length = 300)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	/** The username. */
 	@Column(name = "USERNAME", length = 300)	

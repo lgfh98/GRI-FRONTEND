@@ -72,6 +72,11 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 	font-family: 'Font Awesome 5 Free';
 }
 
+h1 strong {
+	
+	color: #308113;
+}
+
 .navbar-nav .nav-item.dropdown.show .dropdown-toggle::after {
 	content: '\f107';
 }
@@ -171,13 +176,17 @@ body.fixed-nav.sidebar-toggled #content-wrapper {
 }
 
 .icon {
-	background: url('../img/logo-big.png');
+	background: url('https://www.uniquindio.edu.co/info/uniquindio/media/bloque2.png');
 	height: 175px;
-	width: 175px;
+	
 	display: inline-block;
 	vertical-align: top;
 	line-height: 128px;
 	text-align: center;
+}
+.img-responsive {
+	max-width: 100%;
+	width: 175px;
 }
 
 .cont-titulo {
@@ -639,7 +648,7 @@ button.printButton::before {
 }
 
 .card-item-cantidad {
-	background-color: #007f36;
+	background-color: #308113;
 	color: white;
 	display: flex;
 	align-items: center;
@@ -654,7 +663,7 @@ button.printButton::before {
 }
 
 .card-item-cantidad {
-	background-color: #007f36;
+	background-color: #308113;
 	color: white;
 	display: flex;
 	align-items: center;
@@ -698,13 +707,13 @@ button.printButton::before {
 }
 
 .card-0 {
-	background-color: #007f36;
+	background-color: #308113;
 	border: none;
 	text-align: center;
 }
 
 .card-0-nav {
-	background-color: #007f36;
+	background-color: #308113;
 	border: none;
 	text-align: center;
 	border-bottom: 5px solid;
@@ -1629,8 +1638,8 @@ colores de botones de las tablas
 	border-radius: 6px;
 	font-weight: bold;
 	font-size: 0.8em;
-	border: 1px solid #007f36;
-	border-bottom: 10px solid #007f36;
+	border: 1px solid #308113;
+	border-bottom: 10px solid #308113;
 }
 
 .btn-total-grid-0 {
@@ -1638,12 +1647,12 @@ colores de botones de las tablas
 	height: 100%;
 	background: transparent;
 	border-radius: 6px;
-	border: 2px solid #007f36;
+	border: 2px solid #308113;
 	font-weight: bold;
 }
 
 .btn-total-grid-0:hover {
-	background-color: #007f36;
+	background-color: #308113;
 	color: white;
 }
 
@@ -2314,4 +2323,10 @@ Responsive--------------------------------------------
 		display: block;
 		transition: all 0.5s;
 	}
+}
+
+
+.footer {
+	
+	background: url('https://www.uniquindio.edu.co/info/uniquindio/web/portal/img/bg-footer.png')
 }

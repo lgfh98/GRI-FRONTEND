@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header('Facultades')">
+<meta charset="utf-8" />
+
+</head>
+
+<body id="page-top" class="sidebar-toggled">
+	<nav th:replace="fragments/nav :: nav('card-0-nav')"></nav>
+	<nav th:replace="fragments/secondarynav"></nav>
+
+	<div id="wrapper">
+		<div id="content-wrapper">
+			<div class="container-fluid">
+				<div class="region-hero">
+					<div class="contenedor-hero">
+						<div class="contenido-hero">
+							<h1 id="titulo" class="titulo-hero">FACULTADES</h1>
+							Administración de Facultades
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="separador-1"></div>
+
+				<a class="btn btn-primary" id="btnCrearFacultad">Agregar Facultad</a> <br />
+				<br />
+				<div class="contenedor mb-3">
+					<div class="contenedor-header">
+						<i class="fas fa-table"></i> Lista de Facultades
+					</div>
+					<div class="contenedor-body">
+						<div id="table">
+							<table id="tabla_Facultad"
+								th:class="'table-' + ${id} + ' table-striped table-bordered table-hover table-responsive-lg'"
+								style="width: 100%">
+								<thead>
+									<tr>
+
+
+										<th class="centrarItemsTabla">NOMBRE</th>
+										<th class="centrarItemsTabla">MISIÓN</th>
+										<th class="centrarItemsTabla">VISIÓN</th>
+										<th class="centrarItemsTabla">CONTACTO</th>
+										<th class="centrarItemsTabla">ACCIONES</th>
+
+
+									</tr>
+								</thead>
+								<tbody>
+	
+									<tr th:each="facultad : ${facultades}" th:if="${facultad.id}>0" th:id="'trFacultad'+${facultad.id}">
+
+										<td class="centrarItemsTabla" th:text="${facultad.nombre}"></td>
+										<td class="centrarItemsTabla" th:text="${facultad.mision}"></td>
+										<td class="centrarItemsTabla" th:text="${facultad.vision}"></td>
+										<td class="centrarItemsTabla" th:text="${facultad.contacto}"></td>
+										<td class="centrarItemsTabla"><a class="btn btn-warning"
+											th:onclick="">Editar</a>
+											<a class="btn btn-danger btnEliminar"
+											th:onclick="">Eliminar</a>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<div th:replace="fragments/footer"></div>
+
+
+</body>
+</html>
