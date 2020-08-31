@@ -1,8 +1,45 @@
-<!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Modal_Facultad')">
-<meta charset="utf-8" />
-
-</head>
-
-<!-- ------------TO DO---------------- -->
+<!-- Modal -->
+<div class="modal fade" id="modalAgregarEditarFacultar" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-top: 10px solid #308113;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear Facultad</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:object="${facultad}" method="post" id="formAgregarEditarFacultad">
+                    <input type="hidden" name="id" id="campoid">
+                    <div class="form-group">
+                        <label for="nombreFacultad">Nombre: <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="nombreFacultad" name="nombre"
+                            placeholder="Ingrese el nombre de la Facultad" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mision">Misión: <span style="color: red;">*</span></label>
+                        <textarea class="form-control" id="mision" rows="6" name="mision"
+                            placeholder="Ingrese la Misión" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="vision">Visión: <span style="color: red;">*</span></label>
+                        <textarea class="form-control" id="vision" rows="6" name="vision"
+                            placeholder="Ingrese la Misión" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contacto">Contacto: <span style="color: red;">*</span></label>
+                        <textarea class="form-control" id="contacto" rows="3" name="contacto"
+                            placeholder="Ingrese informacón de contacto" required></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btnModalGuardar">
+                    <i class="fas fa-save"></i> Guardar
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

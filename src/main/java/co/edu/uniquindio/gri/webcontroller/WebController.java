@@ -1147,6 +1147,58 @@ public class WebController {
 		return "admin/facultades/facultades";
 
 	}
+	
+	@PostMapping("facultades/save")
+	public @ResponseBody Respuesta saveFacultad(Facultad facultad) {
+
+		Respuesta respuesta = new Respuesta();
+
+		if (facultad != null) {
+			
+			Facultad consulta = facultadDAO.findOne(facultad.getId());	
+
+			Facultad ultimo = facultadDAO.findLastRegister();
+			
+			if(consulta == null) {
+				
+				//guardar
+
+				Facultad peticion = new Facultad();
+				peticion.setNombre(facultad.getNombre());
+				peticion.setMision(facultad.getMision());
+				peticion.setVision(facultad.getVision());
+				peticion.setContacto(facultad.getContacto());
+				peticion.setId(ultimo.getId() + 1);
+
+				facultadDAO.save(peticion);
+				respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_EXITOSO);
+				respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_CREAR_FACULTAD_CORRECTO);
+			}else {
+				
+				//actualizar
+				
+				consulta.setNombre(facultad.getNombre());
+				consulta.setMision(facultad.getMision());
+				consulta.setVision(facultad.getVision());
+				consulta.setContacto(facultad.getContacto());
+
+				facultadDAO.save(consulta);
+				respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_EXITOSO);
+				respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_MODIFICAR_FACULTAD_CORRECTO);
+			}
+		}
+
+		return respuesta;
+	}
+	
+	@GetMapping("facultades/delete/{id}")
+	public String deleteFacultad(@PathVariable("id") Long id, Model model) {
+
+		facultadDAO.delete(id);
+		
+		//esto en realidad no hace nada, la actualizacion de la pagina se esta dando con location.reaload() -> javascript
+		return "redirect:/Admfacultades";
+	}
 
 	@GetMapping("/Admprogramas")
 	public String getAllProgramas(Model model) {
