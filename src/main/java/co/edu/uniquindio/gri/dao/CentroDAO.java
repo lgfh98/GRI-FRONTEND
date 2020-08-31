@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.CrudRepository.CentroCrudRepository;
 import co.edu.uniquindio.gri.model.Centro;
+import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.repository.CentroRepository;
 import co.edu.uniquindio.gri.service.api.CentroServiceApi;
 import co.edu.uniquindio.gri.utilities.GenericServiceImpl;
@@ -74,6 +75,10 @@ public class CentroDAO extends GenericServiceImpl<Centro, Long> implements Centr
 	 */
 	public List<BigInteger> getResumenGeneralCentros(Long centroId) {
 		return centroRepository.getResumenGeneralCentros(centroId);
+	}
+	
+	public Centro findOne(long id) {
+		return centroRepository.findOne(id);
 	}
 
 	/**

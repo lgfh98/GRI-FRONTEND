@@ -857,3 +857,8 @@
 
 
 )(jQuery); // End of use strict
+
+function estilosBotones() {
+	$(".btn").addClass("text-white");
+	$(".btn").css("text-shadow", "none")
+}

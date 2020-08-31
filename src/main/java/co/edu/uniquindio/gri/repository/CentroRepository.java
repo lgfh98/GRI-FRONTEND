@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import co.edu.uniquindio.gri.model.Centro;
+import co.edu.uniquindio.gri.model.Facultad;
 import co.edu.uniquindio.gri.model.User;
 
 /**
@@ -60,4 +61,6 @@ public interface CentroRepository extends JpaRepository<Centro, Long>{
 	@Query(value = "select * from gri.centros us where us.id=(select max(id) from gri.centros)", nativeQuery = true)
 	Centro findLastRegister();
 	
+	@Query("FROM co.edu.uniquindio.gri.model.Centro WHERE id = :id")
+	Centro findOne(@Param("id") long id);
 }

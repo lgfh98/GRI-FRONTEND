@@ -34,7 +34,7 @@
 						<i class="fas fa-table"></i> Lista de Facultades
 					</div>
 					<div class="contenedor-body">
-						<div id="table_facultades">
+						<div id="">
 							<table id="tabla_Facultad"
 								th:class="'table-' + ${id} + ' table-striped table-bordered table-hover table-responsive-lg'"
 								style="width: 100%">
@@ -60,7 +60,7 @@
 										<td class="centrarItemsTabla" th:text="${facultad.mision}"></td>
 										<td class="centrarItemsTabla" th:text="${facultad.vision}"></td>
 										<td class="centrarItemsTabla" th:text="${facultad.contacto}"></td>
-										<td class="centrarItemsTabla"><a class="btn btn-warning"
+										<td class="d-flex flex-nowrap align-items-center justify-content-center"><a class="btn btn-info mr-2"
 												th:onclick="editarFacultad([[${facultad.id}]],[[${facultad.nombre}]],[[${facultad.mision}]],[[${facultad.vision}]],[[${facultad.contacto}]]);">Editar</a>
 											<a class="btn btn-danger btnEliminar"
 												th:onclick="eliminarFacultad([[${facultad.id}]])">Eliminar</a>
@@ -82,7 +82,7 @@
 
 	<script th:inline="javascript">
 		$(document).ready(function () {
-
+			estilosBotones();
 			$("#tabla_Facultad").DataTable({
 				"language": {
 					"lengthMenu": "Mostrar _MENU_ registros por página",
@@ -104,7 +104,7 @@
 			$('#formAgregarEditarFacultad').on('submit', function (e) {
 				e.preventDefault();
 				let data = $(this).serialize();
-				console.log(data)
+				// console.log(data)
 				$.ajax({
 					type: "POST",
 					url: "facultades/save",

@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import co.edu.uniquindio.gri.model.Centro;
 import co.edu.uniquindio.gri.model.Programa;
 
 /**
@@ -140,5 +141,8 @@ public interface ProgramaRepository extends JpaRepository<Programa, Long> {
 
 	@Query(value = "select * from gri.programas us where us.id=(select max(id) from gri.programas)", nativeQuery = true)
 	Programa findLastRegister();
+	
+	@Query("FROM co.edu.uniquindio.gri.model.Programa WHERE id = :id")
+	Programa findOne(@Param("id") long id);
 	
 }

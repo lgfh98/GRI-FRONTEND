@@ -1131,9 +1131,67 @@ public class WebController {
 		model.addAttribute("id", 0);
 
 		model.addAttribute("centros", centroDAO.getAll());
+		model.addAttribute("facultades", facultadDAO.getAll());
 
 		return "admin/centros/centros";
 
+	}
+	
+	@PostMapping("centros/save/{idFacultad}")
+	public @ResponseBody Respuesta saveCentro(Centro centro, @PathVariable("idFacultad") Long idFacultad) {
+
+		Respuesta respuesta = new Respuesta();
+
+		if (centro != null) {
+			
+			Centro consulta = centroDAO.findOne(centro.getId());	
+
+			Centro ultimo = centroDAO.findLastRegister();
+			
+			if(consulta == null) {
+				
+				//guardar
+				
+				Facultad facultadAsociada = facultadDAO.findOne(idFacultad);
+
+				Centro peticion = new Centro();
+				peticion.setNombre(centro.getNombre());
+				peticion.setInformaciongeneral(centro.getInformaciongeneral());
+				peticion.setContacto(centro.getContacto());
+				peticion.setFacultad(facultadAsociada);
+				peticion.setId(ultimo.getId() + 1);
+
+				centroDAO.save(peticion);
+				respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_EXITOSO);
+				respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_CREAR_CENTRO_CORRECTO);
+			}else {
+				
+				//actualizar
+				
+				Facultad facultadAsociada = facultadDAO.findOne(idFacultad);
+				
+				consulta.setNombre(centro.getNombre());
+				consulta.setInformaciongeneral(centro.getInformaciongeneral());
+				consulta.setContacto(centro.getContacto());
+				consulta.setFacultad(facultadAsociada);
+
+				centroDAO.save(consulta);
+				
+				respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_EXITOSO);
+				respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_MODIFICAR_CENTRO_CORRECTO);
+			}
+		}
+
+		return respuesta;
+	}
+	
+	@GetMapping("centros/delete/{id}")
+	public String deleteCentro(@PathVariable("id") Long id, Model model) {
+
+		centroDAO.delete(id);
+		
+		//esto en realidad no hace nada, la actualizacion de la pagina se esta dando con location.reaload() -> javascript
+		return "redirect:/Admcentros";
 	}
 
 	@GetMapping("/Admfacultades")
@@ -1207,9 +1265,72 @@ public class WebController {
 		model.addAttribute("id", 0);
 
 		model.addAttribute("programas", programaDAO.getAll());
+		
+		model.addAttribute("facultades", facultadDAO.getAll());
 
 		return "admin/programas/programas";
 
+	}
+	
+	@PostMapping("programas/save/{idFacultad}")
+	public @ResponseBody Respuesta savePrograma(Programa programa, @PathVariable("idFacultad") Long idFacultad) {
+
+		Respuesta respuesta = new Respuesta();
+
+		if (programa != null) {
+			
+			Programa consulta = programaDAO.findOne(programa.getId());	
+
+			Programa ultimo = programaDAO.findLastRegister();
+			
+			if(consulta == null) {
+				
+				//guardar
+				
+				Facultad facultadAsociada = facultadDAO.findOne(idFacultad);
+
+				Programa peticion = new Programa();
+				peticion.setNombre(programa.getNombre());
+				peticion.setInformaciongeneral(programa.getInformaciongeneral());
+				peticion.setMision(programa.getMision());
+				peticion.setVision(programa.getVision());
+				peticion.setContacto(programa.getContacto());
+				peticion.setFacultad(facultadAsociada);
+				peticion.setId(ultimo.getId() + 1);
+
+				programaDAO.save(peticion);
+				respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_EXITOSO);
+				respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_CREAR_PROGRAMA_CORRECTO);
+			}else {
+				
+				//actualizar
+				
+				Facultad facultadAsociada = facultadDAO.findOne(idFacultad);
+				
+				consulta.setNombre(programa.getNombre());
+				consulta.setInformaciongeneral(programa.getInformaciongeneral());
+				consulta.setMision(programa.getMision());
+				consulta.setVision(programa.getVision());
+				consulta.setContacto(programa.getContacto());
+				consulta.setFacultad(facultadAsociada);
+
+				programaDAO.save(consulta);
+				
+				respuesta.setCodigoRespuesta(GRIConstantes.CODIGO_RESPUESTA_EXITOSO);
+				respuesta.setMensajeRespuesta(GRIConstantes.RESPUESTA_MODIFICAR_PROGRAMA_CORRECTO);
+			}
+		}
+
+		return respuesta;
+	}
+	
+	@GetMapping("programas/delete/{id}")
+	public String deletePrograma(@PathVariable("id") Long id, Model model) {
+
+		programaDAO.delete(id);
+		
+		//esto en realidad no hace nada, la actualizacion de la pagina se esta dando con location.reaload() -> javascript
+		return "redirect:/Admprogramas";
 	}
 
 	/**
