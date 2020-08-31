@@ -57,7 +57,12 @@ public class GestorDeCasosBonita {
 			parametros.put((new JSONObject()).put("name", "nombreDeProduccion").put("value",
 					produccionBGrupo.getReferencia()));
 			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", Util.PRODUCCION_BIBLIOGRAFICA));
+			
+			parametros.put((new JSONObject()).put("name", "subTipoDeProduccion").put("value", produccionBGrupo.getTipo().getNombre()));
+			
 			grupoDeInvestigacion = produccionBGrupo.getGrupo();
+			
+			
 
 		} else if (produccionGrupo != null) {
 
@@ -67,6 +72,8 @@ public class GestorDeCasosBonita {
 					(new JSONObject()).put("name", "nombreDeProduccion").put("value", produccionGrupo.getReferencia()));
 
 			parametros.put((new JSONObject()).put("name", "tipoDeProduccion").put("value", Util.PRODUCCION_GENERICA));
+			
+			parametros.put((new JSONObject()).put("name", "subTipoDeProduccion").put("value", produccionGrupo.getTipo().getNombre()));
 
 			grupoDeInvestigacion = produccionGrupo.getGrupo();
 
@@ -92,7 +99,7 @@ public class GestorDeCasosBonita {
 		try {
 			// Creación del caso
 			bonita.iniciarCasoConVariables(nombreDelProcesoBonita, idDelProcesoBonita, parametros);
-			log.info("Generación de caso exitosa " + idDelProcesoBonita);
+			log.info("Generación de caso exitosa");
 			return true;
 		} catch (URISyntaxException | IOException e) {
 			log.error(e.getMessage());
