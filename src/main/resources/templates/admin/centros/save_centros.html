@@ -1,8 +1,48 @@
-<!doctype html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header :: header('Modal_Centro')">
-<meta charset="utf-8" />
-
-</head>
-
-<!-- ------------TO DO---------------- -->
+<!-- Modal -->
+<div class="modal fade" id="modalAgregarEditarCentro" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border-top: 10px solid #308113;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Crear Centro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:object="${centro}" method="post" id="formAgregarEditarCentro">
+                    <input type="hidden" name="id" id="campoid">
+                    <div class="form-group">
+                        <label for="nombreCentro">Nombre: <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" id="nombreCentro" name="nombre"
+                            placeholder="Ingrese el nombre del centro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="infoGeneral">Información general: <span style="color: red;">*</span></label>
+                        <textarea class="form-control" id="infoGeneral" rows="6" name="informaciongeneral"
+                            placeholder="Información general" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="facultad">Facultad: <span style="color: red;">*</span></label>
+                        <select id="selectFacultad" class="custom-select custom-select-md" required>
+                            <option value="" selected>Selecciona una Facultad</option>
+                            <option th:each="item : ${facultades}" th:value="${item.id}" th:text="${item.nombre}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contacto">Contacto: <span style="color: red;">*</span></label>
+                        <textarea class="form-control" id="contacto" rows="6" name="contacto"
+                            placeholder="Ingrese la información de contacto" required></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btnModalGuardar">
+                    <i class="fas fa-save"></i> Guardar
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

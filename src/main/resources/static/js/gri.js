@@ -114,10 +114,15 @@
 							}
 							else if (document.getElementById('tabla_grupos_wrapper')) {
 								$('c[r=A1] t', sheet).text('Grupos');
-							} else if (document.getElementById('tabla_lineas_wrapper')) {
+							}
+							else if (document.getElementById('tabla_lineas_wrapper')) {
 								$('c[r=A1] t', sheet).text('Lineas de Investigación');
-							} else if (document.getElementById('tabla_reconocimientos_wrapper')) {
+							}
+							else if (document.getElementById('tabla_reconocimientos_wrapper')) {
 								$('c[r=A1] t', sheet).text('Reconocimientos');
+							}
+							else if (document.getElementById('tabla_recolecciones_wrapper')) {
+								$('c[r=A1] t', sheet).text('Recolecciones');
 							}
 						},
 						// Nombre de archivo personalizado
@@ -151,6 +156,9 @@
 							}
 							else if (document.getElementById('tabla_reconocimientos_wrapper')) {
 								return 'Reconocimientos';
+							}
+							else if (document.getElementById('tabla_recolecciones_wrapper')) {
+								return 'Recolecciones';
 							}
 						}
 
@@ -191,6 +199,9 @@
 							else if (document.getElementById('tabla_reconocimientos_wrapper')) {
 								return 'Reconocimientos';
 							}
+							else if (document.getElementById('tabla_recolecciones_wrapper')) {
+								return 'Recolecciones';
+							}
 						},
 						// Encabezado del PDF
 						title: function () {
@@ -217,10 +228,15 @@
 							}
 							else if (document.getElementById('tabla_grupos_wrapper')) {
 								return 'Grupos';
-							} else if (document.getElementById('tabla_lineas_wrapper')) {
+							}
+							else if (document.getElementById('tabla_lineas_wrapper')) {
 								return 'Lineas de Investigación';
-							} else if (document.getElementById('tabla_reconocimientos_wrapper')) {
-								return 'Lineas de reconocimientos';
+							}
+							else if (document.getElementById('tabla_reconocimientos_wrapper')) {
+								return 'Reconocimientos';
+							}
+							else if (document.getElementById('tabla_recolecciones_wrapper')) {
+								return 'Recolecciones';
 							}
 						},
 						exportOptions: {
@@ -349,6 +365,27 @@
 		$('#tabla_reconocimientos_filter input').keyup(function () {
 			// Busqueda con tildes
 			tabla_reconocimientos
+				.search(
+					jQuery.fn.DataTable.ext.type.search.string(this.value)
+				)
+				.draw();
+		});
+
+		var tabla_recolecciones = $('#tabla_recolecciones').DataTable({
+			responsive: true,
+			rowId: 'id',
+			"order": [[1, "asc"]],
+			columns: [
+				{ data: "id" },
+				{ data: "nombre" },
+				{ data: "estado" },
+				{ data: "tipoproduccion" }
+			]
+		});
+
+		$('#tabla_recolecciones_filter input').keyup(function () {
+			// Busqueda con tildes
+			tabla_recolecciones
 				.search(
 					jQuery.fn.DataTable.ext.type.search.string(this.value)
 				)
@@ -509,7 +546,7 @@
 				.draw();
 		});
 
-		// .---------------------------PERTENENCIA------------------------------------ 
+		// .---------------------------PERTENENCIA------------------------------------
 		var tabla_pertenencia = $('#tabla_pertenencia').DataTable({
 			responsive: true,
 			dom: 'Bfrti',
@@ -658,6 +695,8 @@
 						dataIndex) {
 						if (data[7] == 1) {
 							$(row).addClass('en-inventario');
+						} else if (data[7] == 2) {
+							$(row).addClass('en-proceso');
 						}
 					},
 					"columnDefs": [
@@ -667,14 +706,19 @@
 							"createdCell": function (td,
 								cellData, rowData, row,
 								col) {
-								if (rowData[7] == 1) {
+								if (rowData[7] == 0) {
 									$(td)
-										.html(
-											"<input type='checkbox' id='checkboxReporte' checked='checked'/>");
-								} else {
+									.html(
+										"<select id='checkboxReporte'><option value=0 selected='selected'>Sin custodia</option><option value=2>En proceso</option><option value=1>En custodia</option></select>");
+								} else if(rowData[7] == 1) {
 									$(td)
-										.html(
-											"<input type='checkbox' id='checkboxReporte'/>");
+									.html(
+										"<select id='checkboxReporte'><option value=0>Sin custodia</option><option value=2>En proceso</option><option value=1 selected='selected'>En custodia</option></select>");
+								} else if(rowData[7] == 2){
+									$(td)
+									.html(
+										"<select id='checkboxReporte'><option value=0>Sin custodia</option><option value=2 selected='selected'>En proceso</option><option value=1>En custodia</option></select>");
+							
 								}
 							}
 						}
@@ -686,120 +730,65 @@
 		// Evento para el checkbox
 
 		$('#tabla_inventario tbody').on(
-			'click',
-			'input',
+			'change',
+			'select',
 			function () {
 				var data = table.row($(this).parents('tr')).data();
 				var prodId = data[1];
 				var tipo = data[6];
 				var estado = data[7];
 
-				if (tipo == 15 || tipo == 16 || tipo == 17 || tipo == 18 || tipo == 19 || tipo == 20 || tipo == 21 || tipo == 22 || tipo == 23 || tipo == 39 || tipo == 40) {
+				console.log(tipo);
+				if (tipo == 3) {
 					tipo = 'bibliografica';
 				} else {
 					tipo = 'generica';
 				}
-				console.log(estado + " data: " + data[7]);
 
-				var rowCheckBox = $(this)[0];
-
-				if (estado == 0) {
+				var nuevoEstado = $(this)[0].value;
+				var combo = $(this)[0]
+				var antiguoEstilo;
+				var nuevoEstilo;
+				
+				var texto;
+				if (estado == 0){
+					
+					if (nuevoEstado == 1){
+						texto = "¿Desea agregar al inventario?";
+						nuevoEstilo = "en-inventario";
+					}else if(nuevoEstado == 2){
+						texto = "¿Desea iniciar un proceso de recolección para esta evidencia?"
+						nuevoEstilo = "en-proceso";
+					}
+				
+				}else if (estado == 1){
+					
+					antiguoEstilo = "en-inventario";
+					if (nuevoEstado == 0){
+						texto = "¿Desea remover del inventario?";
+					}else if(nuevoEstado == 2){
+						nuevoEstilo = "en-proceso"
+						texto = "¿Desea volver a iniciar un proceso de recolección para esta evidencia?"
+					}
+					
+				}else if (estado == 2){
+					antiguoEstilo = "en-proceso";
+					if (nuevoEstado == 0){
+						texto = "Ya existe un caso para la recolección de esta producción, al usted cambiar el estado de esta producción y dejarla sin custodia el caso se eliminará. ¿Desea continuar?";
+					}else if(nuevoEstado == 1){
+						texto = "Ya existe un caso para la recolección de esta producción, al usted cambiar el estado de esta producción el caso finalizará. ¿Desea continuar?"
+						nuevoEstilo = "en-inventario"
+					}
+		
+				}
+				
+				console.log("Antiguo estado: " + estado + " Nuevo: " + nuevoEstado);
+				console.log("Antiguo estilo: " + antiguoEstilo + " Nuevo: " + nuevoEstilo);
 					swal({
-						text: "¿Desea agregar al inventario?",
+						text: texto,
 						icon: "warning",
 						dangerMode: true,
-						buttons: {
-							cancel: {
-								text: "Cancelar",
-								value: null,
-								visible: true,
-								className: "",
-								closeModal: true,
-							},
-							confirm: {
-								text: "Agregar",
-								value: true,
-								visible: true,
-								className: "",
-								closeModal: true
-							}
-						},
-					}).then((value) => {
-						estado = 1;
-						if (value) {
-							$.ajax({
-								type: "PUT",
-								contentType: "application/json",
-								url: '/gri/rest/service/producciones/actualizar/' + prodId + '?estado=' + estado + '&tipo=' + tipo,
-								dataType: 'json',
-								cache: false,
-								success: function (res) {
-									if (res) {
-										$('#tabla_inventario').dataTable().fnUpdate(1,
-											$('#tabla_inventario tr#' + prodId),
-											7, false);
-										$('#tabla_inventario tr#' + prodId).addClass(
-											'en-inventario');
-										$('#tabla_inventario tr#' + prodId).removeClass(
-											'en-proceso');
-									}
-								}
-							});
-						} else {
-							rowCheckBox.checked = false;
-						}
-					});
-				} else if (estado == 1) {
-					swal({
-						text: "¿Desea remover del inventario?",
-						icon: "warning",
-						dangerMode: true,
-						buttons: {
-							cancel: {
-								text: "Cancelar",
-								value: null,
-								visible: true,
-								className: "",
-								closeModal: true,
-							},
-							confirm: {
-								text: "Remover",
-								value: true,
-								visible: true,
-								className: "",
-								closeModal: true
-							}
-						},
-					}).then((value) => {
-						estado = 0;
-						if (value) {
-							$.ajax({
-								type: "PUT",
-								contentType: "application/json",
-								url: '/gri/rest/service/producciones/actualizar/' + prodId + '?estado=' + estado + '&tipo=' + tipo,
-								dataType: 'json',
-								cache: false,
-								success: function (res) {
-									if (res) {
-										$('#tabla_inventario').dataTable().fnUpdate(0,
-											$('#tabla_inventario tr#' + prodId),
-											7, false);
-										$('#tabla_inventario tr#' + prodId)
-											.removeClass('en-inventario');
-										$('#tabla_inventario tr#' + prodId).removeClass(
-											'en-proceso');
-									}
-								}
-							});
-						} else {
-							rowCheckBox.checked = true;
-						}
-					});
-				} else if (estado == 2) {
-					swal({
-						text: "Ya existe un caso para la recolección de esta producción, al usted cambiar el estado de esta producción el caso se eliminará. ¿Desea continuar?",
-						icon: "warning",
-						dangerMode: true,
+						className: "",
 						buttons: {
 							cancel: {
 								text: "Cancelar",
@@ -817,31 +806,48 @@
 							}
 						},
 					}).then((value) => {
-						estado = 1;
 						if (value) {
 							$.ajax({
 								type: "PUT",
 								contentType: "application/json",
-								url: '/gri/rest/service/producciones/actualizar/' + prodId + '?estado=' + estado + '&tipo=' + tipo,
+								url: '/gri/rest/service/producciones/actualizarestado/' + prodId + '?estado=' + nuevoEstado + '&tipo=' + tipo,
 								dataType: 'json',
 								cache: false,
 								success: function (res) {
 									if (res) {
-										$('#tabla_inventario').dataTable().fnUpdate(0,
+										$('#tabla_inventario').dataTable().fnUpdate(nuevoEstado,
 											$('#tabla_inventario tr#' + prodId),
 											7, false);
-										$('#tabla_inventario tr#' + prodId)
-											.addClass('en-inventario');
-										$('#tabla_inventario tr#' + prodId).removeClass(
-											'en-proceso');
+										if(antiguoEstilo != null){
+											$('#tabla_inventario tr#' + prodId).removeClass(antiguoEstilo);
+										}
+										if(nuevoEstilo != null){
+											$('#tabla_inventario tr#' + prodId).addClass(nuevoEstilo);
+										}
 									}
 								}
-							});
+							}).fail(function(){
+								swal({
+									text: "No fue posible hacer la actualización del estado de esta producción, por favor consulte al soporte técnico",
+									icon: "error",
+									dangerMode: true,
+									className: "",
+									buttons: {
+										confirm: {
+											text: "Aceptar",
+											value: true,
+											visible: true,
+											className: "",
+											closeModal: true
+										}
+									},
+								})
+								combo.value = estado;
+						    });
 						} else {
-							rowCheckBox.checked = false;
+							combo.value = estado;
 						}
 					});
-				}
 			});
 
 		$('#tabla_inventario_filter input').keyup(
@@ -857,3 +863,8 @@
 
 
 )(jQuery); // End of use strict
+
+function estilosBotones() {
+	$(".btn").addClass("text-white");
+	$(".btn").css("text-shadow", "none")
+}

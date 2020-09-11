@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/header :: header('Facultades')">
-<meta charset="utf-8" />
+	<meta charset="utf-8" />
 
 </head>
 
@@ -25,14 +26,15 @@
 
 				<div class="separador-1"></div>
 
-				<a class="btn btn-primary" id="btnCrearFacultad">Agregar Facultad</a> <br />
+				<a class="btn btn-primary" id="btnCrearFacultad" data-toggle="modal"
+					data-target="#modalAgregarEditarFacultar">Agregar Facultad</a> <br />
 				<br />
 				<div class="contenedor mb-3">
 					<div class="contenedor-header">
 						<i class="fas fa-table"></i> Lista de Facultades
 					</div>
 					<div class="contenedor-body">
-						<div id="table">
+						<div id="">
 							<table id="tabla_Facultad"
 								th:class="'table-' + ${id} + ' table-striped table-bordered table-hover table-responsive-lg'"
 								style="width: 100%">
@@ -50,17 +52,18 @@
 									</tr>
 								</thead>
 								<tbody>
-	
-									<tr th:each="facultad : ${facultades}" th:if="${facultad.id}>0" th:id="'trFacultad'+${facultad.id}">
+
+									<tr th:each="facultad : ${facultades}" th:if="${facultad.id}>0"
+										th:id="'trFacultad'+${facultad.id}">
 
 										<td class="centrarItemsTabla" th:text="${facultad.nombre}"></td>
 										<td class="centrarItemsTabla" th:text="${facultad.mision}"></td>
 										<td class="centrarItemsTabla" th:text="${facultad.vision}"></td>
 										<td class="centrarItemsTabla" th:text="${facultad.contacto}"></td>
-										<td class="centrarItemsTabla"><a class="btn btn-warning"
-											th:onclick="">Editar</a>
+										<td class="d-flex flex-nowrap align-items-center justify-content-center"><a class="btn btn-info mr-2"
+												th:onclick="editarFacultad([[${facultad.id}]],[[${facultad.nombre}]],[[${facultad.mision}]],[[${facultad.vision}]],[[${facultad.contacto}]]);">Editar</a>
 											<a class="btn btn-danger btnEliminar"
-											th:onclick="">Eliminar</a>
+												th:onclick="eliminarFacultad([[${facultad.id}]])">Eliminar</a>
 										</td>
 
 									</tr>
@@ -73,9 +76,143 @@
 		</div>
 	</div>
 
-	
+
 	<div th:replace="fragments/footer"></div>
+	<div th:include="admin/facultades/save_facultad.html"></div>
 
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			estilosBotones();
+			$("#tabla_Facultad").DataTable({
+				"language": {
+					"lengthMenu": "Mostrar _MENU_ registros por página",
+					"zeroRecords": "No se encontraron coincidencias",
+					"info": "Página _PAGE_ de _PAGES_",
+					"infoEmpty": "No se encontraron registros",
+					"infoFiltered": "(filtrado de _MAX_ registros totales)",
+					"paginate": {
+						"previous": "Página anterior"
+					}
+				}
+			});
 
+			$('#btnCrearFacultad').on('click', function (e) {
+				$('#campoid').val("-1");
+				limpiarCamposModalAgregarEditarFacultad();
+			});
+
+			$('#formAgregarEditarFacultad').on('submit', function (e) {
+				e.preventDefault();
+				let data = $(this).serialize();
+				// console.log(data)
+				$.ajax({
+					type: "POST",
+					url: "facultades/save",
+					data: data,
+					beforeSend: function () {
+						Swal.fire({
+							title: 'Cargando...',
+							allowOutsideClick: () => !Swal.isLoading(),
+							onBeforeOpen: () => {
+								Swal.showLoading();
+							}
+						});
+					},
+					success: function (response) {
+						Swal.close();
+						if (response.codigoRespuesta === 200) {
+
+							Swal.fire({
+								icon: 'success',
+								title: response.mensajeRespuesta,
+							}).then((value) => {
+								location.reload();
+							});
+
+						} else {
+							Swal.fire({
+								title: '!Información¡',
+								text: response.mensajeRespuesta,
+								icon: 'info',
+								confirmButtonText: 'Aceptar',
+								allowOutsideClick: () => false
+							})
+						}
+
+					}, error: function () {
+						Swal.close();
+						Swal.fire({
+							title: '¡Error!',
+							text: 'Error de conexión ',
+							icon: 'error',
+							confirmButtonText: 'Aceptar',
+							allowOutsideClick: () => false
+						})
+					}
+				});
+			});
+		});
+
+		function limpiarCamposModalAgregarEditarFacultad() {
+			$("#nombreFacultad").val("");
+			$("#mision").val("");
+			$("#vision").val("");
+			$("#contacto").val("");
+		}
+
+		function setearCamposModalAgregarEditarFacultad(id, nombre, mision, vision, contacto) {
+			$('#campoid').val(id);
+			$("#nombreFacultad").val(nombre);
+			$("#mision").val(mision);
+			$("#vision").val(vision);
+			$("#contacto").val(contacto);
+		}
+
+		function editarFacultad(id, nombre, mision, vision, contacto) {
+			limpiarCamposModalAgregarEditarFacultad();
+			setearCamposModalAgregarEditarFacultad(id, nombre, mision, vision, contacto);
+			$('#modalAgregarEditarFacultar').modal('show');
+		}
+
+		function eliminarFacultad(idFacultad) {
+
+			Swal.fire({
+				title: '¿Esta seguro de eliminar este registro?',
+				text: "¡No podrás revertir esto!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: '¡Si, eliminar!',
+				cancelButtonText: 'Cancelar'
+			}).then((result) => {
+				if (result.value) {
+					$.ajax(
+						{
+							url: "facultades/delete/" + idFacultad,
+							type: "GET"
+						})
+						.done(function (data) {
+							Swal.fire(
+								'¡Eliminado!',
+								'La Facultad ha sido eliminada',
+								'success'
+							).then((value) => {
+								location.reload();
+							});
+
+						})
+						.fail(function (data) {
+							Swal.fire({
+								icon: 'error',
+								title: 'Oops...',
+								text: '¡Algo salió mal!'
+							})
+						})
+				}
+			});
+		}
+	</script>
 </body>
+
 </html>

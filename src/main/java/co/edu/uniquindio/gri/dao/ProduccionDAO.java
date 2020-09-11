@@ -3,14 +3,17 @@ package co.edu.uniquindio.gri.dao;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+
 import co.edu.uniquindio.gri.model.ProduccionBGrupo;
 import co.edu.uniquindio.gri.model.ProduccionGrupo;
 import co.edu.uniquindio.gri.model.Tipo;
 import co.edu.uniquindio.gri.repository.ProduccionRepository;
 import co.edu.uniquindio.gri.repository.TipoRepository;
+import co.edu.uniquindio.gri.utilities.Util;
 
 /**
  * Class ProduccionDAO.
@@ -25,6 +28,8 @@ public class ProduccionDAO {
 	/** Repository para tipos. */
 	@Autowired
 	TipoRepository tipoRepository;
+
+	private static final Logger log = LoggerFactory.getLogger(ProduccionDAO.class);
 
 	/**
 	 * Método que obtiene las producciones que no están en custodia
@@ -55,15 +60,58 @@ public class ProduccionDAO {
 	 * @return
 	 */
 	public boolean actualizarEstadoDeProduccion(long id, String tipo, int estado) {
-		if (tipo.equals("bibliografica")) {
+
+		log.info("Actualizando estado de la producción " + id + " de tipo " + tipo + " a " + estado);
+
+		if (tipo.equals(Util.PRODUCCION_BIBLIOGRAFICA)) {
 			produccionRepository.updateProduccionBGrupo(id, estado);
 			return true;
-		} else if (tipo.equals("generica")) {
+		} else if (tipo.equals(Util.PRODUCCION_GENERICA)) {
 			produccionRepository.updateProduccionGrupo(id, estado);
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * <<<<<<< HEAD Obtiene una producción bibliográficas con un id dado por
+	 * parámetro.
+	 * 
+	 * @param id
+	 * @return la producción bibliográfica
+	 */
+	public ProduccionBGrupo getProduccionB(long id) {
+		return produccionRepository.getProduccionB(id);
+	}
+
+	/**
+	 * Obtiene todas las producciones.
+	 * 
+	 * @param id
+	 * @return la producción genérica
+	 */
+	public ProduccionGrupo getProduccion(long id) {
+		return produccionRepository.getProduccion(id);
+	}
+
+	/**
+	 * Encuentra una produccion bibliografica por su id
+	 * 
+	 * @param search_id el id de la produccion
+	 * @return la produccion bibliografica con dicho id
+	 */
+	public ProduccionBGrupo findBibliograficasById(Long search_id) {
+		return produccionRepository.findBibliograficasById(search_id);
+	}
+
+	/**
+	 * Encuentra una produccion generica por su id
+	 * @param search_id el id de la produccion
+	 * @return la produccion generica con dicho id
+	 */
+	public ProduccionGrupo findGenericasById(Long search_id) {
+		return produccionRepository.findGenericasById(search_id);
 	}
 
 	/**
@@ -194,7 +242,7 @@ public class ProduccionDAO {
 	 *                1 en caso contrario.
 	 * @param prodId, el identificador de la producción en base de datos.
 	 * @return true, si la actualización se realizó satisfactoriamente.
-	 * @deprecated use {@link #actualizarEstadoDeProduccion()} instead. 
+	 * @deprecated use {@link #actualizarEstadoDeProduccion()} instead.
 	 */
 	@Deprecated
 	public boolean actualizarProducciones(String tipo, int estado, Long prodId) {

@@ -1,0 +1,47 @@
+{"properties": [
+  {
+    "name": "bonita.servidor.base",
+    "type": "java.lang.String",
+    "description": "A description for 'bonita.servidor.base'"
+  },
+  {
+    "name": "bonita.usuario",
+    "type": "java.lang.String",
+    "description": "A description for 'bonita.usuario'"
+  },
+  {
+    "name": "bonita.nombre.proceso",
+    "type": "java.lang.String",
+    "description": "A description for 'bonita.nombre.proceso'"
+  },
+  {
+    "name": "bonita.password",
+    "type": "java.lang.String",
+    "description": "A description for 'bonita.password'"
+  },
+  {
+    "name": "gri.recolecciondeproducciones.automatica",
+    "type": "java.lang.String",
+    "description": "A description for 'gri.recolecciondeproducciones.automatica'"
+  },
+  {
+    "name": "gri.recolecciondeproducciones.periodo",
+    "type": "java.lang.String",
+    "description": "A description for 'gri.recolecciondeproducciones.periodo'"
+  },
+  {
+    "name": "gri.recolecciondeproducciones.tasa.genericas",
+    "type": "java.lang.String",
+    "description": "A description for 'gri.recolecciondeproducciones.tasa.genericas'"
+  },
+  {
+    "name": "gri.recolecciondeproducciones.tasa.bibliograficas",
+    "type": "java.lang.String",
+    "description": "A description for 'gri.recolecciondeproducciones.tasa.bibliograficas'"
+  },
+  {
+    "name": "project.base-dir",
+    "type": "java.lang.String",
+    "description": "A description for 'project.base-dir'"
+  }
+]}

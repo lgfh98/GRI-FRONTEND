@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import co.edu.uniquindio.gri.CrudRepository.ProgramaCrudRepository;
+import co.edu.uniquindio.gri.model.Centro;
 import co.edu.uniquindio.gri.model.Programa;
 import co.edu.uniquindio.gri.repository.ProgramaRepository;
 import co.edu.uniquindio.gri.service.api.ProgramaServiceApi;
@@ -36,6 +37,10 @@ public class ProgramaDAO extends GenericServiceImpl<Programa, Long> implements P
 	 */
 	public List<Programa> getAllProgramas() {
 		return programaRepository.getProgramas();
+	}
+	
+	public Programa findOne(long id) {
+		return programaRepository.findOne(id);
 	}
 
 	/**

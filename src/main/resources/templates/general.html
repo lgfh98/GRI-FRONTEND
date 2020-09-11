@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/header :: header('Tipología de Productos')">
-<meta charset="utf-8" />
+	<meta charset="utf-8" />
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -19,12 +19,10 @@
 				<div class="cuerpo">
 					<div id="lista-miembros" class="lista-miembros">
 						<ul id="miembros" class="cards-list">
-							<li class="cards-item" th:classappend="${tamanio}"
-								th:each="obj : ${lista}">
-								
+							<li class="cards-item" th:classappend="${tamanio}" th:each="obj : ${lista}">
+
 								<div class="card">
-									<a class="card-container"
-										th:href="@{general(id=${obj.id},type=${subtipo})}">
+									<a class="card-container" th:href="@{general(id=${obj.id},type=${subtipo})}">
 										<div class="card-title-container-s">
 											<h3 class="card-title-s" th:text="${obj.nombre}"></h3>
 										</div>
@@ -32,7 +30,7 @@
 									<div class="card-bar"
 										th:classappend="${subtipo} == 'f' ? card-+${obj.id} : ${color}"></div>
 								</div>
-								
+
 							</li>
 
 						</ul>
@@ -53,8 +51,8 @@
 						<ul class="cards-list">
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{info(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{info(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-1">
 											<span class="icono fa fa-info"></span>
 										</div>
@@ -69,8 +67,8 @@
 
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{formacion(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{formacion(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-2">
 											<span class="icono fa fa-graduation-cap"></span>
 										</div>
@@ -83,8 +81,8 @@
 
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{evaluador(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{evaluador(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-3">
 											<span class="icono fa fa-pencil-alt"></span>
 										</div>
@@ -97,8 +95,8 @@
 
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{apropiacion(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{apropiacion(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-4">
 											<span class="icono fa fa-user-friends"></span>
 										</div>
@@ -111,8 +109,8 @@
 
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{bibliografica(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{bibliografica(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-5">
 											<span class="icono fa fa-book-open"></span>
 										</div>
@@ -124,8 +122,8 @@
 							</li>
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{tecnica(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{tecnica(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-6">
 											<span class="icono fa fa-cogs"></span>
 										</div>
@@ -138,8 +136,8 @@
 							</li>
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{arte(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{arte(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-7">
 											<span class="icono fa fa-paint-brush"></span>
 										</div>
@@ -153,8 +151,8 @@
 							</li>
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{reconocimientos(id=${id},type=${tipo})}"
-									   class="card-container" rel="keep-params">
+									<a th:href="@{reconocimientos(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-12">
 											<span class="fas fa-award"></span>
 										</div>
@@ -166,8 +164,8 @@
 							</li>
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{masinfo(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{masinfo(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-8">
 											<span class="icono fa fa-plus"></span>
 										</div>
@@ -179,10 +177,23 @@
 									</a>
 								</div>
 							</li>
+							<li th:if="${tipo} != 'i'" class="ci-5 cards-item">
+								<div class="card">
+									<a th:href="@{recolecciones(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
+										<div class="card-icon card-icon-13">
+											<span class="fas fa-id-card"></span>
+										</div>
+										<div class="card-title-container">
+											<h3 class="card-title">Recolección de producciones</h3>
+										</div>
+									</a>
+								</div>
+							</li>
 							<li class="ci-5 cards-item">
 								<div class="card">
-									<a th:href="@{estadisticas(id=${id},type=${tipo})}"
-										class="card-container" rel="keep-params">
+									<a th:href="@{estadisticas(id=${id},type=${tipo})}" class="card-container"
+										rel="keep-params">
 										<div class="card-icon card-icon-11">
 											<span class="fas fa-chart-bar estadisticas_especifico"></span>
 										</div>

@@ -32,8 +32,8 @@
 						<i class="fas fa-table"></i> Lista de Usuarios
 					</div>
 					<div class="contenedor-body">
-						<div id="table">
-							<table id="tabla_usuarios"
+						<div id="">
+							<table id="tabla_usuarios_CRUD"
 								th:class="'table-' + ${id} + ' table-striped table-bordered table-hover table-responsive-lg'"
 								style="width: 100%">
 								<thead>
@@ -54,7 +54,7 @@
 										<td class="centrarItemsTabla" th:text="${usuario.username}"></td>
 										<td class="centrarItemsTabla roleUsuario"
 											th:text="${usuario.rol.role}"></td>
-										<td class="centrarItemsTabla"><a class="btn btn-warning"
+										<td class="d-flex flex-nowrap align-items-center justify-content-center"><a class="btn btn-info mr-2"
 											th:onclick="editarUsuario([[${usuario.username}]],[[${usuario.rol.role}]],[[${usuario.password}]],[[${usuario.id}]]);">Editar</a>
 											<a class="btn btn-danger btnEliminar"
 											th:onclick="eliminarUsuario([[${usuario.id}]])">Eliminar</a>
@@ -108,7 +108,21 @@
 		let body = document.getElementsByTagName("body")[0];
 	    //	Documento listo
 		$(document).ready(function() {
-			
+			estilosBotones();
+
+			$("#tabla_usuarios_CRUD").DataTable({
+				"language": {
+					"lengthMenu": "Mostrar _MENU_ registros por página",
+					"zeroRecords": "No se encontraron coincidencias",
+					"info": "Página _PAGE_ de _PAGES_",
+					"infoEmpty": "No se encontraron registros",
+					"infoFiltered": "(filtrado de _MAX_ registros totales)",
+					"paginate": {
+						"previous": "Página anterior"
+					}
+				}
+			});
+
 			let usuarios = $(".roleUsuario");
 
 			for(let i = 0; i<usuarios.length; i++){
@@ -229,11 +243,11 @@
 						if(response.codigoRespuesta===200){
 
 							Swal.fire({
-							icon: 'success',
-							title: response.mensajeRespuesta,
-							showConfirmButton: false,
-							timer: 1500
-						});
+								icon: 'success',
+								title: response.mensajeRespuesta,
+							}).then((value) => {
+								location.reload();
+							});
 
 						}else {
 							Swal.fire({
@@ -321,8 +335,10 @@
 											      '¡Eliminado!',
 											      'El usuario ha sido eliminado.',
 											      'success'
-											    );
-										$("#trUsuario"+idUsuario).remove();
+											    ).then((value) => {
+													location.reload();
+												});
+										// $("#trUsuario"+idUsuario).remove();
 										  	
 									  })
 									  .fail(function(data) {
